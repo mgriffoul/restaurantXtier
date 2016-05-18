@@ -32,28 +32,15 @@ public class TypePaiement implements Serializable {
 
 
 
-    public TypePaiement(String type, Paiement paiement) {
-        this.type = type;
-        this.paiement = paiement;
-    }
+
 
     public String getType() {
         return type;
     }
 
-    public Paiement getPaiement() {
-        return paiement;
-    }
 
-    public TypePaiement(Long id, Paiement paiement) {
-        this.id = id;
-        this.paiement = paiement;
-    }
     
-    // associations
-    @OneToMany
-    private Paiement paiement;
-    //fin associations
+
 
     @Override
     public int hashCode() {
