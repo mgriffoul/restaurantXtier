@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package beanEntite;
 
 import java.io.Serializable;
@@ -10,18 +6,77 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-/**
- *
- * @author cdi207
- */
+
 @Entity
 public class Article implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    private SousCategorie sousCategorie;
+    
+    @ManyToOne
+    private Tva tva;
+
+    private String nom;
+    private String reference;
+    private Float prixHt;
+    
+    public Article(){
+    }
+
+    public Article(SousCategorie sousCategorie, Tva tva, String nom, String reference, Float prixHt) {
+        this.sousCategorie = sousCategorie;
+        this.tva = tva;
+        this.nom = nom;
+        this.reference = reference;
+        this.prixHt = prixHt;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public Float getPrixHt() {
+        return prixHt;
+    }
+
+    public void setPrixHt(Float prixHt) {
+        this.prixHt = prixHt;
+    }
+
+    public SousCategorie getSousCategorie() {
+        return sousCategorie;
+    }
+
+    public void setSousCategorie(SousCategorie sousCategorie) {
+        this.sousCategorie = sousCategorie;
+    }
+
+    public Tva getTva() {
+        return tva;
+    }
+
+    public void setTva(Tva tva) {
+        this.tva = tva;
+    }
+    
     public Long getId() {
         return id;
     }
