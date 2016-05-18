@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
  * @author cdi206
  */
 @Entity
-public class User implements Serializable {
+public class Utilisateur implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private String code;
@@ -27,17 +27,17 @@ public class User implements Serializable {
     private String prenom;
     
     // association
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "utilisateur")
     private Collection<Commande>commandes;
     // fin association
     
     // constructeurs
 
-    public User() {
+    public Utilisateur() {
         commandes = new ArrayList<>();
     }
 
-    public User(String code, int role, String nom, String prenom) {
+    public Utilisateur(String code, int role, String nom, String prenom) {
         this();
         this.code = code;
         this.role = role;
@@ -102,10 +102,10 @@ public class User implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
+        if (!(object instanceof Utilisateur)) {
             return false;
         }
-        User other = (User) object;
+        Utilisateur other = (Utilisateur) object;
         if ((this.code == null && other.code != null) || (this.code != null && !this.code.equals(other.code))) {
             return false;
         }

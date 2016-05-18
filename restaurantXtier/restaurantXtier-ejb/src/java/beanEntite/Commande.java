@@ -48,8 +48,8 @@ public class Commande implements Serializable {
         return emplacements;
     }
 
-    public User getUser() {
-        return user;
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
     }
 
     public Ticket getTicket() {
@@ -68,8 +68,8 @@ public class Commande implements Serializable {
         this.emplacements = emplacements;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
     public void setTicket(Ticket ticket) {
@@ -81,7 +81,7 @@ public class Commande implements Serializable {
     private Collection<Emplacement> emplacements;
     
     @ManyToOne
-    private User user;
+    private Utilisateur utilisateur;
     
     @OneToOne
     private Ticket ticket;
