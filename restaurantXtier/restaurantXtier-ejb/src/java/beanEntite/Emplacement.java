@@ -31,8 +31,9 @@ public class Emplacement implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
+    @Column(unique = true)
     private Integer numero;
+    
     private String statut;
     private Integer nbCouvert;
 
