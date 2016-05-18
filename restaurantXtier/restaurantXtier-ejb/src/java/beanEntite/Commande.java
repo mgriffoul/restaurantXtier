@@ -10,21 +10,74 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 
 @Entity
 public class Commande implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date date;
     private float numero;
-    
+
+    public Commande() {
+    }
+
+    public Commande(Collection<Emplacement> emplacements) {
+        this.emplacements = emplacements;
+    }
+
+    public Commande(Date date, float numero) {
+        this.date = date;
+        this.numero = numero;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public float getNumero() {
+        return numero;
+    }
+
+    public Collection<Emplacement> getEmplacements() {
+        return emplacements;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setNumero(float numero) {
+        this.numero = numero;
+    }
+
+    public void setEmplacements(Collection<Emplacement> emplacements) {
+        this.emplacements = emplacements;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
     
      // associations
-    @ManyToMany(mappedBy = "")
+    @ManyToMany
     private Collection<Emplacement> emplacements;
     
     @ManyToOne

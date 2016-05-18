@@ -1,3 +1,4 @@
+
 package beanEntite;
 
 import java.io.Serializable;
@@ -5,55 +6,39 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 
 @Entity
-public class TypePaiement implements Serializable {
+public class TypeCuisson implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    private String nom;
+
+    public TypeCuisson() {
+    }
+    
 
     public Long getId() {
         return id;
     }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
+    public String getNom() {
+        return nom;
+    }
 
-    public TypePaiement() {
+    public TypeCuisson(String nom) {
+        this.nom = nom;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
-    
-    String type;
-
-
-
-    public TypePaiement(String type, Paiement paiement) {
-        this.type = type;
-        this.paiement = paiement;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public Paiement getPaiement() {
-        return paiement;
-    }
-
-    public TypePaiement(Long id, Paiement paiement) {
-        this.id = id;
-        this.paiement = paiement;
-    }
-    
-    // associations
-    @OneToMany
-    private Paiement paiement;
-    //fin associations
 
     @Override
     public int hashCode() {
@@ -65,10 +50,10 @@ public class TypePaiement implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TypePaiement)) {
+        if (!(object instanceof TypeCuisson)) {
             return false;
         }
-        TypePaiement other = (TypePaiement) object;
+        TypeCuisson other = (TypeCuisson) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -77,7 +62,7 @@ public class TypePaiement implements Serializable {
 
     @Override
     public String toString() {
-        return "beanEntite.TypePaiement[ id=" + id + " ]";
+        return "beanEntite.TypeCuisson[ id=" + id + " ]";
     }
     
 }

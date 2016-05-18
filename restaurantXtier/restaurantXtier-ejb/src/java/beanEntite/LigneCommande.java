@@ -1,73 +1,48 @@
 package beanEntite;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Ticket implements Serializable {
+public class LigneCommande implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Date date;
-    private float prixTotal;
-
-    public Date getDate() {
-        return date;
-    }
-
-    public float getPrixTotal() {
-        return prixTotal;
-    }
-
-    public Commande getCommande() {
-        return commande;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public void setPrixTotal(float prixTotal) {
-        this.prixTotal = prixTotal;
-    }
-
-    public void setCommande(Commande commande) {
-        this.commande = commande;
-    }
+    private float prixHT;
+    private String etat;
+    private String remarque;
+    private String refFormule;
     
-      // associations
+    // associations
 
-    public Ticket(Date date, float prixTotal) {
-        this.date = date;
-        this.prixTotal = prixTotal;
-    }
-
-    public Ticket() {
-    }
- 
+    @ManyToOne
+    private Sauce Sauce;
     
-    @OneToOne
-    private Commande commande;
+    @ManyToOne
+    private TypeCuisson typeCuisson;
+    
+    @ManyToOne
+    private Article article;
+
     //fin associations
+    
     
     public Long getId() {
         return id;
     }
-    
 
     public void setId(Long id) {
         this.id = id;
     }
-    
-    
-    
 
     @Override
     public int hashCode() {
@@ -79,10 +54,10 @@ public class Ticket implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Ticket)) {
+        if (!(object instanceof LigneCommande)) {
             return false;
         }
-        Ticket other = (Ticket) object;
+        LigneCommande other = (LigneCommande) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -91,7 +66,7 @@ public class Ticket implements Serializable {
 
     @Override
     public String toString() {
-        return "beanEntite.Ticket[ id=" + id + " ]";
+        return "beanEntite.LigneCommande[ id=" + id + " ]";
     }
     
 }
