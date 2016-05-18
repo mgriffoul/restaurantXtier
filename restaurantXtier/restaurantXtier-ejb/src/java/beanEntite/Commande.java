@@ -22,7 +22,7 @@ public class Commande implements Serializable {
 
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date date;
-    private float numero;
+    private String numero;
 
     public Commande() {
     }
@@ -31,7 +31,7 @@ public class Commande implements Serializable {
         this.emplacements = emplacements;
     }
 
-    public Commande(Date date, float numero) {
+    public Commande(Date date, String numero) {
         this.date = date;
         this.numero = numero;
     }
@@ -40,7 +40,7 @@ public class Commande implements Serializable {
         return date;
     }
 
-    public float getNumero() {
+    public String getNumero() {
         return numero;
     }
 
@@ -60,7 +60,7 @@ public class Commande implements Serializable {
         this.date = date;
     }
 
-    public void setNumero(float numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
