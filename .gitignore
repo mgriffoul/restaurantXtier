@@ -19,3 +19,6 @@ src/conf/MANIFEST.MF
 build.xml
 /build/
 
+/restaurantXtier/nbproject/private/
+/restaurantXtier/restaurantXtier-war/nbproject/private/
+/restaurantXtier/restaurantXtier-ejb/nbproject/private/
