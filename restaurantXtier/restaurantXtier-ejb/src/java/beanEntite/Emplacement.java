@@ -6,6 +6,7 @@
 package beanEntite;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,6 +42,7 @@ public class Emplacement implements Serializable {
     
     
     public Emplacement() {
+        commandes = new ArrayList<>();
     }
 
     public Emplacement(Integer numero, String statut, Integer nbCouvert) {
