@@ -36,7 +36,7 @@ public class Emplacement implements Serializable {
     private Integer nbCouvert;
 
     
-    @ManyToMany
+    @ManyToMany(mappedBy = "emplacements")
     private Collection<Commande>commandes;
     
     
