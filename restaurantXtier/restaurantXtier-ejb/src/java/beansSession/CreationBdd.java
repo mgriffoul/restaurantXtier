@@ -21,8 +21,6 @@ public class CreationBdd implements CreationBddLocal {
     @Override
     public void genererBdd() {
 
-
-        
         
         // Création TVA
         Tva tva1 = new Tva (5.5f); // tva pour boisson non alcoolisées
@@ -180,6 +178,70 @@ Article vi4 = new Article(sCat05, tva2, "Tartare de boeuf au basilic et crumble 
 em.persist(vi4);
         
         
+// eaux minérales
+		
+		String desEau1="1L, plate, France. Sa source se situe à Vittel dans le département français des Vosges.";
+		Article eau1 = new Article (sCat08,tva1,"Vittel",3F,desEau1);
+		em.persist(eau1);
+		String desEau2="1L, plate, Italie. Née à 1416 mètres dans un environnement pur et protégé de la pollution, elle est légère avec un taux très faible en sodium.";
+		Article eau2 = new Article (sCat08,tva1,"Lurésia",3F,desEau2);
+		em.persist(eau2);
+		String desEau3="1L, gazeuse, France. Sa source se situe à Saint-Galmier dans le département de la Loire.";
+		Article eau3 = new Article (sCat08,tva1,"Badoit",4F,desEau3);
+		em.persist(eau3);
+		String desEau4="1L, gazeuse, Italie. L'eau minérale San Pellegrino est produite depuis plus de 600 ans.";
+		Article eau4 = new Article (sCat08,tva1,"Sanpellegrino",4F,desEau4);
+                em.persist(eau4);
+		// boissons non alcoolisées
+		
+		String desBoiSa1 = "33cl.";
+		Article boiSa1 = new Article (sCat09,tva1,"Coca-Cola",5F,desBoiSa1);
+		em.persist(boiSa1);
+		String desBoiSa2 = "33cl.";
+		Article boiSa2 = new Article (sCat09,tva1,"Coca-Cola Light",5F,desBoiSa2);
+		em.persist(boiSa2);
+		String desBoiSa3 = "25cl.";
+		Article boiSa3 = new Article (sCat09,tva1,"Jus de Pomme",5F,desBoiSa3);
+		em.persist(boiSa3);
+		String desBoiSa4 = "25cl.";
+		Article boiSa4 = new Article (sCat09,tva1,"Jus d'Orange",5F,desBoiSa4);
+		em.persist(boiSa4);
+		String desBoiSa5 = "25cl. Cocktail de fruits frais sans alcool.";
+		Article boiSa5 = new Article (sCat09,tva1,"Cocktail de fruits",6F,desBoiSa5);
+		em.persist(boiSa5);
+
+		// cocktails
+		
+		String desCock1="Tequila, Jus d'Orange, sirop de Grenadine.";
+		Article cock1 = new Article (sCat10,tva3,"Tequila Sunrise", 7F, desCock1);
+		em.persist(cock1);
+		String desCock2="Rhum, jus de Citron vert, Menthe, eau gazeuse, sirop de sucre de canne.";
+		Article cock2 = new Article (sCat10,tva3,"Mojito", 7F, desCock2);
+		em.persist(cock2);
+		String desCock3="Vodka, curaçao bleu, jus de citron.";
+		Article cock3 = new Article (sCat10,tva3,"Blue Lagoon", 7F, desCock3);
+		em.persist(cock3);
+		String desCock4="vodka, sirop de melon, Chambord, jus d'ananas, jus de cranberry";
+		Article cock4 = new Article (sCat10,tva3,"Sex on the beach", 7F, desCock4);
+		em.persist(cock4);
+		
+		// persist
+		em.persist(eau1);
+		em.persist(eau2);
+		em.persist(eau3);
+		em.persist(eau4);
+		em.persist(boiSa1);
+		em.persist(boiSa2);
+		em.persist(boiSa3);
+		em.persist(boiSa4);
+		em.persist(boiSa5);
+		em.persist(cock1);
+		em.persist(cock2);
+		em.persist(cock3);
+		em.persist(cock4);
+
+
+
         
         // Création Utilisateurs
         Utilisateur u01 = new Utilisateur ("1111",1,"","");
