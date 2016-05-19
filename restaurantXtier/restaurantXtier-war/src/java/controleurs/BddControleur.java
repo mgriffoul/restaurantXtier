@@ -1,7 +1,8 @@
 package controleurs;
 
-import beansSession.CreationBdd;
+import beansSession.CreationBddLocal;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BddControleur extends HttpServlet {
 
     @EJB
-    private CreationBdd creationbdd;
+    private CreationBddLocal creationbdd;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -22,11 +23,11 @@ public class BddControleur extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String titre = "CreationBdd";
-
         Date today = new Date();
         creationbdd.genererBdd();
-
-        getServletContext().getRequestDispatcher(response.encodeURL("/WEB-INF/header/header.jsp")).include(request, response);
+        request.setAttribute("today", today);
+        request.setAttribute("message", "creation du jeu de test reussie");
+        getServletContext().getRequestDispatcher(response.encodeURL("/WEB-INF/home.jsp")).include(request, response);
 
     }
 

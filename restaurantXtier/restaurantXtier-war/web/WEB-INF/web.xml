@@ -8,6 +8,17 @@
         <servlet-name>MainControleur</servlet-name>
         <url-pattern>/index</url-pattern>
     </servlet-mapping>
+    
+    
+    <servlet>
+        <servlet-name>BddControleur</servlet-name>
+        <servlet-class>controleurs.BddControleur</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>BddControleur</servlet-name>
+        <url-pattern>/createbdd</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

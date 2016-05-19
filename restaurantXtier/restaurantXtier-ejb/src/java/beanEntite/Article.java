@@ -16,12 +16,17 @@ public class Article implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    
+    
     @ManyToOne
-    private SousCategorie sousCategorie;
+    private SousCategorie sousCategories;
     
     @ManyToOne
     private Tva tva;
 
+    
+    
+    
     private String nom;
     private String reference;
     private Float prixHt;
@@ -30,7 +35,7 @@ public class Article implements Serializable {
     }
 
     public Article(SousCategorie sousCategorie, Tva tva, String nom, String reference, Float prixHt) {
-        this.sousCategorie = sousCategorie;
+        this.sousCategories = sousCategorie;
         this.tva = tva;
         this.nom = nom;
         this.reference = reference;
@@ -62,11 +67,11 @@ public class Article implements Serializable {
     }
 
     public SousCategorie getSousCategorie() {
-        return sousCategorie;
+        return sousCategories;
     }
 
     public void setSousCategorie(SousCategorie sousCategorie) {
-        this.sousCategorie = sousCategorie;
+        this.sousCategories = sousCategorie;
     }
 
     public Tva getTva() {
