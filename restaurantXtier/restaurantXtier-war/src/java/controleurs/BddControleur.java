@@ -27,7 +27,7 @@ public class BddControleur extends HttpServlet {
         creationbdd.genererBdd();
         request.setAttribute("today", today);
         request.setAttribute("message", "creation du jeu de test reussie");
-        getServletContext().getRequestDispatcher(response.encodeURL("/WEB-INF/home.jsp")).include(request, response);
+        getServletContext().getRequestDispatcher(response.encodeURL("/WEB-INF/bdd.jsp")).include(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
