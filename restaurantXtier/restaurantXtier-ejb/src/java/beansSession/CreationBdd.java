@@ -1,7 +1,12 @@
 package beansSession;
 
+import beanEntite.Commande;
+import beanEntite.Emplacement;
 import beanEntite.TypeCuisson;
 import beanEntite.Utilisateur;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
