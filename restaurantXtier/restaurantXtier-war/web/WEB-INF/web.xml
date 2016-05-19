@@ -27,6 +27,4 @@
         <local>beansSession.beanUserLocal</local>
         <ejb-link>restaurantXtier-ejb.jar#beanUser</ejb-link>
     </ejb-local-ref>
-    
-*
-    <servlet-name>BddControleur</servlet-name><servlet-class>controleurs.BddControleur</servlet-class></web-app>
+    </web-app>
