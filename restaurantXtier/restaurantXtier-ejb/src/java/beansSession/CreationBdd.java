@@ -7,7 +7,6 @@ import beanEntite.SousCategorie;
 
 import beanEntite.Tva;
 
-import beanEntite.TypeCuisson;
 import beanEntite.Utilisateur;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -110,34 +109,76 @@ public class CreationBdd implements CreationBddLocal {
         Article ar04 = new Article(sCat02, tva2, "Salade verte", 3F,null);
         em.persist(ar04);
         String des4 = "Salade verte, tomate, olives, chorizo";
-        Article ar05 = new Article(sCat02, tva2, "Salade Romaine", 7F,des4);
+        Article ar05 = new Article(sCat02, tva2, "Salade Romaine", 6F,des4);
         em.persist(ar05);
         String des5 = "roquettes, artichauts marinés, tomates séchées, huile d’olive, crème balsamique";
-        Article ar06 = new Article(sCat02, tva2, "Salade d'artichauts marinés", 9F,des5);
+        Article ar06 = new Article(sCat02, tva2, "Salade d'artichauts marinés", 8F,des5);
         em.persist(ar06);
         String des6 = "Salade verte, poulet grillé, tomate, oignon, crouton à l'ail, huile d'olive";
-        Article ar07 = new Article(sCat02, tva2, "Salade César", 7F,des6);
+        Article ar07 = new Article(sCat02, tva2, "Salade César", 8F,des6);
         em.persist(ar07);
         //Plats
         //Pizza
         String des9 = "tomate, fromage, origan";
-        Article ar09 = new Article(sCat03, tva2, "Pizza Margherita", 6F,des7);
+        Article ar09 = new Article(sCat03, tva2, "Pizza Margherita", 11F,des7);
         em.persist(ar09);
         String des10 = "tomate, fromage, anchois, câpres, olives, origan";
-        Article ar10 = new Article(sCat03, tva2, "Pizza Napolitana", 6F,des7);
+        Article ar10 = new Article(sCat03, tva2, "Pizza Napolitana", 13F,des7);
         em.persist(ar10);
         String des11 = "tomate, fromage, épaule, œuf, origan";
-        Article ar11 = new Article(sCat03, tva2, "Pizza Calzone ", 6F,des7);
+        Article ar11 = new Article(sCat03, tva2, "Pizza Calzone ", 12F,des7);
         em.persist(ar11);
         String des12 = "tomate, fromage, champignon, épaule, origan";
-        Article ar12 = new Article(sCat03, tva2, "Pizza Régina", 6F,des7);
+        Article ar12 = new Article(sCat03, tva2, "Pizza Régina", 14F,des7);
         em.persist(ar12);
         String des13 = "tomate, fromage, gorgonzola, chèvre, camembert, parmesan";
-        Article ar13 = new Article(sCat03, tva2, "Pizza Quatre Fromages", 6F,des7);
+        Article ar13 = new Article(sCat03, tva2, "Pizza Quatre Fromages", 14F,des7);
         em.persist(ar13);
         String des14 = "tomate, fromage, champignons, saumon fumé, crème fraîche, origan";
-        Article ar14 = new Article(sCat03, tva2, "Pizza salmoni", 6F,des7);
+        Article ar14 = new Article(sCat03, tva2, "Pizza salmoni", 13F,des7);
         em.persist(ar14);
+        
+        
+        String desA1 = "L'orée des bois s'invite dans ces verrines printanières au coulis de fruits rouges";
+Article de1 = new Article(sCat06, tva2, "Pannacotta aux fruits des bois",5.8F,desA1);
+em.persist(de1);
+desA1 = "On craque pour ce grand classique italien au café composé de plusieurs couches de boudoirs et de mascarpone.";
+Article de2 = new Article(sCat06, tva2, "Tiramisu",6.0F,desA1);
+em.persist(de2);
+desA1 = "des griottes très goûteuses semi-confites dans un sirop de sucre et cuites dans un jus de myrtille pour le plus grand plaisir de votre palais";
+Article de3 = new Article(sCat06, tva2, "Coulant au chocolat et cerise amarena",6.5F,desA1);
+em.persist(de3);
+desA1 = "Un trésor de la plus pure tradition italienne. Idéal pour accompagner votre café";
+Article de4 = new Article(sCat06, tva2, "Biscotti aux amandes et cerises séchées", 4.8F, desA1);
+em.persist(de4);
+desA1 = "Ce dessert napolitain se compose de petites billes sucrées et vanillées frites et trempées dans du miel";
+Article de5 = new Article(sCat06, tva2, "Struffoli", 6.0F, desA1);
+em.persist(de5);
+desA1 = "Cette crème glacée parfumée aux fruits de saison va rafraîchir vos papilles";
+Article de6 = new Article(sCat07, tva2, "Semifreddo", 6.0F, desA1);
+em.persist(de6);
+desA1 = "Un cappuccino glacé avec sa mousse de fuits onctueuse";
+Article de7 = new Article(sCat07, tva2, "Cappuccino de fruits glacés", 7.0F, desA1);
+em.persist(de7);
+desA1 = "Stracciatella, Tarte au citron meringuée, Panacotta fraises des bois, Vanille, Café, Fruits de la Passion, Cassis, Citron, Mangue";
+Article de8 = new Article(sCat07, tva2, "Sorbet glacé deux boules", 6.0F, desA1);
+em.persist(de8);
+
+// VIANDES
+
+desA1 = "une escalope qui saute en bouche et fond délicatement sur la langue";
+Article vi1 = new Article(sCat05, tva2, "Saltimbocca de veau à la mozzarella, tomates cerise au miel", 12.5F, desA1);
+em.persist(vi1);
+desA1 = "L’osso buco est un plat traditionnel milanais, très parfumé, constitué d'un ragoût jarret de veau, braisé au vin blanc sec et agrémenté de légumes";
+Article vi2 = new Article(sCat05, tva2, "Osso bucco de veau à la milanaise", 14.5F, desA1);
+em.persist(vi2);
+desA1 = "Des escalopes de dinde finement tranchées, marinées aux herbes fraîches puis snackées";
+Article vi3 = new Article(sCat05, tva2, "Piccata de dinde marinée aux herbes", 13.5F, desA1);
+em.persist(vi3);
+desA1 = "Fraîcheur du boeuf cru haché finement et assaisonné de câpres, tomates, oignons et basilic. ";
+Article vi4 = new Article(sCat05, tva2, "Tartare de boeuf au basilic et crumble au parmesan", 15.5F, desA1);
+em.persist(vi4);
+        
         
         
         // Création Utilisateurs
@@ -149,9 +190,6 @@ public class CreationBdd implements CreationBddLocal {
         Utilisateur u06 = new Utilisateur ("3334",3,"Gantner","Bruce");
         Utilisateur u07 = new Utilisateur ("4444",4,"","");
         // fin création Utilisateurs
-        
-        
-        
         em.persist(u01);
         em.persist(u02);
         em.persist(u03);
