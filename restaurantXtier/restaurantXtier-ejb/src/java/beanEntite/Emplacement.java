@@ -47,6 +47,7 @@ public class Emplacement implements Serializable {
     }
 
     public Emplacement(Integer numero, String statut, Integer nbCouvert) {
+        this();
         this.numero = numero;
         this.statut = statut;
         this.nbCouvert = nbCouvert;
@@ -74,6 +75,14 @@ public class Emplacement implements Serializable {
 
     public void setNbCouvert(Integer nbCouvert) {
         this.nbCouvert = nbCouvert;
+    }
+
+    public Collection<Commande> getCommandes() {
+        return commandes;
+    }
+
+    public void setCommandes(Collection<Commande> commandes) {
+        this.commandes = commandes;
     }
     
     
