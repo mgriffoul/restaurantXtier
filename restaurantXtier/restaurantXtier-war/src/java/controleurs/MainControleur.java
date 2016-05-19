@@ -45,13 +45,13 @@ public class MainControleur extends HttpServlet {
         HttpSession session = request.getSession();
         String prefixe = "/WEB-INF/";
         String suffixe = ".jsp";
-        String url = "index";
+        String url = "/include/login";
         String section = request.getParameter("section");
 
+ 
         if (section != null && mp.containsKey(section)) {
             SousControleurInterface sc = mp.get(section);
-            url = sc.execute(request, response);
-            
+            url = sc.execute(request, response);         
         }
         
         url = response.encodeURL(prefixe + url + suffixe);

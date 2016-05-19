@@ -1,4 +1,3 @@
-
 package beanEntite;
 
 import java.io.Serializable;
@@ -8,30 +7,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
 @Entity
 public class Article implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    
-    
     @ManyToOne
     private SousCategorie sousCategories;
-    
+
     @ManyToOne
     private Tva tva;
 
-    
-    
-    
     private String nom;
     private String reference;
     private Float prixHt;
-    
-    public Article(){
+
+    public Article() {
     }
 
     public Article(SousCategorie sousCategorie, Tva tva, String nom, String reference, Float prixHt) {
@@ -81,7 +75,7 @@ public class Article implements Serializable {
     public void setTva(Tva tva) {
         this.tva = tva;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -114,5 +108,5 @@ public class Article implements Serializable {
     public String toString() {
         return "beanEntite.Article[ id=" + id + " ]";
     }
-    
+
 }
