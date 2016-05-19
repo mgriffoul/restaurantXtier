@@ -31,6 +31,11 @@ public class SousCategorie implements Serializable {
         articles = new ArrayList<>();
     }
 
+    public SousCategorie(Categorie categorie, String nom) {
+        this.categorie = categorie;
+        this.nom = nom;
+    }
+
     public SousCategorie(Categorie categorie, List<Article> articles, String nom) {
         this.categorie = categorie;
         this.articles = articles;

@@ -1,6 +1,7 @@
 package beanEntite;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -25,6 +26,7 @@ public class Commande implements Serializable {
     private String numero;
 
     public Commande() {
+        emplacements = new ArrayList<>();
     }
 
     public Commande(Collection<Emplacement> emplacements) {
@@ -32,6 +34,7 @@ public class Commande implements Serializable {
     }
 
     public Commande(Date date, String numero) {
+        this();
         this.date = date;
         this.numero = numero;
     }

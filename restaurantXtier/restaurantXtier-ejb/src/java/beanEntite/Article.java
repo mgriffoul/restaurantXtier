@@ -25,16 +25,41 @@ public class Article implements Serializable {
     private String reference;
     private Float prixHt;
 
-    public Article() {
+
+
+    private String description;
+    
+    public Article(){
+
     }
 
-    public Article(SousCategorie sousCategorie, Tva tva, String nom, String reference, Float prixHt) {
-        this.sousCategories = sousCategorie;
+    public Article(SousCategorie sousCategories, Tva tva, String nom, Float prixHt, String description) {
+        this.sousCategories = sousCategories;
         this.tva = tva;
         this.nom = nom;
-        this.reference = reference;
         this.prixHt = prixHt;
+        this.description = description;
     }
+
+    
+    
+    public SousCategorie getSousCategories() {
+        return sousCategories;
+    }
+
+    public void setSousCategories(SousCategorie sousCategories) {
+        this.sousCategories = sousCategories;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    
 
     public String getNom() {
         return nom;
