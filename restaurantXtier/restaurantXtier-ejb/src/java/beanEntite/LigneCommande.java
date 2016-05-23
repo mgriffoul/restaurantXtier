@@ -35,6 +35,80 @@ public class LigneCommande implements Serializable {
     private Commande commande;
 
     //fin associations
+
+    public LigneCommande() {
+    }
+
+    public LigneCommande(float prixHT, String etat, String remarque, String refFormule) {
+        this.prixHT = prixHT;
+        this.etat = etat;
+        this.remarque = remarque;
+        this.refFormule = refFormule;
+    }
+
+    public float getPrixHT() {
+        return prixHT;
+    }
+
+    public void setPrixHT(float prixHT) {
+        this.prixHT = prixHT;
+    }
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
+    public String getRemarque() {
+        return remarque;
+    }
+
+    public void setRemarque(String remarque) {
+        this.remarque = remarque;
+    }
+
+    public String getRefFormule() {
+        return refFormule;
+    }
+
+    public void setRefFormule(String refFormule) {
+        this.refFormule = refFormule;
+    }
+
+    public Sauce getSauce() {
+        return Sauce;
+    }
+
+    public void setSauce(Sauce Sauce) {
+        this.Sauce = Sauce;
+    }
+
+    public TypeCuisson getTypeCuisson() {
+        return typeCuisson;
+    }
+
+    public void setTypeCuisson(TypeCuisson typeCuisson) {
+        this.typeCuisson = typeCuisson;
+    }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
+    public Commande getCommande() {
+        return commande;
+    }
+
+    public void setCommande(Commande commande) {
+        this.commande = commande;
+    }
     
     
     public Long getId() {

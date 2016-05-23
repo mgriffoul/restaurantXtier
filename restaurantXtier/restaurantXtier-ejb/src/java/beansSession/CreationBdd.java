@@ -6,11 +6,16 @@ import beanEntite.Sauce;
 import beanEntite.TypeCuisson;
 import beanEntite.Article;
 import beanEntite.Categorie;
+import beanEntite.Commande;
+import beanEntite.Emplacement;
 import beanEntite.Formule;
+import beanEntite.LigneCommande;
 import beanEntite.SousCategorie;
 import beanEntite.Tva;
 import beanEntite.Utilisateur;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -466,6 +471,149 @@ em.persist(vinRs4);
         em.persist(u05);
         em.persist(u06);
         em.persist(u07);
+        
+        
+// 
+        
+        Date d01 = new GregorianCalendar(2016, 04, 05).getTime();
+        Date d02 = new GregorianCalendar(2016, 04, 06).getTime();
+        Date d03 = new GregorianCalendar(2016, 04, 01).getTime();
+        
+        
+        Emplacement e01 = new Emplacement(1, "libre", 4);
+        Emplacement e02 = new Emplacement(2, "libre", 2);
+        Emplacement e03 = new Emplacement(3, "libre", 6);
+        Emplacement e04 = new Emplacement(4, "libre", 2);
+        Emplacement e05 = new Emplacement(5, "libre", 2);
+        Emplacement e06 = new Emplacement(6, "libre", 2);
+        Emplacement e07 = new Emplacement(7, "libre", 4);
+        Emplacement e08 = new Emplacement(8, "libre", 4);
+        Emplacement e09 = new Emplacement(9, "libre", 4);
+        Emplacement e10 = new Emplacement(10, "libre", 2);
+        Emplacement e11 = new Emplacement(11, "libre", 2);
+        Emplacement e12 = new Emplacement(12, "libre", 2);
+        Emplacement e13 = new Emplacement(13, "libre", 2);
+        Emplacement e14 = new Emplacement(14, "libre", 2);
+        Emplacement e15 = new Emplacement(15, "libre", 4);
+        Emplacement e16 = new Emplacement(16, "libre", 4);
+        Emplacement e17 = new Emplacement(17, "libre", 4);
+        Emplacement e18 = new Emplacement(18, "libre", 4);
+        Emplacement e19 = new Emplacement(19, "libre", 2);
+        Emplacement e20 = new Emplacement(20, "libre", 2);
+        Emplacement e21 = new Emplacement(21, "libre", 2);
+        Emplacement e22 = new Emplacement(22, "libre", 2);
+        Emplacement e23 = new Emplacement(23, "libre", 2);
+        Emplacement e24 = new Emplacement(24, "libre", 2);
+        Emplacement e25 = new Emplacement(25, "libre", 2);
+        
+        Commande c01 = new Commande(d01,"CO2016000004");
+        Commande c02 = new Commande(d01, "CO2016000005");
+        Commande c03 = new Commande(d01, "CO2016000006");
+        Commande c04 = new Commande(d02,"CO2016000007");
+        Commande c05 = new Commande(d02,"CO2016000008");
+        Commande c06 = new Commande(d02,"CO2016000009");
+        Commande c07 = new Commande(d02,"CO20160000010");
+        Commande c08 = new Commande(d02,"CO20160000011");
+        Commande c09 = new Commande(d03,"CO2016000001");
+        Commande c10 = new Commande(d03,"CO2016000002");
+        Commande c11 = new Commande(d03,"CO2016000003");
+
+
+
+//        ArrayList<Emplacement> le01 = new ArrayList<>();
+//        c01.setEmplacements(le01);
+//        c02.setEmplacements(le01);
+//        c03.setEmplacements(le01);
+        
+        c01.getEmplacements().add(e01);
+        c01.getEmplacements().add(e05);
+        c02.getEmplacements().add(e25);
+        c03.getEmplacements().add(e14);
+        c04.getEmplacements().add(e12);
+        c04.getEmplacements().add(e13);
+        c04.getEmplacements().add(e15);
+        c05.getEmplacements().add(e18);
+        c06.getEmplacements().add(e13);
+        c07.getEmplacements().add(e13);
+        c08.getEmplacements().add(e13);
+        c09.getEmplacements().add(e13);
+        c10.getEmplacements().add(e13);
+        c11.getEmplacements().add(e13);
+        
+        
+        
+        em.persist(e01);
+        em.persist(e02);
+        em.persist(e03);
+        em.persist(e04);
+        em.persist(e05);
+        em.persist(e06);
+        em.persist(e07);
+        em.persist(e08);
+        em.persist(e09);
+        em.persist(e10);
+        em.persist(e11);
+        em.persist(e12);
+        em.persist(e13);
+        em.persist(e14);
+        em.persist(e15);
+        em.persist(e16);
+        em.persist(e17);
+        em.persist(e18);
+        em.persist(e19);
+        em.persist(e20);
+        em.persist(e21);
+        em.persist(e22);
+        em.persist(e23);
+        em.persist(e24);
+        em.persist(e25);
+        
+        em.persist(c01);
+        em.persist(c02);
+        em.persist(c03);
+        em.persist(c04);
+        em.persist(c05);
+        em.persist(c06);
+        em.persist(c07);
+        em.persist(c08);
+        em.persist(c09);
+        em.persist(c10);
+        em.persist(c11);
+
+
+        LigneCommande lc01 = new LigneCommande(21.5F,null,"Formule Pate","pat01");
+        lc01.setCommande(c01);
+        em.persist(lc01);
+
+        LigneCommande lc02 = new LigneCommande(0F,"servi","plat formule Pate","pat01");
+        lc02.setArticle(pa02);
+        lc02.setCommande(c01);
+        em.persist(lc02);
+
+        LigneCommande lc03 = new LigneCommande(0F,"servi",null,"pat01");
+        lc03.setCommande(c01);
+        lc03.setArticle(ar03);
+        em.persist(lc03);
+
+        LigneCommande lc04 = new LigneCommande(0F,"en préparation",null,"pat01");
+        lc04.setArticle(de7);
+        lc04.setCommande(c01);
+        em.persist(lc04);
+
+        LigneCommande lc05 = new LigneCommande(15F,"servi",null,null);
+        lc05.setArticle(vinB4);
+        lc05.setCommande(c01);
+        em.persist(lc05);
+
+        LigneCommande lc06 = new LigneCommande(3F,null,null,null);
+        lc06.setArticle(boiCh2);
+        lc06.setCommande(c02);
+        em.persist(lc06);
+
+        LigneCommande lc07 = new LigneCommande(1.5F,null,null,null);
+        lc07.setArticle(boiCh3);
+        lc07.setCommande(c02);
+        em.persist(lc07);
 
     }
 
