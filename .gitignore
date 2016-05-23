@@ -18,6 +18,7 @@ genfiles.properties
 src/conf/MANIFEST.MF
 build.xml
 /build/
+testBeansServlet.java
 
 /restaurantXtier/nbproject/private/
 /restaurantXtier/restaurantXtier-war/nbproject/private/
