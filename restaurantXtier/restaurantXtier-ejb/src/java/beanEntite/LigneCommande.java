@@ -30,6 +30,9 @@ public class LigneCommande implements Serializable {
     
     @ManyToOne
     private Article article;
+    
+    @ManyToOne
+    private Commande commande;
 
     //fin associations
     
