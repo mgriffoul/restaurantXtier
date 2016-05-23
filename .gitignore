@@ -19,6 +19,7 @@ src/conf/MANIFEST.MF
 build.xml
 /build/
 testBeansServlet.java
+persistence.xml
 
 /restaurantXtier/nbproject/private/
 /restaurantXtier/restaurantXtier-war/nbproject/private/
