@@ -8,19 +8,18 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-public class beanUser implements beanUserLocal {
+public class BeanUser implements BeanUserLocal {
 
     @PersistenceContext(unitName = "restaurantXtier-ejbPU")
     private EntityManager em;
     
     
-    @EJB
-    private Utilisateur utilisateur;
+
     
     
     @Override
     public Utilisateur getUserByCode(String code) {
-        return utilisateur = em.find(Utilisateur.class,code);      
+        return em.find(Utilisateur.class,code);      
     }
 
 }

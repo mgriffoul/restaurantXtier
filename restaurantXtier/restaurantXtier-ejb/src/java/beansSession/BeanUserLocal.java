@@ -5,8 +5,7 @@ import beanEntite.Utilisateur;
 import javax.ejb.Local;
 
 @Local
-public interface beanUserLocal {
+public interface BeanUserLocal {
     
     public Utilisateur getUserByCode(String code);
-    
 }

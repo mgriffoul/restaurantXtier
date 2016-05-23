@@ -292,3 +292,7 @@ label:hover:before {
   color: #aaaaaa;
   font-weight: bold;
 }
+
+.erreur{
+    color:red; 
+}

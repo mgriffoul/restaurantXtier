@@ -5,7 +5,7 @@ import javax.ejb.Local;
 
 
 @Local
-public interface CreationBddLocal {
+public interface BeanCreationBddLocal {
     
     public void genererBdd();
     

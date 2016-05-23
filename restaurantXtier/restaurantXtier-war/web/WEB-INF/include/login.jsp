@@ -11,17 +11,20 @@
   </head>
   <body>
  	<div class="login-form-1">
-		<form id="login-form" class="text-left" method="post" action="index?section=login">
+		<form id="login-form" class="text-left" action="index">
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">
 				<div class="login-group">
 					<div class="form-group">
                                                 <label for="lg_password" class="sr-only">Mot de passe:</label>
 						<input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="">
+                                                <input type='hidden' name='section' value='login'>
 					</div>
 				</div>
 				<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
 			</div>
+                           <label class="erreur">${message}</label>
+                  
 		</form>
 	</div>
      <script src="js/login.js"></script> 

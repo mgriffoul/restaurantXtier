@@ -11,11 +11,11 @@
     </servlet>
     <servlet>
         <servlet-name>BddControleur</servlet-name>
-        <servlet-class>controleurs.BddControleur</servlet-class>
+        <servlet-class>controleurs.admin.createBddServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>testBeansServlet</servlet-name>
-        <servlet-class>controleurs.testBeansServlet</servlet-class>
+        <servlet-class>controleurs.admin.testBeansServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainControleur</servlet-name>
@@ -35,9 +35,9 @@
         </session-timeout>
     </session-config>
     <ejb-local-ref>
-        <ejb-ref-name>beanUser</ejb-ref-name>
+        <ejb-ref-name>BeanUser</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
-        <local>beansSession.beanUserLocal</local>
-        <ejb-link>restaurantXtier-ejb.jar#beanUser</ejb-link>
+        <local>beansSession.BeanUserLocal</local>
+        <ejb-link>restaurantXtier-ejb.jar#BeanUser</ejb-link>
     </ejb-local-ref>
 </web-app>

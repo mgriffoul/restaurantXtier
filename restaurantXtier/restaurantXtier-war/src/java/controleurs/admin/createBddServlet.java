@@ -1,6 +1,5 @@
-package controleurs;
+package controleurs.admin;
 
-import beansSession.CreationBddLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -10,12 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import beansSession.BeanCreationBddLocal;
 
 @WebServlet(name = "BddControleur", urlPatterns = {"/BddControleur"})
-public class BddControleur extends HttpServlet {
+public class createBddServlet extends HttpServlet {
 
     @EJB
-    private CreationBddLocal creationbdd;
+    private BeanCreationBddLocal creationbdd;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
