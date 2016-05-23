@@ -3,6 +3,7 @@ package beanEntite;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,8 +20,7 @@ public class Formule implements Serializable {
     private Long id;
 
     @ManyToMany
-    @SuppressWarnings("FieldMayBeFinal")
-    private List<Article> articles;
+    private Collection<Article> articles;
     
     private String nom;
     private Float prix;
@@ -37,11 +37,11 @@ public class Formule implements Serializable {
         this.refFormule = refFormule;
     }
 
-    public List<Article> getArticles() {
+    public Collection<Article> getArticles() {
         return articles;
     }
 
-    public void setArticles(List<Article> articles) {
+    public void setArticles(Collection<Article> articles) {
         this.articles = articles;
     }
 

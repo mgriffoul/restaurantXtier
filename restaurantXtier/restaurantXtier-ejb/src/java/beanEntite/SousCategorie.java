@@ -3,6 +3,7 @@ package beanEntite;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,8 +23,8 @@ public class SousCategorie implements Serializable {
     @ManyToOne
     private Categorie categorie;
     
-    @OneToMany(mappedBy = "sousCategories")
-    private List<Article> articles;
+    @OneToMany(mappedBy = "sousCategorie")
+    private Collection<Article> articles;
     
     private String nom;
 
@@ -50,7 +51,7 @@ public class SousCategorie implements Serializable {
         this.categorie = categorie;
     }
 
-    public List<Article> getArticles() {
+    public Collection<Article> getArticles() {
         return articles;
     }
 
@@ -65,8 +66,6 @@ public class SousCategorie implements Serializable {
     public void setNom(String nom) {
         this.nom = nom;
     }
-    
-    
     
     public Long getId() {
         return id;

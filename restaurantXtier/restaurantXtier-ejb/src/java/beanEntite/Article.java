@@ -1,10 +1,13 @@
 package beanEntite;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -16,39 +19,38 @@ public class Article implements Serializable {
     private Long id;
 
     @ManyToOne
-    private SousCategorie sousCategories;
+    private SousCategorie sousCategorie;
 
     @ManyToOne
     private Tva tva;
+    
+    @ManyToMany(mappedBy = "articles")
+    private Collection<Formule> formules;
 
     private String nom;
     private String reference;
     private Float prixHt;
 
-
-
     private String description;
     
     public Article(){
-
+        formules = new ArrayList();
     }
 
-    public Article(SousCategorie sousCategories, Tva tva, String nom, Float prixHt, String description) {
-        this.sousCategories = sousCategories;
+    public Article(SousCategorie sousCategorie, Tva tva, String nom, Float prixHt, String description) {
+        this.sousCategorie = sousCategorie;
         this.tva = tva;
         this.nom = nom;
         this.prixHt = prixHt;
         this.description = description;
     }
 
-    
-    
     public SousCategorie getSousCategories() {
-        return sousCategories;
+        return sousCategorie;
     }
 
-    public void setSousCategories(SousCategorie sousCategories) {
-        this.sousCategories = sousCategories;
+    public void setSousCategorie(SousCategorie sousCategorie) {
+        this.sousCategorie = sousCategorie;
     }
 
     public String getDescription() {
@@ -58,8 +60,6 @@ public class Article implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    
 
     public String getNom() {
         return nom;
@@ -86,13 +86,10 @@ public class Article implements Serializable {
     }
 
     public SousCategorie getSousCategorie() {
-        return sousCategories;
+        return sousCategorie;
     }
 
-    public void setSousCategorie(SousCategorie sousCategorie) {
-        this.sousCategories = sousCategorie;
-    }
-
+   
     public Tva getTva() {
         return tva;
     }
@@ -131,7 +128,7 @@ public class Article implements Serializable {
 
     @Override
     public String toString() {
-        return "beanEntite.Article[ id=" + id + " ]";
+        return "beanEntite.Article[ id=" + id + " ]"+nom;
     }
 
 }
