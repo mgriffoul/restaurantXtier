@@ -1,8 +1,12 @@
 
 package controleurs;
 
+import beanEntite.Categorie;
+import beanEntite.SousCategorie;
 import beansSession.BeanCategorieLocal;
+import beansSession.BeanSousCategorieLocal;
 import java.io.IOException;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,16 +18,43 @@ public class testBeansServlet extends HttpServlet {
 
         @EJB
         private BeanCategorieLocal categorie;
+        
+        @EJB
+        private BeanSousCategorieLocal sousCate;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         
+        //TEST CATEGORIE BEAN
+        System.out.println( categorie.selectCategorieById(1L));
+        System.out.println(categorie.selectCategorieByNom("Les Entrées"));
         
-        categorie.selectCategorieById(1L);
-        categorie.selectCategorieByNom("Les Entrées");
+        List<Categorie> categories = categorie.selectAllCategorie();
+        for (Categorie c : categories){
+            System.out.println("List "+c);
+        }
         
+        List<SousCategorie> souscates = categorie.selectSousCategorieByIdCategorie(3L);
+        for (SousCategorie s : souscates){
+            System.out.println("sousCate by id cate "+s);
+        }
+
+        
+        //test sous cate bean
+        
+        System.out.println("sous cate by id" + sousCate.selectSousCategorieById(3L));
+        List<SousCategorie> souscategories = sousCate.selectAllSousCategorie();
+        for (SousCategorie s : souscategories){
+            System.out.println("all sous cate "+s);
+        }
+        System.out.println(sousCate.selectSousCategorieByNom("Antipasti"));
+       
+        List<SousCategorie> sousCateL = sousCate.selectAllSousCategorieByCategorieId(3L);
+        for (SousCategorie s : sousCateL){
+            System.out.println("sous cate by cate id 2" + s);
+        }
         
         request.setAttribute("message", "fin des tests");
         getServletContext().getRequestDispatcher(response.encodeURL("/WEB-INF/testDesBeans.jsp")).include(request, response);
