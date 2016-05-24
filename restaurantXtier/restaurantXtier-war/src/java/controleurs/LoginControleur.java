@@ -10,11 +10,15 @@
         import javax.servlet.http.HttpServletRequest;
         import javax.servlet.http.HttpServletResponse;
         import javax.servlet.http.HttpSession;
-        import beansSession.BeanUserLocal;
+        
 
         public class LoginControleur implements Serializable, SousControleurInterface {
+       
+            beansSession.BeanUserLocal BeanUser = lookupBeanUserLocal();
+   
+    
 
-            private BeanUserLocal BeanUser = lookupBeanUserLocal();
+           
 
             @Override
             public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -49,15 +53,17 @@
                      return "include/login";
             }
 
-            private BeanUserLocal lookupBeanUserLocal() {
-                try {
-                    Context c = new InitialContext();
-                    return (BeanUserLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanUser!beansSession.BeanUserLocal");
-                } catch (NamingException ne) {
-                    Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-                    throw new RuntimeException(ne);
-                }
-            }
+    private beansSession.BeanUserLocal lookupBeanUserLocal() {
+        try {
+            Context c = new InitialContext();
+            return (beansSession.BeanUserLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanUser!beansSession.BeanUserLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+           
 
 
 
