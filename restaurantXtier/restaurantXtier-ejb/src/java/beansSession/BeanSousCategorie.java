@@ -1,6 +1,5 @@
 package beansSession;
 
-import beanEntite.Categorie;
 import beanEntite.SousCategorie;
 import java.util.List;
 import javax.ejb.Stateless;

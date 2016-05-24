@@ -40,4 +40,10 @@
         <local>beansSession.BeanUserLocal</local>
         <ejb-link>restaurantXtier-ejb.jar#BeanUser</ejb-link>
     </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>BeanUser1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beansSession.BeanUserLocal</local>
+        <ejb-link>restaurantXtier-ejb.jar#BeanUser</ejb-link>
+    </ejb-local-ref>
 </web-app>
