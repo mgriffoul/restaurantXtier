@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LoginControleur implements Serializable, SousControleurInterface {
-    
+
     BeanEmplacementLocal beanEmplacement = lookupBeanEmplacementLocal();
 
     beansSession.BeanUserLocal BeanUser = lookupBeanUserLocal();

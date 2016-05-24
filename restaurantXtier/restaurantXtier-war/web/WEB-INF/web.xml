@@ -8,6 +8,11 @@
             <param-name>login</param-name>
             <param-value>controleurs.LoginControleur</param-value>
         </init-param>
+        <init-param>
+            <description>Servlet sous-controleur IHMSalle</description>
+            <param-name>IHMSalle</param-name>
+            <param-value>controleurs.IHMSalle</param-value>
+        </init-param>
     </servlet>
     <servlet>
         <servlet-name>BddControleur</servlet-name>

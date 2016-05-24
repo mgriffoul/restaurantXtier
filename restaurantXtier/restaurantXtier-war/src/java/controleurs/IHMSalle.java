@@ -27,7 +27,7 @@ public class IHMSalle implements Serializable, SousControleurInterface {
       HttpSession session = request.getSession();
       List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
       request.setAttribute("listEmplacement", listEmplacement);
-      return "include/IHM_Salle/index";
+      return "include/IHM_Salle/accueil";
     }
 
     private BeanEmplacementLocal lookupBeanEmplacementLocal() {
