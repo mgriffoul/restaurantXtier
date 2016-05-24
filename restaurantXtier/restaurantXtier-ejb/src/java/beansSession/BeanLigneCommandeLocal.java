@@ -5,6 +5,8 @@
  */
 package beansSession;
 
+import beanEntite.LigneCommande;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +15,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface BeanLigneCommandeLocal {
-    
+    public List<LigneCommande> selectLigneCommandeByIdCategorie(Long idCat);
 }

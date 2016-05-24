@@ -1,8 +1,10 @@
 package controleurs.admin;
 
 import beanEntite.Categorie;
+import beanEntite.LigneCommande;
 import beanEntite.SousCategorie;
 import beansSession.BeanCategorieLocal;
+import beansSession.BeanLigneCommandeLocal;
 import beansSession.BeanSousCategorieLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,6 +22,9 @@ public class testBeansServlet extends HttpServlet {
 
     @EJB
     private BeanSousCategorieLocal sousCate;
+    
+    @EJB
+    private BeanLigneCommandeLocal ligneCom;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -52,7 +57,17 @@ public class testBeansServlet extends HttpServlet {
             for (SousCategorie s : sousCateL) {
                 System.out.println("sous cate by cate id 2" + s);
             }
-
+            
+        // test affichage ligne commande where idCat=    
+            System.out.println("=======DEBUT AFFICHAGE LC BY IDCAT =======");
+            List<LigneCommande> lcs = ligneCom.selectLigneCommandeByIdCategorie(2L);
+            for (LigneCommande lc : lcs){
+                String p= lc.getArticle().getNom();
+                String e= lc.getEtat();
+                String c= lc.getArticle().getSousCategorie().getCategorie().getNom();
+                System.out.println(c+" - "+p+" - "+e);
+            }
+            System.out.println("===== FIN =======");
             request.setAttribute("message", "fin des tests");
             getServletContext().getRequestDispatcher(response.encodeURL("/WEB-INF/testDesBeans.jsp")).include(request, response);
 
