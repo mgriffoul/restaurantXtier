@@ -48,7 +48,8 @@ public class BeanArticle implements BeanArticleLocal {
     
     @Override
     public List<Article> selectArtByIdFormAndIdCate(Long idFormule, Long idCategorie) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String req = "Select f.articles from Formule f join where f.id = :paramid";
+        return null;
     }
     
     

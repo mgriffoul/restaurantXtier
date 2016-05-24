@@ -18,7 +18,6 @@ genfiles.properties
 src/conf/MANIFEST.MF
 build.xml
 /build/
-testBeansServlet.java
 persistence.xml
 
 /restaurantXtier/nbproject/private/
@@ -30,3 +29,4 @@ persistence.xml
 /restaurantXtier/dist/
 /restaurantXtier/restaurantXtier-war/build/
 /restaurantXtier/restaurantXtier-war/dist/
+/testJpql/nbproject/private/
