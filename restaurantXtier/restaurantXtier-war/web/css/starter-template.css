@@ -1,0 +1,15 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+.emp{
+    background-color: green;
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+    border-color: black;
+    border-style: solid;
+}
