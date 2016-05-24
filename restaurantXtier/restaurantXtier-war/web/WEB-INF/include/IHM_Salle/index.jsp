@@ -12,10 +12,9 @@
         <title>Starter Template for Bootstrap</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        
+        
         <!-- Custom styles for this template -->
         <link href="css/client-template.css" rel="stylesheet">
 
@@ -65,7 +64,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
         <script src="/css/bootstrap/js/bootstrap.min.js"></script>
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+       
     </body>
 </html>
