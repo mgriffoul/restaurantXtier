@@ -48,9 +48,13 @@ public class BeanArticle implements BeanArticleLocal {
     
     @Override
     public List<Article> selectArtByIdFormAndIdCate(Long idFormule, Long idCategorie) {
-        String req = "Select ";
+        String req = "Select a from Formule f"
+                + " join f.articles a"
+                + " where f.id = :paramidform and"
+                + " a.sousCategorie.categorie.id = :paramidcat";
         Query qr = em.createQuery(req);
-        qr.setParameter("paramid", idFormule);
+        qr.setParameter("paramidform", idFormule);
+        qr.setParameter("paramidcat", idCategorie);
         List<Article> articles = qr.getResultList();
         return articles;
     }

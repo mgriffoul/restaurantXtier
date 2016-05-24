@@ -1,4 +1,5 @@
 
+
 package beanEntite;
 
 import java.io.Serializable;
