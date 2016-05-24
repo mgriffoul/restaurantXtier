@@ -50,7 +50,7 @@ public class BeanArticle implements BeanArticleLocal {
     public List<Article> selectArtByIdFormAndIdCate(Long idFormule, Long idCategorie) {
         String req = "Select ";
         Query qr = em.createQuery(req);
-        qr.setParameter("paramid", id);
+        qr.setParameter("paramid", idFormule);
         List<Article> articles = qr.getResultList();
         return articles;
     }
