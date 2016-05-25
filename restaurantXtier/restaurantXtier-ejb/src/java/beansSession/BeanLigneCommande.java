@@ -15,10 +15,11 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
     
     @Override
     public List<LigneCommande> selectLigneCommandeByIdCategorie(Long idCat) {
-        String req = "select lc from Article a"
-                + " join a.sousCategorie sc"
-                + " join sc.categorie c"
-                + " where lc.article.sousCategorie.categorie.id=:paramIdCat";
+        String req = "select lc from LigneCommande lc "
+                + "join lc.article a "
+                + "join a.sousCategorie sc "
+                + "join sc.categorie c "
+                + "where a.sousCategorie.categorie.id=:paramIdCat";
            Query qr = em.createQuery(req);
            qr.setParameter("paramIdCat", idCat);
            List<LigneCommande> ligneCommandes = qr.getResultList();
