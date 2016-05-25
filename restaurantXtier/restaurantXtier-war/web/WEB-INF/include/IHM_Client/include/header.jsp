@@ -32,9 +32,9 @@
                                 <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav navbar-right mapolice" id="top-nav">
-                                        <li><a href="#hero-area" >Accueil</a></li>
-                                        <li><a href="#about-us">Notre Carte</a></li>
-                                        <li><a href="#blog">Nos Formules</a></li>
+                                        <li><a href="index?section=ihmclient" >Accueil</a></li>
+                                        <li><a href="#about-us">La Carte</a></li>
+                                        <li><a href="#blog">Les Formules</a></li>
                                         <li><a href="#price">Votre commande</a></li>
                                         <li><a href="#contact-us"><button type="button" class="btn btn-danger">J'ai besoin d'aide</button></a></li>
 
