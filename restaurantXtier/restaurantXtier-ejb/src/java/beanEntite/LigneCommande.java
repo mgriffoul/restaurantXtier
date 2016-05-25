@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 public class LigneCommande implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private float prixHT;
@@ -39,6 +39,7 @@ public class LigneCommande implements Serializable {
     }
 
     public LigneCommande(float prixHT, String etat, String remarque, String refFormule) {
+        this();
         this.prixHT = prixHT;
         this.etat = etat;
         this.remarque = remarque;
