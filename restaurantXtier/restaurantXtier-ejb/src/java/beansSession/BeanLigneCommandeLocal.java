@@ -16,4 +16,6 @@ import javax.ejb.Local;
 @Local
 public interface BeanLigneCommandeLocal {
     public List<LigneCommande> selectLigneCommandeByIdCategorie(Long idCat);
+    public List<LigneCommande> selectAllLigneCommandeTriByEtat ();
+    public List<LigneCommande> selectAllLigneCommandeTriByPlat ();
 }

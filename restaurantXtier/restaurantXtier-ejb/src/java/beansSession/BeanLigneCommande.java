@@ -26,4 +26,20 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
            return ligneCommandes;
     }
 
+    @Override
+    public List<LigneCommande> selectAllLigneCommandeTriByEtat() {
+        String req = "select lc from LigneCommande lc order by lc.etat";
+        Query qr = em.createQuery(req);
+        List<LigneCommande> ligneCommandes = qr.getResultList();
+        return ligneCommandes;
+    }
+
+    @Override
+    public List<LigneCommande> selectAllLigneCommandeTriByPlat() {
+        String req ="select lc from LigneCommande lc order by lc.article.nom";
+        Query qr = em.createQuery(req);
+        List<LigneCommande> ligneCommandes = qr.getResultList();
+        return ligneCommandes;
+    }
+
 }
