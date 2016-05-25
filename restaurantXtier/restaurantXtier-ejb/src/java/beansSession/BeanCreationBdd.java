@@ -198,22 +198,22 @@ public class BeanCreationBdd implements BeanCreationBddLocal {
         em.persist(vi4);
 //Pates
         String desp01 = "tagliatelles, crème fraîche, lardons, jaune d’œuf";
-        Article pa01 = new Article(sCat05, tva2, "Tagliatelles Carbonara", 12.5F, desp01);
+        Article pa01 = new Article(sCat04, tva2, "Tagliatelles Carbonara", 12.5F, desp01);
         em.persist(pa01);
         String desp02 = "raviolis farcis au quatre fromages, sauce au quatre fromages, crème fraiche";
-        Article pa02 = new Article(sCat05, tva2, "Raviolis Quatre Fromages", 11.5F, desp02);
+        Article pa02 = new Article(sCat04, tva2, "Raviolis Quatre Fromages", 11.5F, desp02);
         em.persist(pa02);
         String desp03 = "Linguines, tomate, ail, fruit de mer";
-        Article pa03 = new Article(sCat05, tva2, "Linguines aux Fruits de Mer", 13.5F, desp03);
+        Article pa03 = new Article(sCat04, tva2, "Linguines aux Fruits de Mer", 13.5F, desp03);
         em.persist(pa03);
         String desp04 = "tortellini farcie au comté et au basilic, crème fraîche et parmesan, copeaux de grana padana";
-        Article pa04 = new Article(sCat05, tva2, "Tortellini au Parmesan", 12F, desp04);
+        Article pa04 = new Article(sCat04, tva2, "Tortellini au Parmesan", 12F, desp04);
         em.persist(pa04);
         String desp05 = "rigatoni, légumes grillées, pesto maison, sauce tomate, huile d’olives";
-        Article pa05 = new Article(sCat05, tva2, "Rigatoni aux légumes du soleil", 12F, desp05);
+        Article pa05 = new Article(sCat04, tva2, "Rigatoni aux légumes du soleil", 12F, desp05);
         em.persist(pa05);
         String desp06 = "raviolis farcies aux cèpes, crème fraiche, champignons";
-        Article pa06 = new Article(sCat05, tva2, "Raviolis Con Funghi", 14F, desp06);
+        Article pa06 = new Article(sCat04, tva2, "Raviolis Con Funghi", 14F, desp06);
         em.persist(pa06);
         
         
