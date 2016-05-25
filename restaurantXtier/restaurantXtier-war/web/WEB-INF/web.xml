@@ -13,6 +13,11 @@
             <param-name>IHMSalle</param-name>
             <param-value>controleurs.IHMSalle</param-value>
         </init-param>
+        <init-param>
+            <description>Servlet sous-controleur IHMCuisine</description>
+            <param-name>IHMCuisine</param-name>
+            <param-value>controleurs.IHMCuisine</param-value>
+        </init-param>
     </servlet>
     <servlet>
         <servlet-name>BddControleur</servlet-name>
@@ -62,5 +67,23 @@
         <ejb-ref-type>Session</ejb-ref-type>
         <local>beansSession.BeanEmplacementLocal</local>
         <ejb-link>restaurantXtier-ejb.jar#BeanEmplacement</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>BeanLigneCommande</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beansSession.BeanLigneCommandeLocal</local>
+        <ejb-link>restaurantXtier-ejb.jar#BeanLigneCommande</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>BeanLigneCommande1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beansSession.BeanLigneCommandeLocal</local>
+        <ejb-link>restaurantXtier-ejb.jar#BeanLigneCommande</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>BeanLigneCommande2</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beansSession.BeanLigneCommandeLocal</local>
+        <ejb-link>restaurantXtier-ejb.jar#BeanLigneCommande</ejb-link>
     </ejb-local-ref>
 </web-app>

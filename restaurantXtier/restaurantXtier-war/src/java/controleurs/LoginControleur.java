@@ -1,8 +1,10 @@
 package controleurs;
 
 import beanEntite.Emplacement;
+import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
 import beansSession.BeanEmplacementLocal;
+import beansSession.BeanLigneCommandeLocal;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,8 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LoginControleur implements Serializable, SousControleurInterface {
+    BeanLigneCommandeLocal beanLigneCommande = lookupBeanLigneCommandeLocal();
 
     BeanEmplacementLocal beanEmplacement = lookupBeanEmplacementLocal();
+    
 
     beansSession.BeanUserLocal BeanUser = lookupBeanUserLocal();
 
@@ -34,6 +38,8 @@ public class LoginControleur implements Serializable, SousControleurInterface {
         if (ut01 != null) {
             switch (ut01.getRole()) {
                 case 1:
+                    List<LigneCommande> ligneCommandes = beanLigneCommande.selectAllLigneCommandeTriByPlat();
+                    request.setAttribute("ligneCommandes", ligneCommandes);
                     return "include/IHM_Cuisine/index";
                 case 2:
                     return "include/IHM_Caisse/index";
@@ -67,6 +73,16 @@ public class LoginControleur implements Serializable, SousControleurInterface {
         try {
             Context c = new InitialContext();
             return (BeanEmplacementLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanEmplacement!beansSession.BeanEmplacementLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private BeanLigneCommandeLocal lookupBeanLigneCommandeLocal() {
+        try {
+            Context c = new InitialContext();
+            return (BeanLigneCommandeLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanLigneCommande!beansSession.BeanLigneCommandeLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
