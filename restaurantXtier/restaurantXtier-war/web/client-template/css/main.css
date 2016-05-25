@@ -65,6 +65,7 @@ a:active {
 }
 /*--
     custom heading Start
+    Partie sous le HEADER
 --*/
 .heading {
   text-align: center;
@@ -142,24 +143,29 @@ a:active {
 nav {
   z-index: 99999;
   width: 100%;
+  
 }
 nav .block {
   margin-top: -85px;
   background: #fff;
   padding: 25px 40px;
   background: rgba(255, 255, 255, 0.89);
+ 
 }
 nav .block .navbar-default {
   border: none;
   border-radius: 0px;
   margin-bottom: 0;
   background: none;
+  
 }
 nav .block .navbar-default .navbar-brand {
   padding-left: 0px;
+  
 }
 nav .block .navbar-default .navbar-nav {
   padding-top: 10px;
+  
 }
 nav .block .navbar-default .navbar-nav > li > a {
   color: #2E2E2E;
@@ -167,6 +173,7 @@ nav .block .navbar-default .navbar-nav > li > a {
   margin: 0px 15px;
   font-size: 15px;
   text-transform: uppercase;
+  
 }
 nav .block .navbar-default .navbar-nav > li > a:before {
   background-color: transparent;
@@ -698,4 +705,8 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 }
 #footer-bottom p a {
   color: #FF4F02;
+}
+
+.mapolice li a {
+    font-size: 20px;
 }
