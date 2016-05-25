@@ -1,14 +1,20 @@
 package controleurs.admin;
 
+import beanEntite.Categorie;
+import beanEntite.Commande;
 
 import beanEntite.LigneCommande;
 import beanEntite.SousCategorie;
 import beansSession.BeanCategorieLocal;
+import beansSession.BeanCommandeLocal;
 import beansSession.BeanLigneCommandeLocal;
 import beansSession.BeanSousCategorieLocal;
+
 import beanEntite.Article;
 import beansSession.BeanArticleLocal;
 
+
+import beansSession.BeanTicketLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -28,7 +34,15 @@ public class testBeansServlet extends HttpServlet {
     
     @EJB
     private BeanLigneCommandeLocal ligneCom;
+
+    @EJB
     private BeanArticleLocal article;
+
+    @EJB
+    private BeanTicketLocal ticket;
+    
+    @EJB
+    private BeanCommandeLocal commande;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -74,7 +88,21 @@ public class testBeansServlet extends HttpServlet {
             }
             System.out.println("===== FIN =======");
 
+
             
+            
+            
+
+
+            
+            
+            System.out.println("====== DEBUT TEST AFFICHER TICKET========");
+            Commande c = commande.selectCommandeByNumero("CO2016000004");
+            ticket.afficherTicket(c);
+            float total = ticket.getTotal(c);
+            System.out.println("total = "+total);
+            
+            System.out.println("==============FIN==============");
             
             
 
