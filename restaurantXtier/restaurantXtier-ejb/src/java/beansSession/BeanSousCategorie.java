@@ -1,5 +1,6 @@
 package beansSession;
 
+import beanEntite.Article;
 import beanEntite.SousCategorie;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -44,6 +45,13 @@ public class BeanSousCategorie implements BeanSousCategorieLocal {
         return sousCategories;
     }
 
-   
+   @Override
+    public List<Article> selectArticleByIdSousCategorie(Long id) {
+        String req = "Select a from Article a where a.sousCategorie.id = :paramid";
+        Query qr = em.createQuery(req);
+        qr.setParameter("paramid", id);
+        List<Article> articles = qr.getResultList();
+        return articles;
+    }
     
 }
