@@ -25,6 +25,7 @@ public class Commande implements Serializable {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date date;
     private String numero;
+    private String statut;
 
     public Commande() {
         emplacements = new ArrayList<>();
