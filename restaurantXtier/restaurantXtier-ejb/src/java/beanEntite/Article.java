@@ -61,6 +61,13 @@ public class Article implements Serializable {
         this.description = description;
     }
 
+    public Float getPrixTtc(){
+        
+        Float prixTtc = (prixHt*tva.getTauxTva()/100)+prixHt;
+        
+        return prixTtc;
+    }
+    
     public String getNom() {
         return nom;
     }

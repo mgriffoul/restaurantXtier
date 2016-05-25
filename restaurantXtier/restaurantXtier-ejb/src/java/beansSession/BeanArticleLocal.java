@@ -9,7 +9,6 @@ public interface BeanArticleLocal {
 
     public Article selectArticleById(Long id);
 
-    public List<Article> selectArticleByIdSousCategorie(Long id);
 
     public List<Article> selectArticleByIdFormule(Long id);
 

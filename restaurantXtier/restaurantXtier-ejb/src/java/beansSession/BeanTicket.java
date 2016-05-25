@@ -6,6 +6,9 @@
 package beansSession;
 
 import beanEntite.Commande;
+import beanEntite.LigneCommande;
+import beanEntite.Ticket;
+import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.*;
 
@@ -21,7 +24,8 @@ public class BeanTicket implements BeanTicketLocal {
     @PersistenceContext(unitName = "restaurantXtier-ejbPU")
     private EntityManager em;
 
-public Commande selectionnerCommandeFinieParEmplacement(Integer emplacement){
+    @Override
+    public Commande selectionnerCommandeFinieParEmplacement(Integer emplacement){
     String req = "select c from commande c where c.emplacements = :paramemplacement and c.statut = :paramstatut";
     String statut = "terminee";
     Query qr = em.createQuery(req);
@@ -33,5 +37,31 @@ public Commande selectionnerCommandeFinieParEmplacement(Integer emplacement){
 }
 
     
+    @Override
+    public void afficherTicket(Commande commande){
+        
+        Ticket t = new Ticket();
+        t.setCommande(commande);
+        Collection<LigneCommande> ar01 = t.getCommande().getLignesCommandes();
+        for (LigneCommande lc : ar01) {
+            System.out.println(lc+" - "+lc.getPrixHT());
+        }
+        
+    
+    }
+    @Override
+    public float getTotal(Commande commande){
+        float f = 0;
+        Ticket t = new Ticket();
+        t.setCommande(commande);
+        Collection<LigneCommande> ar01 = t.getCommande().getLignesCommandes();
+        for (LigneCommande lc : ar01) {
+            f = f+lc.getPrixHT();
+        }
+        
+    return f; 
+        
+        
+    }
 
 }

@@ -16,5 +16,13 @@ import javax.ejb.Local;
 public interface BeanTicketLocal {
 
     public Commande selectionnerCommandeFinieParEmplacement(Integer emplacement);
+
+    public void afficherTicket(Commande commande);
+
+    public float getTotal(Commande commande);
+
+
+
+
     
 }
