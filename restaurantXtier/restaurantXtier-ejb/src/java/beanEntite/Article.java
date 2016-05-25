@@ -128,7 +128,7 @@ public class Article implements Serializable {
 
     @Override
     public String toString() {
-        return "beanEntite.Article[ id=" + id + " ]"+nom;
+        return nom;
     }
 
 }

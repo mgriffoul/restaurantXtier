@@ -140,7 +140,7 @@ public class LigneCommande implements Serializable {
 
     @Override
     public String toString() {
-        return "beanEntite.LigneCommande[ id=" + id + " ]";
+        return article+" - "+etat+" - "+remarque;
     }
     
 }
