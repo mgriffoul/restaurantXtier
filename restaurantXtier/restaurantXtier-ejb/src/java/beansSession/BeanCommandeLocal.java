@@ -11,4 +11,5 @@ public interface BeanCommandeLocal {
      public Commande selectCommandeByDate(String date);
      public Commande selectCommandeByNumero(String numero);
      public List<LigneCommande> selectLigneCommandeByIdCommande(Long id);
+     public Commande newCommande();
 }

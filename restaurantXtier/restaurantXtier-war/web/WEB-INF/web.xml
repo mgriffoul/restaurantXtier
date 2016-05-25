@@ -11,7 +11,7 @@
         <init-param>
             <description>Servlet sous-controleur IHMSalle</description>
             <param-name>IHMSalle</param-name>
-            <param-value>controleurs.IHMSalle</param-value>
+            <param-value>controleurs.IHMSalleControlleur</param-value>
         </init-param>
     </servlet>
     <servlet>
