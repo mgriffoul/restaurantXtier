@@ -166,22 +166,22 @@ public class BeanCreationBdd implements BeanCreationBddLocal {
         //Plats
         //Pizza
         String des9 = "tomate, fromage, origan";
-        Article ar09 = new Article(sCat03, tva2, "Pizza Margherita", 11F, des7);
+        Article ar09 = new Article(sCat03, tva2, "Pizza Margherita", 11F, des9);
         em.persist(ar09);
         String des10 = "tomate, fromage, anchois, câpres, olives, origan";
-        Article ar10 = new Article(sCat03, tva2, "Pizza Napolitana", 13F, des7);
+        Article ar10 = new Article(sCat03, tva2, "Pizza Napolitana", 13F, des10);
         em.persist(ar10);
         String des11 = "tomate, fromage, épaule, œuf, origan";
-        Article ar11 = new Article(sCat03, tva2, "Pizza Calzone ", 12F, des7);
+        Article ar11 = new Article(sCat03, tva2, "Pizza Calzone ", 12F, des11);
         em.persist(ar11);
         String des12 = "tomate, fromage, champignon, épaule, origan";
-        Article ar12 = new Article(sCat03, tva2, "Pizza Régina", 14F, des7);
+        Article ar12 = new Article(sCat03, tva2, "Pizza Régina", 14F, des12);
         em.persist(ar12);
         String des13 = "tomate, fromage, gorgonzola, chèvre, camembert, parmesan";
-        Article ar13 = new Article(sCat03, tva2, "Pizza Quatre Fromages", 14F, des7);
+        Article ar13 = new Article(sCat03, tva2, "Pizza Quatre Fromages", 14F, des13);
         em.persist(ar13);
         String des14 = "tomate, fromage, champignons, saumon fumé, crème fraîche, origan";
-        Article ar14 = new Article(sCat03, tva2, "Pizza salmoni", 13F, des7);
+        Article ar14 = new Article(sCat03, tva2, "Pizza salmoni", 13F, des14);
         em.persist(ar14);
 // VIANDES
         String desA1 = "une escalope qui saute en bouche et fond délicatement sur la langue";

@@ -12,13 +12,15 @@
         <title>Starter Template for Bootstrap</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        
-        
-        <!-- Custom styles for this template -->
-        <link href="css/client-template.css" rel="stylesheet">
 
-    </head>
+        <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+              
+
+        <!-- Custom styles for this template -->
+        <link href="css/serveur-template.css" rel="stylesheet">
+
+
 
     <body>
 
@@ -46,12 +48,17 @@
         <!-- Page Content -->
         <div class="container">
             <div class="row">
-                <div class="emp">
-                </div>
-                <div class="emp">
-                </div>
-                <div class="emp">
-                </div>
+                <c:forEach items="${listEmplacement}" var="element">
+                    <div class ="emp">
+
+                        <figure>
+                            <a href="...">
+                                <img src="images/IHM_salle/table_empty.png" alt=".." />
+                            </a>
+                            <figcaption><p>${element.statut}</p><p>Numéro : ${element.numero}</p></figcaption>
+                        </figure>
+                    </div>
+                </c:forEach>
             </div>
         </div>  
 

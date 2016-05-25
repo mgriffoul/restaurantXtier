@@ -1,0 +1,22 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+.emp{
+    height: 200px;
+    display: inline;
+}
+
+.emp.p{
+    font-size: 2px;
+    color: #FFFFFF;
+}
+
+emp.a{
+     display: inline;
+    height: 100%;
+        cursor:pointer;
+}
