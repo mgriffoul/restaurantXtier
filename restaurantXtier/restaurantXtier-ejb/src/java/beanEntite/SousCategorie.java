@@ -28,6 +28,7 @@ public class SousCategorie implements Serializable {
     private Collection<Article> articles;
     
     private String nom;
+    private Integer ordre;
 
     public SousCategorie() {
         articles = new ArrayList<>();
@@ -36,6 +37,12 @@ public class SousCategorie implements Serializable {
     public SousCategorie(Categorie categorie, String nom) {
         this.categorie = categorie;
         this.nom = nom;
+    }
+
+    public SousCategorie(Categorie categorie, String nom, Integer ordre) {
+        this.categorie = categorie;
+        this.nom = nom;
+        this.ordre = ordre;
     }
 
     public SousCategorie(Categorie categorie, List<Article> articles, String nom) {
@@ -50,6 +57,14 @@ public class SousCategorie implements Serializable {
 
     public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
+    }
+
+    public Integer getOrdre() {
+        return ordre;
+    }
+
+    public void setOrdre(Integer ordre) {
+        this.ordre = ordre;
     }
 
     public Collection<Article> getArticles() {
