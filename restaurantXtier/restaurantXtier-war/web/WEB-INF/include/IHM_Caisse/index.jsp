@@ -9,9 +9,33 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Interface Caisse</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>${titre}</h1>
+        <c:if test="${empty commande }" >
+        Votre panier est vide.
+    </c:if>
+   <c:if test="${not empty commande }" >
+        <div>
+            <thead>
+            <tr>
+                <th>Emplacement</th>
+                <th>Numéro Commande</th>        
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach items="${commande}" var="l">
+                <tr>
+                    <td>${l.emplacements.numero}</td>
+                    <td>${l.numero}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+        </div>
+        <div></div>
+        <div></div>
+   </c:if>
+        
     </body>
 </html>
