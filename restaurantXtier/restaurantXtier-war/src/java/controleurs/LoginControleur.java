@@ -1,8 +1,10 @@
 
 package controleurs;
 
+import beanEntite.Commande;
 import beanEntite.Emplacement;
 import beanEntite.Utilisateur;
+import beansSession.BeanCommandeLocal;
 import beansSession.BeanEmplacementLocal;
 import java.io.Serializable;
 import java.util.List;
@@ -20,6 +22,8 @@ public class LoginControleur implements Serializable, SousControleurInterface {
     BeanEmplacementLocal beanEmplacement = lookupBeanEmplacementLocal();
 
     beansSession.BeanUserLocal BeanUser = lookupBeanUserLocal();
+    
+    BeanCommandeLocal beanCommande = lookupBeanCommandeLocal();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -38,6 +42,8 @@ public class LoginControleur implements Serializable, SousControleurInterface {
                 case 1:
                     return "include/IHM_Cuisine/index";
                 case 2:
+                    List<Commande> c = beanCommande.selectCommandeTerminee();
+                    request.setAttribute("commandefinie", c);
                     return "include/IHM_Caisse/index";
                 case 3:
                     List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
@@ -76,4 +82,15 @@ public class LoginControleur implements Serializable, SousControleurInterface {
         }
     }
 
+    private BeanCommandeLocal lookupBeanCommandeLocal() {
+        try {
+            Context c = new InitialContext();
+            return (BeanCommandeLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanCommande!beansSession.BeanCommandeLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+    
+    
 }
