@@ -2,6 +2,7 @@
 package beansSession;
 
 import beanEntite.Commande;
+import beanEntite.Emplacement;
 import beanEntite.LigneCommande;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -11,7 +12,7 @@ import javax.persistence.Query;
 
 @Stateless
 public class BeanCommande implements BeanCommandeLocal {
-
+   
  @PersistenceContext(unitName = "restaurantXtier-ejbPU")
  private EntityManager em;
  
@@ -61,12 +62,42 @@ public class BeanCommande implements BeanCommandeLocal {
  @Override
     public List<Commande> selectCommandeTerminee(){
         String req = "Select c from Commande c where c.statut=:paramstatut";
-        String statut = "terminee";
+        String statut = "terminée";
         Query qr = em.createQuery(req);
         qr.setParameter("paramstatut", statut);
         List<Commande> liste = qr.getResultList();
-        
+        for(Commande c: liste){
+            List<Emplacement> emplacements = selectEmplacementByIdCommande(c.getId());
+            c.setEmplacements(emplacements);
+            String numero = selectNumCommandeByIdCommande(c.getId());
+            c.setNumero(numero);
+        }
         return liste;
     }
+        
+ @Override
+    public List<Emplacement> selectEmplacementByIdCommande(Long id){
+        String req = "Select c.emplacements from Commande c where c.id=:paramid";
+        Query qr = em.createQuery(req);
+        qr.setParameter("paramid", id);
+        List<Emplacement> emplacements = qr.getResultList();
+        return emplacements;
+    }
     
+ @Override
+    public String selectNumCommandeByIdCommande(Long id){
+        String req = "Select c.numero from Commande c where c.id=:paramid";
+        Query qr = em.createQuery(req);
+        qr.setParameter("paramid", id);
+        String numero = (String)qr.getSingleResult();
+        return numero;
+    }
+    
+    public List<Integer> selectNumEmplacementById(Long id){
+        String req = "Select e.numero from Emplacement e where e.id=:paramid";
+        Query qr = em.createQuery(req);
+        qr.setParameter("paramid", id);
+        List<Integer> numero = qr.getResultList();
+        return numero;
+    } 
 }

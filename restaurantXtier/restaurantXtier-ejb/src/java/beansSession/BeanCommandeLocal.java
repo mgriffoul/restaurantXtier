@@ -1,6 +1,7 @@
 package beansSession;
 
 import beanEntite.Commande;
+import beanEntite.Emplacement;
 import beanEntite.LigneCommande;
 import java.util.List;
 import javax.ejb.Local;
@@ -16,6 +17,11 @@ public interface BeanCommandeLocal {
 
     public List<Commande> selectCommandeTerminee();
 
+
      public Commande newCommande();
-     
+
+    public List<Emplacement> selectEmplacementByIdCommande(Long id);
+
+    public String selectNumCommandeByIdCommande(Long id);
+
 }
