@@ -16,6 +16,10 @@
                         <div class="block">
 
                             <h1>formules</h1>
+                            
+                            <c:forEach items="${for}" var="ssCate">
+                                ${for.nom}
+                            </c:foreach>
                         </div>
                     </div><!-- .col-md-12 close -->
                 </div><!-- .row close -->

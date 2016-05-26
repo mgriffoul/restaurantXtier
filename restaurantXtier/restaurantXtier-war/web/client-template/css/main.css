@@ -442,7 +442,7 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
   text-align: center;
 }
 #price .block .pricing-list {
-  padding-top: 85px;
+  padding-top: 25px;
 }
 #price .block .pricing-list ul {
   padding: 0 0 30px;
@@ -476,19 +476,7 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
   padding: 12px 0 0px;
   color: #949494;
 }
-#price .block .pricing-list .btn {
-  padding: 28px 105px;
-  border-radius: 0px;
-  background: none;
-  color: #FF4F02;
-  border: 1px solid #FF4F02;
-  font-size: 15px;
-  text-transform: uppercase;
-  font-weight: 600;
-  -webkit-transition: .3s all;
-  -o-transition: .3s all;
-  transition: .3s all;
-}
+
 #price .block .pricing-list .btn:hover {
   background: #ff530a;
   color: #fff;
@@ -709,4 +697,22 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 
 .mapolice li a {
     font-size: 20px;
+}
+
+.carte-titre{
+    margin: 10px;
+    padding: 10px;
+}
+ 
+.categorie-carte{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.souscategorie-carte{
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+#price .block .pricing-list .article {
+    padding: 8px 0px;
 }

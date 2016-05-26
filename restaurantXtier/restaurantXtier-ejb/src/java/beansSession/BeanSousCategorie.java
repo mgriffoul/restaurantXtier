@@ -1,6 +1,7 @@
 package beansSession;
 
 import beanEntite.Article;
+import beanEntite.Categorie;
 import beanEntite.SousCategorie;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -53,5 +54,21 @@ public class BeanSousCategorie implements BeanSousCategorieLocal {
         List<Article> articles = qr.getResultList();
         return articles;
     }
+
+    @Override
+    public Categorie findCateFromSousCat(Long sousCatId) {
+        
+        String req = "Select c from SousCategorie s join s.categorie c"
+                + " where s.id = :paramcatid";
+        Query qr = em.createQuery(req);
+        qr.setParameter("paramcatid", sousCatId);
+        Categorie cat = (Categorie) qr.getSingleResult();
+        
+        return cat;
+    }
+
+    
+    
+    
     
 }
