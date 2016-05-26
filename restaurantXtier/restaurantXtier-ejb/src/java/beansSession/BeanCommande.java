@@ -24,12 +24,12 @@ public class BeanCommande implements BeanCommandeLocal {
     
     
     
-    @Override
-    public Commande selectCommandeByDate(String date) {
+ @Override
+    public List<Commande> selectCommandeByDate(String date) {
         String req = "Select c from Commande c where c.date = :paramdate";
         Query qr = em.createQuery(req);
         qr.setParameter("paramnom", date);
-        Commande com = (Commande) qr.getSingleResult();
+        List<Commande> com = qr.getResultList();
         return com;
     }
     
@@ -52,6 +52,15 @@ public class BeanCommande implements BeanCommandeLocal {
         return LigneCommande;
     }
     
-    
+ @Override
+    public List<Commande> selectCommandeTerminee(){
+        String req = "Select c from Commande c where c.statut=:paramstatut";
+        String statut = "terminee";
+        Query qr = em.createQuery(req);
+        qr.setParameter("paramstatut", statut);
+        List<Commande> liste = qr.getResultList();
+        
+        return liste;
+    }
     
 }

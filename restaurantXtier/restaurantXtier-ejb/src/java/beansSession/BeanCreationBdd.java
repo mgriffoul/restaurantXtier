@@ -506,17 +506,17 @@ em.persist(vinRs4);
         Emplacement e24 = new Emplacement(24, "libre", 2);
         Emplacement e25 = new Emplacement(25, "libre", 2);
         
-        Commande c01 = new Commande(d01,"CO2016000004");
-        Commande c02 = new Commande(d01, "CO2016000005");
-        Commande c03 = new Commande(d01, "CO2016000006");
-        Commande c04 = new Commande(d02,"CO2016000007");
-        Commande c05 = new Commande(d02,"CO2016000008");
-        Commande c06 = new Commande(d02,"CO2016000009");
-        Commande c07 = new Commande(d02,"CO20160000010");
-        Commande c08 = new Commande(d02,"CO20160000011");
-        Commande c09 = new Commande(d03,"CO2016000001");
-        Commande c10 = new Commande(d03,"CO2016000002");
-        Commande c11 = new Commande(d03,"CO2016000003");
+        Commande c01 = new Commande(d01,"CO2016000004","payee");
+        Commande c02 = new Commande(d01, "CO2016000005","payee");
+        Commande c03 = new Commande(d01, "CO2016000006","payee");
+        Commande c04 = new Commande(d02,"CO2016000007","terminée");
+        Commande c05 = new Commande(d02,"CO2016000008","terminée");
+        Commande c06 = new Commande(d02,"CO2016000009","terminée");
+        Commande c07 = new Commande(d02,"CO20160000010","terminée");
+        Commande c08 = new Commande(d02,"CO20160000011","payee");
+        Commande c09 = new Commande(d03,"CO2016000001","payee");
+        Commande c10 = new Commande(d03,"CO2016000002","payee");
+        Commande c11 = new Commande(d03,"CO2016000003","payee");
 
 
 

@@ -14,9 +14,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
-
 @Entity
 public class Commande implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,10 +35,11 @@ public class Commande implements Serializable {
         this.emplacements = emplacements;
     }
 
-    public Commande(Date date, String numero) {
+    public Commande(Date date, String numero, String statut) {
         this();
         this.date = date;
         this.numero = numero;
+        this.statut = statut;
     }
 
     public Date getDate() {
@@ -88,8 +89,8 @@ public class Commande implements Serializable {
     public void setLignesCommandes(Collection<LigneCommande> lignesCommandes) {
         this.lignesCommandes = lignesCommandes;
     }
-    
-        public String getStatut() {
+
+    public String getStatut() {
         return statut;
     }
 
@@ -97,21 +98,20 @@ public class Commande implements Serializable {
         this.statut = statut;
     }
 
-     // associations
+    // associations
     @ManyToMany
     private Collection<Emplacement> emplacements;
-    
+
     @ManyToOne
     private Utilisateur utilisateur;
-    
+
     @OneToOne
     private Ticket ticket;
-    
+
     @OneToMany(mappedBy = "commande")
     private Collection<LigneCommande> lignesCommandes;
     //fin associations
-    
-    
+
     public Long getId() {
         return id;
     }
@@ -144,5 +144,5 @@ public class Commande implements Serializable {
     public String toString() {
         return "beanEntite.Commande[ id=" + id + " ]";
     }
-    
+
 }
