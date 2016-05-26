@@ -37,24 +37,13 @@ public class BeanFormule implements BeanFormuleLocal {
         String req = "Select f from Formule f";
         Query qr = em.createQuery(req);
         List<Formule> formules = qr.getResultList();
-        System.out.println("list formules ok");
-        for (Formule f : formules) {
+        for(Formule f : formules) {
             List<Article> articles = selectArticleByIdFormule(f.getId());
-            System.out.println("list articles ok");
-            for (Article a : articles) {
-                SousCategorie ssCat = article.findSousCategorieOfArticle(a.getId());
-                System.out.println("ssCat ----->");
-                Categorie cat = sousCategorie.findCateFromSousCat(ssCat.getId());
-                ssCat.setCategorie(cat);
-                a.setSousCategorie(ssCat);
-            }
             f.setArticles(articles);
         }
         return formules;
     }
 
-    public void persist(Object object) {
-        em.persist(object);
-    }
+    
 
 }

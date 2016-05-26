@@ -37,7 +37,7 @@ public class BeanArticle implements BeanArticleLocal {
 
     @Override
     public SousCategorie findSousCategorieOfArticle(Long idArticle) {
-        return em.find(SousCategorie.class, idArticle);
+        return null;
     }
     
     
