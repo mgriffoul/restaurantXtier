@@ -83,35 +83,40 @@ public class BeanCreationBdd implements BeanCreationBddLocal {
         //Categories
         Categorie cat01 = new Categorie();
         cat01.setNom("Les Entrées");
+        cat01.setOrdre(1);
         Categorie cat02 = new Categorie();
         cat02.setNom("Les Plats");
+        cat02.setOrdre(2);
         Categorie cat03 = new Categorie();
         cat03.setNom("Les Desserts");
+        cat03.setOrdre(3);
         Categorie cat04 = new Categorie();
         cat04.setNom("Les Boissons");
+        cat04.setOrdre(4);
         Categorie cat05 = new Categorie();
         cat05.setNom("Les Vins");
+        cat05.setOrdre(5);
         //SousCategories
         //sous cat de Entrées
-        SousCategorie sCat01 = new SousCategorie(cat01, "Antipasti");
-        SousCategorie sCat02 = new SousCategorie(cat01, "Salades");
+        SousCategorie sCat01 = new SousCategorie(cat01, "Antipasti",1);
+        SousCategorie sCat02 = new SousCategorie(cat01, "Salades",2);
         //sous cat de Plats
-        SousCategorie sCat03 = new SousCategorie(cat02, "Les Pizza");
-        SousCategorie sCat04 = new SousCategorie(cat02, "Les Pâtes");
-        SousCategorie sCat05 = new SousCategorie(cat02, "Les viandes");
+        SousCategorie sCat03 = new SousCategorie(cat02, "Les Pizza",1);
+        SousCategorie sCat04 = new SousCategorie(cat02, "Les Pâtes",2);
+        SousCategorie sCat05 = new SousCategorie(cat02, "Les viandes",3);
         //sous cat de Desserts
-        SousCategorie sCat06 = new SousCategorie(cat03, "Patisseries");
-        SousCategorie sCat07 = new SousCategorie(cat03, "Glaces");
+        SousCategorie sCat06 = new SousCategorie(cat03, "Patisseries",1);
+        SousCategorie sCat07 = new SousCategorie(cat03, "Glaces",2);
         //sous cat les boissons
-        SousCategorie sCat08 = new SousCategorie(cat04, "Les eaux minérales");
-        SousCategorie sCat09 = new SousCategorie(cat04, "Sans Alcohol");
-        SousCategorie sCat10 = new SousCategorie(cat04, "Cocktails");
-        SousCategorie sCat11 = new SousCategorie(cat04, "Digestifs");
-        SousCategorie sCat12 = new SousCategorie(cat04, "Boissons chaudes");
+        SousCategorie sCat08 = new SousCategorie(cat04, "Les eaux minérales",1);
+        SousCategorie sCat09 = new SousCategorie(cat04, "Sans Alcohol",2);
+        SousCategorie sCat10 = new SousCategorie(cat04, "Cocktails",3);
+        SousCategorie sCat11 = new SousCategorie(cat04, "Digestifs",4);
+        SousCategorie sCat12 = new SousCategorie(cat04, "Boissons chaudes",5);
         //sous cat les vins
-        SousCategorie sCat13 = new SousCategorie(cat05, "Les rouges");
-        SousCategorie sCat14 = new SousCategorie(cat05, "Les blancs");
-        SousCategorie sCat15 = new SousCategorie(cat05, "Les rosés");
+        SousCategorie sCat13 = new SousCategorie(cat05, "Les rouges",1);
+        SousCategorie sCat14 = new SousCategorie(cat05, "Les blancs",2);
+        SousCategorie sCat15 = new SousCategorie(cat05, "Les rosés",3);
 
         em.persist(cat01);
         em.persist(cat02);
@@ -506,17 +511,17 @@ em.persist(vinRs4);
         Emplacement e24 = new Emplacement(24, "libre", 2);
         Emplacement e25 = new Emplacement(25, "libre", 2);
         
-        Commande c01 = new Commande(d01,"CO2016000004");
-        Commande c02 = new Commande(d01, "CO2016000005");
-        Commande c03 = new Commande(d01, "CO2016000006");
-        Commande c04 = new Commande(d02,"CO2016000007");
-        Commande c05 = new Commande(d02,"CO2016000008");
-        Commande c06 = new Commande(d02,"CO2016000009");
-        Commande c07 = new Commande(d02,"CO20160000010");
-        Commande c08 = new Commande(d02,"CO20160000011");
-        Commande c09 = new Commande(d03,"CO2016000001");
-        Commande c10 = new Commande(d03,"CO2016000002");
-        Commande c11 = new Commande(d03,"CO2016000003");
+        Commande c01 = new Commande(d01,"CO2016000004","payee");
+        Commande c02 = new Commande(d01, "CO2016000005","payee");
+        Commande c03 = new Commande(d01, "CO2016000006","payee");
+        Commande c04 = new Commande(d02,"CO2016000007","terminée");
+        Commande c05 = new Commande(d02,"CO2016000008","terminée");
+        Commande c06 = new Commande(d02,"CO2016000009","terminée");
+        Commande c07 = new Commande(d02,"CO20160000010","terminée");
+        Commande c08 = new Commande(d02,"CO20160000011","payee");
+        Commande c09 = new Commande(d03,"CO2016000001","payee");
+        Commande c10 = new Commande(d03,"CO2016000002","payee");
+        Commande c11 = new Commande(d03,"CO2016000003","payee");
 
 
 

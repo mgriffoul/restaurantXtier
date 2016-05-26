@@ -38,7 +38,7 @@ public class BeanCategorie implements BeanCategorieLocal {
 
     @Override
     public List<Categorie> selectAllCategorie() {
-           String req = "Select c from Categorie c";
+           String req = "Select c from Categorie c order by c.ordre";
            Query qr = em.createQuery(req);
            List<Categorie> categories = qr.getResultList();
            for(Categorie c : categories){
@@ -55,7 +55,7 @@ public class BeanCategorie implements BeanCategorieLocal {
     @Override
     public List<SousCategorie> selectSousCategorieByIdCategorie(Long id) {
         String rq = "Select c.sousCategories"
-                + " from Categorie c where c.id=:paramid";
+                + " from Categorie c join c.sousCategories s  where c.id=:paramid order by s.ordre";
         Query qr = em.createQuery(rq);
         qr.setParameter("paramid", id);
         List<SousCategorie> sousCategories = qr.getResultList();

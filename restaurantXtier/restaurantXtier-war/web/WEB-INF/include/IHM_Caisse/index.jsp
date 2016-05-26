@@ -13,11 +13,12 @@
     </head>
     <body>
         <h1>${titre}</h1>
+        <div>
         <c:if test="${empty commande }" >
-        Votre panier est vide.
+        Aucune commande n'est prête à être réglée.
     </c:if>
    <c:if test="${not empty commande }" >
-        <div>
+        
             <thead>
             <tr>
                 <th>Emplacement</th>

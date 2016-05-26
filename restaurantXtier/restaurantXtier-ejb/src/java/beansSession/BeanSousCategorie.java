@@ -47,7 +47,7 @@ public class BeanSousCategorie implements BeanSousCategorieLocal {
 
    @Override
     public List<Article> selectArticleByIdSousCategorie(Long id) {
-        String req = "Select a from Article a where a.sousCategorie.id = :paramid";
+        String req = "Select a from Article a where a.sousCategorie.id = :paramid order by a.prixHt";
         Query qr = em.createQuery(req);
         qr.setParameter("paramid", id);
         List<Article> articles = qr.getResultList();

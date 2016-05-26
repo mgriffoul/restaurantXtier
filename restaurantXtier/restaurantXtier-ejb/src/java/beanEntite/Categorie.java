@@ -23,6 +23,8 @@ public class Categorie implements Serializable {
     private Collection<SousCategorie> sousCategories;
     
     private String nom;
+    private Integer ordre;
+    
     
     public Long getId() {
         return id;
@@ -32,11 +34,14 @@ public class Categorie implements Serializable {
         sousCategories = new ArrayList<>();
     }
 
-    public Categorie(Collection<SousCategorie> sousCategories, String nom) {
+    public Categorie(Collection<SousCategorie> sousCategories, String nom, Integer ordre) {
         this.sousCategories = sousCategories;
         this.nom = nom;
+        this.ordre = ordre;
     }
 
+    
+    
     public Collection<SousCategorie> getSousCategories() {
         return sousCategories;
     }
@@ -52,9 +57,15 @@ public class Categorie implements Serializable {
     public void setNom(String nom) {
         this.nom = nom;
     }
-    
-    
 
+    public Integer getOrdre() {
+        return ordre;
+    }
+
+    public void setOrdre(Integer ordre) {
+        this.ordre = ordre;
+    }
+    
     public void setId(Long id) {
         this.id = id;
     }

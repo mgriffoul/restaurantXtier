@@ -2,10 +2,8 @@
 package controleurs;
 
 import beanEntite.Emplacement;
-import beanEntite.Utilisateur;
 import beansSession.BeanEmplacementLocal;
 import java.io.Serializable;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -15,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class IHMSalle implements Serializable, SousControleurInterface {
+public class IHMSalleControlleur implements Serializable, SousControleurInterface {
     
     
     
@@ -25,8 +23,9 @@ public class IHMSalle implements Serializable, SousControleurInterface {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
       HttpSession session = request.getSession();
-      List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
-      request.setAttribute("listEmplacement", listEmplacement);
+      Emplacement emplacement = beanEmplacement.selectEmplacementById(Long.parseLong(request.getParameter("table")));
+      emplacement.setStatut("occupe");
+      
       return "include/IHM_Salle/accueil";
     }
 
