@@ -1,11 +1,12 @@
-
 package controleurs;
 
 import beanEntite.Commande;
 import beanEntite.Emplacement;
+import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
 import beansSession.BeanCommandeLocal;
 import beansSession.BeanEmplacementLocal;
+import beansSession.BeanLigneCommandeLocal;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,10 +20,12 @@ import javax.servlet.http.HttpSession;
 
 public class LoginControleur implements Serializable, SousControleurInterface {
 
+    BeanLigneCommandeLocal beanLigneCommande = lookupBeanLigneCommandeLocal();
+
     BeanEmplacementLocal beanEmplacement = lookupBeanEmplacementLocal();
 
     beansSession.BeanUserLocal BeanUser = lookupBeanUserLocal();
-    
+
     BeanCommandeLocal beanCommande = lookupBeanCommandeLocal();
 
     @Override
@@ -40,6 +43,8 @@ public class LoginControleur implements Serializable, SousControleurInterface {
             session.setAttribute("user", ut01);
             switch (ut01.getRole()) {
                 case 1:
+                    List<LigneCommande> ligneCommandes = beanLigneCommande.selectAllLigneCommandeTriByPlat();
+                    request.setAttribute("ligneCommandes", ligneCommandes);
                     return "include/IHM_Cuisine/index";
                 case 2:
                     List<Commande> c = beanCommande.selectCommandeTerminee();
@@ -86,11 +91,23 @@ public class LoginControleur implements Serializable, SousControleurInterface {
         try {
             Context c = new InitialContext();
             return (BeanCommandeLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanCommande!beansSession.BeanCommandeLocal");
+
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+            
+    }
+
+    private BeanLigneCommandeLocal lookupBeanLigneCommandeLocal() {
+        try {
+            Context c = new InitialContext();
+            return (BeanLigneCommandeLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanLigneCommande!beansSession.BeanLigneCommandeLocal");
+
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
     }
-    
-    
+
 }
