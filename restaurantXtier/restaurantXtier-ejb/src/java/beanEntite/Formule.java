@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -25,9 +26,20 @@ public class Formule implements Serializable {
     private String nom;
     private Float prix;
     private String refFormule;
+    
+    @ManyToOne
+    private Tva tva;
 
     public Formule() {
         articles = new ArrayList<>();
+    }
+
+    public Formule(Collection<Article> articles, String nom, Float prix, String refFormule, Tva tva) {
+        this.articles = articles;
+        this.nom = nom;
+        this.prix = prix;
+        this.refFormule = refFormule;
+        this.tva = tva;
     }
 
     public Formule(List<Article> articles, String nom, Float prix, String refFormule) {
@@ -35,6 +47,13 @@ public class Formule implements Serializable {
         this.nom = nom;
         this.prix = prix;
         this.refFormule = refFormule;
+    }
+
+    public Formule(Collection<Article> articles, String nom, Float prix, Tva tva) {
+        this.articles = articles;
+        this.nom = nom;
+        this.prix = prix;
+        this.tva = tva;
     }
 
     public Collection<Article> getArticles() {
@@ -47,6 +66,14 @@ public class Formule implements Serializable {
 
     public String getNom() {
         return nom;
+    }
+
+    public Tva getTva() {
+        return tva;
+    }
+
+    public void setTva(Tva tva) {
+        this.tva = tva;
     }
 
     public void setNom(String nom) {

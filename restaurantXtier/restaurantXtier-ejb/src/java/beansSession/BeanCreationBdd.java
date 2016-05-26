@@ -431,7 +431,7 @@ em.persist(vinRs4);
         arts.add(boiSa2);
         arts.add(boiSa3);
         arts.add(boiSa4);
-        Formule form01 = new Formule(arts, "Entrée / Plat", 16.5F, "entpl");
+        Formule form01 = new Formule(arts, "Entrée / Plat", 16.5F, "entpl",tva2);
         em.persist(form01);
         
         ArrayList<Article> arts2 = new ArrayList();
@@ -448,7 +448,7 @@ em.persist(vinRs4);
         arts2.add(de2);
         arts2.add(de6);
         arts2.add(de7);
-        Formule form02 = new Formule(arts2, "Pizza", 19.5F, "piz");
+        Formule form02 = new Formule(arts2, "Pizza", 19.5F, "piz",tva2);
         em.persist(form02);
         
         ArrayList<Article> arts3 = new ArrayList();
@@ -464,7 +464,7 @@ em.persist(vinRs4);
         arts3.add(de2);
         arts3.add(de6);
         arts3.add(de7);
-        Formule form03 = new Formule(arts2, "Formule Pâtes", 21.5F, "pat");
+        Formule form03 = new Formule(arts2, "Formule Pâtes", 21.5F, "pat",tva2);
         em.persist(form03);
         
         
