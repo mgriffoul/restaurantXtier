@@ -25,6 +25,7 @@ public class Commande implements Serializable {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date date;
     private String numero;
+    private String statut;
 
     public Commande() {
         emplacements = new ArrayList<>();
@@ -88,6 +89,14 @@ public class Commande implements Serializable {
         this.lignesCommandes = lignesCommandes;
     }
     
+        public String getStatut() {
+        return statut;
+    }
+
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
+
      // associations
     @ManyToMany
     private Collection<Emplacement> emplacements;

@@ -1,9 +1,11 @@
 
 package beansSession;
 
+import beanEntite.Article;
 import beanEntite.Categorie;
 import beanEntite.SousCategorie;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,6 +15,9 @@ import javax.persistence.Query;
 @Stateless
 public class BeanCategorie implements BeanCategorieLocal {
 
+    @EJB
+    private BeanSousCategorieLocal beanSousCate;
+    
     @PersistenceContext(unitName = "restaurantXtier-ejbPU")
     private EntityManager em; 
     
@@ -36,6 +41,14 @@ public class BeanCategorie implements BeanCategorieLocal {
            String req = "Select c from Categorie c";
            Query qr = em.createQuery(req);
            List<Categorie> categories = qr.getResultList();
+           for(Categorie c : categories){
+               List<SousCategorie> sousCategories = selectSousCategorieByIdCategorie(c.getId());
+               c.setSousCategories(sousCategories);
+               for(SousCategorie s : sousCategories){
+                   List<Article> articles = beanSousCate.selectArticleByIdSousCategorie(s.getId());
+                   s.setArticles(articles);
+               }
+           }
            return categories;
     }
 

@@ -20,14 +20,7 @@ public class BeanArticle implements BeanArticleLocal {
         return em.find(Article.class, id);
     }
 
-    @Override
-    public List<Article> selectArticleByIdSousCategorie(Long id) {
-        String req = "Select a from Article a where a.sousCategorie.id = :paramid";
-        Query qr = em.createQuery(req);
-        qr.setParameter("paramid", id);
-        List<Article> articles = qr.getResultList();
-        return articles;
-    }
+    
 
     @Override
     public List<Article> selectArticleByIdFormule(Long id) {

@@ -1,3 +1,4 @@
+
 package controleurs;
 
 import beanEntite.Emplacement;
@@ -48,6 +49,8 @@ public class LoginControleur implements Serializable, SousControleurInterface {
                     request.setAttribute("listEmplacement", listEmplacement);
                     return "include/IHM_Salle/index";
                 case 4:
+                    String s1 = "include/accueil.jsp";
+                    request.setAttribute("contentInc", s1);
                     return "include/IHM_Client/index";
                 case 5:
                     return "include/admin";
