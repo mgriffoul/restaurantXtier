@@ -22,7 +22,13 @@ public class BeanCommande implements BeanCommandeLocal {
          
     }
     
-    
+    @Override
+    public Commande newCommande(){
+        Commande c = new Commande();
+   
+        return c;
+        
+    }
     
  @Override
     public List<Commande> selectCommandeByDate(String date) {

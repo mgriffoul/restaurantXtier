@@ -33,6 +33,7 @@ public class LoginControleur implements Serializable, SousControleurInterface {
         Utilisateur ut01 = BeanUser.getUserByCode(pass);
 
         if (ut01 != null) {
+            session.setAttribute("user", ut01);
             switch (ut01.getRole()) {
                 case 1:
                     return "include/IHM_Cuisine/index";
@@ -51,7 +52,6 @@ public class LoginControleur implements Serializable, SousControleurInterface {
             }
         } else {
             request.setAttribute("message", "Ce mot de passe ne correspond à aucune interface!");
-
         }
         return "include/login";
     }

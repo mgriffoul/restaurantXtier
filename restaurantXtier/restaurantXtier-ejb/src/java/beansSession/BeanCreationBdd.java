@@ -83,35 +83,40 @@ public class BeanCreationBdd implements BeanCreationBddLocal {
         //Categories
         Categorie cat01 = new Categorie();
         cat01.setNom("Les Entrées");
+        cat01.setOrdre(1);
         Categorie cat02 = new Categorie();
         cat02.setNom("Les Plats");
+        cat02.setOrdre(2);
         Categorie cat03 = new Categorie();
         cat03.setNom("Les Desserts");
+        cat03.setOrdre(3);
         Categorie cat04 = new Categorie();
         cat04.setNom("Les Boissons");
+        cat04.setOrdre(4);
         Categorie cat05 = new Categorie();
         cat05.setNom("Les Vins");
+        cat05.setOrdre(5);
         //SousCategories
         //sous cat de Entrées
-        SousCategorie sCat01 = new SousCategorie(cat01, "Antipasti");
-        SousCategorie sCat02 = new SousCategorie(cat01, "Salades");
+        SousCategorie sCat01 = new SousCategorie(cat01, "Antipasti",1);
+        SousCategorie sCat02 = new SousCategorie(cat01, "Salades",2);
         //sous cat de Plats
-        SousCategorie sCat03 = new SousCategorie(cat02, "Les Pizza");
-        SousCategorie sCat04 = new SousCategorie(cat02, "Les Pâtes");
-        SousCategorie sCat05 = new SousCategorie(cat02, "Les viandes");
+        SousCategorie sCat03 = new SousCategorie(cat02, "Les Pizza",1);
+        SousCategorie sCat04 = new SousCategorie(cat02, "Les Pâtes",2);
+        SousCategorie sCat05 = new SousCategorie(cat02, "Les viandes",3);
         //sous cat de Desserts
-        SousCategorie sCat06 = new SousCategorie(cat03, "Patisseries");
-        SousCategorie sCat07 = new SousCategorie(cat03, "Glaces");
+        SousCategorie sCat06 = new SousCategorie(cat03, "Patisseries",1);
+        SousCategorie sCat07 = new SousCategorie(cat03, "Glaces",2);
         //sous cat les boissons
-        SousCategorie sCat08 = new SousCategorie(cat04, "Les eaux minérales");
-        SousCategorie sCat09 = new SousCategorie(cat04, "Sans Alcohol");
-        SousCategorie sCat10 = new SousCategorie(cat04, "Cocktails");
-        SousCategorie sCat11 = new SousCategorie(cat04, "Digestifs");
-        SousCategorie sCat12 = new SousCategorie(cat04, "Boissons chaudes");
+        SousCategorie sCat08 = new SousCategorie(cat04, "Les eaux minérales",1);
+        SousCategorie sCat09 = new SousCategorie(cat04, "Sans Alcohol",2);
+        SousCategorie sCat10 = new SousCategorie(cat04, "Cocktails",3);
+        SousCategorie sCat11 = new SousCategorie(cat04, "Digestifs",4);
+        SousCategorie sCat12 = new SousCategorie(cat04, "Boissons chaudes",5);
         //sous cat les vins
-        SousCategorie sCat13 = new SousCategorie(cat05, "Les rouges");
-        SousCategorie sCat14 = new SousCategorie(cat05, "Les blancs");
-        SousCategorie sCat15 = new SousCategorie(cat05, "Les rosés");
+        SousCategorie sCat13 = new SousCategorie(cat05, "Les rouges",1);
+        SousCategorie sCat14 = new SousCategorie(cat05, "Les blancs",2);
+        SousCategorie sCat15 = new SousCategorie(cat05, "Les rosés",3);
 
         em.persist(cat01);
         em.persist(cat02);
@@ -198,22 +203,22 @@ public class BeanCreationBdd implements BeanCreationBddLocal {
         em.persist(vi4);
 //Pates
         String desp01 = "tagliatelles, crème fraîche, lardons, jaune d’œuf";
-        Article pa01 = new Article(sCat05, tva2, "Tagliatelles Carbonara", 12.5F, desp01);
+        Article pa01 = new Article(sCat04, tva2, "Tagliatelles Carbonara", 12.5F, desp01);
         em.persist(pa01);
         String desp02 = "raviolis farcis au quatre fromages, sauce au quatre fromages, crème fraiche";
-        Article pa02 = new Article(sCat05, tva2, "Raviolis Quatre Fromages", 11.5F, desp02);
+        Article pa02 = new Article(sCat04, tva2, "Raviolis Quatre Fromages", 11.5F, desp02);
         em.persist(pa02);
         String desp03 = "Linguines, tomate, ail, fruit de mer";
-        Article pa03 = new Article(sCat05, tva2, "Linguines aux Fruits de Mer", 13.5F, desp03);
+        Article pa03 = new Article(sCat04, tva2, "Linguines aux Fruits de Mer", 13.5F, desp03);
         em.persist(pa03);
         String desp04 = "tortellini farcie au comté et au basilic, crème fraîche et parmesan, copeaux de grana padana";
-        Article pa04 = new Article(sCat05, tva2, "Tortellini au Parmesan", 12F, desp04);
+        Article pa04 = new Article(sCat04, tva2, "Tortellini au Parmesan", 12F, desp04);
         em.persist(pa04);
         String desp05 = "rigatoni, légumes grillées, pesto maison, sauce tomate, huile d’olives";
-        Article pa05 = new Article(sCat05, tva2, "Rigatoni aux légumes du soleil", 12F, desp05);
+        Article pa05 = new Article(sCat04, tva2, "Rigatoni aux légumes du soleil", 12F, desp05);
         em.persist(pa05);
         String desp06 = "raviolis farcies aux cèpes, crème fraiche, champignons";
-        Article pa06 = new Article(sCat05, tva2, "Raviolis Con Funghi", 14F, desp06);
+        Article pa06 = new Article(sCat04, tva2, "Raviolis Con Funghi", 14F, desp06);
         em.persist(pa06);
         
         

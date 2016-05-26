@@ -2,12 +2,18 @@ package controleurs.admin;
 
 import beanEntite.Categorie;
 import beanEntite.Commande;
+
 import beanEntite.LigneCommande;
 import beanEntite.SousCategorie;
 import beansSession.BeanCategorieLocal;
 import beansSession.BeanCommandeLocal;
 import beansSession.BeanLigneCommandeLocal;
 import beansSession.BeanSousCategorieLocal;
+
+import beanEntite.Article;
+import beansSession.BeanArticleLocal;
+
+
 import beansSession.BeanTicketLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,7 +34,10 @@ public class testBeansServlet extends HttpServlet {
     
     @EJB
     private BeanLigneCommandeLocal ligneCom;
-    
+
+    @EJB
+    private BeanArticleLocal article;
+
     @EJB
     private BeanTicketLocal ticket;
     
@@ -40,14 +49,15 @@ public class testBeansServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            //TEST CATEGORIE BEAN
-            System.out.println(categorie.selectCategorieById(1L));
-            System.out.println(categorie.selectCategorieByNom("Les Entrées"));
+            
 
-            List<Categorie> categories = categorie.selectAllCategorie();
-            for (Categorie c : categories) {
-                System.out.println("List " + c);
+            //Test bean Article
+            List<Article> arts = article.selectArtByIdFormAndIdCate(1L, 3L);
+            System.out.println("go ! arts size :" + arts.size());
+            for (Article a : arts){
+                System.out.println("Articles by id formule et Categorie +++++ "+a);
             }
+
 
             List<SousCategorie> souscates = categorie.selectSousCategorieByIdCategorie(3L);
             for (SousCategorie s : souscates) {
@@ -77,6 +87,13 @@ public class testBeansServlet extends HttpServlet {
                 System.out.println(c+" - "+p+" - "+e);
             }
             System.out.println("===== FIN =======");
+
+
+            
+            
+            
+
+
             
             
             System.out.println("====== DEBUT TEST AFFICHER TICKET========");
@@ -88,6 +105,7 @@ public class testBeansServlet extends HttpServlet {
             System.out.println("==============FIN==============");
             
             
+
             request.setAttribute("message", "fin des tests");
             getServletContext().getRequestDispatcher(response.encodeURL("/WEB-INF/testDesBeans.jsp")).include(request, response);
 
