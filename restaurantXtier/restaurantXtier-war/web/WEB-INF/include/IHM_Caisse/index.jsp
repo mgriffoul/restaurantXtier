@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1>${titre}</h1>
-
+        <div id="un">
             <c:if test="${empty commandefinie }" >
                 Aucune commande n'est prête à être réglée.
             </c:if>
@@ -17,7 +17,8 @@
                 <thead>
                     <tr>
                         <th>Emplacement</th>
-                        <th>Numéro Commande</th>        
+                        <th>Numéro Commande</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,12 +29,15 @@
                             </c:forEach>    
                             </td>
                         <td>${l.numero}</td>
+                        <td><a href onclick="afficherCommande()">Afficher</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
                 </table>
-        
-        <div></div>
+            </div>
+                <div>
+                   
+                </div>
         <div></div>
     </c:if>
 
