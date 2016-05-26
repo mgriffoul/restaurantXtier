@@ -68,6 +68,13 @@ public class Formule implements Serializable {
         return nom;
     }
 
+    public Float getPrixTtc(){
+        
+        Float prixTtc = (prix*tva.getTauxTva()/100)+prix;
+        
+        return prixTtc;
+    }
+    
     public Tva getTva() {
         return tva;
     }
