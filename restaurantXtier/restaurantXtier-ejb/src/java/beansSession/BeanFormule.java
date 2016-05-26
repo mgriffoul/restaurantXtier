@@ -43,6 +43,7 @@ public class BeanFormule implements BeanFormuleLocal {
             System.out.println("list articles ok");
             for (Article a : articles) {
                 SousCategorie ssCat = article.findSousCategorieOfArticle(a.getId());
+                System.out.println("ssCat ----->");
                 Categorie cat = sousCategorie.findCateFromSousCat(ssCat.getId());
                 ssCat.setCategorie(cat);
                 a.setSousCategorie(ssCat);
