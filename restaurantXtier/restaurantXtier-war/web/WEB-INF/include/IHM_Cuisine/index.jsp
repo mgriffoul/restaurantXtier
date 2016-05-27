@@ -24,8 +24,8 @@
                 <div class="col-md-8">
 
                     <center><h3>Commandes en cours</h3></center>
-                    <center><table class="table-bordered" >
-                            <thead align="center" BGCOLOR="6699FF">
+                    <center><table style="border:1px solid black" >
+                            <thead align="center" BGCOLOR="B0C4E0">
                                 <tr>
                                     <td>Heure</td>
                                     <td>Table</td>
@@ -36,7 +36,7 @@
                                     <td></td>
                                 </tr>
                             </thead>
-                            <tbody align="center" bgcolor="E6E6FA">
+                            <tbody align="center" bgcolor="F0FFF0">
                                 <c:forEach items="${ligneCommandes}" var="ligne">
                                     <tr height="40">
                                         <td>${ligne.commande.date}</td>
@@ -57,21 +57,21 @@
                 <div class="col-md-4">
                     <center><h3>Commandes servies</h3></center>
                     <center><table style="border:1px solid black" >
-                            <thead align="center" BGCOLOR="6699FF">
+                            <thead align="center" BGCOLOR="B0C4E0">
                                 <tr>
                                     <td>Table</td>
                                     <td>Nom du plat</td>
                                     <td>Numero commande</td>
                                 </tr>
                             </thead>
-                            <tbody align="center" bgcolor="E6E6FA">
-                                <c:forEach items="${ligneCommandes}" var="ligne">
+                            <tbody align="center" bgcolor="F0FFF0">
+                                <c:forEach items="${lcServies}" var="ls">
                                     <tr height="40">
-                                        <td><c:forEach items="${ligne.commande.emplacements}" var="emp">
+                                        <td><c:forEach items="${ls.commande.emplacements}" var="emp">
                                                 ${emp.numero}.
                                             </c:forEach></td>
-                                        <td>${ligne.article.nom}</td>
-                                        <td>${ligne.commande.numero}</td>
+                                        <td>${ls.article.nom}</td>
+                                        <td>${ls.commande.numero}</td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
