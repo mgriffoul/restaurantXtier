@@ -33,21 +33,21 @@ public class LigneCommande implements Serializable {
     @ManyToOne
     private Commande commande;
     
-    @ManyToOne
-    private EtatLigneCommande etatLc;
+//    @ManyToOne
+//    private EtatLigneCommande etatLc;
 
     //fin associations
 
     public LigneCommande() {
     }
 
-    public LigneCommande(float prixHT, String etat, String remarque, String refFormule, EtatLigneCommande etatLc) {
+    public LigneCommande(float prixHT, String etat, String remarque, String refFormule) {
         this();
         this.prixHT = prixHT;
         this.etat = etat;
         this.remarque = remarque;
         this.refFormule = refFormule;
-        this.etatLc = etatLc;
+//        this.etatLc = etatLc;
     }
 
     public float getPrixHT() {
@@ -123,13 +123,13 @@ public class LigneCommande implements Serializable {
         this.id = id;
     }
 
-    public EtatLigneCommande getEtatLc() {
-        return etatLc;
-    }
-
-    public void setEtatLc(EtatLigneCommande etatLc) {
-        this.etatLc = etatLc;
-    }
+//    public EtatLigneCommande getEtatLc() {
+//        return etatLc;
+//    }
+//
+//    public void setEtatLc(EtatLigneCommande etatLc) {
+//        this.etatLc = etatLc;
+//    }
     
     
 

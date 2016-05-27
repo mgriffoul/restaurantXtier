@@ -45,6 +45,8 @@ public class LoginControleur implements Serializable, SousControleurInterface {
                 case 1:
                     List<LigneCommande> ligneCommandes = beanLigneCommande.selectAllLigneCommandeTriByPlat();
                     request.setAttribute("ligneCommandes", ligneCommandes);
+                    List<LigneCommande> lcServies= beanLigneCommande.selectLigneCommandeServies();
+                    request.setAttribute("lcServies", lcServies);
                     return "include/IHM_Cuisine/index";
                 case 2:
                     List<Commande> c = beanCommande.selectCommandeTerminee();
