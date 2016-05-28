@@ -586,39 +586,39 @@ em.persist(vinRs4);
         em.persist(c11);
 
 
-//        LigneCommande lc01 = new LigneCommande(21.5F,null,"Formule Pate","pat01");
-//        lc01.setCommande(c01);
-//        em.persist(lc01);
-//
-//        LigneCommande lc02 = new LigneCommande(0F,"servi","plat formule Pate","pat01");
-//        lc02.setArticle(pa02);
-//        lc02.setCommande(c01);
-//        em.persist(lc02);
+        LigneCommande lc01 = new LigneCommande(21.5F,null,"Formule Pate","pat01");
+        lc01.setCommande(c01);
+        em.persist(lc01);
 
-//        LigneCommande lc03 = new LigneCommande(0F,"servi",null,"pat01");
-//        lc03.setCommande(c01);
-//        lc03.setArticle(ar03);
-//        em.persist(lc03);
-//
-//        LigneCommande lc04 = new LigneCommande(0F,"en préparation",null,"pat01");
-//        lc04.setArticle(de7);
-//        lc04.setCommande(c01);
-//        em.persist(lc04);
-//
-//        LigneCommande lc05 = new LigneCommande(15F,"servi",null,null);
-//        lc05.setArticle(vinB4);
-//        lc05.setCommande(c01);
-//        em.persist(lc05);
-//
-//        LigneCommande lc06 = new LigneCommande(3F,null,null,null);
-//        lc06.setArticle(boiCh2);
-//        lc06.setCommande(c02);
-//        em.persist(lc06);
-//
-//        LigneCommande lc07 = new LigneCommande(1.5F,null,null,null);
-//        lc07.setArticle(boiCh3);
-//        lc07.setCommande(c02);
-//        em.persist(lc07);
+        LigneCommande lc02 = new LigneCommande(0F,"servi","plat formule Pate","pat01");
+        lc02.setArticle(pa02);
+        lc02.setCommande(c01);
+        em.persist(lc02);
+
+        LigneCommande lc03 = new LigneCommande(0F,"servi",null,"pat01");
+        lc03.setCommande(c01);
+        lc03.setArticle(ar03);
+        em.persist(lc03);
+
+        LigneCommande lc04 = new LigneCommande(0F,"en préparation",null,"pat01");
+        lc04.setArticle(de7);
+        lc04.setCommande(c01);
+        em.persist(lc04);
+
+        LigneCommande lc05 = new LigneCommande(15F,"servi",null,null);
+        lc05.setArticle(vinB4);
+        lc05.setCommande(c01);
+        em.persist(lc05);
+
+        LigneCommande lc06 = new LigneCommande(3F,null,null,null);
+        lc06.setArticle(boiCh2);
+        lc06.setCommande(c02);
+        em.persist(lc06);
+
+        LigneCommande lc07 = new LigneCommande(1.5F,null,null,null);
+        lc07.setArticle(boiCh3);
+        lc07.setCommande(c02);
+        em.persist(lc07);
 
     }
 

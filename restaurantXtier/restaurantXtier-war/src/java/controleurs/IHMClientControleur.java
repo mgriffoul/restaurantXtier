@@ -1,9 +1,12 @@
 package controleurs;
 
+import beanEntite.Article;
 import beanEntite.Categorie;
 import beanEntite.Formule;
 import beansSession.BeanCategorieLocal;
 import beansSession.BeanFormuleLocal;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,7 +39,6 @@ public class IHMClientControleur implements SousControleurInterface {
         String ssSec = request.getParameter("inc");
 
         //Choix include en fonction de la ssSection
-        
         //LaCarte
         if ("car".equalsIgnoreCase(ssSec)) {
             s1 = "carte";
@@ -48,10 +50,47 @@ public class IHMClientControleur implements SousControleurInterface {
         if ("for".equalsIgnoreCase(ssSec)) {
             s1 = "formule";
             List<Formule> formules = beanFormule.selectAllFormule();
+
+            for (Formule f : formules) {
+
+                Collection<Article> allArticles = f.getArticles();
+                System.out.println("All ARTICLE SIZE ____" + allArticles.size());
+                ArrayList<Article> entrees = new ArrayList();
+                ArrayList<Article> plats = new ArrayList();
+                ArrayList<Article> desserts = new ArrayList();
+                ArrayList<Article> boissons = new ArrayList();
+
+                for (Article a : allArticles) {
+                    switch (a.getSousCategorie().getCategorie().getOrdre()) {
+                        case 1:
+                            entrees.add(a);
+                            break;
+                        case 2:
+                            plats.add(a);
+                            break;
+                        case 3:
+                            desserts.add(a);
+                            break;
+                        case 4:
+                            boissons.add(a);
+                            break;
+                    }
+                }
+                System.out.println("entrees size ::::" + entrees.size());
+                f.setEntrees(entrees);
+                System.out.println("plats size ::::" + plats.size());
+                f.setPlats(plats);
+                System.out.println("desserts size ::::" + desserts.size());
+                f.setDesserts(desserts);
+                System.out.println("boissons size ::::" + boissons.size());
+                f.setBoissons(boissons);
+            }
+
+            
+            
             request.setAttribute("for", formules);
         }
-        
-        
+
         if ("com".equalsIgnoreCase(ssSec)) {
             s1 = "commande";
         }

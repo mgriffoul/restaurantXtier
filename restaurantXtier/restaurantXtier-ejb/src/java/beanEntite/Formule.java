@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -23,15 +24,30 @@ public class Formule implements Serializable {
     @ManyToMany
     private Collection<Article> articles;
     
+    
+    
     private String nom;
     private Float prix;
     private String refFormule;
+    
+    @Transient
+    private Collection<Article> entrees;
+    @Transient
+    private Collection<Article> plats;
+    @Transient
+    private Collection<Article> desserts;
+    @Transient
+    private Collection<Article> boissons;
     
     @ManyToOne
     private Tva tva;
 
     public Formule() {
         articles = new ArrayList<>();
+        entrees = new ArrayList<>();
+        plats = new ArrayList<>();
+        desserts = new ArrayList<>();
+        boissons = new ArrayList<>();
     }
 
     public Formule(Collection<Article> articles, String nom, Float prix, String refFormule, Tva tva) {
@@ -40,6 +56,10 @@ public class Formule implements Serializable {
         this.prix = prix;
         this.refFormule = refFormule;
         this.tva = tva;
+        entrees = new ArrayList<>();
+        plats = new ArrayList<>();
+        desserts = new ArrayList<>();
+        boissons = new ArrayList<>();
     }
 
     public Formule(List<Article> articles, String nom, Float prix, String refFormule) {
@@ -47,6 +67,10 @@ public class Formule implements Serializable {
         this.nom = nom;
         this.prix = prix;
         this.refFormule = refFormule;
+        entrees = new ArrayList<>();
+        plats = new ArrayList<>();
+        desserts = new ArrayList<>();
+        boissons = new ArrayList<>();
     }
 
     public Formule(Collection<Article> articles, String nom, Float prix, Tva tva) {
@@ -54,6 +78,10 @@ public class Formule implements Serializable {
         this.nom = nom;
         this.prix = prix;
         this.tva = tva;
+        entrees = new ArrayList<>();
+        plats = new ArrayList<>();
+        desserts = new ArrayList<>();
+        boissons = new ArrayList<>();
     }
 
     public Collection<Article> getArticles() {
@@ -66,6 +94,38 @@ public class Formule implements Serializable {
 
     public String getNom() {
         return nom;
+    }
+
+    public Collection<Article> getEntrees() {
+        return entrees;
+    }
+
+    public void setEntrees(Collection<Article> entrees) {
+        this.entrees = entrees;
+    }
+
+    public Collection<Article> getPlats() {
+        return plats;
+    }
+
+    public void setPlats(Collection<Article> plats) {
+        this.plats = plats;
+    }
+
+    public Collection<Article> getDesserts() {
+        return desserts;
+    }
+
+    public void setDesserts(Collection<Article> desserts) {
+        this.desserts = desserts;
+    }
+
+    public Collection<Article> getBoissons() {
+        return boissons;
+    }
+
+    public void setBoissons(Collection<Article> boissons) {
+        this.boissons = boissons;
     }
 
     public Float getPrixTtc(){
