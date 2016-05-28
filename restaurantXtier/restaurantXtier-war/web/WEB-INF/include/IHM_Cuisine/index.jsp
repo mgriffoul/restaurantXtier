@@ -8,8 +8,10 @@
 
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="cuisine-css/cuisine.css">
+        <link rel="stylesheet" href="cuisine-css/cuisine.css">      
+        <!-- bootstrap.min css -->
         <link rel="stylesheet" href="client-template/css/bootstrap.min.css">
+        <style type="text/css">body {background-color: #DCDCDC;  }</style>
         <title>JSP Cuisine</title>
     </head>
     <body>
@@ -20,13 +22,14 @@
             <hr>
         </div>
         <div class="container">
-            <div class="row">
+            <div class="row" >
+
                 <div class="col-md-8">
 
                     <center><h3>Commandes en cours</h3></center>
-                    <center><table style="border:1px solid black" >
+                    <center><table class="table-bordered">
                             <thead align="center" BGCOLOR="B0C4E0">
-                                <tr>
+                                <tr height="40">
                                     <td>Heure</td>
                                     <td>Table</td>
                                     <td>Categorie</td>
@@ -47,7 +50,7 @@
                                         <td>${ligne.article.nom}</td>
                                         <td>${ligne.etat}</td>
                                         <td>${ligne.remarque}</td>
-                                        <td>changer etat</td>
+                                        <td><a class="bouton13" href="">changer</a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -56,9 +59,9 @@
                 </div>
                 <div class="col-md-4">
                     <center><h3>Commandes servies</h3></center>
-                    <center><table style="border:1px solid black" >
+                    <center><table class="table-bordered" >
                             <thead align="center" BGCOLOR="B0C4E0">
-                                <tr>
+                                <tr height="40">
                                     <td>Table</td>
                                     <td>Nom du plat</td>
                                     <td>Numero commande</td>
@@ -77,18 +80,22 @@
                             </tbody>
                         </table></center>
                 </div>
-            </div>
-            <div class="row"><hr></div>
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="btn-group btn-group-justified">
-                        <a class="btn btn-default" href="#">Trier par Emplacement</a>
-                        <a class="btn btn-default" href="#">Trier par Chronologie</a>
-                        <a class="btn btn-default" href="#">Trier par Plat</a>
-                    </div>
-                </div>
+
             </div>
         </div>
+        
+        <!--FOOTER -->
+        <jsp:include page="include/footer.jsp" />
+<!-- Js -->
+        <script src="client-template/js/vendor/modernizr-2.6.2.min.js"></script>
+        <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="client-template/js/jquery.nav.js"></script>
+        <script src="client-template/js/jquery.sticky.js"></script>
+        <script src="client-template/js/bootstrap.min.js"></script>
+        <script src="client-template/js/plugins.js"></script>
+        <script src="client-template/js/wow.min.js"></script>
+        <script src="client-template/js/main.js"></script>
 
     </body>
 </html>
