@@ -22,3 +22,7 @@ and open the template in the editor.
 #principal {
     height:800 px;
 }
+.ecart {
+    padding-left: 4px;
+    padding-right: 4px;
+}

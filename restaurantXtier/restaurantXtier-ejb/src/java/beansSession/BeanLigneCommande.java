@@ -43,8 +43,12 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
     }
 
     @Override
-    public LigneCommande changerEtatLigneCommande(Long id, String etat) {
-       LigneCommande lCom= em.find(LigneCommande.class,id);
+    public LigneCommande changerEtatLigneCommande(Long id) {
+       //test
+        LigneCommande lCom= em.find(LigneCommande.class,id);
+        System.out.println("recup etat :"+lCom.getEtat());
+       String etat=lCom.getEtat()+" test";
+        System.out.println("New etat : "+etat);
        lCom.setEtat(etat);
       
        return lCom;
