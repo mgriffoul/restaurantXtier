@@ -22,4 +22,5 @@ public interface BeanLigneCommandeLocal {
     public List<LigneCommande> selectLigneCommandeServies ();
     public List<LigneCommande> selectLigneCommandeByChrono ();
     public List<LigneCommande> selectLigneCommandeByEmplacement ();
+    public List<LigneCommande> selectLigneCommandeByCategorie ();
 }

@@ -74,6 +74,17 @@ public class IHMCuisineControleur implements SousControleurInterface {
             request.setAttribute("message", message);
         }
 
+        //Tri par catégorie
+        if ("cat".equalsIgnoreCase(ssSec)) {
+            s1 = "cat";
+            List<LigneCommande> ligneCommandes = beanLigneCommande.selectLigneCommandeByCategorie();
+            request.setAttribute("cat", ligneCommandes);
+            List<LigneCommande> ligneCommandes2 = beanLigneCommande.selectLigneCommandeServies();
+            request.setAttribute("servie", ligneCommandes2);
+            message = "triées par catégorie";
+            request.setAttribute("message", message);
+        }
+
         request.setAttribute("contentInc", prefix + s1 + suffix);
         return inc1;
     }

@@ -21,6 +21,7 @@
                         <a class="btn btn-default" href="index?section=IHMCuisine&inc=chr">Trier par Chronologie</a>
                         <a class="btn btn-default" href="index?section=IHMCuisine&inc=plat">Trier par Plat</a>
                         <a class="btn btn-default" href="index?section=IHMCuisine&inc=etat">Trier par Etat</a>
+                        <a class="btn btn-default" href="index?section=IHMCuisine&inc=cat">Trier par Catégorie</a>
                     </div>
                 </nav>
             </div>
