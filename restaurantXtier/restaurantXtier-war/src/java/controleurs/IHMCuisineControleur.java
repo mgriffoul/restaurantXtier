@@ -26,6 +26,7 @@ public class IHMCuisineControleur implements SousControleurInterface {
         String s1 = "accueil";
         String prefix = "include/";
         String suffix = ".jsp";
+        String message ="";
 
         //URL par défaut
         String inc1 = "include/IHM_Cuisine/index";
@@ -38,22 +39,25 @@ public class IHMCuisineControleur implements SousControleurInterface {
         if ("plat".equalsIgnoreCase(ssSec)) {
             s1 = "plat";
             List<LigneCommande> ligneCommandes = beanLigneCommande.selectAllLigneCommandeTriByPlat();
-             for(LigneCommande lc: ligneCommandes){
-                System.out.println("test : "+lc);
-            }
             request.setAttribute("plat", ligneCommandes);
+            message="triées par plat";
+            request.setAttribute("message", message);
         }
         //Tri par etat
         if("etat".equalsIgnoreCase(ssSec)){
             s1="etat";
             List<LigneCommande> ligneCommandes = beanLigneCommande.selectAllLigneCommandeTriByEtat();
             request.setAttribute("etat", ligneCommandes);
+            message="triées par état";
+            request.setAttribute("message", message);
         }
         //Tri par chronologie
         if("chr".equalsIgnoreCase(ssSec)) {
         s1="chr";
         List<LigneCommande> ligneCommandes = beanLigneCommande.selectLigneCommandeByChrono();
         request.setAttribute("chr", ligneCommandes);
+        message="triées par chronologie";
+            request.setAttribute("message", message);
         }
         
         

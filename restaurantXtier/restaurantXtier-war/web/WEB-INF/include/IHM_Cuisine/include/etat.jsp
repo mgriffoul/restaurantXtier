@@ -26,7 +26,7 @@
                                 </tr>
                             </thead>
                             <tbody align="center" bgcolor="F0FFF0">
-                                <c:forEach items="${plat}" var="ligne">
+                                <c:forEach items="${etat}" var="ligne">
                                     <tr height="40">
                                         <td class="ecart">${ligne.commande.date}</td>
                                         <td><c:forEach items="${ligne.commande.emplacements}" var="emp">
@@ -69,3 +69,4 @@
 
             </div>
         </div>
+

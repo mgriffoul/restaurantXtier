@@ -66,7 +66,7 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
 
     @Override
     public List<LigneCommande> selectLigneCommandeByChrono() {
-        String req ="select lc from LigneCommande lc where lc.etat=null or lc.etat<>'servi' order by lc.date";
+        String req ="select lc from LigneCommande lc where lc.etat=null or lc.etat<>'servi' order by lc.commande.date";
         Query qr = em.createQuery(req);
         List<LigneCommande> ligneCommandes = qr.getResultList();
         return ligneCommandes;
