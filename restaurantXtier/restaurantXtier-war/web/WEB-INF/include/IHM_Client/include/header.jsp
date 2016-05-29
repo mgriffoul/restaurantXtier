@@ -1,8 +1,3 @@
-<%-- 
-    Document   : header
-    Created on : 25 mai 2016, 13:29:56
-    Author     : cdi207
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
   <!--
