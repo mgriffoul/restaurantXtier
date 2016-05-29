@@ -20,4 +20,5 @@ public interface BeanLigneCommandeLocal {
     public List<LigneCommande> selectAllLigneCommandeTriByPlat ();
     public LigneCommande changerEtatLigneCommande (Long id);
     public List<LigneCommande> selectLigneCommandeServies ();
+    public List<LigneCommande> selectLigneCommandeByChrono ();
 }
