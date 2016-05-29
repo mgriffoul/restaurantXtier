@@ -12,7 +12,7 @@
 
                 <div class="col-md-8">
 
-                    <center><h3>Commandes en cours ${message}</h3></center>
+                    <center><h3>Commandes en cours <b><FONT color="red">${message}</font></b></h3></center>
                     <center><table class="table-bordered">
                             <thead align="center" BGCOLOR="B0C4E0">
                                 <tr height="40">
@@ -54,7 +54,7 @@
                                 </tr>
                             </thead>
                             <tbody align="center" bgcolor="F0FFF0">
-                                <c:forEach items="${lcServies}" var="ls">
+                                <c:forEach items="${servie}" var="ls">
                                     <tr height="40">
                                         <td class="ecart"><c:forEach items="${ls.commande.emplacements}" var="emp">
                                                 ${emp.numero}.

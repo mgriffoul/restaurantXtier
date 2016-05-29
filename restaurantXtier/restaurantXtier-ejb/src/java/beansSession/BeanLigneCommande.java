@@ -72,4 +72,12 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
         return ligneCommandes;
     }
 
+    @Override
+    public List<LigneCommande> selectLigneCommandeByEmplacement() {
+        String req ="select lc from LigneCommande lc where lc.etat=null or lc.etat<>'servi' order by lc.commande.numero";
+        Query qr = em.createQuery(req);
+        List<LigneCommande> ligneCommandes = qr.getResultList();
+        return ligneCommandes;
+    }
+
 }
