@@ -1,6 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <section id="price">
 
@@ -9,7 +10,7 @@
             <div class="col-md-12">
                 <div class="block ">
 
-                    <h1 class="heading wow fadeInUp carte-titre" data-wow-duration="300ms" data-wow-delay="300ms">Les <span>Formules</span> </h1>
+                    <h1 class="heading wow fadeInUp carte-titre" data-wow-duration="300ms" data-wow-delay="300ms"> <span>${for.nom}</span> </h1>
                     <div class="pricing-list ">
                         <ul>
                             <c:forEach items="${for}" var="form">
@@ -67,4 +68,3 @@
         </div><!-- .row close -->
     </div><!-- .containe close -->
 </section><!-- #price close -->
-

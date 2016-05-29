@@ -36,69 +36,76 @@ public class IHMClientControleur implements SousControleurInterface {
         String inc1 = "include/IHM_Client/index";
 
         //Recupération de la sous section
-        String ssSec = request.getParameter("inc");
+        String inc = request.getParameter("inc");
 
         //Choix include en fonction de la ssSection
         //LaCarte
-        if ("car".equalsIgnoreCase(ssSec)) {
+        if("car".equalsIgnoreCase(inc)) {
             s1 = "carte";
 
             List<Categorie> categories = beanCategorie.selectAllCategorie();
             request.setAttribute("cat", categories);
         }
-        //Les Formules
-        if ("for".equalsIgnoreCase(ssSec)) {
+
+        //Affichage Formules
+        if ("for".equalsIgnoreCase(inc)) {
             s1 = "formule";
             List<Formule> formules = beanFormule.selectAllFormule();
 
-            for (Formule f : formules) {
+            for(Formule f : formules) {
 
                 Collection<Article> allArticles = f.getArticles();
-                System.out.println("All ARTICLE SIZE ____" + allArticles.size());
-                ArrayList<Article> entrees = new ArrayList();
-                ArrayList<Article> plats = new ArrayList();
-                ArrayList<Article> desserts = new ArrayList();
-                ArrayList<Article> boissons = new ArrayList();
+                ArrayList<Article> entrees = beanFormule.selectEntreesOfFormule(f);
+                ArrayList<Article> plats = beanFormule.selectPlatsOfFormule(f);
+                ArrayList<Article> desserts = beanFormule.selectDessertsOfFormule(f);
+                ArrayList<Article> boissons = beanFormule.selectBoissonsOfFormule(f);
 
-                for (Article a : allArticles) {
-                    switch (a.getSousCategorie().getCategorie().getOrdre()) {
-                        case 1:
-                            entrees.add(a);
-                            break;
-                        case 2:
-                            plats.add(a);
-                            break;
-                        case 3:
-                            desserts.add(a);
-                            break;
-                        case 4:
-                            boissons.add(a);
-                            break;
-                    }
-                }
-                System.out.println("entrees size ::::" + entrees.size());
                 f.setEntrees(entrees);
-                System.out.println("plats size ::::" + plats.size());
                 f.setPlats(plats);
-                System.out.println("desserts size ::::" + desserts.size());
                 f.setDesserts(desserts);
-                System.out.println("boissons size ::::" + boissons.size());
                 f.setBoissons(boissons);
             }
-
-            
-            
             request.setAttribute("for", formules);
         }
 
-        if ("com".equalsIgnoreCase(ssSec)) {
+        if ("com".equalsIgnoreCase(inc)) {
             s1 = "commande";
         }
 
+        //Menu achat Formule
+        if ("buyForm".equalsIgnoreCase(inc)) {
+
+            s1 = "achatForm";
+
+            Long id = Long.valueOf(request.getParameter("idForm"));
+
+            Formule f = beanFormule.selectFormuleById(id);
+            ArrayList<Article> entrees = beanFormule.selectEntreesOfFormule(f);
+            ArrayList<Article> plats = beanFormule.selectPlatsOfFormule(f);
+            ArrayList<Article> desserts = beanFormule.selectDessertsOfFormule(f);
+            ArrayList<Article> boissons = beanFormule.selectBoissonsOfFormule(f);
+            f.setEntrees(entrees);
+            f.setPlats(plats);
+            f.setDesserts(desserts);
+            f.setBoissons(boissons);
+            
+            request.setAttribute("for", f);
+
+        }
+
+        
+        
         request.setAttribute("contentInc", prefix + s1 + suffix);
         return inc1;
     }
 
+    
+    
+    
+    
+    
+    
+    //import EJB
     private BeanCategorieLocal lookupBeanCategorieLocal() {
         try {
             Context c = new InitialContext();
