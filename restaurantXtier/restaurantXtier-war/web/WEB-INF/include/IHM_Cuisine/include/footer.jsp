@@ -17,10 +17,11 @@
             <div class="col-md-8">
                 <nav class="navbar navbar-default navbar-fixed-bottom">
                     <div class="btn-group btn-group-justified">
-                        <a class="btn btn-default" height="40" href="#">Trier par Emplacement</a>
-                        <a class="btn btn-default" height="40" href="#">Trier par Chronologie</a>
-                        <a class="btn btn-default" height="40" href="#">Trier par Plat</a>
-                        <a class="btn btn-default" height="40" href="#">Trier par Catégorie</a>
+                        <a class="btn btn-default" href="index?section=IHMCuisine&inc=table">Trier par Emplacement</a>
+                        <a class="btn btn-default" href="index?section=IHMCuisine&inc=chr">Trier par Chronologie</a>
+                        <a class="btn btn-default" href="index?section=IHMCuisine&inc=plat">Trier par Plat</a>
+                        <a class="btn btn-default" href="index?section=IHMCuisine&inc=etat">Trier par Etat</a>
+                        <a class="btn btn-default" href="index?section=IHMCuisine&inc=cat">Trier par Catégorie</a>
                     </div>
                 </nav>
             </div>
