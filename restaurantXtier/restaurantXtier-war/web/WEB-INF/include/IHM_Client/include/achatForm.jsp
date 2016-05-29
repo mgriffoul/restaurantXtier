@@ -13,17 +13,16 @@
                     <h1 class="heading wow fadeInUp carte-titre" data-wow-duration="300ms" data-wow-delay="300ms"> <span>${for.nom}</span> </h1>
                     <div class="pricing-list ">
                         <ul>
-                            <c:forEach items="${for}" var="form">
 
                                 <li class="wow fadeInUp  formule" data-wow-duration="300ms" data-wow-delay="300ms">
                                     <div class="item form">
                                         <div class="item-title ">
-                                            <h2>${form.nom}</h2>
+                                            <h2>${for.nom}</h2>
                                             <div class="border-bottom"></div>
-                                            <span>${form.prixTtc} E</span>
+                                            <span>${for.prixTtc} E</span>
                                         </div>
 
-                                        <c:if test="${not empty form.entrees}">
+                                        <c:if test="${not empty for.entrees}">
                                             <p> Entrée au choix</p>
                                         </c:if>
                                         <c:forEach items="${form.entrees}" var="entree">
@@ -60,7 +59,7 @@
                                         <button class="btn btn-success btn-commander"><span class="glyphicon  glyphicon-shopping-cart"></span> Commander</button>
                                     </a>
                                 </li>
-                            </c:forEach>
+                           
                         </ul>
                     </div>
                 </div>
