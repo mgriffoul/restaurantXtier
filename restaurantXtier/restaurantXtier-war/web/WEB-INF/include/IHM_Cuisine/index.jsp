@@ -8,7 +8,8 @@
 
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="cuisine-css/cuisine.css">      
+        <link rel="stylesheet" href="cuisine-css/cuisine.css">  
+        
         <!-- bootstrap.min css -->
         <link rel="stylesheet" href="client-template/css/bootstrap.min.css">
         <style type="text/css">body {background-color: #DCDCDC;  }</style>
