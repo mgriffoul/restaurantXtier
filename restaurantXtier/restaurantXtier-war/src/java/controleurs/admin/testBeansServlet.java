@@ -43,6 +43,8 @@ public class testBeansServlet extends HttpServlet {
     
     @EJB
     private BeanCommandeLocal commande;
+    
+  
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -78,15 +80,15 @@ public class testBeansServlet extends HttpServlet {
             }
             
         // test affichage ligne commande where idCat=    
-            System.out.println("=======DEBUT AFFICHAGE LC BY IDCAT =======");
-            List<LigneCommande> lcs = ligneCom.selectLigneCommandeByIdCategorie(2L);
-            for (LigneCommande lc : lcs){
-                String p= lc.getArticle().getNom();
-                String e= lc.getEtat();
-                String c= lc.getArticle().getSousCategorie().getCategorie().getNom();
-                System.out.println(c+" - "+p+" - "+e);
-            }
-            System.out.println("===== FIN =======");
+//            System.out.println("=======DEBUT AFFICHAGE LC BY IDCAT =======");
+//            List<LigneCommande> lcs = ligneCom.selectLigneCommandeByIdCategorie(2L);
+//            for (LigneCommande lc : lcs){
+//                String p= lc.getArticle().getNom();
+//                String e= lc.getEtat();
+//                String c= lc.getArticle().getSousCategorie().getCategorie().getNom();
+//                System.out.println(c+" - "+p+" - "+e);
+//            }
+//            System.out.println("===== FIN =======");
 
 
             

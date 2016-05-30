@@ -25,10 +25,11 @@ public class EtatLigneCommande implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private String etat;
+    private Integer ordre;
+    private String etat; // 1-Attente 2-En préparattion 3- Prêt 4- Servi
     
     // association
-    @OneToMany
+    @OneToMany (mappedBy = "etatLc")
     private Collection<LigneCommande> ligneComs;
     
     //constructeurs
@@ -36,11 +37,12 @@ public class EtatLigneCommande implements Serializable {
     public EtatLigneCommande() {
     }
 
-    public EtatLigneCommande(Long id, String etat, Collection<LigneCommande> ligneComs) {
+    public EtatLigneCommande(Integer ordre, String etat) {
         this();
-        this.id = id;
+        
+        this.ordre = ordre;
         this.etat = etat;
-        this.ligneComs = ligneComs;
+        
     }
 
 //getters et setters
@@ -70,6 +72,15 @@ public class EtatLigneCommande implements Serializable {
         this.id = id;
     }
 
+    public Integer getOrdre() {
+        return ordre;
+    }
+
+    public void setOrdre(Integer ordre) {
+        this.ordre = ordre;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 0;
