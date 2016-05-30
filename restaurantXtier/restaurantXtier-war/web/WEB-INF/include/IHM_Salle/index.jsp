@@ -36,22 +36,9 @@
         </nav>
 
         <!-- Page Content -->
-        <div class="container">
-            <div class="row">
-                <c:forEach items="${listEmplacement}" var="element">
-                      <a href='javascript: toggle()'>toggle</a>
-                    <div class ="emp" id="${element.numero}">
-                        <figure>
-                            <a href="index?table=${element.numero}&section=IHMSalle">
-                                <img src="images/IHM_salle/table_empty.png" alt=".." />
-                            </a>
-                            <figcaption><p>${element.statut}</p><p>Numéro : ${element.numero}</p></figcaption>
-                        </figure>
-                    </div>
-                </c:forEach>
-            </div>
-        </div>  
-        <!-- /.container -->
+        <jsp:include page="${contentInc}" />
+        <!-- /.Page Content -->
+        
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
@@ -60,20 +47,5 @@
         <script src="/css/bootstrap/js/bootstrap.min.js"></script>
        <a href='javascript: toggle()'>toggle</a>
 
-       
-<div id='div1' style='display:none'>
-Don't display me
-</div>
-
-<script>
-function toggle(){
-    var div1 = document.getElementById('${element.numero}')
-    if (div1.style.color == 'none') {
-        div1.style.display = 'block'
-    } else {
-        div1.style.display = 'none'
-    }
-}
-</script>
     </body>
 </html>

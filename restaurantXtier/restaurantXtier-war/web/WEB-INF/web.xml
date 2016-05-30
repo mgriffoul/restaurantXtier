@@ -79,5 +79,10 @@
         <local>beansSession.BeanFormuleLocal</local>
         <ejb-link>restaurantXtier-ejb.jar#BeanFormule</ejb-link>
     </ejb-local-ref>
-    
+    <ejb-local-ref>
+        <ejb-ref-name>BeanCommande</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beansSession.BeanCommandeLocal</local>
+        <ejb-link>restaurantXtier-ejb.jar#BeanCommande</ejb-link>
+    </ejb-local-ref>
 </web-app>
