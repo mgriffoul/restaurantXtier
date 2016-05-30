@@ -28,7 +28,7 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
 
     @Override
     public List<LigneCommande> selectAllLigneCommandeTriByEtat() {
-        String req = "select lc from LigneCommande lc order by lc.etat";
+        String req = "select lc from LigneCommande lc order by lc.etatLc.ordre";
         Query qr = em.createQuery(req);
         List<LigneCommande> ligneCommandes = qr.getResultList();
         return ligneCommandes;
@@ -42,17 +42,17 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
         return ligneCommandes;
     }
 
-    @Override
-    public LigneCommande changerEtatLigneCommande(Long id) {
-       //test
-        LigneCommande lCom= em.find(LigneCommande.class,id);
-        System.out.println("recup etat :"+lCom.getEtat());
-       String etat=lCom.getEtat()+" test";
-        System.out.println("New etat : "+etat);
-       lCom.setEtat(etat);
-      
-       return lCom;
-    }
+//    @Override
+//    public LigneCommande changerEtatLigneCommande(Long id) {
+//       //test
+//        LigneCommande lCom= em.find(LigneCommande.class,id);
+//        System.out.println("recup etat :"+lCom.getEtat());
+//       String etat=lCom.getEtat()+" test";
+//        System.out.println("New etat : "+etat);
+//       lCom.setEtat(etat);
+//      
+//       return lCom;
+//    }
 
     @Override
     public List<LigneCommande> selectLigneCommandeServies() {
