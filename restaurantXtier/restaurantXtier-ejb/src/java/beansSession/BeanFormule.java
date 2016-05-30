@@ -100,4 +100,18 @@ public class BeanFormule implements BeanFormuleLocal {
        return em.find(Formule.class, id);
     }
 
+    @Override
+    public Formule chargerFormule(Formule f) {
+        ArrayList<Article> entrees = selectEntreesOfFormule(f);
+            ArrayList<Article> plats = selectPlatsOfFormule(f);
+            ArrayList<Article> desserts = selectDessertsOfFormule(f);
+            ArrayList<Article> boissons = selectBoissonsOfFormule(f);
+            f.setEntrees(entrees);
+            f.setPlats(plats);
+            f.setDesserts(desserts);
+            f.setBoissons(boissons);
+            
+            return f;
+    }
+
 }

@@ -3,8 +3,10 @@ package controleurs;
 import beanEntite.Article;
 import beanEntite.Categorie;
 import beanEntite.Formule;
+import beanEntite.Utilisateur;
 import beansSession.BeanCategorieLocal;
 import beansSession.BeanFormuleLocal;
+import beansSession.BeanUserLocal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -19,6 +21,8 @@ import javax.servlet.http.HttpSession;
 
 public class IHMClientControleur implements SousControleurInterface {
 
+    BeanUserLocal beanUser = lookupBeanUserLocal();
+
     BeanFormuleLocal beanFormule = lookupBeanFormuleLocal();
 
     BeanCategorieLocal beanCategorie = lookupBeanCategorieLocal();
@@ -28,6 +32,9 @@ public class IHMClientControleur implements SousControleurInterface {
 
         HttpSession session = request.getSession();
 
+        //********
+        //Preparation des URL 
+        //********************
         String s1 = "accueil";
         String prefix = "include/";
         String suffix = ".jsp";
@@ -38,73 +45,98 @@ public class IHMClientControleur implements SousControleurInterface {
         //Recupération de la sous section
         String inc = request.getParameter("inc");
 
-        //Choix include en fonction de la ssSection
-        //LaCarte
-        if("car".equalsIgnoreCase(inc)) {
-            s1 = "carte";
+        //Recupreation de l'utilisateur
+        Utilisateur util = (Utilisateur) session.getAttribute("user");
+        System.out.println(">>>>>>>>>>>>>>>>>>UTIL : " + util);
 
-            List<Categorie> categories = beanCategorie.selectAllCategorie();
-            request.setAttribute("cat", categories);
-        }
+        //Test de l'utilisateur
+        if (util != null) {
 
-        //Affichage Formules
-        if ("for".equalsIgnoreCase(inc)) {
-            s1 = "formule";
-            List<Formule> formules = beanFormule.selectAllFormule();
+            if (util.getRole() == 4) {
 
-            for(Formule f : formules) {
+                //Choix include en fonction de la ssSection
+                
+                //LaCarte
+                if ("car".equalsIgnoreCase(inc)) {
+                    s1 = "carte";
 
-                Collection<Article> allArticles = f.getArticles();
-                ArrayList<Article> entrees = beanFormule.selectEntreesOfFormule(f);
-                ArrayList<Article> plats = beanFormule.selectPlatsOfFormule(f);
-                ArrayList<Article> desserts = beanFormule.selectDessertsOfFormule(f);
-                ArrayList<Article> boissons = beanFormule.selectBoissonsOfFormule(f);
+                    List<Categorie> categories = beanCategorie.selectAllCategorie();
+                    request.setAttribute("cat", categories);
+                }
 
-                f.setEntrees(entrees);
-                f.setPlats(plats);
-                f.setDesserts(desserts);
-                f.setBoissons(boissons);
+                //Affichage Formules
+                if ("for".equalsIgnoreCase(inc)) {
+                    s1 = "formule";
+                    List<Formule> formules = beanFormule.selectAllFormule();
+
+                    for (Formule f : formules) {
+
+                        Collection<Article> allArticles = f.getArticles();
+                        ArrayList<Article> entrees = beanFormule.selectEntreesOfFormule(f);
+                        ArrayList<Article> plats = beanFormule.selectPlatsOfFormule(f);
+                        ArrayList<Article> desserts = beanFormule.selectDessertsOfFormule(f);
+                        ArrayList<Article> boissons = beanFormule.selectBoissonsOfFormule(f);
+
+                        f.setEntrees(entrees);
+                        f.setPlats(plats);
+                        f.setDesserts(desserts);
+                        f.setBoissons(boissons);
+                    }
+                    request.setAttribute("for", formules);
+                }
+
+                if ("com".equalsIgnoreCase(inc)) {
+                    s1 = "commande";
+                }
+
+                //Menu achat Formule
+                if ("buyForm".equalsIgnoreCase(inc)) {
+
+                    s1 = "achatForm";
+
+                    Long idForm = Long.valueOf(request.getParameter("idForm"));
+
+                    Formule f = beanFormule.selectFormuleById(idForm);
+                    f = beanFormule.chargerFormule(f);
+
+                    request.setAttribute("for", f);
+
+                }
+
+                if ("validForm".equalsIgnoreCase(inc)) {
+
+                    Long idForm = Long.valueOf(request.getParameter("idForm"));
+
+                    Formule f = beanFormule.selectFormuleById(idForm);
+                    f = beanFormule.chargerFormule(f);
+
+                    if ("0".equalsIgnoreCase(request.getParameter("entree"))
+                            || "0".equalsIgnoreCase(request.getParameter("plat"))
+                            || "0".equalsIgnoreCase(request.getParameter("dessert"))
+                            || "0".equalsIgnoreCase(request.getParameter("boisson"))) {
+
+                        s1 = "achatForm";
+                        String msg = "Vous n'avez pas choisi tous les éléments de votre formule.";
+                        request.setAttribute("message", msg);
+                        request.setAttribute("for", f);
+                    }
+
+                }
+
+            } else {
+                request.setAttribute("message", "Vous n'avez pas les droits pour accéder à cet interface");
+                inc1 = "include/login";
             }
-            request.setAttribute("for", formules);
+
+        } else {
+            request.setAttribute("message", "Vous devez vous identifier pour accéder à cet interface");
+            inc1 = "include/login";
         }
 
-        if ("com".equalsIgnoreCase(inc)) {
-            s1 = "commande";
-        }
-
-        //Menu achat Formule
-        if ("buyForm".equalsIgnoreCase(inc)) {
-
-            s1 = "achatForm";
-
-            Long id = Long.valueOf(request.getParameter("idForm"));
-
-            Formule f = beanFormule.selectFormuleById(id);
-            ArrayList<Article> entrees = beanFormule.selectEntreesOfFormule(f);
-            ArrayList<Article> plats = beanFormule.selectPlatsOfFormule(f);
-            ArrayList<Article> desserts = beanFormule.selectDessertsOfFormule(f);
-            ArrayList<Article> boissons = beanFormule.selectBoissonsOfFormule(f);
-            f.setEntrees(entrees);
-            f.setPlats(plats);
-            f.setDesserts(desserts);
-            f.setBoissons(boissons);
-            
-            request.setAttribute("for", f);
-
-        }
-
-        
-        
         request.setAttribute("contentInc", prefix + s1 + suffix);
         return inc1;
     }
 
-    
-    
-    
-    
-    
-    
     //import EJB
     private BeanCategorieLocal lookupBeanCategorieLocal() {
         try {
@@ -120,6 +152,16 @@ public class IHMClientControleur implements SousControleurInterface {
         try {
             Context c = new InitialContext();
             return (BeanFormuleLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanFormule!beansSession.BeanFormuleLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private BeanUserLocal lookupBeanUserLocal() {
+        try {
+            Context c = new InitialContext();
+            return (BeanUserLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanUser!beansSession.BeanUserLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
