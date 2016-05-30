@@ -27,7 +27,7 @@
                                         
                                         <input type="hidden" name="section" value="ihmclient">
                                         <input type="hidden" name="inc" value="validForm">
-                                        
+                                        <input type="hidden" name="idForm" value="${for.id}">
                                         
                                         <c:if test="${not empty for.entrees}">
                                             <p> 
@@ -80,7 +80,7 @@
                                         </p>
                                 </form>
                                     
-                                    
+                                        <p> ${message}</p>
                             </li>
 
                         </ul>
