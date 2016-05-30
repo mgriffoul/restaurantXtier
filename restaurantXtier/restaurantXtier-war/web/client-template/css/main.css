@@ -724,3 +724,9 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 .btn-commander{
     margin-top: 10px;
 }
+ .liste-formule{
+    width: auto;
+}
+.btn-valider{
+    margin: 30px;
+}

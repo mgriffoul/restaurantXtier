@@ -14,52 +14,75 @@
                     <div class="pricing-list ">
                         <ul>
 
-                                <li class="wow fadeInUp  formule" data-wow-duration="300ms" data-wow-delay="300ms">
-                                    <div class="item form">
-                                        <div class="item-title ">
-                                            <h2>${for.nom}</h2>
-                                            <div class="border-bottom"></div>
-                                            <span>${for.prixTtc} E</span>
-                                        </div>
-
+                            <li class="wow fadeInUp  formule" data-wow-duration="300ms" data-wow-delay="300ms">
+                                <div class="item form">
+                                    <div class="item-title ">
+                                        <h2>${for.nom}</h2>
+                                        <div class="border-bottom"></div>
+                                        
+                                    </div>
+                                    
+                                    <form method="POST" action="index">
+                                        
+                                        
+                                        <input type="hidden" name="section" value="ihmclient">
+                                        <input type="hidden" name="inc" value="validForm">
+                                        
+                                        
                                         <c:if test="${not empty for.entrees}">
-                                            <p> Entrée au choix</p>
+                                            <p> 
+                                                <label for="entree"> Entrée au choix</label></p>
+
+                                            <select class="form-control liste-formule" name="entree">
+                                                 <option value="0" selected></option>
+                                                <c:forEach items="${for.entrees}" var="entree">
+                                                    <option value="${entree.id}">${entree.nom}</option>
+                                                </c:forEach>
+                                            </select>
                                         </c:if>
-                                        <c:forEach items="${form.entrees}" var="entree">
 
-                                            ${entree.nom},
-                                        </c:forEach>
+                                        <c:if test="${not empty for.plats}">
+                                            <p> <label for="plat">Plat au choix</label></p>
 
-
-                                        <c:if test="${not empty form.plats}">
-                                            <p> Plat au choix</p>
+                                            <select class="form-control liste-formule" name="plat">
+                                                 <option value="0" selected></option>
+                                                <c:forEach items="${for.plats}" var="plat">
+                                                    <option value="${plat.id}">${plat.nom}</option>
+                                                </c:forEach>
+                                            </select>
                                         </c:if>
-                                        <c:forEach items="${form.plats}" var="plat">
-                                            ${plat.nom},
-                                        </c:forEach>
 
+                                        <c:if test="${not empty for.desserts}">
+                                            <p><label for="dessert"> Dessert au choix</label></p>
 
-                                        <c:if test="${not empty form.desserts}">
-                                            <p> Dessert au choix</p>
+                                            <select class="form-control liste-formule" name="dessert">
+                                                <option value="0" selected></option>
+                                                <c:forEach items="${for.desserts}" var="dessert">
+                                                    <option value="${dessert.id}">${dessert.nom}</option>
+                                                </c:forEach>
+                                            </select>
                                         </c:if>
-                                        <c:forEach items="${form.desserts}" var="dessert">
-                                            ${dessert.nom},
-                                        </c:forEach>
-
 
                                         <c:if test="${not empty form.boissons}">
-                                            <p> Boisson au choix</p>
-                                        </c:if>
-                                        <c:forEach items="${form.boissons}" var="boisson">
-                                            ${boisson.nom},
-                                        </c:forEach>
+                                            <p> <label for="dessert">Boisson au choix</label></p>
 
-                                    </div>
-                                    <a href="index?section=ihmclient&inc=buyForm&idForm=${form.id}">
-                                        <button class="btn btn-success btn-commander"><span class="glyphicon  glyphicon-shopping-cart"></span> Commander</button>
-                                    </a>
-                                </li>
-                           
+                                            <select class="form-control liste-formule" name="boisson">
+                                                 <option value="0" selected></option>
+                                                <c:forEach items="${for.boissons}" var="boisson">
+                                                    <option value="${boisson.id}">${boisson.nom}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </c:if>
+
+                                </div>
+                                
+                                        <p>  <button class="btn btn-success btn-valider" type="submit" value="valid"><span ></span> Valider</button>
+                                        </p>
+                                </form>
+                                    
+                                    
+                            </li>
+
                         </ul>
                     </div>
                 </div>
