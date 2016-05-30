@@ -37,43 +37,32 @@
 
         <!-- Page Content -->
         <div class="container">
-            <div class="row">
+            <div class="row"> 
                 <c:forEach items="${listEmplacement}" var="element">
-                      <a href='javascript: toggle()'>toggle</a>
-                    <div class ="emp" id="${element.numero}">
-                        <figure>
-                            <a href="index?table=${element.numero}&section=IHMSalle">
-                                <img src="images/IHM_salle/table_empty.png" alt=".." />
-                            </a>
-                            <figcaption><p>${element.statut}</p><p>Numéro : ${element.numero}</p></figcaption>
-                        </figure>
+                    <form method="get"  action="index?section=IHMSalle">
+                        <label id="table_${element.numero}"><img src="images/IHM_salle/table_empty.png" alt=".." onclick="occuped(${element.numero});" /></label><input type="checkbox" id ="${element.numero}"  class="chktable">     
+                        </c:forEach>
+                    <input type="submit" value="ok">
+                    </form>
                     </div>
-                </c:forEach>
-            </div>
-        </div>  
-        <!-- /.container -->
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-        <script src="/css/bootstrap/js/bootstrap.min.js"></script>
-       <a href='javascript: toggle()'>toggle</a>
+                    </div>  
+                    <!-- /.container -->
+                    <!-- Bootstrap core JavaScript
+                    ================================================== -->
+                    <!-- Placed at the end of the document so the pages load faster -->
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+                    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+                    <script src="/css/bootstrap/js/bootstrap.min.js"></script>
 
-       
-<div id='div1' style='display:none'>
-Don't display me
-</div>
-
-<script>
-function toggle(){
-    var div1 = document.getElementById('${element.numero}')
-    if (div1.style.color == 'none') {
-        div1.style.display = 'block'
-    } else {
-        div1.style.display = 'none'
-    }
-}
-</script>
-    </body>
-</html>
+                    <script  type="text/javascript">
+                            function occuped(x) {
+                                document.getElementById('table_' + x + '').innerHTML = '<img src="images/IHM_salle/table_occuped.png" onclick="free('+x+');"/>';
+                            }
+                    </script> 
+                    <script  type="text/javascript">
+                        function free(x) {
+                             document.getElementById('table_' + x + '').innerHTML = '<img src="images/IHM_salle/table_empty.png" onclick="occuped('+x+');"/>';
+                        }
+                    </script> 
+                    </body>
+                    </html>
