@@ -730,3 +730,20 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 .btn-valider{
     margin: 30px;
 }
+.titre-connexionclient {
+    color: #245269;
+    text-align: center;
+    font-size: 120%;
+}
+
+.loginclient{
+    background-color: #efefef;
+}
+
+.iconeuser{
+    margin-left: 30%;
+    margin-right: 70%;
+    font-size: 3em;
+    margin-bottom: 30px;
+    display: inline;
+}

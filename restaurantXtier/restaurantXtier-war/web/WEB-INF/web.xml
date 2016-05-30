@@ -23,6 +23,11 @@
             <param-name>ihmclient</param-name>
             <param-value>controleurs.IHMClientControleur</param-value>
         </init-param>
+        <init-param>
+            <description>SousControleur connexion client à une commande</description>
+            <param-name>logincomclient</param-name>
+            <param-value>controleurs.LogCommandeClient</param-value>
+        </init-param>
     </servlet>
     <servlet>
         <servlet-name>BddControleur</servlet-name>

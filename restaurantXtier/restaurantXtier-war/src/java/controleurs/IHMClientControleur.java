@@ -2,6 +2,7 @@ package controleurs;
 
 import beanEntite.Article;
 import beanEntite.Categorie;
+import beanEntite.Commande;
 import beanEntite.Emplacement;
 import beanEntite.Formule;
 import beanEntite.Utilisateur;
@@ -41,7 +42,7 @@ public class IHMClientControleur implements SousControleurInterface {
         String suffix = ".jsp";
 
         //URL par défaut
-        String inc1 = "include/IHM_Client/index";
+        String url = "include/IHM_Client/index";
 
         //Recupération de la sous section
         String inc = request.getParameter("inc");
@@ -51,15 +52,16 @@ public class IHMClientControleur implements SousControleurInterface {
         System.out.println(">>>>>>>>>>>>>>>>>>UTIL : " + util);
 
         //Récupération de l'emplacement
-        Emplacement empl = (Emplacement) session.getAttribute("emplacement");
+        Commande commande = (Commande) session.getAttribute("commande");
 
+        
         //Test de l'utilisateur
         if (util != null) {
 
             if (util.getRole() == 4) {
 
-                //Test de l'emplacement
-                if (empl != null) {
+                //Test de la commande
+                if (commande != null) {
 
                 //Choix include en fonction de la ssSection
                     //LaCarte
@@ -129,25 +131,25 @@ public class IHMClientControleur implements SousControleurInterface {
 
                     }
                     
-                    //else emplacement
+                    //else commande
                 } else {
-
+                    url = "include/logclient"; 
                 }
                 
                 //else Code ihm user
             } else {
                 request.setAttribute("message", "Vous n'avez pas les droits pour accéder à cet interface");
-                inc1 = "include/login";
+                url = "include/login";
             }
 
             //else Util null
         } else {
             request.setAttribute("message", "Vous devez vous identifier pour accéder à cet interface");
-            inc1 = "include/login";
+            url = "include/login";
         }
 
         request.setAttribute("contentInc", prefix + s1 + suffix);
-        return inc1;
+        return url;
     }
 
     //import EJB
