@@ -22,24 +22,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${commandefinie}" var="l">
+                <c:forEach items="${commandefinie}" var="com">
                     <tr>
-                        <td><c:forEach items="${l.emplacements}" var="d">
-                            ${d.numero}       
+                        <td><c:forEach items="${com.emplacements}" var="emp">
+                            ${emp.numero}       
                             </c:forEach>    
                             </td>
-                        <td>${l.numero}</td>
-                        <td><a href onclick="afficherCommande()">Afficher</a></td>
+                        <td>${com.numero}</td>
+                        <td><a href="Controleurs/IHMCaisseControleur" onclick="afficherCommande('${com.numero}');return false;">Afficher</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
                 </table>
             </div>
-                <div>
-                   
+                <div id="ticket">
+                   <p>
+                   ${affcom.numero}
+                   </p>
                 </div>
         <div></div>
     </c:if>
-
+        <script src="js/caisse.js"></script>
 </body>
 </html>

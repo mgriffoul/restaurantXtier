@@ -2,6 +2,7 @@ package controleurs;
 
 import beanEntite.Categorie;
 import beanEntite.Commande;
+import beanEntite.Ticket;
 import beansSession.BeanCategorieLocal;
 import beansSession.BeanCommandeLocal;
 import beansSession.BeanTicketLocal;
@@ -35,17 +36,25 @@ public class IHMCaisseControleur implements SousControleurInterface {
         
         //URL par défaut
         String inc1 = "include/IHM_Caisse/index";
-        
-        
-        
-        
-        
-        
-        
 
+        String section = request.getParameter("section");
+        System.out.println(section);
+        if("ticket".equalsIgnoreCase(section)){
+            String nCom = request.getParameter("nCom");
+            Commande c = beanCommande.selectCommandeByNumero(nCom);
+            System.out.println(c);
+            System.out.println("------------------");
+            System.out.println(nCom);
+            Ticket t = new Ticket();
+            t.setCommande(c);
+            request.setAttribute("affcom", c);
+            inc1= "include/IHM_Caisse/index";
+        }
         return inc1;
     }
 
+    
+    
     private BeanCommandeLocal lookupBeanCommandeLocal() {
         try {
             Context c = new InitialContext();
