@@ -8,6 +8,7 @@ import beanEntite.Article;
 import beanEntite.Categorie;
 import beanEntite.Commande;
 import beanEntite.Emplacement;
+import beanEntite.EtatLigneCommande;
 import beanEntite.Formule;
 import beanEntite.LigneCommande;
 import beanEntite.SousCategorie;
@@ -584,42 +585,53 @@ em.persist(vinRs4);
         em.persist(c09);
         em.persist(c10);
         em.persist(c11);
+        
+        EtatLigneCommande elc01 = new EtatLigneCommande (1,"Attente");
+        em.persist(elc01);
+        EtatLigneCommande elc02 = new EtatLigneCommande (2,"En préparation");
+        em.persist(elc02);
+        EtatLigneCommande elc03 = new EtatLigneCommande (3,"Prêt");
+        em.persist(elc03);
+        EtatLigneCommande elc04 = new EtatLigneCommande (4,"Servi");
+        em.persist(elc04);
 
 
-        LigneCommande lc01 = new LigneCommande(21.5F,null,"Formule Pate","pat01");
+        LigneCommande lc01 = new LigneCommande(21.5F,null,null, elc01);
         lc01.setCommande(c01);
         em.persist(lc01);
 
-        LigneCommande lc02 = new LigneCommande(0F,"servi","plat formule Pate","pat01");
+        LigneCommande lc02 = new LigneCommande(0F,"plat formule Pate","pat01", elc01);
         lc02.setArticle(pa02);
         lc02.setCommande(c01);
         em.persist(lc02);
 
-        LigneCommande lc03 = new LigneCommande(0F,"servi",null,"pat01");
+        LigneCommande lc03 = new LigneCommande(0F,null,"pat01",elc01);
         lc03.setCommande(c01);
         lc03.setArticle(ar03);
         em.persist(lc03);
 
-        LigneCommande lc04 = new LigneCommande(0F,"en préparation",null,"pat01");
+        LigneCommande lc04 = new LigneCommande(0F,null,"pat01",elc01);
         lc04.setArticle(de7);
         lc04.setCommande(c01);
         em.persist(lc04);
 
-        LigneCommande lc05 = new LigneCommande(15F,"servi",null,null);
+        LigneCommande lc05 = new LigneCommande(15F,null,null,elc01);
         lc05.setArticle(vinB4);
         lc05.setCommande(c01);
         em.persist(lc05);
 
-        LigneCommande lc06 = new LigneCommande(3F,null,null,null);
+        LigneCommande lc06 = new LigneCommande(3F,null,null,elc01);
         lc06.setArticle(boiCh2);
         lc06.setCommande(c02);
         em.persist(lc06);
 
-        LigneCommande lc07 = new LigneCommande(1.5F,null,null,null);
+        LigneCommande lc07 = new LigneCommande(1.5F,null,null,elc01);
         lc07.setArticle(boiCh3);
         lc07.setCommande(c02);
         em.persist(lc07);
-
+        
+        
+        
     }
 
 }
