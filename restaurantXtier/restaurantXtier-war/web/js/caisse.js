@@ -17,7 +17,7 @@ function getXmlHttpRequest() {
 }
 
 function afficherCommande(num){
-    var url = "Controleurs/IHMCaisseControleur?section=ticket?nCom="+num+"";
+    var url = "./WEB-INF/Controleurs/IHMCaisseControleur?inc=ticket?nCom="+num+"";
     // alert(url);
     var xhr = getXmlHttpRequest();
     xhr.onreadystatechange = function (){

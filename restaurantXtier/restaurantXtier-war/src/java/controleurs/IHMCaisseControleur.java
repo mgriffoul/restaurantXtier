@@ -30,16 +30,19 @@ public class IHMCaisseControleur implements SousControleurInterface {
         HttpSession session = request.getSession();
         
         
+        System.out.println(">>>>>>>>>>>>>>>>>>>> entree dans l'ihmcontroleur");
+        
         String s1 = "accueil";
         String prefix = "include/";
         String suffix = ".jsp";
         
         //URL par défaut
         String inc1 = "include/IHM_Caisse/index";
+        
+        String inc = request.getParameter("inc");
 
-        String section = request.getParameter("section");
-        System.out.println(section);
-        if("ticket".equalsIgnoreCase(section)){
+        System.out.println(inc);
+        if("ticket".equalsIgnoreCase(inc)){
             String nCom = request.getParameter("nCom");
             Commande c = beanCommande.selectCommandeByNumero(nCom);
             System.out.println(c);
@@ -50,6 +53,8 @@ public class IHMCaisseControleur implements SousControleurInterface {
             request.setAttribute("affcom", c);
             inc1= "include/IHM_Caisse/index";
         }
+        
+        request.setAttribute("contentInc", prefix + s1 + suffix);
         return inc1;
     }
 

@@ -23,6 +23,11 @@
             <param-name>ihmclient</param-name>
             <param-value>controleurs.IHMClientControleur</param-value>
         </init-param>
+        <init-param>
+            <description>sous controleur ihm caisse</description>
+            <param-name>IHMCaisse</param-name>
+            <param-value>controleurs.IHMCaisseControleur</param-value>
+        </init-param>
     </servlet>
     <servlet>
         <servlet-name>BddControleur</servlet-name>
