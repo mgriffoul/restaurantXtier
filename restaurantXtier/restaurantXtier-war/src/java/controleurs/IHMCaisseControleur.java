@@ -51,7 +51,7 @@ public class IHMCaisseControleur implements SousControleurInterface {
             Ticket t = new Ticket();
             t.setCommande(c);
             request.setAttribute("affcom", c);
-            inc1= "include/IHM_Caisse/index";
+            inc1= "include/IHM_Caisse/index.jsp";
         }
         
         request.setAttribute("contentInc", prefix + s1 + suffix);

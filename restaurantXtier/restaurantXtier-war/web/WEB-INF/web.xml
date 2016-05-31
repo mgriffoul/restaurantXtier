@@ -27,9 +27,6 @@
             <description>sous controleur ihm caisse</description>
             <param-name>IHMCaisse</param-name>
             <param-value>controleurs.IHMCaisseControleur</param-value>
-            <description>SousControleur connexion client à une commande</description>
-            <param-name>logincomclient</param-name>
-            <param-value>controleurs.LogCommandeClient</param-value>
         </init-param>
     </servlet>
     <servlet>
