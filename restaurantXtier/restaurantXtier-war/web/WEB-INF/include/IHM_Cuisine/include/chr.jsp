@@ -4,6 +4,7 @@
     Author     : gantn
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib  prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -28,7 +29,7 @@
                             <tbody align="center" bgcolor="F0FFF0">
                                 <c:forEach items="${chr}" var="ligne">
                                     <tr height="40px" align="center">
-                                        <td >${ligne.commande.date}</td>
+                                        <td ><fmt:formatDate value="${ligne.commande.date}" pattern="hh:mm" /></td>
                                         <td><c:forEach items="${ligne.commande.emplacements}" var="emp">
                                                 ${emp.numero}.
                                             </c:forEach></td>
