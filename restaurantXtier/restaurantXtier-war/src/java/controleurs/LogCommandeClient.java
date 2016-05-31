@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 public class LogCommandeClient implements SousControleurInterface{
     BeanCommandeLocal beanCommande = lookupBeanCommandeLocal();
+    
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -34,12 +35,12 @@ public class LogCommandeClient implements SousControleurInterface{
         //URL par défaut
         String url = "include/IHM_Client/index";
     
+        
+        //Recupération de la commande et ajout dans la session
         Long idCommande = Long.valueOf(request.getParameter("com"));
         Commande commande = beanCommande.selectCommandeById(idCommande);
         
-        
-        
-        
+        session.setAttribute("commande", commande);
         
         request.setAttribute("contentInc", prefix + s1 + suffix);
         return url;
@@ -55,6 +56,8 @@ public class LogCommandeClient implements SousControleurInterface{
             throw new RuntimeException(ne);
         }
     }
+
+   
     
     
     

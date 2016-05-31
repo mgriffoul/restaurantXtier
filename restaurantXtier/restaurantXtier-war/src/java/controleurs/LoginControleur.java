@@ -2,11 +2,9 @@ package controleurs;
 
 import beanEntite.Commande;
 import beanEntite.Emplacement;
-import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
 import beansSession.BeanCommandeLocal;
 import beansSession.BeanEmplacementLocal;
-import beansSession.BeanLigneCommandeLocal;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;

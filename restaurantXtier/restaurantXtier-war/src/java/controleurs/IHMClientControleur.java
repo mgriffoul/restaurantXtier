@@ -51,9 +51,9 @@ public class IHMClientControleur implements SousControleurInterface {
         Utilisateur util = (Utilisateur) session.getAttribute("user");
         System.out.println(">>>>>>>>>>>>>>>>>>UTIL : " + util);
 
-        //Récupération de l'emplacement
+        //Récupération de la commande lié à l'emplacement
         Commande commande = (Commande) session.getAttribute("commande");
-
+        System.out.println(">>>>>>>>>>Commande :"+commande);
         
         //Test de l'utilisateur
         if (util != null) {
