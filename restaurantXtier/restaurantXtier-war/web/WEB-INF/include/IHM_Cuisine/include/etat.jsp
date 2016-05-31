@@ -35,7 +35,7 @@
                                         </c:forEach></td>
                                     <td >${ligne.article.sousCategorie.categorie.nom}</td>
                                     <td >${ligne.article.nom}</td>
-                                    <td >${ligne.etatLc.ordre}</td>
+                                    <td >${ligne.etatLc.etat}</td>
                                     <td >${ligne.remarque}</td>
                                     <td ><a class="bouton13" href="">changer</a></td>
                                 </tr>

@@ -36,7 +36,7 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
 
     @Override
     public List<LigneCommande> selectAllLigneCommandeTriByPlat() {
-        String req ="select lc from LigneCommande lc where lc.etat=null or lc.etat<>'servi' order by lc.article.nom";
+        String req ="select lc from LigneCommande lc where lc.etatLc.ordre<>3 order by lc.article.nom";
         Query qr = em.createQuery(req);
         List<LigneCommande> ligneCommandes = qr.getResultList();
         return ligneCommandes;
@@ -56,8 +56,7 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
 
     @Override
     public List<LigneCommande> selectLigneCommandeServies() {
-        String req ="select lc from LigneCommande lc where lc.etat='servi' "
-                + "order by lc.article.nom ";
+        String req ="select lc from LigneCommande lc where lc.etatLc.ordre=1 order by lc.article.nom "; // changer ordre=1 par 3 lorsque BDD plus fournie
                 
         Query qr = em.createQuery(req);
         List<LigneCommande> ligneCommandes = qr.getResultList();
@@ -66,7 +65,7 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
 
     @Override
     public List<LigneCommande> selectLigneCommandeByChrono() {
-        String req ="select lc from LigneCommande lc where lc.etat=null or lc.etat<>'servi' order by lc.commande.date";
+        String req ="select lc from LigneCommande lc where lc.etatLc.ordre<>3 order by lc.commande.date";
         Query qr = em.createQuery(req);
         List<LigneCommande> ligneCommandes = qr.getResultList();
         return ligneCommandes;
@@ -74,7 +73,7 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
 
     @Override
     public List<LigneCommande> selectLigneCommandeByEmplacement() {
-        String req ="select lc from LigneCommande lc where lc.etat=null or lc.etat<>'servi' order by lc.commande.numero";
+        String req ="select lc from LigneCommande lc where lc.etatLc.ordre<>3 order by lc.commande.numero";
         Query qr = em.createQuery(req);
         List<LigneCommande> ligneCommandes = qr.getResultList();
         return ligneCommandes;
@@ -82,8 +81,7 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
 
     @Override
     public List<LigneCommande> selectLigneCommandeByCategorie() {
-        String req = "select lc from LigneCommande lc where lc.etat=null or lc.etat<>'servi' "
-                + "order by lc.article.sousCategorie.categorie.nom";
+        String req = "select lc from LigneCommande lc where lc.etatLc.ordre<>3 order by lc.article.sousCategorie.categorie.nom";
         Query qr = em.createQuery(req);
         List<LigneCommande> ligneCommandes = qr.getResultList();
         return ligneCommandes;
