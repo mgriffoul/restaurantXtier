@@ -7,6 +7,7 @@ package beanEntite;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.logging.Logger;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,6 +38,13 @@ public class EtatLigneCommande implements Serializable {
     public EtatLigneCommande() {
     }
 
+    public EtatLigneCommande(Integer ordre) {
+        this();
+        this.ordre = ordre;
+    }
+    
+    
+
     public EtatLigneCommande(Integer ordre, String etat) {
         this();
         
@@ -44,8 +52,8 @@ public class EtatLigneCommande implements Serializable {
         this.etat = etat;
         
     }
-
 //getters et setters
+    
 
     public String getEtat() {
         return etat;

@@ -57,7 +57,7 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
         }
         //Création de la commande
         if ("showOrder".equalsIgnoreCase(inc)) {
-            Commande c01 = beanCommande.selectCommandeById(request.getParameter("id"));
+            Commande c01 = beanCommande.selectCommandeById(Long.valueOf(request.getParameter("id")));
             request.setAttribute("commande", c01);
             s1 = "commande";
        

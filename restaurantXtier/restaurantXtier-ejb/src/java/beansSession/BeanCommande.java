@@ -21,9 +21,9 @@ public class BeanCommande implements BeanCommandeLocal {
     private EntityManager em;
     
     @Override
-    public Commande selectCommandeById(String id) {
+    public Commande selectCommandeById(Long id) {
         Commande commande = em.find(Commande.class, id);
-        String req = "Select c.lignesCommandes from Commande c c.id = :paramid";
+        String req = "Select c.lignesCommandes from Commande c where c.id = :paramid";
         Query qr = em.createQuery(req);
         qr.setParameter("paramid", id);
         List<LigneCommande> lgnCommandes = qr.getResultList();
@@ -125,6 +125,19 @@ public class BeanCommande implements BeanCommandeLocal {
         qr.setParameter("paramid", id);
         List<Integer> numero = qr.getResultList();
         return numero;
+    }
+
+    @Override
+    public List<Commande> selectCommandeEnCours() {
+        String req = "Select c from Commande c where c.statut=:paramstatut";
+        Query qr = em.createQuery(req);
+        qr.setParameter("paramstatut", "en cours");
+        List<Commande> commandes = qr.getResultList();
+        for (Commande c : commandes) {
+            List<Emplacement> emplacements = selectEmplacementByIdCommande(c.getId());
+            c.setEmplacements(emplacements);
+        }
+        return commandes;
     }
     
 }

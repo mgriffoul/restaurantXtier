@@ -34,9 +34,9 @@
                                             </c:forEach></td>
                                         <td >${ligne.article.sousCategorie.categorie.nom}</td>
                                         <td >${ligne.article.nom}</td>
-                                        <td >${ligne.etat}</td>
+                                        <td >${ligne.etatLc.etat}</td>
                                         <td >${ligne.remarque}</td>
-                                        <td ><a class="bouton13" href="">changer</a></td>
+                                        <td ><a class="bouton13" href="index?section=IHMCuisine&inc=table&meth=change&idLc=${ligne.id}">changer</a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

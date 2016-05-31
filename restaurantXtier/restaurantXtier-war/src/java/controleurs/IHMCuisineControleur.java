@@ -31,6 +31,7 @@ public class IHMCuisineControleur implements SousControleurInterface {
 
         //Recupération de la sous section
         String ssSec = request.getParameter("inc");
+        String ssSec2=request.getParameter("meth");
 
         //Choix include en fonction de la ssSection
         //Tri par plat
@@ -83,6 +84,17 @@ public class IHMCuisineControleur implements SousControleurInterface {
             request.setAttribute("servie", ligneCommandes2);
             message = "triées par catégorie";
             request.setAttribute("message", message);
+        }
+        //appel méthode changement d'etat
+        if ("change".equalsIgnoreCase(ssSec2)){
+            s1=request.getParameter("inc");
+        //récupération de l'id de la LC 
+            String s = request.getParameter("idLc");
+            Long idLc=Long.parseLong(s);
+         // appel de la méthode avec idLc en attribut
+            LigneCommande ligneCommande=beanLigneCommande.changerEtatLigneCommande(idLc);
+            
+            
         }
 
         request.setAttribute("contentInc", prefix + s1 + suffix);
