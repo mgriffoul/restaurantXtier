@@ -102,15 +102,5 @@ public class LoginControleur implements Serializable, SousControleurInterface {
             
     }
 
-//    private BeanLigneCommandeLocal lookupBeanLigneCommandeLocal() {
-//        try {
-//            Context c = new InitialContext();
-//            return (BeanLigneCommandeLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanLigneCommande!beansSession.BeanLigneCommandeLocal");
-//
-//        } catch (NamingException ne) {
-//            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-//            throw new RuntimeException(ne);
-//        }
-//    }
 
 }

@@ -40,15 +40,16 @@
 
                 <input type="hidden" name="section" value="logincomclient">
 
-                <select class="form-control " name="emplacement">
+                <select class="form-control " name="com">
                     <option value="0" selected></option>
-                    <c:forEach items="${commandes}" var="com">
-                        <option value="${com.id}">
-                            [<c:forEach items="${com.emplacements}" var="empl">${empl.numero}/</c:forEach>]
-                        </option>
+                    <c:forEach items="${commandes}" var="co">
+                        <option value="${co.id}">
+                            [<c:forEach items="${co.emplacements}" var="emp">${emp.numero}/</c:forEach>]
+                            </option>
                     </c:forEach>
                 </select>
-<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+                <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+                <c:if test="${empty commandes}"> Aucun emplacement n'est associée à une commande en cours </c:if>
                 <label class="erreur">${message}</label>
 
             </form>

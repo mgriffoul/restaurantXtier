@@ -21,7 +21,7 @@ public interface BeanCommandeLocal {
 
     public void sauvegarderCommande(Commande commande);
 
-    public Commande selectCommandeById(String id);
+    public Commande selectCommandeById(Long id);
 
     public Commande newCommande();
 

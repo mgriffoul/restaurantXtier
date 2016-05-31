@@ -21,7 +21,7 @@ public class BeanCommande implements BeanCommandeLocal {
     private EntityManager em;
     
     @Override
-    public Commande selectCommandeById(String id) {
+    public Commande selectCommandeById(Long id) {
         Commande commande = em.find(Commande.class, id);
         String req = "Select c.lignesCommandes from Commande c c.id = :paramid";
         Query qr = em.createQuery(req);
