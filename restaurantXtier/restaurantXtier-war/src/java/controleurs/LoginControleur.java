@@ -57,13 +57,9 @@ public class LoginControleur implements Serializable, SousControleurInterface {
                     request.setAttribute("listEmplacement", listEmplacement);
                     return "include/IHM_Salle/index";
                 case 4:
-                    List<Emplacement> empls = beanEmplacement.selectEmplPourComEnCours();
-                    System.out.println("emplacements size >>>>" + empls.size());
+                    List<Commande> commandes = beanCommande.selectCommandeEnCours();
                     
-                    for(Emplacement e : empls){
-                        System.out.println("<<<<<emplacement : " + e);
-                    }
-                    
+                    request.setAttribute("commandes", commandes);
                     return "include/IHM_Client/include/logclient";
                 case 5:
                     return "include/admin";

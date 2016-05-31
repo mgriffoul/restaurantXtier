@@ -32,5 +32,7 @@ public interface BeanCommandeLocal {
     public List<Commande> selectCommandeByDate(String date);
     
      public Commande selectCommandeByNumero(String numero);
+     
+     public List<Commande> selectCommandeEnCours(); 
 
 }

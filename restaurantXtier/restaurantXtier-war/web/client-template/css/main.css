@@ -747,3 +747,10 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
     margin-bottom: 30px;
     display: inline;
 }
+
+.liste-commande{
+    background-color: #fff;
+}
+.liste-commande:before{
+    background-color: #fff;
+}

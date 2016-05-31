@@ -126,5 +126,18 @@ public class BeanCommande implements BeanCommandeLocal {
         List<Integer> numero = qr.getResultList();
         return numero;
     }
+
+    @Override
+    public List<Commande> selectCommandeEnCours() {
+        String req = "Select c from Commande c where c.statut=:paramstatut";
+        Query qr = em.createQuery(req);
+        qr.setParameter("paramstatut", "en cours");
+        List<Commande> commandes = qr.getResultList();
+        for (Commande c : commandes) {
+            List<Emplacement> emplacements = selectEmplacementByIdCommande(c.getId());
+            c.setEmplacements(emplacements);
+        }
+        return commandes;
+    }
     
 }

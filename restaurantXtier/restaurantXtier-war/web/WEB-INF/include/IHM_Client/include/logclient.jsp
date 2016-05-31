@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="css/login.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-         
+
         <!-- Owl Carousel -->
         <link rel="stylesheet" href="client-template/css/owl.carousel.css">
         <!-- bootstrap.min css -->
@@ -22,35 +22,33 @@
         <link rel="stylesheet" href="client-template/css/main.css">
         <!-- Responsive Stylesheet -->
         <link rel="stylesheet" href="client-template/css/responsive.css">
-        
+
     </head>
     <body class="loginclient">
-        <div class="login-form-1">
+        <div class="login-form-1 carreLogclient">
             <div class="iconeuser">
-            <div class="glyphicon  glyphicon-user "></div>
-            <div class="glyphicon glyphicon-resize-horizontal"></div>
-            <div class="glyphicon glyphicon-shopping-cart"></div>
+                <div class="glyphicon  glyphicon-user "></div>
+                <div class="glyphicon glyphicon-resize-horizontal"></div>
+                <div class="glyphicon glyphicon-shopping-cart"></div>
             </div>
 
-        <div class="titre-connexionclient">
-            Indiquez l'emplacement auquel vous souhaitez connecter l'appareil
-        </div>
-        
-            <form id="login-form" class="text-left" action="index" method="POST">
-                
+            <div class="titre-connexionclient">
+                <p>Selectionnez l'emplacement auquel</p><p> vous souhaitez connecter l'appareil</p>
+            </div>
+
+            <form id="login-form " class="text-left liste-commande" action="index" method="POST">
+
                 <input type="hidden" name="section" value="logincomclient">
-                
-                <div class="login-form-main-message"></div>
-                <div class="main-login-form">
-                    <div class="login-group">
-                        <div class="form-group">
-                            <label for="numEmpl" class="sr-only">Numéro d'emplacement </label>
-                            <input class="form-control" id="numEmpl" name="numEmpl">
-                            
-                        </div>
-                    </div>
-                    <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
-                </div>
+
+                <select class="form-control " name="emplacement">
+                    <option value="0" selected></option>
+                    <c:forEach items="${commandes}" var="com">
+                        <option value="${com.id}">
+                            [<c:forEach items="${com.emplacements}" var="empl">${empl.numero}/</c:forEach>]
+                        </option>
+                    </c:forEach>
+                </select>
+<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
                 <label class="erreur">${message}</label>
 
             </form>
