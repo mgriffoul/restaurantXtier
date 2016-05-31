@@ -432,7 +432,7 @@ em.persist(vinRs4);
         arts.add(boiSa2);
         arts.add(boiSa3);
         arts.add(boiSa4);
-        Formule form01 = new Formule(arts, "Entrée / Plat", 16.5F, "entpl",tva2);
+        Formule form01 = new Formule(arts, "Entrée-Plat", 16.5F, "entpl",tva2);
         em.persist(form01);
         
         ArrayList<Article> arts2 = new ArrayList();
@@ -465,7 +465,7 @@ em.persist(vinRs4);
         arts3.add(de2);
         arts3.add(de6);
         arts3.add(de7);
-        Formule form03 = new Formule(arts2, "Formule Pâtes", 21.5F, "pat",tva2);
+        Formule form03 = new Formule(arts2, "Pâtes", 21.5F, "pat",tva2);
         em.persist(form03);
         
         
@@ -512,13 +512,13 @@ em.persist(vinRs4);
         Emplacement e24 = new Emplacement(24, "libre", 2);
         Emplacement e25 = new Emplacement(25, "libre", 2);
         
-        Commande c01 = new Commande(d01,"CO2016000004","payee");
-        Commande c02 = new Commande(d01, "CO2016000005","payee");
-        Commande c03 = new Commande(d01, "CO2016000006","payee");
-        Commande c04 = new Commande(d02,"CO2016000007","terminée");
-        Commande c05 = new Commande(d02,"CO2016000008","terminée");
-        Commande c06 = new Commande(d02,"CO2016000009","terminée");
-        Commande c07 = new Commande(d02,"CO20160000010","terminée");
+        Commande c01 = new Commande(d01,"CO2016000004","en cours");
+        Commande c02 = new Commande(d01, "CO2016000005","en cours");
+        Commande c03 = new Commande(d01, "CO2016000006","en cours");
+        Commande c04 = new Commande(d02,"CO2016000007","en cours");
+        Commande c05 = new Commande(d02,"CO2016000008","en cours");
+        Commande c06 = new Commande(d02,"CO2016000009","terminee");
+        Commande c07 = new Commande(d02,"CO20160000010","terminee");
         Commande c08 = new Commande(d02,"CO20160000011","payee");
         Commande c09 = new Commande(d03,"CO2016000001","payee");
         Commande c10 = new Commande(d03,"CO2016000002","payee");
@@ -526,10 +526,6 @@ em.persist(vinRs4);
 
 
 
-//        ArrayList<Emplacement> le01 = new ArrayList<>();
-//        c01.setEmplacements(le01);
-//        c02.setEmplacements(le01);
-//        c03.setEmplacements(le01);
         
         c01.getEmplacements().add(e01);
         c01.getEmplacements().add(e05);
@@ -600,7 +596,7 @@ em.persist(vinRs4);
         lc01.setCommande(c01);
         em.persist(lc01);
 
-        LigneCommande lc02 = new LigneCommande(0F,"plat formule Pate","pat01", elc01);
+        LigneCommande lc02 = new LigneCommande(0F,"sans sel","pat01", elc01);
         lc02.setArticle(pa02);
         lc02.setCommande(c01);
         em.persist(lc02);
