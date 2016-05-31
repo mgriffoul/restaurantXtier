@@ -3,7 +3,6 @@ package controleurs;
 import beanEntite.Article;
 import beanEntite.Categorie;
 import beanEntite.Commande;
-import beanEntite.Emplacement;
 import beanEntite.Formule;
 import beanEntite.Utilisateur;
 import beansSession.BeanCategorieLocal;

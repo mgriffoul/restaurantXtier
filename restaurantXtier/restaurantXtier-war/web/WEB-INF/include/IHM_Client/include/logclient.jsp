@@ -36,7 +36,7 @@
                 <p>Selectionnez l'emplacement auquel</p><p> vous souhaitez connecter l'appareil</p>
             </div>
 
-            <form id="login-form " class="text-left liste-commande" action="index" method="POST">
+            <form id="login-form " class="text-left liste-commande" action="index" method="GET">
 
                 <input type="hidden" name="section" value="logincomclient">
 
