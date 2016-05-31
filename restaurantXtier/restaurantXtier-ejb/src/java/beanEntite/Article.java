@@ -97,6 +97,11 @@ public class Article implements Serializable {
         return prixHt;
     }
 
+    public Float getPrixTtc(){
+        Float f = ((prixHt*tva.getTauxTva())/100)+prixHt;
+        return f;
+    }
+    
     public void setPrixHt(Float prixHt) {
         this.prixHt = prixHt;
     }
