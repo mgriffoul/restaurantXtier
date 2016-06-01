@@ -37,6 +37,6 @@
         <script src="client-template/js/plugins.js"></script>
         <script src="client-template/js/wow.min.js"></script>
         <script src="client-template/js/main.js"></script>
-
+        <script src="cuisine-css/js/cuisine-js.js"></script>
     </body>
 </html>

@@ -15,7 +15,7 @@
         <div class="col-md-8">
 
             <center><h3>Commandes en cours <b><FONT color="red">${message}</font></b></h3></center>
-            <div > <center><table id="tab" >
+            <div id="Affichage"> <center><table id="tab" >
                         <thead BGCOLOR="B0C4E0">
                             <tr height="40px" align="center">
                                 <td width="140px">Heure</td>
@@ -38,7 +38,7 @@
                                     <td >${ligne.article.nom}</td>
                                     <td >${ligne.etatLc.etat}</td>
                                     <td >${ligne.remarque}</td>
-                                    <td ><a class="bouton13" href="index?section=IHMCuisine&inc=etat&meth=change&idLc=${ligne.id}">changer</a></td>
+                                    <td ><a class="bouton13" href="index?section=IHMCuisine&inc=etat&meth=change&idLc=${ligne.id}" onclick="actualiserDiv();return false;">changer</a></td>
                                 </tr>
                             </c:forEach>
                         </tbody>
