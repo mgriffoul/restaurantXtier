@@ -1,4 +1,3 @@
-
 package beansSession;
 
 import beanEntite.Emplacement;
@@ -7,6 +6,10 @@ import javax.ejb.Local;
 
 @Local
 public interface BeanEmplacementLocal {
+
     public List<Emplacement> selectAllEmplacement();
-     public Emplacement selectEmplacementById(Long id);
+
+    public Emplacement selectEmplacementById(Long id);
+
+    public List<Emplacement> selectEmplPourComEnCours();
 }

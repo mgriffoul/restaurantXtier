@@ -2,8 +2,6 @@
 package beansSession;
 
 import beanEntite.Emplacement;
-import beanEntite.LigneCommande;
-import beanEntite.Utilisateur;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -25,5 +23,19 @@ public class BeanEmplacement implements BeanEmplacementLocal {
       @Override
     public Emplacement selectEmplacementById(Long id) {
        return em.find(Emplacement.class,id);   
+    }
+
+    @Override
+    public List<Emplacement> selectEmplPourComEnCours() {
+        
+        String req = "Select c.emplacements From Commande c"
+                + " where c.statut = :paramstatut";
+        
+        Query qr = em.createQuery(req);
+        qr.setParameter("paramstatut", "en cours");
+        List<Emplacement> emplacements = qr.getResultList();
+        
+        
+        return emplacements;
     }
 }

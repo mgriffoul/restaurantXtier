@@ -1,3 +1,4 @@
+
 function getXmlHttpRequest() {
     var xhr = null;
     if (window.XMLHttpRequest) // Firefox et autres
@@ -16,13 +17,13 @@ function getXmlHttpRequest() {
     return xhr;
 }
 
-function afficherCommande(num){
-    var url = "index?section=IHMCaisse?inc=ticket&nCom="+num;
+function actualiserDiv(){
+    var url = "index?section=IHMCuisine&inc=etat"; //changer l'url
     // alert(url);
     var xhr = getXmlHttpRequest();
     xhr.onreadystatechange = function (){
         if(xhr.readyState == 4 && xhr.status == 200){
-            var maDiv = document.getElementById("ticket");
+            var maDiv = document.getElementById("Affichage");
             var reponse = xhr.responseText;
             // alert(reponse);
             maDiv.innerHTML = reponse;
@@ -32,3 +33,12 @@ function afficherCommande(num){
     xhr.open("GET", url, true);
     xhr.send(null);
 }
+
+
+
+
+
+
+
+
+

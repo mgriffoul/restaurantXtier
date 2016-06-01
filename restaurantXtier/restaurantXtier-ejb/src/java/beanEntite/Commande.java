@@ -26,6 +26,21 @@ public class Commande implements Serializable {
     private Date date;
     private String numero;
     private String statut;
+    
+     // associations
+    @ManyToMany
+    private Collection<Emplacement> emplacements;
+
+    @ManyToOne
+    private Utilisateur utilisateur;
+
+    @OneToOne
+    private Ticket ticket;
+
+    @OneToMany(mappedBy = "commande")
+    private Collection<LigneCommande> lignesCommandes;
+    //fin associations
+    
 
     public Commande() {
         emplacements = new ArrayList<>();
@@ -98,19 +113,7 @@ public class Commande implements Serializable {
         this.statut = statut;
     }
 
-    // associations
-    @ManyToMany
-    private Collection<Emplacement> emplacements;
-
-    @ManyToOne
-    private Utilisateur utilisateur;
-
-    @OneToOne
-    private Ticket ticket;
-
-    @OneToMany(mappedBy = "commande")
-    private Collection<LigneCommande> lignesCommandes;
-    //fin associations
+   
 
     public Long getId() {
         return id;
