@@ -38,7 +38,7 @@
                                                     </div>
                                                     <p>${article.description}</p>
                                                 </div>
-                                                <button class="btn btn-success"><span class="glyphicon  glyphicon-shopping-cart"></span> Commander</button>
+                                                <button class="btn btn-success" onclick="sendText()"><span class="glyphicon  glyphicon-shopping-cart"></span> Commander</button>
                                                         
                                             </li>
                                         </c:forEach>

@@ -47,5 +47,6 @@
         <script src="client-template/js/plugins.js"></script>
         <script src="client-template/js/wow.min.js"></script>
         <script src="client-template/js/main.js"></script>
+        <script src="websocket/websocketcommande.js"></script>
     </body>
 </html>
