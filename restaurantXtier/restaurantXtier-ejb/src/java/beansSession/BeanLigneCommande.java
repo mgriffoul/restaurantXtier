@@ -1,5 +1,6 @@
 package beansSession;
 
+import beanEntite.Article;
 import beanEntite.EtatLigneCommande;
 import beanEntite.LigneCommande;
 import java.util.List;
@@ -92,4 +93,22 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
         return ligneCommandes;
     }
 
+    @Override
+    public LigneCommande creerLigneDeCommandeArticle(Long idArticle) {
+        Article a = em.find(Article.class, idArticle);
+        
+        String req = "select e from EtatLigneCommande where e.etat=1";
+        Query qr = em.createQuery(req);
+        EtatLigneCommande elc = (EtatLigneCommande) qr.getSingleResult();
+        
+        LigneCommande lc = new LigneCommande();
+        lc.setArticle(a);
+        lc.setPrixHT(a.getPrixHt());
+        lc.setEtatLc(elc);
+        
+        return lc;
+    }
+
+    
+    
 }

@@ -1,13 +1,8 @@
 //var wsUri = "ws://" + document.location.host + document.location.pathname + "commandeendpoint";
 var path = document.location.pathname;
 var path2 = path.replace("/index", "");
-var wsUri = "ws://" + document.location.host + path + "/commandeendpoint";
+var wsUri = "ws://" + document.location.host + path2 + "/commandeendpoint";
 
-
-alert(path2);
-alert(document.location.host);
-
-var wsUri = "ws://localhost:8080/restaurantXtier-war/commandeendpoint";
 
 var websocket = new WebSocket(wsUri);
 

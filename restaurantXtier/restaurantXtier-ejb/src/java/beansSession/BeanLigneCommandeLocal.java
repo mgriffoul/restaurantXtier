@@ -23,4 +23,5 @@ public interface BeanLigneCommandeLocal {
     public List<LigneCommande> selectLigneCommandeByChrono ();
     public List<LigneCommande> selectLigneCommandeByEmplacement ();
     public List<LigneCommande> selectLigneCommandeByCategorie ();
+    public LigneCommande creerLigneDeCommandeArticle(Long idArticle);
 }

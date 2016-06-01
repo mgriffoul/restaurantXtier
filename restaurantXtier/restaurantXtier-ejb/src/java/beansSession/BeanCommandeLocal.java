@@ -2,9 +2,7 @@ package beansSession;
 
 import beanEntite.Commande;
 import beanEntite.Emplacement;
-import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.ejb.Local;
@@ -35,5 +33,6 @@ public interface BeanCommandeLocal {
      public Commande selectCommandeByNumero(String numero);
      
      public List<Commande> selectCommandeEnCours(); 
+    
 
 }

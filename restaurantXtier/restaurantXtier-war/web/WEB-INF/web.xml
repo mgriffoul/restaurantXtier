@@ -33,6 +33,11 @@
             <param-name>logincomclient</param-name>
             <param-value>controleurs.LogCommandeClient</param-value>
         </init-param>
+        <init-param>
+            <description>controleur d'action sur la commande</description>
+            <param-name>actionCom</param-name>
+            <param-value>controleurs.ActionCommandeControleur</param-value>
+        </init-param>
     </servlet>
     <servlet>
         <servlet-name>BddControleur</servlet-name>

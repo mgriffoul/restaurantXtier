@@ -6,10 +6,10 @@ import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,8 +18,17 @@ import javax.persistence.Query;
 @Stateless
 public class BeanCommande implements BeanCommandeLocal {
     
+   
+    
+    @EJB
+    private BeanLigneCommandeLocal beanLigneCommande;
+    
+    
+    
     @PersistenceContext(unitName = "restaurantXtier-ejbPU")
     private EntityManager em;
+    
+    
     
     @Override
     public Commande selectCommandeById(Long id) {
@@ -145,5 +154,7 @@ public class BeanCommande implements BeanCommandeLocal {
         }
         return commandes;
     }
+
+    
     
 }

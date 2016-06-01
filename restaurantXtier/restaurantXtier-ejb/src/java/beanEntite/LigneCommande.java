@@ -50,6 +50,15 @@ public class LigneCommande implements Serializable {
        
     }
 
+    public LigneCommande(float prixHT, String remarque, String refFormule, Article article, Commande commande, EtatLigneCommande etatLc) {
+        this.prixHT = prixHT;
+        this.remarque = remarque;
+        this.refFormule = refFormule;
+        this.article = article;
+        this.commande = commande;
+        this.etatLc = etatLc;
+    }
+
     public float getPrixHT() {
         return prixHT;
     }
