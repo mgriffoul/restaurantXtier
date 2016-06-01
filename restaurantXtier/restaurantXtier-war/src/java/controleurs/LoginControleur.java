@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 
 public class LoginControleur implements Serializable, SousControleurInterface {
 
-    BeanLigneCommandeLocal beanLigneCommande = lookupBeanLigneCommandeLocal();
+//    BeanLigneCommandeLocal beanLigneCommande = lookupBeanLigneCommandeLocal();
 
     BeanEmplacementLocal beanEmplacement = lookupBeanEmplacementLocal();
 
@@ -43,15 +43,17 @@ public class LoginControleur implements Serializable, SousControleurInterface {
             session.setAttribute("user", ut01);
             switch (ut01.getRole()) {
                 case 1:
-                    List<LigneCommande> ligneCommandes = beanLigneCommande.selectAllLigneCommandeTriByPlat();
-                    request.setAttribute("ligneCommandes", ligneCommandes);
+                   String s = "include/accueil.jsp";
+                    request.setAttribute("contentInc", s);
                     return "include/IHM_Cuisine/index";
                 case 2:
                     List<Commande> c = beanCommande.selectCommandeTerminee();
                     request.setAttribute("commandefinie", c);
                     return "include/IHM_Caisse/index";
                 case 3:
+                    String salle_s1 = "include/accueil.jsp"; 
                     List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
+                    request.setAttribute("contentInc", salle_s1);
                     request.setAttribute("listEmplacement", listEmplacement);
                     return "include/IHM_Salle/index";
                 case 4:
@@ -99,15 +101,15 @@ public class LoginControleur implements Serializable, SousControleurInterface {
             
     }
 
-    private BeanLigneCommandeLocal lookupBeanLigneCommandeLocal() {
-        try {
-            Context c = new InitialContext();
-            return (BeanLigneCommandeLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanLigneCommande!beansSession.BeanLigneCommandeLocal");
-
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
-    }
+//    private BeanLigneCommandeLocal lookupBeanLigneCommandeLocal() {
+//        try {
+//            Context c = new InitialContext();
+//            return (BeanLigneCommandeLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanLigneCommande!beansSession.BeanLigneCommandeLocal");
+//
+//        } catch (NamingException ne) {
+//            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+//            throw new RuntimeException(ne);
+//        }
+//    }
 
 }

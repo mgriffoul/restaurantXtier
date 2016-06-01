@@ -45,7 +45,15 @@ public class Article implements Serializable {
         this.description = description;
     }
 
-    public SousCategorie getSousCategories() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public SousCategorie getSousCategorie() {
         return sousCategorie;
     }
 
@@ -53,21 +61,22 @@ public class Article implements Serializable {
         this.sousCategorie = sousCategorie;
     }
 
-    public String getDescription() {
-        return description;
+    public Tva getTva() {
+        return tva;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTva(Tva tva) {
+        this.tva = tva;
     }
 
-    public Float getPrixTtc(){
-        
-        Float prixTtc = (prixHt*tva.getTauxTva()/100)+prixHt;
-        
-        return prixTtc;
+    public Collection<Formule> getFormules() {
+        return formules;
     }
-    
+
+    public void setFormules(Collection<Formule> formules) {
+        this.formules = formules;
+    }
+
     public String getNom() {
         return nom;
     }
@@ -92,26 +101,15 @@ public class Article implements Serializable {
         this.prixHt = prixHt;
     }
 
-    public SousCategorie getSousCategorie() {
-        return sousCategorie;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
    
-    public Tva getTva() {
-        return tva;
-    }
-
-    public void setTva(Tva tva) {
-        this.tva = tva;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public int hashCode() {

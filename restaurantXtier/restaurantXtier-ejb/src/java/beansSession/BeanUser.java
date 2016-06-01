@@ -11,10 +11,8 @@ public class BeanUser implements BeanUserLocal {
     @PersistenceContext(unitName = "restaurantXtier-ejbPU")
     private EntityManager em;
     
-    
     @Override
     public Utilisateur getUserByCode(String code) {
         return em.find(Utilisateur.class,code);      
     }
-
 }

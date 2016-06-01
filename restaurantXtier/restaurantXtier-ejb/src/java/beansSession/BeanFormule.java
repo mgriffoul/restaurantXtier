@@ -1,11 +1,10 @@
 package beansSession;
 
 import beanEntite.Article;
-import beanEntite.Categorie;
 import beanEntite.Formule;
-import beanEntite.SousCategorie;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,11 +13,7 @@ import javax.persistence.Query;
 @Stateless
 public class BeanFormule implements BeanFormuleLocal {
 
-    @EJB
-    private BeanSousCategorieLocal sousCategorie;
-
-    @EJB
-    private BeanArticleLocal article;
+    
 
     @PersistenceContext(unitName = "restaurantXtier-ejbPU")
     private EntityManager em;
@@ -44,6 +39,79 @@ public class BeanFormule implements BeanFormuleLocal {
         return formules;
     }
 
-    
+    @Override
+    public ArrayList<Article> selectEntreesOfFormule(Formule f) {
+        Collection<Article> allArticles = f.getArticles();
+        ArrayList<Article> entrees = new ArrayList();
+
+        for (Article a : allArticles) {
+            if (a.getSousCategorie().getCategorie().getOrdre() == 1) {
+                entrees.add(a);
+            }
+        }
+
+        return entrees;
+    }
+
+    @Override
+    public ArrayList<Article> selectPlatsOfFormule(Formule f) {
+        Collection<Article> allArticles = f.getArticles();
+        ArrayList<Article> plats = new ArrayList();
+
+        for (Article a : allArticles) {
+            if (a.getSousCategorie().getCategorie().getOrdre() == 2) {
+                plats.add(a);
+            }
+        }
+
+        return plats;
+    }
+
+    @Override
+    public ArrayList<Article> selectDessertsOfFormule(Formule f) {
+        Collection<Article> allArticles = f.getArticles();
+        ArrayList<Article> desserts = new ArrayList();
+
+        for (Article a : allArticles) {
+            if (a.getSousCategorie().getCategorie().getOrdre() == 3) {
+                desserts.add(a);
+            }
+        }
+
+        return desserts;
+    }
+
+    @Override
+    public ArrayList<Article> selectBoissonsOfFormule(Formule f) {
+        Collection<Article> allArticles = f.getArticles();
+        ArrayList<Article> boissons = new ArrayList();
+
+        for (Article a : allArticles) {
+            if (a.getSousCategorie().getCategorie().getOrdre() == 4) {
+                boissons.add(a);
+            }
+        }
+
+        return boissons;
+    }
+
+    @Override
+    public Formule selectFormuleById(Long id) {
+       return em.find(Formule.class, id);
+    }
+
+    @Override
+    public Formule chargerFormule(Formule f) {
+        ArrayList<Article> entrees = selectEntreesOfFormule(f);
+            ArrayList<Article> plats = selectPlatsOfFormule(f);
+            ArrayList<Article> desserts = selectDessertsOfFormule(f);
+            ArrayList<Article> boissons = selectBoissonsOfFormule(f);
+            f.setEntrees(entrees);
+            f.setPlats(plats);
+            f.setDesserts(desserts);
+            f.setBoissons(boissons);
+            
+            return f;
+    }
 
 }

@@ -716,3 +716,17 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 #price .block .pricing-list .article {
     padding: 8px 0px;
 }
+
+#price .block .pricing-list .formule {
+    padding: 8px 0px;
+    margin-bottom: 40px;
+}
+.btn-commander{
+    margin-top: 10px;
+}
+ .liste-formule{
+    width: auto;
+}
+.btn-valider{
+    margin: 30px;
+}

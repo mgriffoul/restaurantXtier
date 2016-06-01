@@ -1,8 +1,3 @@
-<%-- 
-    Document   : formules
-    Created on : 25 mai 2016, 15:06:31
-    Author     : cdi207
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -16,42 +11,56 @@
 
                     <h1 class="heading wow fadeInUp carte-titre" data-wow-duration="300ms" data-wow-delay="300ms">Les <span>Formules</span> </h1>
                     <div class="pricing-list ">
+                        <ul>
+                            <c:forEach items="${for}" var="form">
 
+                                <li class="wow fadeInUp  formule" data-wow-duration="300ms" data-wow-delay="300ms">
+                                    <div class="item form">
+                                        <div class="item-title ">
+                                            <h2>${form.nom}</h2>
+                                            <div class="border-bottom"></div>
+                                            <span>${form.prixTtc} E</span>
+                                        </div>
 
-                     
+                                        <c:if test="${not empty form.entrees}">
+                                            <p> Entrée au choix</p>
+                                        </c:if>
+                                        <c:forEach items="${form.entrees}" var="entree">
 
-                                <div class="title souscategorie-carte">
-                                    <h4>${ssCate.nom} </h4>
-                                </div>
-                                
-                                    <ul>
-                                        <c:forEach items="${for}" var="form">
-                                            
-                                            <li class="wow fadeInUp  article" data-wow-duration="300ms" data-wow-delay="300ms">
-                                                <div class="item ">
-                                                    <div class="item-title ">
-                                                        <h2>Formule ${form.nom}</h2>
-                                                        <div class="border-bottom"></div>
-                                                        <span>${form.prixTtc} E</span>
-                                                    </div>
-                                                    <p>
-                                                        <c:forEach items="${form.articles}" var="article">
-                                                            ${article.nom},
-                                                        </c:forEach>
-                                                    </p>
-                                                </div>
-                                                <button class="btn btn-success"><span class="glyphicon  glyphicon-shopping-cart"></span> Commander</button>
-                                                        
-                                            </li>
+                                            ${entree.nom},
                                         </c:forEach>
-                                    </ul>
-                           
 
 
+                                        <c:if test="${not empty form.plats}">
+                                            <p> Plat au choix</p>
+                                        </c:if>
+                                        <c:forEach items="${form.plats}" var="plat">
+                                            ${plat.nom},
+                                        </c:forEach>
 
 
+                                        <c:if test="${not empty form.desserts}">
+                                            <p> Dessert au choix</p>
+                                        </c:if>
+                                        <c:forEach items="${form.desserts}" var="dessert">
+                                            ${dessert.nom},
+                                        </c:forEach>
 
-                        <a class="btn btn-default pull-right wow bounceIn" data-wow-duration="500ms" data-wow-delay="1200ms" href="#" role="button">More Info</a>
+
+                                        <c:if test="${not empty form.boissons}">
+                                            <p> Boisson au choix</p>
+                                        </c:if>
+                                        <c:forEach items="${form.boissons}" var="boisson">
+                                            ${boisson.nom},
+                                        </c:forEach>
+
+                                    </div>
+                                    <a href="index?section=ihmclient&inc=buyForm&idForm=${form.id}">
+                                        <button class="btn btn-success btn-commander"><span class="glyphicon  glyphicon-shopping-cart"></span> Commander</button>
+                                    </a>
+                                </li>
+                            </c:forEach>
+                        </ul>
                     </div>
                 </div>
             </div><!-- .col-md-12 close -->

@@ -14,16 +14,14 @@
             <param-value>controleurs.IHMSalleControlleur</param-value>
         </init-param>
         <init-param>
-
             <description>Servlet sous-controleur IHMCuisine</description>
             <param-name>IHMCuisine</param-name>
-            <param-value>controleurs.IHMCuisine</param-value>
+            <param-value>controleurs.IHMCuisineControleur</param-value>
         </init-param>
         <init-param>
             <description>controlleur ihm client</description>
             <param-name>ihmclient</param-name>
             <param-value>controleurs.IHMClientControleur</param-value>
-
         </init-param>
     </servlet>
     <servlet>
@@ -57,35 +55,34 @@
         <local>beansSession.BeanUserLocal</local>
         <ejb-link>restaurantXtier-ejb.jar#BeanUser</ejb-link>
     </ejb-local-ref>
-    
     <ejb-local-ref>
         <ejb-ref-name>BeanEmplacement</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
         <local>beansSession.BeanEmplacementLocal</local>
         <ejb-link>restaurantXtier-ejb.jar#BeanEmplacement</ejb-link>
     </ejb-local-ref>
-   
     <ejb-local-ref>
-
         <ejb-ref-name>BeanLigneCommande</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
         <local>beansSession.BeanLigneCommandeLocal</local>
         <ejb-link>restaurantXtier-ejb.jar#BeanLigneCommande</ejb-link>
     </ejb-local-ref>
-   
-    
-   
     <ejb-local-ref>
         <ejb-ref-name>BeanCategorie</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
         <local>beansSession.BeanCategorieLocal</local>
         <ejb-link>restaurantXtier-ejb.jar#BeanCategorie</ejb-link>
-
     </ejb-local-ref>
     <ejb-local-ref>
         <ejb-ref-name>BeanFormule</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
         <local>beansSession.BeanFormuleLocal</local>
         <ejb-link>restaurantXtier-ejb.jar#BeanFormule</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>BeanCommande</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beansSession.BeanCommandeLocal</local>
+        <ejb-link>restaurantXtier-ejb.jar#BeanCommande</ejb-link>
     </ejb-local-ref>
 </web-app>
