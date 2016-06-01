@@ -7,6 +7,7 @@ import beanEntite.Utilisateur;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -39,14 +40,14 @@ public class BeanCommande implements BeanCommandeLocal {
     }
     
     @Override
-    public Commande createCommande(ArrayList<Emplacement> emps, Utilisateur ut01) {
+    public Commande createCommande(Collection<Emplacement> emps, Utilisateur ut01) {
         Commande com = new Commande();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         com.setDate(date);
         com.setEmplacements(emps);
         com.setStatut("en cours");
-        com.setNumero(createNumeroCommande());
+        //com.setNumero(createNumeroCommande());
         com.setUtilisateur(ut01);
         return com;
     }
@@ -55,11 +56,16 @@ public class BeanCommande implements BeanCommandeLocal {
     public String createNumeroCommande() {
         String req = "Select c from Commande c order by c.id desc";
         Query qr = em.createQuery(req);
-        Commande last = (Commande) qr.setMaxResults(1).getResultList();
-        int numero = Integer.parseInt(last.getNumero().substring(1, last.getNumero().length())) + 1;
+        List<Commande> com = qr.getResultList();
+        Commande lastCommande = null;
+        for (Commande c : com){
+            lastCommande = c;
+        }
+        int numero = Integer.parseInt(lastCommande.getNumero().substring(1, lastCommande.getNumero().length())) + 1;
         return Integer.toString(numero);
-        
     }
+    
+    
     
     @Override
     public void sauvegarderCommande(Commande commande) {

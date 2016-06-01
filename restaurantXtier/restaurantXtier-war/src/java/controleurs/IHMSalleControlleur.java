@@ -7,27 +7,35 @@ import beansSession.BeanCommandeLocal;
 import beansSession.BeanEmplacementLocal;
 import beansSession.BeanUserLocal;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 public class IHMSalleControlleur implements Serializable, SousControleurInterface {
-
+    
     BeanCommandeLocal beanCommande = lookupBeanCommandeLocal();
     BeanEmplacementLocal beanEmplacement = lookupBeanEmplacementLocal();
-
+    
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-
+        
         HttpSession session = request.getSession();
-
+        
         String s1 = "accueil";
         String prefix = "include/";
         String suffix = ".jsp";
@@ -41,43 +49,46 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
         //Choix include en fonction de la ssSection
         //Création de la commande
         if ("createOrder".equalsIgnoreCase(inc)) {
-            ArrayList<Emplacement> emps = new ArrayList<>();
+            Collection<Emplacement> emps = new ArrayList<>();
             Utilisateur ut01 = (Utilisateur) session.getAttribute("user");
-            int i = 1;
-            while (request.getParameter("table_" + Integer.toString(i)) != null) {
-                Emplacement emp = beanEmplacement.selectEmplacementById(Long.parseLong(request.getParameter("table_" + Integer.toString(i))));
+            String[] emplacements = request.getParameterValues("table");
+            for (String s : emplacements) {
+                Emplacement emp = beanEmplacement.selectEmplacementById(Long.parseLong(s));
                 emp.setStatut("occupe");
                 emps.add(emp);
-                i++;
+                beanEmplacement.updateEmplacement(emp);
             }
+            
             Commande c01 = beanCommande.createCommande(emps, ut01);
             beanCommande.sauvegarderCommande(c01);
             request.setAttribute("commande", c01);
-            JOptionPane.showMessageDialog(null, "Commande crée!");    
+            
+            List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
+            request.setAttribute("listEmplacement", listEmplacement);
+            
         }
+
         //Création de la commande
         if ("showOrder".equalsIgnoreCase(inc)) {
             Commande c01 = beanCommande.selectCommandeById(Long.valueOf(request.getParameter("id")));
             request.setAttribute("commande", c01);
             s1 = "commande";
-       
+            
         }
-        
-        
 
         //Affichage Formules
         if ("for".equalsIgnoreCase(inc)) {
-
+            
         }
-
+        
         if ("com".equalsIgnoreCase(inc)) {
-
+            
         }
-
+        
         request.setAttribute("contentInc", prefix + s1 + suffix);
         return inc1;
     }
-
+    
     private BeanEmplacementLocal lookupBeanEmplacementLocal() {
         try {
             Context c = new InitialContext();
@@ -87,7 +98,7 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
             throw new RuntimeException(ne);
         }
     }
-
+    
     private BeanCommandeLocal lookupBeanCommandeLocal() {
         try {
             Context c = new InitialContext();
@@ -97,5 +108,5 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
             throw new RuntimeException(ne);
         }
     }
-
+    
 }

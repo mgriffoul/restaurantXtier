@@ -5,6 +5,7 @@ import beanEntite.Emplacement;
 import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -25,7 +26,7 @@ public interface BeanCommandeLocal {
 
     public Commande newCommande();
 
-    public Commande createCommande(ArrayList<Emplacement> emps, Utilisateur ut01);
+    public Commande createCommande(Collection<Emplacement> emps, Utilisateur ut01);
 
     public String createNumeroCommande();
     
