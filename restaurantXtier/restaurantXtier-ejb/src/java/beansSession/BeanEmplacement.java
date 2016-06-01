@@ -16,7 +16,7 @@ public class BeanEmplacement implements BeanEmplacementLocal {
 
     @Override
     public List<Emplacement> selectAllEmplacement() {
-        String req = "Select e from Emplacement e";
+        String req = "Select e from Emplacement e order by e.numero asc";
         Query qr = em.createQuery(req);
         List<Emplacement> listEmplacement = qr.getResultList();
         return listEmplacement;
