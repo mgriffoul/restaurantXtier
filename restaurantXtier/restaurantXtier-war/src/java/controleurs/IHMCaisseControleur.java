@@ -39,22 +39,26 @@ public class IHMCaisseControleur implements SousControleurInterface {
         //URL par défaut
         String inc1 = "include/IHM_Caisse/index";
         
-        String inc = request.getParameter("inc");
+        String inc = request.getParameter("incCaisse");
 
         System.out.println(inc);
         if("ticket".equalsIgnoreCase(inc)){
             String nCom = request.getParameter("nCom");
             Commande c = beanCommande.selectCommandeByNumero(nCom);
-            System.out.println(c);
+            System.out.println(c.getNumero()+"//"+c.getStatut());
             System.out.println("------------------");
             System.out.println(nCom);
             Ticket t = new Ticket();
             t.setCommande(c);
-            request.setAttribute("affcom", c);
-            inc1= "include/IHM_Caisse/index.jsp";
+            request.setAttribute("affcom", t);
+            System.out.println("DANS AFFICHAGE TICKET");
+            s1= "ticket";
+            System.out.println("ticket = "+request.getAttribute("affcom"));
+            System.out.println(t.getCommande().getNumero());
         }
-        
-        request.setAttribute("contentInc", prefix + s1 + suffix);
+        System.out.println("inc1 = "+inc1);
+        request.setAttribute("contentInc", prefix+s1+suffix);
+        System.out.println("contentInc "+request.getAttribute("contentInc"));
         return inc1;
     }
 
