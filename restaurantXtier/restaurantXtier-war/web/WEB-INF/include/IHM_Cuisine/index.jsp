@@ -9,25 +9,70 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="cuisine-css/cuisine.css">  
-        
+
         <!-- bootstrap.min css -->
         <link rel="stylesheet" href="client-template/css/bootstrap.min.css">
         <style type="text/css">body {background-color: #DCDCDC;  }</style>
         <title>JSP Cuisine</title>
+        <script language="javascript" type="text/javascript">
+            URL = "MaPage.php.html.txt.xml...etc";
+            function rafraichir() {
+                if (window.XMLHttpRequest)
+                    xhr = new XMLHttpRequest();
+                else if (window.ActiveXObject)
+                    xhr = new ActiveXObject('Microsoft.XMLHTTP');
+                else
+                    alert('JavaScript : votre navigateur ne supporte pas les objets XMLHttpRequest...');
+                xhr.open('GET', URL, true);
+                xhr.onreadystatechange = ajaxReponse;
+                xhr.send(null);
+            }
+
+            function ajaxReponse() {
+                if (xhr.readyState == 4) {
+                    document.getElementById("page", true).innerHTML = xhr.responseText; // ici sa s'incrute dans la div <div id="page"></div> mais peut etre <td id="page">  ... Ici c'est L'id l'important
+                    var timer = setTimeout("rafraichir()", 25000); // rafraichie toute les 25secs
+                }
+            }
+        </script>
+
+
+
+
+
+
     </head>
     <body>
-<div>
+        <div>
             <h1 align="center"><FONT size="30pt">Interface Cuisine</font></h1>
             <hr>
         </div>
-        <!--affichage jsp en fonction de la selection -->
-        <jsp:include page="${contentInc}" />
 
-        
-        
+        <div class="container">
+            <div class="row" >
+
+                <c:if test="${empty ssSec }" >
+                    <jsp:include page="include/accueil.jsp" />
+                </c:if>
+                <c:if test="${not empty ssSec }" >
+
+                    <div id="Affichage">
+                        <!--affichage jsp en fonction de la selection -->
+                        <jsp:include page="${contentInc}" />
+
+
+                    </div>
+                </c:if>
+            </div>
+        </div>
+        <div>
+            <a href=index?section=IHMCuisine&inc=${ssSec}&meth=actu onclick="actualiserDiv('${ssSec}');
+                    return false;" >Actualiser</a>
+        </div>
+
         <!--FOOTER -->
         <jsp:include page="include/footer.jsp" />
-<!-- Js -->
+        <!-- Js -->
         <script src="client-template/js/vendor/modernizr-2.6.2.min.js"></script>
         <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>

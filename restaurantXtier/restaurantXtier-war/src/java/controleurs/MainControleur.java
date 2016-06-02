@@ -48,13 +48,15 @@ public class MainControleur extends HttpServlet {
         String url = "/include/login";
         String section = request.getParameter("section");
 
- 
+        System.out.println(">>>>>>>>>>>>>>>>>"+ section);
         if (section != null && mp.containsKey(section)) {
+            System.out.println("Coucou");
             SousControleurInterface sc = mp.get(section);
             url = sc.execute(request, response);         
         }
         
         url = response.encodeURL(prefixe + url + suffixe);
+        System.out.println(">>>>>>>>url>>>>>>>>>"+ url);
         getServletContext().getRequestDispatcher(url).include(request, response);
     }
 

@@ -43,8 +43,8 @@ public class LoginControleur implements Serializable, SousControleurInterface {
                     request.setAttribute("contentInc", s);
                     return "include/IHM_Cuisine/index";
                 case 2:
-                    String inc = "include/accueil.jsp";
-                    request.setAttribute("contentInc", inc);
+                    String string = "include/accueil.jsp";
+                    request.setAttribute("contentInc", string);
                     List<Commande> c = beanCommande.selectCommandeTerminee();
                     request.setAttribute("commandefinie", c);
                     return "include/IHM_Caisse/index";

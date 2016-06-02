@@ -17,14 +17,14 @@ function getXmlHttpRequest() {
 }
 
 function afficherCommande(num){
-    var url = "index?section=IHMCaisse?inc=ticket&nCom="+num;
+    var url = "index?section=IHMCaisse&incCaisse=ticket&nCom="+num;
     // alert(url);
     var xhr = getXmlHttpRequest();
     xhr.onreadystatechange = function (){
         if(xhr.readyState == 4 && xhr.status == 200){
             var maDiv = document.getElementById("ticket");
             var reponse = xhr.responseText;
-            // alert(reponse);
+            //alert(reponse);
             maDiv.innerHTML = reponse;
         }
     };
