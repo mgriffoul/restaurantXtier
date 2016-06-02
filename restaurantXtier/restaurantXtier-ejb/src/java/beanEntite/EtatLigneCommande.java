@@ -26,8 +26,8 @@ public class EtatLigneCommande implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private Integer ordre;
-    private String etat; // 1-Attente 2-En préparattion 3- Prêt 4- Servi
+    private Integer ordre;// 1-Attente 2-En préparattion 3- Prêt 4- Servi
+    private String etat; 
     
     // association
     @OneToMany (mappedBy = "etatLc")

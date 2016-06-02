@@ -97,9 +97,11 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
     public LigneCommande creerLigneDeCommandeArticle(Long idArticle) {
         Article a = em.find(Article.class, idArticle);
         
-        String req = "select e from EtatLigneCommande where e.etat=1";
+        String req = "select e from EtatLigneCommande e where e.ordre=1";
         Query qr = em.createQuery(req);
         EtatLigneCommande elc = (EtatLigneCommande) qr.getSingleResult();
+        System.out.println("ELC dans BEAN LIGNE COMM "+elc);
+        
         
         LigneCommande lc = new LigneCommande();
         lc.setArticle(a);

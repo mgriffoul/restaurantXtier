@@ -17,18 +17,17 @@ function getXmlHttpRequest() {
     return xhr;
 }
 
-function modifierDivUn(idDomElement){
+function refAjx(idDom, idArticle){
+   alert(idDom+" "+idArticle);
    
-   
-    var url = "Controleur?section=horaire&origine=ajax";
-    alert(url);
+    var url = "index?section=actionCom&act=add&id="+idArticle;
+    
     var xhr = getXmlHttpRequest();
     
     xhr.onreadystatechange = function (){
         if(xhr.readyState == 4 && xhr.status == 200){
-            var maDiv = document.getElementById(idDomElement);
+            var maDiv = document.getElementById(idDom);
             var response = xhr.responseText;
-            alert(response);
             maDiv.innerHTML = response;
         }
     };

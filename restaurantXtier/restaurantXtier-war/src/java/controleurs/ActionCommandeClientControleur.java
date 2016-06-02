@@ -1,7 +1,8 @@
-
 package controleurs;
 
+import beanEntite.Commande;
 import beanEntite.LigneCommande;
+import beanEntite.Utilisateur;
 import beansSession.BeanCommandeLocal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,18 +14,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 //actionCom
-public class ActionCommandeClientControleur implements SousControleurInterface{
-    
+public class ActionCommandeClientControleur implements SousControleurInterface {
+
     BeanCommandeLocal beanCommande = lookupBeanCommandeLocal();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        
-        
-        
+
         HttpSession session = request.getSession();
-        
-         //********
+        System.out.println("DANS CONTROLEUR");
+        //********
         //Preparation des URL 
         //********************
         String s1 = "carte";
@@ -33,16 +32,47 @@ public class ActionCommandeClientControleur implements SousControleurInterface{
 
         //URL par défaut
         String url = "include/IHM_Client/index";
-        
+        //recuperation action
         String act = request.getParameter("act");
+
+        //Recuperation commande et utilistauer session
+        Commande commande = (Commande) session.getAttribute("commande");
+        System.out.println(">>>><<<<>>><<<<Commande : "+commande);
+        Utilisateur util = (Utilisateur) session.getAttribute("user");
+        System.out.println(">>>><<<<>>><<<<Utilisateur : "+util);
         
-        if("add".equalsIgnoreCase(act)){
-            
-            Long id = Long.valueOf(request.getParameter("id"));
-            
+        for (LigneCommande lc : commande.getLignesCommandes()) {
+            System.out.println("LC AVANT>>>>>>>>>>>" + lc);
         }
-        
-         request.setAttribute("contentInc", prefix + s1 + suffix);
+
+        if (util != null) {
+            if (util.getRole() == 4) {
+                if (commande != null) {
+
+                    if ("add".equalsIgnoreCase(act)) {
+                        System.out.println("++++++++++add=act");
+                        Long id = Long.valueOf(request.getParameter("id"));
+                        beanCommande.ajouterLigneDeCommande(commande, id);
+                        for (LigneCommande lc : commande.getLignesCommandes()) {
+                            System.out.println("LC>>>>>>>>>>>" + lc);
+                        }
+                        
+                        return prefix+"IHM_Client/include/header";
+                        
+                    }
+
+                } else {//commande!=null
+                    url = "include/logclient";
+                }
+            } else {//role!=4
+                request.setAttribute("message", "Vous n'avez pas les droits pour accéder à cet interface");
+                url = "include/login";
+            }
+        } else {//util == null
+            request.setAttribute("message", "Vous devez vous identifier pour accéder à cet interface");
+            url = "include/login";
+        }
+        request.setAttribute("contentInc", prefix + s1 + suffix);
         return url;
     }
 
@@ -55,5 +85,5 @@ public class ActionCommandeClientControleur implements SousControleurInterface{
             throw new RuntimeException(ne);
         }
     }
-    
+
 }

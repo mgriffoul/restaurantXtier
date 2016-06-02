@@ -34,5 +34,5 @@ public interface BeanCommandeLocal {
      
      public List<Commande> selectCommandeEnCours(); 
     
-
+     public void ajouterLigneDeCommande(Commande co, Long idArticle);
 }

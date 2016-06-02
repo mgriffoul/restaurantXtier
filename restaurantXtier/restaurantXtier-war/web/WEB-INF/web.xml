@@ -36,7 +36,7 @@
         <init-param>
             <description>controleur d'action sur la commande</description>
             <param-name>actionCom</param-name>
-            <param-value>controleurs.ActionCommandeControleur</param-value>
+            <param-value>controleurs.ActionCommandeClientControleur</param-value>
         </init-param>
     </servlet>
     <servlet>
