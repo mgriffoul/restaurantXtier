@@ -17,15 +17,18 @@ function getXmlHttpRequest() {
     return xhr;
 }
 
-function actualiserDiv(){
-    var url = "index?section=IHMCuisine&inc=etat"; //changer l'url
-    // alert(url);
+function actualiserDiv(ssSec){
+    var url = "index?section=IHMCuisine&inc="+ssSec+"&meth=actu" //
+    
+    alert(url);
     var xhr = getXmlHttpRequest();
     xhr.onreadystatechange = function (){
+//        alert("avant le if")
         if(xhr.readyState == 4 && xhr.status == 200){
+//            alert("on est dans le if")
             var maDiv = document.getElementById("Affichage");
             var reponse = xhr.responseText;
-            // alert(reponse);
+            //alert(reponse);
             maDiv.innerHTML = reponse;
         }
     };

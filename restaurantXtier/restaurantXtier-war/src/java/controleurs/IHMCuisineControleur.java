@@ -31,7 +31,9 @@ public class IHMCuisineControleur implements SousControleurInterface {
 
         //Recupération de la sous section
         String ssSec = request.getParameter("inc");
-        String ssSec2=request.getParameter("meth");
+        System.out.println("inc debut : "+ssSec);
+        String ssSec2 = request.getParameter("meth");
+        System.out.println("meth debut : "+ssSec2);
 
         //Choix include en fonction de la ssSection
         //Tri par plat
@@ -43,17 +45,24 @@ public class IHMCuisineControleur implements SousControleurInterface {
             request.setAttribute("servie", ligneCommandes2);
             message = "triées par plat";
             request.setAttribute("message", message);
+            request.setAttribute("ssSec", ssSec);
         }
         //Tri par etat
         if ("etat".equalsIgnoreCase(ssSec)) {
-            s1 = "etat";
+                s1 = "etat";
             List<LigneCommande> ligneCommandes = beanLigneCommande.selectAllLigneCommandeTriByEtat();
             request.setAttribute("etat", ligneCommandes);
             List<LigneCommande> ligneCommandes2 = beanLigneCommande.selectLigneCommandeServies();
             request.setAttribute("servie", ligneCommandes2);
             message = "triées par état";
             request.setAttribute("message", message);
-        }
+            request.setAttribute("ssSec", ssSec);
+
+            }
+                
+            
+
+        
         //Tri par chronologie
         if ("chr".equalsIgnoreCase(ssSec)) {
             s1 = "chr";
@@ -63,6 +72,7 @@ public class IHMCuisineControleur implements SousControleurInterface {
             request.setAttribute("servie", ligneCommandes2);
             message = "triées par chronologie";
             request.setAttribute("message", message);
+            request.setAttribute("ssSec", ssSec);
         }
         //Tri par emplacement
         if ("table".equalsIgnoreCase(ssSec)) {
@@ -73,6 +83,7 @@ public class IHMCuisineControleur implements SousControleurInterface {
             request.setAttribute("servie", ligneCommandes2);
             message = "triées par table";
             request.setAttribute("message", message);
+            request.setAttribute("ssSec", ssSec);
         }
 
         //Tri par catégorie
@@ -84,18 +95,28 @@ public class IHMCuisineControleur implements SousControleurInterface {
             request.setAttribute("servie", ligneCommandes2);
             message = "triées par catégorie";
             request.setAttribute("message", message);
+            request.setAttribute("ssSec", ssSec);
         }
         //appel méthode changement d'etat
-        if ("change".equalsIgnoreCase(ssSec2)){
-            s1=request.getParameter("inc");
-        //récupération de l'id de la LC 
+        if ("change".equalsIgnoreCase(ssSec2)) {
+            System.out.println("test change ssSec2 = "+ssSec2);
+            s1 = request.getParameter("inc");
+            //récupération de l'id de la LC 
             String s = request.getParameter("idLc");
-            Long idLc=Long.parseLong(s);
-         // appel de la méthode avec idLc en attribut
-            LigneCommande ligneCommande=beanLigneCommande.changerEtatLigneCommande(idLc);
-            
-            
+            Long idLc = Long.parseLong(s);
+            // appel de la méthode avec idLc en attribut
+            LigneCommande ligneCommande = beanLigneCommande.changerEtatLigneCommande(idLc);
+
         }
+        // actualisation
+        if("actu".equalsIgnoreCase(ssSec2)){
+            System.out.println("test actu ssSec2 = "+ssSec2);
+            s1=request.getParameter("inc");
+                    
+                    System.out.println("2e if, inc1 = "+inc1);
+                    System.out.println("url : "+prefix + s1 + suffix);
+                    
+                }
 
         request.setAttribute("contentInc", prefix + s1 + suffix);
         return inc1;
