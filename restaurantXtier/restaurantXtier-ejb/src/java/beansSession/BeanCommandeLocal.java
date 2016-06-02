@@ -26,13 +26,15 @@ public interface BeanCommandeLocal {
 
     public Commande createCommande(Collection<Emplacement> emps, Utilisateur ut01);
 
-    public String createNumeroCommande();
+    public String createNumeroCommande(long id);
     
     public List<Commande> selectCommandeByDate(String date);
     
      public Commande selectCommandeByNumero(String numero);
      
      public List<Commande> selectCommandeEnCours(); 
+     
+     public Commande selectCommandeByNumeroEmplacement(String numero);
     
 
 }

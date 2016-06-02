@@ -18,8 +18,6 @@ import javax.servlet.http.HttpSession;
 
 public class LoginControleur implements Serializable, SousControleurInterface {
 
-//    BeanLigneCommandeLocal beanLigneCommande = lookupBeanLigneCommandeLocal();
-
     BeanEmplacementLocal beanEmplacement = lookupBeanEmplacementLocal();
 
     beansSession.BeanUserLocal BeanUser = lookupBeanUserLocal();
@@ -51,14 +49,12 @@ public class LoginControleur implements Serializable, SousControleurInterface {
                     request.setAttribute("commandefinie", c);
                     return "include/IHM_Caisse/index";
                 case 3:
-                    String salle_s1 = "include/accueil.jsp"; 
+                    String salle_s1= "include/accueil.jsp"; 
                     List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
                     request.setAttribute("listEmplacement", listEmplacement);
                     List<Commande> listCommandeEnCours = beanCommande.selectCommandeEnCours();
                     request.setAttribute("listCommandeEnCours", listCommandeEnCours);
-                    request.setAttribute("contentInc", salle_s1);
-                    request.setAttribute("serveur", ut01);
-                
+                    request.setAttribute("contentInc", salle_s1);               
                     return "include/IHM_Salle/index";
                 case 4:
                     List<Commande> commandes = beanCommande.selectCommandeEnCours();             

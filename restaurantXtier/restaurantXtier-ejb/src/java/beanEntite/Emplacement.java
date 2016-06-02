@@ -13,10 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.*;
 
-/**
- *
- * @author cdi211
- */
 @Entity
 public class Emplacement implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -33,14 +29,22 @@ public class Emplacement implements Serializable {
     }
     @Column(unique = true)
     private Integer numero;
-    
     private String statut;
     private Integer nbCouvert;
-
     
+    @Transient
+    private Commande commandeEnCour;
+
+    public void setCommandeEnCour(Commande commandeEnCour) {
+        this.commandeEnCour = commandeEnCour;
+    }
+
+    public Commande getCommandeEnCour() {
+        return commandeEnCour;
+    }
+
     @ManyToMany(mappedBy = "emplacements")
     private Collection<Commande>commandes;
-    
     
     public Emplacement() {
         commandes = new ArrayList<>();
@@ -84,12 +88,6 @@ public class Emplacement implements Serializable {
     public void setCommandes(Collection<Commande> commandes) {
         this.commandes = commandes;
     }
-    
-    
-    
-    
-    
-    
     
     @Override
     public int hashCode() {

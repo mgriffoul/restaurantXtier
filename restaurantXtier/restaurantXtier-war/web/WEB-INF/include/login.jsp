@@ -11,7 +11,7 @@
     </head>
     <body>
         <div class="login-form-1">
-            <form id="login-form" class="text-left" action="index">
+            <form id="login-form" class="text-left" action="index" method="post">
                 <div class="login-form-main-message"></div>
                 <div class="main-login-form">
                     <div class="login-group">

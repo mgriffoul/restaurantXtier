@@ -5,26 +5,18 @@ import beanEntite.Emplacement;
 import beanEntite.Utilisateur;
 import beansSession.BeanCommandeLocal;
 import beansSession.BeanEmplacementLocal;
-import beansSession.BeanUserLocal;
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 public class IHMSalleControlleur implements Serializable, SousControleurInterface {
     
@@ -57,12 +49,10 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
                 emp.setStatut("occupe");
                 emps.add(emp);
                 beanEmplacement.updateEmplacement(emp);
-            }
-            
+            }     
             Commande c01 = beanCommande.createCommande(emps, ut01);
             beanCommande.sauvegarderCommande(c01);
             request.setAttribute("commande", c01);
-            
             List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
             request.setAttribute("listEmplacement", listEmplacement);
             

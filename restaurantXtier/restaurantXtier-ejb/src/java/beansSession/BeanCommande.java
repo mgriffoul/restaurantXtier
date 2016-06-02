@@ -6,6 +6,7 @@ import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -17,19 +18,13 @@ import javax.persistence.Query;
 
 @Stateless
 public class BeanCommande implements BeanCommandeLocal {
-    
-   
-    
+
     @EJB
     private BeanLigneCommandeLocal beanLigneCommande;
-    
-    
-    
+
     @PersistenceContext(unitName = "restaurantXtier-ejbPU")
     private EntityManager em;
-    
-    
-    
+
     @Override
     public Commande selectCommandeById(Long id) {
         Commande commande = em.find(Commande.class, id);
@@ -39,15 +34,24 @@ public class BeanCommande implements BeanCommandeLocal {
         List<LigneCommande> lgnCommandes = qr.getResultList();
         commande.setLignesCommandes(lgnCommandes);
         return commande;
-        
+
     }
-    
+
+    @Override
+    public Commande selectCommandeByNumeroEmplacement(String numero) {
+        String req = "Select e.commandes from Emplacement e where e.numero = :paramnumero";
+        Query qr = em.createQuery(req);
+        qr.setParameter("paramnumero", numero);
+        Commande commande = (Commande) qr.getSingleResult();
+        return commande;
+    }
+
     @Override
     public Commande newCommande() {
         Commande c = new Commande();
         return c;
     }
-    
+
     @Override
     public Commande createCommande(Collection<Emplacement> emps, Utilisateur ut01) {
         Commande com = new Commande();
@@ -56,31 +60,25 @@ public class BeanCommande implements BeanCommandeLocal {
         com.setDate(date);
         com.setEmplacements(emps);
         com.setStatut("en cours");
-        //com.setNumero(createNumeroCommande());
         com.setUtilisateur(ut01);
         return com;
     }
-    
+
     @Override
-    public String createNumeroCommande() {
-        String req = "Select c from Commande c order by c.id desc";
-        Query qr = em.createQuery(req);
-        List<Commande> com = qr.getResultList();
-        Commande lastCommande = null;
-        for (Commande c : com){
-            lastCommande = c;
-        }
-        int numero = Integer.parseInt(lastCommande.getNumero().substring(1, lastCommande.getNumero().length())) + 1;
-        return Integer.toString(numero);
+    public String createNumeroCommande(long id) {
+        String year = Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
+        return "C" + year + "00000" + Long.toString(id);
     }
-    
-    
-    
+
     @Override
     public void sauvegarderCommande(Commande commande) {
         em.persist(commande);
+        em.flush();
+        String numeroCommande = createNumeroCommande(commande.getId());
+        commande.setNumero(numeroCommande);
+        em.merge(commande);
     }
-    
+
     @Override
     public List<Commande> selectCommandeByDate(String date) {
         String req = "Select c from Commande c where c.date = :paramdate";
@@ -89,7 +87,7 @@ public class BeanCommande implements BeanCommandeLocal {
         List<Commande> com = qr.getResultList();
         return com;
     }
-    
+
     @Override
     public Commande selectCommandeByNumero(String numero) {
         String req = "Select c from Commande c where c.numero = :paramnumero";
@@ -98,7 +96,7 @@ public class BeanCommande implements BeanCommandeLocal {
         Commande com = (Commande) qr.getSingleResult();
         return com;
     }
-    
+
     @Override
     public List<Commande> selectCommandeTerminee() {
         String req = "Select c from Commande c where c.statut=:paramstatut";
@@ -114,7 +112,7 @@ public class BeanCommande implements BeanCommandeLocal {
         }
         return liste;
     }
-    
+
     @Override
     public List<Emplacement> selectEmplacementByIdCommande(Long id) {
         String req = "Select c.emplacements from Commande c where c.id=:paramid";
@@ -123,7 +121,7 @@ public class BeanCommande implements BeanCommandeLocal {
         List<Emplacement> emplacements = qr.getResultList();
         return emplacements;
     }
-    
+
     @Override
     public String selectNumCommandeByIdCommande(Long id) {
         String req = "Select c.numero from Commande c where c.id=:paramid";
@@ -132,7 +130,7 @@ public class BeanCommande implements BeanCommandeLocal {
         String numero = (String) qr.getSingleResult();
         return numero;
     }
-    
+
     @Override
     public List<Integer> selectNumEmplacementById(Long id) {
         String req = "Select e.numero from Emplacement e where e.id=:paramid";
@@ -155,6 +153,4 @@ public class BeanCommande implements BeanCommandeLocal {
         return commandes;
     }
 
-    
-    
 }
