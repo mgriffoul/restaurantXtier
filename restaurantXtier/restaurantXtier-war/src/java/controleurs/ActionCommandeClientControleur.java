@@ -52,7 +52,7 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
                     if ("add".equalsIgnoreCase(act)) {
                         System.out.println("++++++++++add=act");
                         Long id = Long.valueOf(request.getParameter("id"));
-                        beanCommande.ajouterLigneDeCommande(commande, id);
+                        beanCommande.ajouterLigneDeCommande(commande, id); 
                         for (LigneCommande lc : commande.getLignesCommandes()) {
                             System.out.println("LC>>>>>>>>>>>" + lc);
                         }

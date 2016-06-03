@@ -18,7 +18,7 @@ function getXmlHttpRequest() {
 }
 
 function actualiserDiv(ssSec){
-    var url = "index?section=IHMCuisine&inc="+ssSec+"&meth=actu" //
+    var url = "WEB-INF/include/IHM_Cuisine/include/"+ssSec+".jsp" //
     
     alert(url);
     var xhr = getXmlHttpRequest();
