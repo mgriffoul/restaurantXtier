@@ -40,8 +40,7 @@
             </div>
         </div>
         <div>
-            <a href=index?section=IHMCuisine&inc=${ssSec}&meth=actu onclick="actualiserDiv('${ssSec}');
-                    return false;" >Actualiser</a>
+            <a href=index?section=IHMCuisine&inc=${ssSec}&meth=actu onclick="actualiserDiv('${ssSec}');return false;" >Actualiser</a>
         </div>
 
         <!--FOOTER -->

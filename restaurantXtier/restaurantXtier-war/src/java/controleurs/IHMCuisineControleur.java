@@ -47,7 +47,7 @@ public class IHMCuisineControleur implements SousControleurInterface {
         }
         //Tri par etat
         if ("etat".equalsIgnoreCase(ssSec)) {
-            s1 = "etat";
+            System.out.println("==== on entre dans Etat ==== ");
             List<LigneCommande> ligneCommandes = beanLigneCommande.selectAllLigneCommandeTriByEtat();
             request.setAttribute("etat", ligneCommandes);
             List<LigneCommande> ligneCommandes2 = beanLigneCommande.selectLigneCommandeServies();
@@ -58,12 +58,18 @@ public class IHMCuisineControleur implements SousControleurInterface {
 
             // actualisation
             String ssSec2 = request.getParameter("meth");
-            System.out.println("test : "+ssSec2);
+            System.out.println("test Meth : "+ssSec2);
             if ("actu".equalsIgnoreCase(ssSec2)) {
-                s1 = "etat";
+                System.out.println("==== on entre dans Etat/actu ==== ");
+//                s1 = "etat";
                 System.out.println("url : " + prefix + s1 + suffix);
+                inc1= "include/IHM_Cuisine/include/etat";
+                System.out.println("inc1 = "+inc1);
+                return inc1;
 
             }
+            s1 = "etat";
+            System.out.println("=== fin etat ======");
 
         }
 
@@ -108,7 +114,9 @@ public class IHMCuisineControleur implements SousControleurInterface {
             s1 = request.getParameter("inc");
             //récupération de l'id de la LC 
             String s = request.getParameter("idLc");
+            System.out.println("s : "+s);
             Long idLc = Long.parseLong(s);
+            System.out.println("idLc : "+idLc);
             // appel de la méthode avec idLc en attribut
             LigneCommande ligneCommande = beanLigneCommande.changerEtatLigneCommande(idLc);
 
