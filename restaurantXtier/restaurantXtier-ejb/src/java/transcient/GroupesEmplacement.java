@@ -3,11 +3,10 @@ package transcient;
 import beanEntite.Emplacement;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Set;
 import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
+import javax.ejb.Singleton;
 
-@Stateless
+@Singleton
 public class GroupesEmplacement implements GroupeEmplacementLocal {
 
     private HashMap<Integer, Collection<Emplacement>> emplacements;
@@ -25,18 +24,23 @@ public class GroupesEmplacement implements GroupeEmplacementLocal {
         this.emplacements = emplacements;
     }
 
+    
     @Override
-    public Integer ajouterGroupe(Collection<Emplacement> emp) {
-        Integer y = null;
-        Set st = emplacements.keySet();
-        for (int i = 1; i < 500 && y == null; i++) {
-            if (!st.contains(i)) {
-                System.out.println("i==" + i);
-                y = i;
+    public Integer creerGroupe(Collection<Emplacement> emp) {
+       Integer y = null;
+        for (Emplacement e : emp) {
+            if(y==null){
+                y=e.getNumero();
+            }
+            if (e.getNumero() < y) {
+                y = e.getNumero();
             }
         }
         emplacements.put(y, emp);
         return y;
     }
+    
+  
+    
 
 }

@@ -9,6 +9,6 @@ import javax.ejb.Local;
 @Local
 public interface GroupeEmplacementLocal {
     
-    public Integer ajouterGroupe(Collection<Emplacement> emp);
+    public Integer creerGroupe(Collection<Emplacement> emp);
     
 }
