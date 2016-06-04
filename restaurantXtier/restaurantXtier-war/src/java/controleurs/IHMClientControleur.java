@@ -2,7 +2,6 @@ package controleurs;
 
 import beanEntite.Article;
 import beanEntite.Categorie;
-import beanEntite.Commande;
 import beanEntite.Formule;
 import beanEntite.Utilisateur;
 import beansSession.BeanCategorieLocal;
@@ -57,8 +56,8 @@ public class IHMClientControleur implements SousControleurInterface {
         System.out.println(">>>>>>>>>>>>>>>>>>UTIL : " + util);
 
         //Récupération de la commande lié à l'emplacement
-        Commande commande = (Commande) session.getAttribute("commande");
-        System.out.println(">>>>>>>>>>Commande :"+commande);
+        Integer cleCommande = (Integer) session.getAttribute("cleCommande");
+        System.out.println(">>>>>>>>>>Commande :"+cleCommande);
         
         //Test de l'utilisateur
         if (util != null) {
@@ -66,7 +65,7 @@ public class IHMClientControleur implements SousControleurInterface {
             if (util.getRole() == 4) {
 
                 //Test de la commande
-                if (commande != null) {
+                if (cleCommande != null) {
 
                 //Choix include en fonction de la ssSection
                     //LaCarte

@@ -6,7 +6,7 @@
         <title>LoginClient</title>  
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="css/login.css">
+        <link href="salle_template/css/login.css" rel="stylesheet" type="text/css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
@@ -43,8 +43,8 @@
                 <select class="form-control " name="com">
                     <option value="0" selected></option>
                     <c:forEach items="${commandes}" var="co">
-                        <option value="${co.id}">
-                            [<c:forEach items="${co.emplacements}" var="emp">${emp.numero}/</c:forEach>]
+                        <option value="${co.key}">
+                           Emplacement : ${co.key} [tables : <c:forEach items="${co.value.emplacements}" var="emp">${emp.numero}/</c:forEach>]
                             </option>
                     </c:forEach>
                 </select>

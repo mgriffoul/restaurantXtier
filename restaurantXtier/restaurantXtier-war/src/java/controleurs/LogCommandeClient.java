@@ -37,10 +37,10 @@ public class LogCommandeClient implements SousControleurInterface{
     
         
         //Recupération de la commande et ajout dans la session
-        Long idCommande = Long.valueOf(request.getParameter("com"));
-        Commande commande = beanCommande.selectCommandeById(idCommande);
+        Integer cleCommande = Integer.valueOf(request.getParameter("com"));
         
-        session.setAttribute("commande", commande);
+        
+        session.setAttribute("cleCommande", cleCommande);
         
         request.setAttribute("contentInc", prefix + s1 + suffix);
         return url;

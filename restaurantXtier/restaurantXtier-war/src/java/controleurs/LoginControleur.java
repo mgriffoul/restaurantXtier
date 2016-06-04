@@ -6,6 +6,8 @@ import beanEntite.Utilisateur;
 import beansSession.BeanCommandeLocal;
 import beansSession.BeanEmplacementLocal;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,8 +17,14 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import transcient.GroupeEmplacementLocal;
+import transcient.SalleLocal;
 
 public class LoginControleur implements Serializable, SousControleurInterface {
+    
+    GroupeEmplacementLocal groupesEmplacement = lookupGroupesEmplacementLocal();
+    
+    SalleLocal salle = lookupSalleLocal();
 
     BeanEmplacementLocal beanEmplacement = lookupBeanEmplacementLocal();
 
@@ -24,6 +32,8 @@ public class LoginControleur implements Serializable, SousControleurInterface {
 
     BeanCommandeLocal beanCommande = lookupBeanCommandeLocal();
 
+    
+    
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
@@ -57,7 +67,18 @@ public class LoginControleur implements Serializable, SousControleurInterface {
                     request.setAttribute("contentInc", salle_s1);               
                     return "include/IHM_Salle/index";
                 case 4:
-                    List<Commande> commandes = beanCommande.selectCommandeEnCours();             
+                    //jeu de test memoire
+                    List<Commande> coms = beanCommande.selectCommandeEnCours();        
+                    
+                    Utilisateur ut = BeanUser.getUserByCode("3332");
+                    
+                    for(Commande co : coms){
+                        Collection<Emplacement> emps = co.getEmplacements();
+                        salle.creerCommande(emps, ut);
+                    }                    
+                    
+                    HashMap<Integer, Commande> commandes = salle.getCommandes();
+                    
                     request.setAttribute("commandes", commandes);
                     return "include/IHM_Client/include/logclient";
                 case 5:
@@ -99,6 +120,26 @@ public class LoginControleur implements Serializable, SousControleurInterface {
             throw new RuntimeException(ne);
         }
             
+    }
+
+    private SalleLocal lookupSalleLocal() {
+        try {
+            Context c = new InitialContext();
+            return (SalleLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/Salle!transcient.SalleLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private GroupeEmplacementLocal lookupGroupesEmplacementLocal() {
+        try {
+            Context c = new InitialContext();
+            return (GroupeEmplacementLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/GroupesEmplacement!transcient.GroupeEmplacementLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
     }
 
 

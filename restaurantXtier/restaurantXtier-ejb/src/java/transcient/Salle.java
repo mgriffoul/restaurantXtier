@@ -8,6 +8,7 @@ import beanEntite.Utilisateur;
 import beansSession.BeanCommandeLocal;
 import java.util.Collection;
 import java.util.HashMap;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 
@@ -20,6 +21,35 @@ public class Salle implements SalleLocal {
     private BeanCommandeLocal beanCommande;
 
     private HashMap<Integer,Commande> commandes;
+
+    @PostConstruct
+    public void init(){
+        commandes = new HashMap<>();
+    }
+    
+    public GroupeEmplacementLocal getGroupesEmplacement() {
+        return groupesEmplacement;
+    }
+
+    public void setGroupesEmplacement(GroupeEmplacementLocal groupesEmplacement) {
+        this.groupesEmplacement = groupesEmplacement;
+    }
+
+    public BeanCommandeLocal getBeanCommande() {
+        return beanCommande;
+    }
+
+    public void setBeanCommande(BeanCommandeLocal beanCommande) {
+        this.beanCommande = beanCommande;
+    }
+
+    public HashMap<Integer, Commande> getCommandes() {
+        return commandes;
+    }
+
+    public void setCommandes(HashMap<Integer, Commande> commandes) {
+        this.commandes = commandes;
+    }
 
     
     
