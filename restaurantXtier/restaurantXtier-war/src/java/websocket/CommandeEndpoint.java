@@ -19,6 +19,7 @@ public class CommandeEndpoint {
     @OnMessage
     public void onMessage(WsCommandeAction action, Session session) {
         System.out.println(":::::::::::::Message reçu::::::::::::::");
+        
     }
 
     @OnOpen
@@ -31,6 +32,7 @@ public class CommandeEndpoint {
     public void onClose(Session peer) {
         System.out.println(">>>>>>CLOSE<<<<<<<<");
         peers.remove(peer);
+        
     }
 
     @OnError

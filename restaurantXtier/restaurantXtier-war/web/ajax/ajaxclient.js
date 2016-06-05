@@ -17,7 +17,28 @@ function getXmlHttpRequest() {
     return xhr;
 }
 
-function refAjx(idDom, idArticle){
+
+function refreshHeader(){
+    var url = "index?section=clientRefresh&refresh=header";
+    
+    var xhr = getXmlHttpRequest(); 
+    
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            var maDiv = document.getElementById("header");
+            var response = xhr.responseText;
+            maDiv.innerHTML = response;
+        }
+    };
+    
+    xhr.open("GET", url, true);
+    xhr.send(null);
+    
+}
+
+
+
+function addArticle(idDom, idArticle){
    alert(idDom+" "+idArticle);
    
     var url = "index?section=actionCom&act=add&id="+idArticle;

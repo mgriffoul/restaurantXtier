@@ -16,7 +16,7 @@ function onError() {
 
 websocket.onmessage = function() { onMessage(); };
 
-function sendText() {
+function sendOrder() {
     
     var json = JSON.stringify({
         "idArticle": 12,

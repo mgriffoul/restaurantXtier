@@ -153,6 +153,7 @@ public class BeanCommande implements BeanCommandeLocal {
         return commandes;
     }
 
+    
     @Override
     public void ajouterLigneDeCommande(Commande co, Long idArticle) {
         LigneCommande lc = beanLigneCommande.creerLigneDeCommandeArticle(idArticle);

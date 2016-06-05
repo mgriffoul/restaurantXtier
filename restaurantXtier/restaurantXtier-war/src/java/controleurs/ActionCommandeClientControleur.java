@@ -48,9 +48,6 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
         System.out.println(">>>><<<<>>><<<<Utilisateur : "+util);
         
         
-//        for (LigneCommande lc : commande.getLignesCommandes()) {
-//            System.out.println("LC AVANT>>>>>>>>>>>" + lc);
-//        }
 
         if (util != null) {
             if (util.getRole() == 4) {

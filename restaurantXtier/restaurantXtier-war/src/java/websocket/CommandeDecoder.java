@@ -52,6 +52,7 @@ public class CommandeDecoder implements Decoder.Text<WsCommandeAction>{
     @Override
     public void init(EndpointConfig ec) {
         System.out.println("init");
+        
     }
 
     @Override
