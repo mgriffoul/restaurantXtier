@@ -27,4 +27,8 @@ public interface SalleLocal {
 
     public void setCommandes(HashMap<Integer, Commande> commandes);
     
+    public Commande selectCommandeByCleCommande(Integer cleCommande);
+    
+    public void ajouterArticle (Integer cleCommande, Long idArticle);
+    
 }

@@ -4,8 +4,10 @@ package transcient;
 
 import beanEntite.Commande;
 import beanEntite.Emplacement;
+import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
 import beansSession.BeanCommandeLocal;
+import beansSession.BeanLigneCommandeLocal;
 import java.util.Collection;
 import java.util.HashMap;
 import javax.annotation.PostConstruct;
@@ -15,6 +17,8 @@ import javax.ejb.Singleton;
 
 @Singleton
 public class Salle implements SalleLocal {
+    @EJB
+    private BeanLigneCommandeLocal beanLigneCommande;
     @EJB
     private GroupeEmplacementLocal groupesEmplacement;
     @EJB
@@ -27,26 +31,32 @@ public class Salle implements SalleLocal {
         commandes = new HashMap<>();
     }
     
+    @Override
     public GroupeEmplacementLocal getGroupesEmplacement() {
         return groupesEmplacement;
     }
 
+    @Override
     public void setGroupesEmplacement(GroupeEmplacementLocal groupesEmplacement) {
         this.groupesEmplacement = groupesEmplacement;
     }
 
+    @Override
     public BeanCommandeLocal getBeanCommande() {
         return beanCommande;
     }
 
+    @Override
     public void setBeanCommande(BeanCommandeLocal beanCommande) {
         this.beanCommande = beanCommande;
     }
 
+    @Override
     public HashMap<Integer, Commande> getCommandes() {
         return commandes;
     }
 
+    @Override
     public void setCommandes(HashMap<Integer, Commande> commandes) {
         this.commandes = commandes;
     }
@@ -68,7 +78,21 @@ public class Salle implements SalleLocal {
     }
 
   
-    
+    //Récupération de la commande par la cle de commande
+    @Override
+    public Commande selectCommandeByCleCommande(Integer cleCommande) {
+        return this.commandes.get(cleCommande);
+    }
+
+    @Override
+    public void ajouterArticle(Integer cleCommande, Long idArticle) {
+        LigneCommande lc = beanLigneCommande.creerLigneDeCommandeArticle(idArticle);
+        Commande co = selectCommandeByCleCommande(cleCommande);
+        Collection<LigneCommande> listLc =  co.getLignesCommandes();
+        
+        
+        listLc.add(lc);
+    }
     
     
     

@@ -44,6 +44,7 @@ public class Commande implements Serializable {
 
     public Commande() {
         emplacements = new ArrayList<>();
+        lignesCommandes = new ArrayList<>();
     }
 
     public Commande(Collection<Emplacement> emplacements) {
