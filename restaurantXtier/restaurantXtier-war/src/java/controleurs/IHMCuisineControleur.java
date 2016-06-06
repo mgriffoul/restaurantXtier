@@ -49,11 +49,7 @@ public class IHMCuisineControleur implements SousControleurInterface {
             String ssSec2 = request.getParameter("meth");
             System.out.println("test Meth : "+ssSec2);
             if ("actu".equalsIgnoreCase(ssSec2)) {
-                System.out.println("==== on entre dans Etat/actu ==== ");
-//                s1 = "etat";
-                System.out.println("url : " + prefix + s1 + suffix);
                 inc1= "include/IHM_Cuisine/include/plat";
-                System.out.println("inc1 = "+inc1);
                 return inc1;
             }
             s1 = "plat";
@@ -72,18 +68,12 @@ public class IHMCuisineControleur implements SousControleurInterface {
 
             // actualisation via jsp etat
             String ssSec2 = request.getParameter("meth");
-            System.out.println("test Meth : "+ssSec2);
             if ("actu".equalsIgnoreCase(ssSec2)) {
-                System.out.println("==== on entre dans Etat/actu ==== ");
-//                s1 = "etat";
-                System.out.println("url : " + prefix + s1 + suffix);
                 inc1= "include/IHM_Cuisine/include/etat";
-                System.out.println("inc1 = "+inc1);
                 return inc1;
-
             }
             s1 = "etat";
-            System.out.println("=== fin etat ======");
+
 
         }
 
@@ -100,12 +90,8 @@ public class IHMCuisineControleur implements SousControleurInterface {
             
             // actualisation via jsp chr
             String ssSec2 = request.getParameter("meth");
-            System.out.println("test Meth : "+ssSec2);
             if ("actu".equalsIgnoreCase(ssSec2)) {
-                System.out.println("==== on entre dans Etat/actu ==== ");
-                System.out.println("url : " + prefix + s1 + suffix);
                 inc1= "include/IHM_Cuisine/include/chr";
-                System.out.println("inc1 = "+inc1);
                 return inc1;
             }
             s1 = "chr";   
@@ -124,13 +110,8 @@ public class IHMCuisineControleur implements SousControleurInterface {
             
             // actualisation via jsp table
             String ssSec2 = request.getParameter("meth");
-            System.out.println("test Meth : "+ssSec2);
             if ("actu".equalsIgnoreCase(ssSec2)) {
-                System.out.println("==== on entre dans Etat/actu ==== ");
-//                s1 = "etat";
-                System.out.println("url : " + prefix + s1 + suffix);
                 inc1= "include/IHM_Cuisine/include/table";
-                System.out.println("inc1 = "+inc1);
                 return inc1;
             }
             s1 = "table";
@@ -150,10 +131,7 @@ public class IHMCuisineControleur implements SousControleurInterface {
             String ssSec2 = request.getParameter("meth");
             System.out.println("test Meth : "+ssSec2);
             if ("actu".equalsIgnoreCase(ssSec2)) {
-                System.out.println("==== on entre dans Etat/actu ==== ");
-                System.out.println("url : " + prefix + s1 + suffix);
                 inc1= "include/IHM_Cuisine/include/cat";
-                System.out.println("inc1 = "+inc1);
                 return inc1;
             }
             s1 = "cat";
@@ -162,13 +140,10 @@ public class IHMCuisineControleur implements SousControleurInterface {
         //appel méthode changement d'etat
         String ssSec2 = request.getParameter("meth");
         if ("change".equalsIgnoreCase(ssSec2)) {
-            System.out.println("test change ssSec2 = " + ssSec2);
             s1 = request.getParameter("inc");
             //récupération de l'id de la LC 
             String s = request.getParameter("idLc");
-            System.out.println("s : "+s);
             Long idLc = Long.parseLong(s);
-            System.out.println("idLc : "+idLc);
             // appel de la méthode avec idLc en attribut
             LigneCommande ligneCommande = beanLigneCommande.changerEtatLigneCommande(idLc);
 

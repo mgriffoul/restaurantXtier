@@ -11,7 +11,7 @@
 
 <div class="col-md-8">
 
-    <center><h3>Commandes en cours <b><FONT color="red">${message}</font></b></h3></center>
+    <center><h3>Commandes en cours <b><FONT color="#FF8C00">${message}</font></b></h3></center>
     <center><table id="tab">
             <thead BGCOLOR="B0C4E0">
                 <tr height="40px" align="center">
