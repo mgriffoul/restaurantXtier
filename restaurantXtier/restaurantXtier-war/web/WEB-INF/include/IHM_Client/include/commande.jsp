@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
- <section id="price">
+<section id="price">
 
     <div class="container">
         <div class="row">
@@ -18,36 +18,87 @@
                     <div class="pricing-list ">
 
 
-                        
-                            <div class="title categorie-carte">
-                                <h3><span>Entrées</span></h3>
-                            </div>
-                            <c:forEach items="${entrees}" var="entree">
-                                
-                                    <ul>
-                                          
-                                            <li class="wow fadeInUp  article" data-wow-duration="300ms" data-wow-delay="300ms">
-                                                <div class="item ">
-                                                    <div class="item-title ">
-                                                        <h2>${entree.article.nom}</h2>
-                                                        <div class="border-bottom"></div>
-                                                        <span>${entree.prixHT} E</span>
-                                                    </div>
-                                                    <p>${entree.article.description}</p>
-                                                </div>
-                                                <button class="btn btn-success" ><span class="glyphicon  glyphicon-shopping-cart"></span> Retirer</button>
-                                                        
-                                            </li>
-                                        
-                                    </ul>
-                                
+
+                        <div class="title categorie-carte">
+                            <h3><span>Entrées</span></h3>
+                        </div>
+                        <c:forEach items="${entrees}" var="entree">
+
+                            <ul>
+
+                                <li class="wow fadeInUp  article" data-wow-duration="300ms" data-wow-delay="300ms">
+                                    <div class="item ">
+                                        <div class="item-title ">
+                                            <h2>${entree.article.nom}</h2>
+                                            <div class="border-bottom"></div>
+                                            <span>${entree.prixHT} E</span>
+                                        </div>
+                                        <p>${entree.article.description}</p>
+                                    </div>
+                                    <button class="btn btn-success" ><span class="glyphicon  glyphicon-shopping-cart"></span> Retirer</button>
+
+                                </li>
+
+                            </ul>
+
+                        </c:forEach>
+
+                        <div class="title categorie-carte">
+                            <h3><span>Entrées</span></h3>
+                        </div>
+                        <c:forEach items="${plats}" var="plat">
+
+                            <ul>
+
+                                <li class="wow fadeInUp  article" data-wow-duration="300ms" data-wow-delay="300ms">
+                                    <div class="item ">
+                                        <div class="item-title ">
+                                            <h2>${plat.article.nom}</h2>
+                                            <div class="border-bottom"></div>
+                                            <span>${plat.prixHT} E</span>
+                                        </div>
+                                        <p>${plat.article.description}</p>
+                                    </div>
+                                    <button class="btn btn-success" ><span class="glyphicon  glyphicon-shopping-cart"></span> Retirer</button>
+
+                                </li>
+
+                            </ul>
+
+                        </c:forEach>
+                        <c:forEach items="${desserts}" var="dessert">
+
+                            <ul>
+
+                                <li class="wow fadeInUp  article" data-wow-duration="300ms" data-wow-delay="300ms">
+                                    <div class="item ">
+                                        <div class="item-title ">
+                                            <h2>${dessert.article.nom}</h2>
+                                            <div class="border-bottom"></div>
+                                            <span>${dessert.prixHT} E</span>
+                                        </div>
+                                        <p>${dessert.article.description}</p>
+                                    </div>
+                                    <button class="btn btn-success" ><span class="glyphicon  glyphicon-shopping-cart"></span> Retirer</button>
+
+                                </li>
+
+                            </ul>
+
+                        </c:forEach>
+
+                        <c:forEach items="${formules}" var="for">
+
+                            ${for.key.nom}
+                            <c:forEach items="${for.value}" var="ligne">
+                                ${ligne.article.nom}<br />
                             </c:forEach>
-                       
+
+                        </c:forEach>
 
 
 
-
-                     </div>
+                    </div>
                 </div>
             </div><!-- .col-md-12 close -->
         </div><!-- .row close -->

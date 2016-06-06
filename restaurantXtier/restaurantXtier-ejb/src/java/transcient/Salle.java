@@ -101,6 +101,7 @@ public class Salle implements SalleLocal {
         Formule f = beanFormule.selectFormuleById(idFromule);
         Commande co = selectCommandeByCleCommande(cleCommande);
         LigneCommande lc00 = new LigneCommande(f.getPrix(), null, f.getRefFormule(), null, co, null);
+       
         co.getLignesCommandes().add(lc00);
         if (entree != null) {
             LigneCommande lc01 = new LigneCommande(0F, null, f.getRefFormule(), entree, co, null);
@@ -132,10 +133,14 @@ public class Salle implements SalleLocal {
         Commande co = selectCommandeByCleCommande(cleCommande);
         Collection<LigneCommande> lcs = co.getLignesCommandes();
         Collection<LigneCommande> lcentree = new ArrayList<>();
-        for(LigneCommande l : lcs){
-            if(l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Entrées") &&
-                    l.getRefFormule()==null){
-                lcentree.add(l);
+        for (LigneCommande l : lcs) {
+
+            if (l.getArticle() != null) {
+
+                if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Entrées")
+                        && l.getRefFormule() == null) {
+                    lcentree.add(l);
+                }
             }
         }
         return lcentree;
@@ -146,10 +151,12 @@ public class Salle implements SalleLocal {
         Commande co = selectCommandeByCleCommande(cleCommande);
         Collection<LigneCommande> lcs = co.getLignesCommandes();
         Collection<LigneCommande> lcplat = new ArrayList<>();
-        for(LigneCommande l : lcs){
-            if(l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Plats") &&
-                    l.getRefFormule()==null){
-                lcplat.add(l);
+        for (LigneCommande l : lcs) {
+            if (l.getArticle() != null) {
+                if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Plats")
+                        && l.getRefFormule() == null) {
+                    lcplat.add(l);
+                }
             }
         }
         return lcplat;
@@ -157,30 +164,34 @@ public class Salle implements SalleLocal {
 
     @Override
     public Collection<LigneCommande> getDessertsCommandees(Integer cleCommande) {
-    Commande co = selectCommandeByCleCommande(cleCommande);
+        Commande co = selectCommandeByCleCommande(cleCommande);
         Collection<LigneCommande> lcs = co.getLignesCommandes();
         Collection<LigneCommande> lcdessert = new ArrayList<>();
-        for(LigneCommande l : lcs){
-            if(l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Desserts") &&
-                    l.getRefFormule()==null){
-                lcdessert.add(l);
+        for (LigneCommande l : lcs) {
+            if (l.getArticle() != null) {
+                if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Desserts")
+                        && l.getRefFormule() == null) {
+                    lcdessert.add(l);
+                }
             }
         }
-        return lcdessert;    
+        return lcdessert;
     }
 
     @Override
     public Collection<LigneCommande> getBoissonsCommandees(Integer cleCommande) {
-    Commande co = selectCommandeByCleCommande(cleCommande);
+        Commande co = selectCommandeByCleCommande(cleCommande);
         Collection<LigneCommande> lcs = co.getLignesCommandes();
         Collection<LigneCommande> lcboisson = new ArrayList<>();
-        for(LigneCommande l : lcs){
-            if(l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Boissons") &&
-                    l.getRefFormule()==null){
-                lcboisson.add(l);
+        for (LigneCommande l : lcs) {
+            if (l.getArticle() != null) {
+                if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Boissons")
+                        && l.getRefFormule() == null) {
+                    lcboisson.add(l);
+                }
             }
         }
-        return lcboisson;     
+        return lcboisson;
     }
 
     @Override
@@ -188,12 +199,12 @@ public class Salle implements SalleLocal {
         Commande co = selectCommandeByCleCommande(cleCommande);
         Collection<LigneCommande> lcs = co.getLignesCommandes();
         Collection<LigneCommande> lcformule = new ArrayList<>();
-        for(LigneCommande l : lcs){
-            if(l.getRefFormule()!=null){
+        for (LigneCommande l : lcs) {
+            if (l.getRefFormule() != null) {
                 lcformule.add(l);
             }
         }
-        return lcformule;     
+        return lcformule;
     }
 
 }

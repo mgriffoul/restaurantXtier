@@ -19,4 +19,5 @@ public interface BeanFormuleLocal {
     public ArrayList<Article> selectDessertsOfFormule(Formule f);
     public ArrayList<Article> selectBoissonsOfFormule(Formule f);
     public void chargerFormule (Formule f);
+    public Formule selectFormuleByRef(String refFormule);
 }

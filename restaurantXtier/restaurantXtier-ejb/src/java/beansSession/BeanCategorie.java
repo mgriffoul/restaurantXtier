@@ -56,7 +56,7 @@ public class BeanCategorie implements BeanCategorieLocal {
 
     @Override
     public List<SousCategorie> selectSousCategorieByIdCategorie(Long id) {
-        String rq = "Select c.sousCategories"
+        String rq = "Select s"
                 + " from Categorie c join c.sousCategories s  where c.id=:paramid order by s.ordre";
         Query qr = em.createQuery(rq);
         qr.setParameter("paramid", id);

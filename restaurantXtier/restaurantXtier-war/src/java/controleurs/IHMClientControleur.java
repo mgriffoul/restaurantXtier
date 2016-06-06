@@ -13,6 +13,7 @@ import beansSession.BeanFormuleLocal;
 import beansSession.BeanUserLocal;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -103,10 +104,30 @@ public class IHMClientControleur implements SousControleurInterface {
                         Collection<LigneCommande> desserts = salle.getDessertsCommandees(cleCommande);
                         Collection<LigneCommande> formules = salle.getFormulesCommandees(cleCommande);
                         
+                        HashMap<Formule, Collection<LigneCommande>> hmf = new HashMap<>();
+                        Collection<String> refForms = new ArrayList();
+                        
+                        for(LigneCommande l : formules){
+                            if(!refForms.contains(l.getRefFormule())){
+                                refForms.add(l.getRefFormule());
+                            }
+                        }
+                        
+                        for(String s : refForms){
+                          Collection<LigneCommande> col = new ArrayList<>();
+                            for(LigneCommande l : formules){
+                                if(l.getRefFormule().equalsIgnoreCase(s)){
+                                    col.add(l);
+                                }
+                            }
+                            hmf.put(beanFormule.selectFormuleByRef(s), col);
+                        }
+                        
+                        
                         request.setAttribute("entrees", entrees);
                         request.setAttribute("plats", plats);
                         request.setAttribute("desserts", desserts);
-                        request.setAttribute("formules", formules);
+                        request.setAttribute("formules", hmf);
                         
                     }
 

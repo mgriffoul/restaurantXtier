@@ -40,7 +40,6 @@ function refreshHeader(){
 
 
 function addArticle(idDom, idArticle){
-   alert(idDom+" "+idArticle);
    
     var url = "index?section=actionCom&act=add&id="+idArticle;
     
