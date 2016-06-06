@@ -7,12 +7,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="container">
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="block">
-
-                            <h1> TEST ACCUEIL IHM CUISINE</h1>
-                        </div>
-                    </div><!-- .col-md-12 close -->
-                </div><!-- .row close -->
-            </div><!-- .containe close -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block">
+                <br><br>
+                
+                    <center><h1>Bienvenue sur l'interface graphique de la cuisine</h1></center><br>
+                    <center><h1>Veuillez sélectionner un tri !</h1></center><br>
+                
+            </div>
+        </div><!-- .col-md-12 close -->
+    </div><!-- .row close -->
+</div><!-- .containe close -->

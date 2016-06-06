@@ -12,42 +12,54 @@ and open the template in the editor.
 
 .bouton13 {
     border:none;
-    padding:6px 2px 6px 2px;
+    padding:6px 4px 6px 4px;
     border-radius:8px;
     background:#FF7F50;
     font:bold 13px Arial;
     color:#fff;
 }
 
-#principal {
+.bouton17 {
+    border:none;
+    padding:8px 8px 8px 8px;
+    border-radius:12px;
+    background:#FF8C00;
+    font:bold 20px Arial;
+    color:#000000;
+}
+
+/*#principal {
     height:800 px;
 }
 .ecart {
     padding-left: 4px;
     padding-right: 4px;
-}
-#divConteneur{
+}*/
+/*#divConteneur{
     min-height:200px;
-    height:200px;/*pour IE qui comprend rien, et qui ne reconnait pas min-height, mais qui comprend mal height*/
+    height:200px;pour IE qui comprend rien, et qui ne reconnait pas min-height, mais qui comprend mal height
     min-width:700px;
-    width:00px;/*pour IE qui comprend rien*/
-    overflow:scroll;/*pour activer les scrollbarres*/
+    width:700px;pour IE qui comprend rien
+    overflow:scroll;pour activer les scrollbarres
     overflow-x:hidden;
 }
 #divConteneur2{
     min-height:400px;
-    height:400px;/*pour IE qui comprend rien, et qui ne reconnait pas min-height, mais qui comprend mal height*/
+    height:400px;pour IE qui comprend rien, et qui ne reconnait pas min-height, mais qui comprend mal height
     min-width:700px;
-    width:700px;/*pour IE qui comprend rien*/
-    overflow:scroll;/*pour activer les scrollbarres*/
+    width:700px;pour IE qui comprend rien
+    overflow:scroll;pour activer les scrollbarres
     overflow-x:hidden;
-}
+}*/
 #tab thead {
+    border :1px solid black;
     display:block;
 }
 #tab tbody {
+    border :1px solid black;
     display:block;
-    height: 250px; 
+    min-height:450px;
+    height: 450px; 
     overflow-y:scroll;
 }
 
@@ -111,11 +123,14 @@ and open the template in the editor.
 }
 
 #tab2 thead {
+    border :1px solid black;
     display:block;
 }
 #tab2 tbody {
+    border :1px solid black;
     display:block;
-    height: 250px; 
+    min-height:450px;
+    height: 450px; 
     overflow-y:scroll;
 }
 #tab2 thead tr:first-child th:nth-child(1) { 

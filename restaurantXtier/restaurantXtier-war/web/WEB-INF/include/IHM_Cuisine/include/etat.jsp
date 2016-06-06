@@ -10,7 +10,7 @@
 
 <div class="col-md-8">
    
-        <center><h3>Commandes en cours <b><FONT color="red">${message}</font></b></h3></center>
+        <center><h3>Commandes en cours <b><FONT color="#FF8C00">${message}</font></b></h3></center>
         <center><table id="tab" >
                 <thead BGCOLOR="B0C4E0">
                     <tr height="40px" align="center">
@@ -43,7 +43,7 @@
 </div> 
 <div class="col-md-4">
     <center><h3>Commandes servies</h3></center>
-    <div ><center><table id="tab2" >
+    <div ><center><table id="tab2">
                 <thead BGCOLOR="B0C4E0">
                     <tr height="40" align="center">
                         <td width="40px">Table</td>
