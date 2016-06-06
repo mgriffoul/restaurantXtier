@@ -18,11 +18,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 
-
-
 @Singleton
 public class Salle implements SalleLocal {
-
 
     @EJB
     private BeanFormuleLocal beanFormule;
@@ -39,7 +36,6 @@ public class Salle implements SalleLocal {
     public void init() {
         commandes = new HashMap<>();
     }
-
 
     @Override
     public GroupeEmplacementLocal getGroupesEmplacement() {
@@ -115,7 +111,7 @@ public class Salle implements SalleLocal {
         Formule f = beanFormule.selectFormuleById(idFromule);
         Commande co = selectCommandeByCleCommande(cleCommande);
         LigneCommande lc00 = new LigneCommande(f.getPrix(), null, f.getRefFormule(), null, co, null);
-       
+
         co.getLignesCommandes().add(lc00);
         if (entree != null) {
             LigneCommande lc01 = new LigneCommande(0F, null, f.getRefFormule(), entree, co, null);
@@ -149,11 +145,6 @@ public class Salle implements SalleLocal {
         Collection<LigneCommande> lcentree = new ArrayList<>();
         for (LigneCommande l : lcs) {
 
-            if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Entrées")
-                    && l.getRefFormule() == null) {
-                lcentree.add(l);
-
-
             if (l.getArticle() != null) {
 
                 if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Entrées")
@@ -161,11 +152,10 @@ public class Salle implements SalleLocal {
                     lcentree.add(l);
                 }
             }
-            }
         }
+
         return lcentree;
     }
-    
 
     @Override
     public Collection<LigneCommande> getPlatsCommandees(Integer cleCommande) {
@@ -174,10 +164,6 @@ public class Salle implements SalleLocal {
         Collection<LigneCommande> lcplat = new ArrayList<>();
         for (LigneCommande l : lcs) {
 
-            if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Plats")
-                    && l.getRefFormule() == null) {
-                lcplat.add(l);
-
             if (l.getArticle() != null) {
                 if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Plats")
                         && l.getRefFormule() == null) {
@@ -185,7 +171,7 @@ public class Salle implements SalleLocal {
                 }
             }
         }
-        }
+
         return lcplat;
     }
 
@@ -195,20 +181,17 @@ public class Salle implements SalleLocal {
         Collection<LigneCommande> lcs = co.getLignesCommandes();
         Collection<LigneCommande> lcdessert = new ArrayList<>();
         for (LigneCommande l : lcs) {
-            if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Desserts")
-                    && l.getRefFormule() == null) {
-                lcdessert.add(l);
+
             if (l.getArticle() != null) {
                 if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Desserts")
                         && l.getRefFormule() == null) {
                     lcdessert.add(l);
                 }
             }
-        }
+
         }
         return lcdessert;
     }
-    
 
     @Override
     public Collection<LigneCommande> getBoissonsCommandees(Integer cleCommande) {
@@ -216,18 +199,14 @@ public class Salle implements SalleLocal {
         Collection<LigneCommande> lcs = co.getLignesCommandes();
         Collection<LigneCommande> lcboisson = new ArrayList<>();
         for (LigneCommande l : lcs) {
-            if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Boissons")
-                    && l.getRefFormule() == null) {
-                lcboisson.add(l);
-
-            if (l.getArticle() != null) {
-                if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Boissons")
-                        && l.getRefFormule() == null) {
-                    lcboisson.add(l);
+                if (l.getArticle() != null) {
+                    if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Boissons")
+                            && l.getRefFormule() == null) {
+                        lcboisson.add(l);
+                    }
                 }
             }
-        }
-        }
+        
         return lcboisson;
     }
 
