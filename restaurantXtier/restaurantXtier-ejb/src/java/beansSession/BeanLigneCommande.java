@@ -112,10 +112,10 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
     }
 
     @Override
-    public List<LigneCommande> selectLigneCommandeByCommande(String numero){
-        String req = "select lc from LigneCommande lc where lc.commande.numero=:paramNumero";
-        Query qr = em.createQuery(req);
-        qr.setParameter("paramNumero", numero);
+    public List<LigneCommande> selectLigneCommandeByIdCommande(Long id){
+                String rq = "Select lc from LigneCommande lc where lc.commande.id=:paramid";
+        Query qr = em.createQuery(rq);
+        qr.setParameter("paramid", id);
         List<LigneCommande> lc = qr.getResultList();
         return lc;
     }

@@ -49,11 +49,20 @@ public class IHMCaisseControleur implements SousControleurInterface {
         if("ticket".equalsIgnoreCase(inc)){
             String nCom = request.getParameter("nCom");
             Commande c = beanCommande.selectCommandeByNumero(nCom);
-//            List<LigneCommande> lc = beanLigneCommande.selectLigneCommandeByCommande(nCom);
-//            c.setLignesCommandes(lc);
+
+            
+            System.out.println("id commande = "+c.getId());
+            List<LigneCommande> lc = beanLigneCommande.selectLigneCommandeByIdCommande(c.getId());
+            for (LigneCommande lc1 : lc) {
+                System.out.println("lc = "+lc1+" / "+lc1.getPrixHT());
+            }
+            c.setLignesCommandes(lc);
             System.out.println(c.getNumero()+"//"+c.getStatut());
             System.out.println("------------------");
             System.out.println(nCom);
+            
+                System.out.println(c.getLignesCommandes());
+           
 //            Ticket t = new Ticket();
 //            t.setCommande(c);
             request.setAttribute("affcom", c);

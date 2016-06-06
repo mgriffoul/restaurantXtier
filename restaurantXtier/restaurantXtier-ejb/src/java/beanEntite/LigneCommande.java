@@ -135,7 +135,7 @@ public class LigneCommande implements Serializable {
     }
     
     
-
+    
     @Override
     public int hashCode() {
         int hash = 0;
