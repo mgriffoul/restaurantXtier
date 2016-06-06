@@ -50,7 +50,7 @@ public class MainControleur extends HttpServlet {
 
         System.out.println(">>>>>>>>>>>>>>>>>"+ section);
         if (section != null && mp.containsKey(section)) {
-            System.out.println("Coucou");
+
             SousControleurInterface sc = mp.get(section);
             url = sc.execute(request, response);         
         }

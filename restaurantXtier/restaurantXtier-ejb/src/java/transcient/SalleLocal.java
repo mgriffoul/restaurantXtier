@@ -7,6 +7,7 @@ import beanEntite.Utilisateur;
 import beansSession.BeanCommandeLocal;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import javax.ejb.Local;
 
 
@@ -26,5 +27,7 @@ public interface SalleLocal {
     public HashMap<Integer, Commande> getCommandes();
 
     public void setCommandes(HashMap<Integer, Commande> commandes);
+    
+     public List<Commande> selectCommandeEnCours();
     
 }

@@ -12,6 +12,7 @@ import javax.persistence.Query;
 
 @Stateless
 public class BeanEmplacement implements BeanEmplacementLocal {
+
     @EJB
     private BeanCommandeLocal beanCommande;
 
@@ -24,13 +25,11 @@ public class BeanEmplacement implements BeanEmplacementLocal {
         Query qr = em.createQuery(req);
         List<Emplacement> listEmplacement = qr.getResultList();
         List<Commande> listCommande = beanCommande.selectCommandeEnCours();
-        for (Commande c : listCommande){
+        for (Commande c : listCommande) {
             Collection<Emplacement> listEmplacementCommande = c.getEmplacements();
-            for (Emplacement e : listEmplacementCommande)
-            {
-                for (Emplacement ep : listEmplacement)
-                {
-                    if (e.getNumero() == ep.getNumero()){
+            for (Emplacement e : listEmplacementCommande) {
+                for (Emplacement ep : listEmplacement) {
+                    if (e.getNumero() == ep.getNumero()) {
                         ep.setCommandeEnCour(c);
                         ep.setStatut("occupe");
                     }
@@ -40,10 +39,19 @@ public class BeanEmplacement implements BeanEmplacementLocal {
         return listEmplacement;
     }
 
-    
     @Override
     public Emplacement selectEmplacementById(Long id) {
         return em.find(Emplacement.class, id);
+    }
+
+    @Override
+    public Emplacement selectEmplacementByNumero(String numero) {
+        int num = Integer.parseInt(numero);
+        String req = "Select e from Emplacement e where e.numero=:paramnumero";
+        Query qr = em.createQuery(req);
+        qr.setParameter("paramnumero", num);
+        Emplacement emp = (Emplacement) qr.getSingleResult();
+        return emp;
     }
 
     @Override

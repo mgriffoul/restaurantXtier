@@ -112,4 +112,10 @@
         <local>transcient.GroupeEmplacementLocal</local>
         <ejb-link>restaurantXtier-ejb.jar#GroupesEmplacement</ejb-link>
     </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>Salle1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>transcient.SalleLocal</local>
+        <ejb-link>restaurantXtier-ejb.jar#Salle</ejb-link>
+    </ejb-local-ref>
 </web-app>
