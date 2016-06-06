@@ -32,7 +32,6 @@ function onMessage() {
 
 
 function wslog(cleCommande){
-    alert("cle commande" + cleCommande);
     
     var json = JSON.stringify({
         "cleCommande": cleCommande,
