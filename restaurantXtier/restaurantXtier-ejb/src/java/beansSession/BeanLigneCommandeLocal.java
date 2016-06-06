@@ -24,4 +24,6 @@ public interface BeanLigneCommandeLocal {
     public List<LigneCommande> selectLigneCommandeByEmplacement ();
     public List<LigneCommande> selectLigneCommandeByCategorie ();
     public LigneCommande creerLigneDeCommandeArticle(Long idArticle);
+
+    public List<LigneCommande> selectLigneCommandeByCommande(String numero);
 }

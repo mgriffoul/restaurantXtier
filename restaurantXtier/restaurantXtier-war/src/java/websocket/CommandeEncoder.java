@@ -1,6 +1,7 @@
 
 package websocket;
 
+import javax.json.Json;
 import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
@@ -10,7 +11,10 @@ public class CommandeEncoder implements Encoder.Text<WsCommandeAction>{
 
     @Override
     public String encode(WsCommandeAction wca) throws EncodeException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Json.createObjectBuilder()
+                        .add("action", wca.getAction())
+                        .add("cleCommande", wca.getCleCommande())
+                   .build().toString();
     }
 
     @Override

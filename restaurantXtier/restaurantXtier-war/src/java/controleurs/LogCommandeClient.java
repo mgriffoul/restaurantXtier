@@ -47,6 +47,7 @@ public class LogCommandeClient implements SousControleurInterface{
         //recuperation de la comande et ajout dans la session
         Commande com = salle.selectCommandeByCleCommande(cleCommande);
         
+        
         session.setAttribute("commande", com);
         request.setAttribute("contentInc", prefix + s1 + suffix);
         return url;
