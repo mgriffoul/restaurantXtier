@@ -129,9 +129,7 @@ public class Formule implements Serializable {
     }
 
     public Float getPrixTtc(){
-        
         Float prixTtc = (prix*tva.getTauxTva()/100)+prix;
-        
         return prixTtc;
     }
     

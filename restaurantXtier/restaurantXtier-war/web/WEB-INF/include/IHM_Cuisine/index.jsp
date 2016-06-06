@@ -14,14 +14,32 @@
         <link rel="stylesheet" href="client-template/css/bootstrap.min.css">
         <style type="text/css">body {background-color: #DCDCDC;  }</style>
         <title>JSP Cuisine</title>
- 
+
+
+
     </head>
     <body>
-        <div>
-            <h1 align="center"><FONT size="30pt">Interface Cuisine</font></h1>
-            <hr>
-        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <div style="padding-left:40px">
+                    <h1 align="left"><FONT size="20pt">Interface </font><b><font size="40pt" color="#FF8C00">Cuisine</font></b></h1>
+                </div>
+            </div>
 
+            <div class="col-md-3" >
+             
+                    <table >
+                        <tr height="90px">
+                            <td style="vertical-align: middle">
+                                <a class="bouton17" href=index?section=IHMCuisine&inc=${ssSec}&meth=actu onclick="actualiserDiv('${ssSec}');
+                                        return false;" >Actualiser</a></td>
+                        </tr>
+                    </table>
+               
+            </div>
+
+        </div>
+        <hr>
         <div class="container">
             <div class="row" >
 
@@ -39,8 +57,8 @@
                 </c:if>
             </div>
         </div>
-        <div>
-            <a href=index?section=IHMCuisine&inc=${ssSec}&meth=actu onclick="actualiserDiv('${ssSec}');return false;" >Actualiser</a>
+        <div >
+
         </div>
 
         <!--FOOTER -->

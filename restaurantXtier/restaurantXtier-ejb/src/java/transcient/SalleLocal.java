@@ -1,8 +1,10 @@
 
 package transcient;
 
+import beanEntite.Article;
 import beanEntite.Commande;
 import beanEntite.Emplacement;
+import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
 import beansSession.BeanCommandeLocal;
 import java.util.Collection;
@@ -27,7 +29,25 @@ public interface SalleLocal {
     public HashMap<Integer, Commande> getCommandes();
 
     public void setCommandes(HashMap<Integer, Commande> commandes);
+
+    public List<Commande> selectCommandeEnCours();
+
+    public Commande selectCommandeByCleCommande(Integer cleCommande);
     
-     public List<Commande> selectCommandeEnCours();
+    public void ajouterArticle (Integer cleCommande, Long idArticle);
     
+    public void ajouterFormule (Integer cleCommande, Long idFormule, Article entree, Article plat, Article dessert, Article boisson);
+    
+    public Collection<LigneCommande> getAllLigneCommandeFromCommande(Integer cleCommande);
+    
+    public Collection<LigneCommande> getEntreesCommandees(Integer cleCommande);
+    
+    public Collection<LigneCommande> getPlatsCommandees(Integer cleCommande);
+    
+    public Collection<LigneCommande> getDessertsCommandees(Integer cleCommande);
+    
+    public Collection<LigneCommande> getBoissonsCommandees(Integer cleCommande);
+    
+    public Collection<LigneCommande> getFormulesCommandees(Integer cleCommande);
+  
 }

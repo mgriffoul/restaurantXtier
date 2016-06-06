@@ -512,7 +512,7 @@ em.persist(vinRs4);
         Emplacement e24 = new Emplacement(24, "libre", 2);
         Emplacement e25 = new Emplacement(25, "libre", 2);
         
-        Commande c01 = new Commande(d01,"CO2016000004","en cours");
+        Commande c01 = new Commande(d01,"CO2016000004","terminee");
         Commande c02 = new Commande(d01, "CO2016000005","en cours");
         Commande c03 = new Commande(d01, "CO2016000006","en cours");
         Commande c04 = new Commande(d02,"CO2016000007","en cours");

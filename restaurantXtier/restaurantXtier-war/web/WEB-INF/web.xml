@@ -38,6 +38,11 @@
             <param-name>actionCom</param-name>
             <param-value>controleurs.ActionCommandeClientControleur</param-value>
         </init-param>
+        <init-param>
+            <description>sous controleur pour les fonctions de raffraichissement ajax client</description>
+            <param-name>clientRefresh</param-name>
+            <param-value>controleurs.RefreshClientControleur</param-value>
+        </init-param>
     </servlet>
     <servlet>
         <servlet-name>BddControleur</servlet-name>
@@ -61,7 +66,7 @@
     </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            30 
         </session-timeout>
     </session-config>
     <ejb-local-ref>
@@ -113,9 +118,9 @@
         <ejb-link>restaurantXtier-ejb.jar#GroupesEmplacement</ejb-link>
     </ejb-local-ref>
     <ejb-local-ref>
-        <ejb-ref-name>Salle1</ejb-ref-name>
+        <ejb-ref-name>BeanArticle</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
-        <local>transcient.SalleLocal</local>
-        <ejb-link>restaurantXtier-ejb.jar#Salle</ejb-link>
+        <local>beansSession.BeanArticleLocal</local>
+        <ejb-link>restaurantXtier-ejb.jar#BeanArticle</ejb-link>
     </ejb-local-ref>
 </web-app>

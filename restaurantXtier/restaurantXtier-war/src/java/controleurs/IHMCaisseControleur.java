@@ -2,9 +2,11 @@ package controleurs;
 
 import beanEntite.Categorie;
 import beanEntite.Commande;
+import beanEntite.LigneCommande;
 import beanEntite.Ticket;
 import beansSession.BeanCategorieLocal;
 import beansSession.BeanCommandeLocal;
+import beansSession.BeanLigneCommandeLocal;
 import beansSession.BeanTicketLocal;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,6 +23,8 @@ public class IHMCaisseControleur implements SousControleurInterface {
     BeanCommandeLocal beanCommande = lookupBeanCommandeLocal();
     
     BeanTicketLocal beanTicket = lookupBeanTicketLocal();
+    
+    BeanLigneCommandeLocal beanLigneCommande = lookupBeanLigneCommandeLocal();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -45,16 +49,28 @@ public class IHMCaisseControleur implements SousControleurInterface {
         if("ticket".equalsIgnoreCase(inc)){
             String nCom = request.getParameter("nCom");
             Commande c = beanCommande.selectCommandeByNumero(nCom);
+
+            
+            System.out.println("id commande = "+c.getId());
+            List<LigneCommande> lc = beanLigneCommande.selectLigneCommandeByIdCommande(c.getId());
+            for (LigneCommande lc1 : lc) {
+                System.out.println("lc = "+lc1+" / "+lc1.getPrixHT());
+            }
+            c.setLignesCommandes(lc);
             System.out.println(c.getNumero()+"//"+c.getStatut());
             System.out.println("------------------");
             System.out.println(nCom);
-            Ticket t = new Ticket();
-            t.setCommande(c);
-            request.setAttribute("affcom", t);
+            
+                System.out.println(c.getLignesCommandes());
+           
+//            Ticket t = new Ticket();
+//            t.setCommande(c);
+            request.setAttribute("affcom", c);
+ //           request.setAttribute("LigneComm", lc);
             System.out.println("DANS AFFICHAGE TICKET");
             s1= "ticket";
-            System.out.println("ticket = "+request.getAttribute("affcom"));
-            System.out.println(t.getCommande().getNumero());
+//            System.out.println("ticket = "+request.getAttribute("affcom"));
+//            System.out.println(t.getCommande().getNumero());
         }
         System.out.println("inc1 = "+inc1);
         request.setAttribute("contentInc", prefix+s1+suffix);
@@ -82,6 +98,16 @@ public class IHMCaisseControleur implements SousControleurInterface {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
+    }
+
+    private BeanLigneCommandeLocal lookupBeanLigneCommandeLocal() {
+       try {
+            Context c = new InitialContext();
+            return (BeanLigneCommandeLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanLigneCommande!beansSession.BeanLigneCommandeLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        } 
     }
 
 }

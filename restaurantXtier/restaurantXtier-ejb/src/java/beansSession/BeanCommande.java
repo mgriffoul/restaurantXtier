@@ -21,6 +21,9 @@ public class BeanCommande implements BeanCommandeLocal {
 
     @EJB
     private BeanLigneCommandeLocal beanLigneCommande;
+    
+    @EJB
+    private BeanFormuleLocal beanFormuleLocal;
 
     @PersistenceContext(unitName = "restaurantXtier-ejbPU")
     private EntityManager em;
@@ -94,13 +97,14 @@ public class BeanCommande implements BeanCommandeLocal {
         Query qr = em.createQuery(req);
         qr.setParameter("paramnumero", numero);
         Commande com = (Commande) qr.getSingleResult();
+        List<LigneCommande> lc = beanLigneCommande.selectLigneCommandeByIdCommande(com.getId());
         return com;
     }
 
     @Override
     public List<Commande> selectCommandeTerminee() {
         String req = "Select c from Commande c where c.statut=:paramstatut";
-        String statut = "terminée";
+        String statut = "terminee";
         Query qr = em.createQuery(req);
         qr.setParameter("paramstatut", statut);
         List<Commande> liste = qr.getResultList();
@@ -153,6 +157,7 @@ public class BeanCommande implements BeanCommandeLocal {
         return commandes;
     }
 
+    
     @Override
     public void ajouterLigneDeCommande(Commande co, Long idArticle) {
         LigneCommande lc = beanLigneCommande.creerLigneDeCommandeArticle(idArticle);
@@ -160,6 +165,22 @@ public class BeanCommande implements BeanCommandeLocal {
         listLc.add(lc);
     }
 
+    public Float getPrixTotalHT(String numero){
+        Commande c = selectCommandeByNumero(numero);
+        
+        //for (LigneCommande lc : c) {
+            
+        //}
+        return null;
+    }
     
+    public Float getPrixTtc(String numero){
+//        LigneCommande lc = beanLigneCommande.
+        
+        
+        
+        
+        return null;
+    }
     
 }

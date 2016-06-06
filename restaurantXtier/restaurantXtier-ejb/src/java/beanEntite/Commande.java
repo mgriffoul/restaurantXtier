@@ -26,6 +26,8 @@ public class Commande implements Serializable {
     private Date date;
     private String numero;
     private String statut; //"en cours" // payée // terminée 
+
+    
     
      // associations
     @ManyToMany
@@ -44,6 +46,7 @@ public class Commande implements Serializable {
 
     public Commande() {
         emplacements = new ArrayList<>();
+        lignesCommandes = new ArrayList<>();
     }
 
     public Commande(Collection<Emplacement> emplacements) {

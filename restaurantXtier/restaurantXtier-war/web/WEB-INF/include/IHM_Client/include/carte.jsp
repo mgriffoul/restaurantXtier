@@ -38,7 +38,7 @@
                                                     </div>
                                                     <p>${article.description}</p>
                                                 </div>
-                                                <button class="btn btn-success" onclick="refAjx('header', '${article.id}');"><span class="glyphicon  glyphicon-shopping-cart"></span> Commander</button>
+                                                <button class="btn btn-success" onclick="addArticle('header', '${article.id}');sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon  glyphicon-shopping-cart"></span> Commander</button>
                                                         
                                             </li>
                                         </c:forEach>

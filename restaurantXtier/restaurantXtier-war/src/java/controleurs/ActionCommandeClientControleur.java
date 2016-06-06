@@ -12,11 +12,15 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import transcient.SalleLocal;
 
 //actionCom
 public class ActionCommandeClientControleur implements SousControleurInterface {
+    
+    SalleLocal salle = lookupSalleLocal();
 
     BeanCommandeLocal beanCommande = lookupBeanCommandeLocal();
+    
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -35,15 +39,15 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
         //recuperation action
         String act = request.getParameter("act");
 
-        //Recuperation commande et utilistauer session
-        Commande commande = (Commande) session.getAttribute("commande");
+        //Recuperation commande et utilisateur session
+        Integer cleCommande = (Integer) session.getAttribute("cleCommande");
+        Commande commande = salle.selectCommandeByCleCommande(cleCommande);
         System.out.println(">>>><<<<>>><<<<Commande : "+commande);
+        
         Utilisateur util = (Utilisateur) session.getAttribute("user");
         System.out.println(">>>><<<<>>><<<<Utilisateur : "+util);
         
-        for (LigneCommande lc : commande.getLignesCommandes()) {
-            System.out.println("LC AVANT>>>>>>>>>>>" + lc);
-        }
+        
 
         if (util != null) {
             if (util.getRole() == 4) {
@@ -52,7 +56,7 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
                     if ("add".equalsIgnoreCase(act)) {
                         System.out.println("++++++++++add=act");
                         Long id = Long.valueOf(request.getParameter("id"));
-                        beanCommande.ajouterLigneDeCommande(commande, id); 
+                        salle.ajouterArticle(cleCommande, id);
                         for (LigneCommande lc : commande.getLignesCommandes()) {
                             System.out.println("LC>>>>>>>>>>>" + lc);
                         }
@@ -80,6 +84,16 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
         try {
             Context c = new InitialContext();
             return (BeanCommandeLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanCommande!beansSession.BeanCommandeLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private SalleLocal lookupSalleLocal() {
+        try {
+            Context c = new InitialContext();
+            return (SalleLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/Salle!transcient.SalleLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

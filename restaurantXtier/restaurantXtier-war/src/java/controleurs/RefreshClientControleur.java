@@ -2,7 +2,6 @@
 package controleurs;
 
 import beanEntite.Commande;
-import beansSession.BeanCommandeLocal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -13,22 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import transcient.SalleLocal;
 
-
-public class LogCommandeClient implements SousControleurInterface{
+public class RefreshClientControleur implements SousControleurInterface{
     SalleLocal salle = lookupSalleLocal();
-    BeanCommandeLocal beanCommande = lookupBeanCommandeLocal();
-    
-    
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         
         
         
-        
         HttpSession session = request.getSession();
-    
-        //********
+        
+         //********
         //Preparation des URL 
         //********************
         String s1 = "accueil";
@@ -37,31 +31,26 @@ public class LogCommandeClient implements SousControleurInterface{
 
         //URL par défaut
         String url = "include/IHM_Client/index";
-    
-        
-        //Recupération de la cle de commande et ajout dans la session
-        Integer cleCommande = Integer.valueOf(request.getParameter("com"));
-        System.out.println(">>>------------clecommande "+cleCommande);
-        session.setAttribute("cleCommande", cleCommande);
-        
-        //recuperation de la comande et ajout dans la session
-        Commande com = salle.selectCommandeByCleCommande(cleCommande);
         
         
-        session.setAttribute("commande", com);
+        
+        
+        if("header".equalsIgnoreCase(request.getParameter("refresh"))){
+            
+            Integer cleCommande = (Integer) session.getAttribute("cleCommande");
+            
+            Commande co = salle.selectCommandeByCleCommande(cleCommande);
+            session.setAttribute("commande", co);
+            return prefix+"IHM_Client/include/header";
+        }
+        
+        
+        
+        
+        
         request.setAttribute("contentInc", prefix + s1 + suffix);
         return url;
-    
-    }
-
-    private BeanCommandeLocal lookupBeanCommandeLocal() {
-        try {
-            Context c = new InitialContext();
-            return (BeanCommandeLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanCommande!beansSession.BeanCommandeLocal");
-        } catch (NamingException ne) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
-            throw new RuntimeException(ne);
-        }
+        
     }
 
     private SalleLocal lookupSalleLocal() {
@@ -73,9 +62,5 @@ public class LogCommandeClient implements SousControleurInterface{
             throw new RuntimeException(ne);
         }
     }
-
-   
-    
-    
     
 }

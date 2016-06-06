@@ -1,9 +1,15 @@
 package transcient;
 
+import beanEntite.Article;
 import beanEntite.Commande;
 import beanEntite.Emplacement;
+import beanEntite.Formule;
+import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
 import beansSession.BeanCommandeLocal;
+import beansSession.BeanFormuleLocal;
+import beansSession.BeanLigneCommandeLocal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -12,9 +18,16 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 
+
+
 @Singleton
 public class Salle implements SalleLocal {
 
+
+    @EJB
+    private BeanFormuleLocal beanFormule;
+    @EJB
+    private BeanLigneCommandeLocal beanLigneCommande;
     @EJB
     private GroupeEmplacementLocal groupesEmplacement;
     @EJB
@@ -27,26 +40,33 @@ public class Salle implements SalleLocal {
         commandes = new HashMap<>();
     }
 
+
+    @Override
     public GroupeEmplacementLocal getGroupesEmplacement() {
         return groupesEmplacement;
     }
 
+    @Override
     public void setGroupesEmplacement(GroupeEmplacementLocal groupesEmplacement) {
         this.groupesEmplacement = groupesEmplacement;
     }
 
+    @Override
     public BeanCommandeLocal getBeanCommande() {
         return beanCommande;
     }
 
+    @Override
     public void setBeanCommande(BeanCommandeLocal beanCommande) {
         this.beanCommande = beanCommande;
     }
 
+    @Override
     public HashMap<Integer, Commande> getCommandes() {
         return commandes;
     }
 
+    @Override
     public void setCommandes(HashMap<Integer, Commande> commandes) {
         this.commandes = commandes;
     }
@@ -68,10 +88,125 @@ public class Salle implements SalleLocal {
         for (Entry<Integer, Commande> entry : commandes.entrySet()) {
             commandesList.add(entry.getValue());
         }
-          for (Commande c : commandesList) {
+        for (Commande c : commandesList) {
             List<Emplacement> emplacements = beanCommande.selectEmplacementByIdCommande(c.getId());
             c.setEmplacements(emplacements);
         }
         return commandesList;
+    }
+
+    //Récupération de la commande par la cle de commande
+    @Override
+    public Commande selectCommandeByCleCommande(Integer cleCommande) {
+        return this.commandes.get(cleCommande);
+    }
+
+    @Override
+    public void ajouterArticle(Integer cleCommande, Long idArticle) {
+        LigneCommande lc = beanLigneCommande.creerLigneDeCommandeArticle(idArticle);
+        Commande co = selectCommandeByCleCommande(cleCommande);
+        Collection<LigneCommande> listLc = co.getLignesCommandes();
+        listLc.add(lc);
+    }
+
+    @Override
+    public void ajouterFormule(Integer cleCommande, Long idFromule, Article entree, Article plat, Article dessert, Article boisson) {
+
+        Formule f = beanFormule.selectFormuleById(idFromule);
+        Commande co = selectCommandeByCleCommande(cleCommande);
+        LigneCommande lc00 = new LigneCommande(f.getPrix(), null, f.getRefFormule(), null, co, null);
+        co.getLignesCommandes().add(lc00);
+        if (entree != null) {
+            LigneCommande lc01 = new LigneCommande(0F, null, f.getRefFormule(), entree, co, null);
+            co.getLignesCommandes().add(lc01);
+        }
+        if (plat != null) {
+            LigneCommande lc02 = new LigneCommande(0F, null, f.getRefFormule(), plat, co, null);
+            co.getLignesCommandes().add(lc02);
+        }
+        if (dessert != null) {
+            LigneCommande lc03 = new LigneCommande(0F, null, f.getRefFormule(), dessert, co, null);
+            co.getLignesCommandes().add(lc03);
+        }
+        if (boisson != null) {
+            LigneCommande lc04 = new LigneCommande(0F, null, f.getRefFormule(), boisson, co, null);
+            co.getLignesCommandes().add(lc04);
+        }
+
+    }
+
+    @Override
+    public Collection<LigneCommande> getAllLigneCommandeFromCommande(Integer cleCommande) {
+        Commande co = selectCommandeByCleCommande(cleCommande);
+        return co.getLignesCommandes();
+    }
+
+    @Override
+    public Collection<LigneCommande> getEntreesCommandees(Integer cleCommande) {
+        Commande co = selectCommandeByCleCommande(cleCommande);
+        Collection<LigneCommande> lcs = co.getLignesCommandes();
+        Collection<LigneCommande> lcentree = new ArrayList<>();
+        for (LigneCommande l : lcs) {
+            if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Entrées")
+                    && l.getRefFormule() == null) {
+                lcentree.add(l);
+            }
+        }
+        return lcentree;
+    }
+
+    @Override
+    public Collection<LigneCommande> getPlatsCommandees(Integer cleCommande) {
+        Commande co = selectCommandeByCleCommande(cleCommande);
+        Collection<LigneCommande> lcs = co.getLignesCommandes();
+        Collection<LigneCommande> lcplat = new ArrayList<>();
+        for (LigneCommande l : lcs) {
+            if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Plats")
+                    && l.getRefFormule() == null) {
+                lcplat.add(l);
+            }
+        }
+        return lcplat;
+    }
+
+    @Override
+    public Collection<LigneCommande> getDessertsCommandees(Integer cleCommande) {
+        Commande co = selectCommandeByCleCommande(cleCommande);
+        Collection<LigneCommande> lcs = co.getLignesCommandes();
+        Collection<LigneCommande> lcdessert = new ArrayList<>();
+        for (LigneCommande l : lcs) {
+            if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Desserts")
+                    && l.getRefFormule() == null) {
+                lcdessert.add(l);
+            }
+        }
+        return lcdessert;
+    }
+
+    @Override
+    public Collection<LigneCommande> getBoissonsCommandees(Integer cleCommande) {
+        Commande co = selectCommandeByCleCommande(cleCommande);
+        Collection<LigneCommande> lcs = co.getLignesCommandes();
+        Collection<LigneCommande> lcboisson = new ArrayList<>();
+        for (LigneCommande l : lcs) {
+            if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Boissons")
+                    && l.getRefFormule() == null) {
+                lcboisson.add(l);
+            }
+        }
+        return lcboisson;
+    }
+
+    @Override
+    public Collection<LigneCommande> getFormulesCommandees(Integer cleCommande) {
+        Commande co = selectCommandeByCleCommande(cleCommande);
+        Collection<LigneCommande> lcs = co.getLignesCommandes();
+        Collection<LigneCommande> lcformule = new ArrayList<>();
+        for (LigneCommande l : lcs) {
+            if (l.getRefFormule() != null) {
+                lcformule.add(l);
+            }
+        }
+        return lcformule;
     }
 }

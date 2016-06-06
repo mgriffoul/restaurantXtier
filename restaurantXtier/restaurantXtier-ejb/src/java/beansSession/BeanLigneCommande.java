@@ -3,6 +3,7 @@ package beansSession;
 import beanEntite.Article;
 import beanEntite.EtatLigneCommande;
 import beanEntite.LigneCommande;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -30,7 +31,11 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
 
     @Override
     public List<LigneCommande> selectAllLigneCommandeTriByEtat() {
-        String req = "select lc from LigneCommande lc where lc.etatLc.ordre<>4 order by lc.etatLc.ordre";
+        String req = "select lc from LigneCommande lc "
+                + "where lc.etatLc.ordre<>4 and lc.article.sousCategorie.categorie.ordre=1 "
+                + "or lc.etatLc.ordre<>4 and lc.article.sousCategorie.categorie.ordre=2 "
+                + "or lc.etatLc.ordre<>4 and lc.article.sousCategorie.categorie.ordre=3 "
+                + "order by lc.etatLc.ordre";
         Query qr = em.createQuery(req);
         List<LigneCommande> ligneCommandes = qr.getResultList();
         return ligneCommandes;
@@ -38,12 +43,67 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
 
     @Override
     public List<LigneCommande> selectAllLigneCommandeTriByPlat() {
-        String req = "select lc from LigneCommande lc where lc.etatLc.ordre<>4 order by lc.article.nom";
+        String req = "select lc from LigneCommande lc "
+                + "where lc.etatLc.ordre<>4 and lc.article.sousCategorie.categorie.ordre=1 "
+                + "or lc.etatLc.ordre<>4 and lc.article.sousCategorie.categorie.ordre=2 "
+                + "or lc.etatLc.ordre<>4 and lc.article.sousCategorie.categorie.ordre=3 "
+                + "order by lc.article.nom";
         Query qr = em.createQuery(req);
         List<LigneCommande> ligneCommandes = qr.getResultList();
         return ligneCommandes;
     }
 
+    @Override
+    public List<LigneCommande> selectLigneCommandeServies() {
+        Date d =new Date ();
+        
+        System.out.println("Date du jour : "+d);
+        String req = "select lc from LigneCommande lc "
+                + "where lc.etatLc.ordre=4 and lc.article.sousCategorie.categorie.ordre=1 "
+                + "or lc.etatLc.ordre=4 and lc.article.sousCategorie.categorie.ordre=2 "
+                + "or lc.etatLc.ordre=4 and lc.article.sousCategorie.categorie.ordre=3 "
+                + "order by lc.article.nom "; 
+
+        Query qr = em.createQuery(req);
+        List<LigneCommande> ligneCommandes = qr.getResultList();
+        return ligneCommandes;
+    }
+
+    @Override
+    public List<LigneCommande> selectLigneCommandeByChrono() {
+        String req = "select lc from LigneCommande lc "
+                + "where lc.etatLc.ordre<>4 and lc.article.sousCategorie.categorie.ordre=1 "
+                + "or lc.etatLc.ordre<>4 and lc.article.sousCategorie.categorie.ordre=2 "
+                + "or lc.etatLc.ordre<>4 and lc.article.sousCategorie.categorie.ordre=3 "
+                + "order by lc.commande.date";
+        Query qr = em.createQuery(req);
+        List<LigneCommande> ligneCommandes = qr.getResultList();
+        return ligneCommandes;
+    }
+
+    @Override
+    public List<LigneCommande> selectLigneCommandeByEmplacement() {
+        String req = "select lc from LigneCommande lc "
+                + "where lc.etatLc.ordre<>4 and lc.article.sousCategorie.categorie.ordre=1 "
+                + "or lc.etatLc.ordre<>4 and lc.article.sousCategorie.categorie.ordre=2 "
+                + "or lc.etatLc.ordre<>4 and lc.article.sousCategorie.categorie.ordre=3 "
+                + "order by lc.commande.numero";
+        Query qr = em.createQuery(req);
+        List<LigneCommande> ligneCommandes = qr.getResultList();
+        return ligneCommandes;
+    }
+
+    @Override
+    public List<LigneCommande> selectLigneCommandeByCategorie() {
+        String req = "select lc from LigneCommande lc "
+                + "where lc.etatLc.ordre<>4 and lc.article.sousCategorie.categorie.ordre=1 "
+                + "or lc.etatLc.ordre<>4 and lc.article.sousCategorie.categorie.ordre=2 "
+                + "or lc.etatLc.ordre<>4 and lc.article.sousCategorie.categorie.ordre=3 "
+                + "order by lc.article.sousCategorie.categorie.ordre";
+        Query qr = em.createQuery(req);
+        List<LigneCommande> ligneCommandes = qr.getResultList();
+        return ligneCommandes;
+    }
     @Override
     public LigneCommande changerEtatLigneCommande(Long idLc) {
         LigneCommande lCom = em.find(LigneCommande.class, idLc);
@@ -58,39 +118,6 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
         //set du nouvelle idEtat dans la ligne de commande
         lCom.setEtatLc(elc);
         return lCom;
-    }
-
-    @Override
-    public List<LigneCommande> selectLigneCommandeServies() {
-        String req = "select lc from LigneCommande lc where lc.etatLc.ordre=4 order by lc.article.nom "; // changer ordre=1 par 3 lorsque BDD plus fournie
-
-        Query qr = em.createQuery(req);
-        List<LigneCommande> ligneCommandes = qr.getResultList();
-        return ligneCommandes;
-    }
-
-    @Override
-    public List<LigneCommande> selectLigneCommandeByChrono() {
-        String req = "select lc from LigneCommande lc where lc.etatLc.ordre<>4 order by lc.commande.date";
-        Query qr = em.createQuery(req);
-        List<LigneCommande> ligneCommandes = qr.getResultList();
-        return ligneCommandes;
-    }
-
-    @Override
-    public List<LigneCommande> selectLigneCommandeByEmplacement() {
-        String req = "select lc from LigneCommande lc where lc.etatLc.ordre<>4 order by lc.commande.numero";
-        Query qr = em.createQuery(req);
-        List<LigneCommande> ligneCommandes = qr.getResultList();
-        return ligneCommandes;
-    }
-
-    @Override
-    public List<LigneCommande> selectLigneCommandeByCategorie() {
-        String req = "select lc from LigneCommande lc where lc.etatLc.ordre<>4 order by lc.article.sousCategorie.categorie.nom";
-        Query qr = em.createQuery(req);
-        List<LigneCommande> ligneCommandes = qr.getResultList();
-        return ligneCommandes;
     }
 
     @Override
@@ -111,6 +138,14 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
         return lc;
     }
 
+    @Override
+    public List<LigneCommande> selectLigneCommandeByIdCommande(Long id){
+                String rq = "Select lc from LigneCommande lc where lc.commande.id=:paramid";
+        Query qr = em.createQuery(rq);
+        qr.setParameter("paramid", id);
+        List<LigneCommande> lc = qr.getResultList();
+        return lc;
+    }
     
     
 }

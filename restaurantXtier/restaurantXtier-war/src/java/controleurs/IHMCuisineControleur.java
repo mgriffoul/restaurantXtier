@@ -36,7 +36,7 @@ public class IHMCuisineControleur implements SousControleurInterface {
         //Choix include en fonction de la ssSection
         //Tri par plat
         if ("plat".equalsIgnoreCase(ssSec)) {
-            s1 = "plat";
+            
             List<LigneCommande> ligneCommandes = beanLigneCommande.selectAllLigneCommandeTriByPlat();
             request.setAttribute("plat", ligneCommandes);
             List<LigneCommande> ligneCommandes2 = beanLigneCommande.selectLigneCommandeServies();
@@ -44,6 +44,16 @@ public class IHMCuisineControleur implements SousControleurInterface {
             message = "triées par plat";
             request.setAttribute("message", message);
             request.setAttribute("ssSec", ssSec);
+            
+            // actualisation via jsp plat
+            String ssSec2 = request.getParameter("meth");
+            System.out.println("test Meth : "+ssSec2);
+            if ("actu".equalsIgnoreCase(ssSec2)) {
+                inc1= "include/IHM_Cuisine/include/plat";
+                return inc1;
+            }
+            s1 = "plat";
+            
         }
         //Tri par etat
         if ("etat".equalsIgnoreCase(ssSec)) {
@@ -56,26 +66,20 @@ public class IHMCuisineControleur implements SousControleurInterface {
             request.setAttribute("message", message);
             request.setAttribute("ssSec", ssSec);
 
-            // actualisation
+            // actualisation via jsp etat
             String ssSec2 = request.getParameter("meth");
-            System.out.println("test Meth : "+ssSec2);
             if ("actu".equalsIgnoreCase(ssSec2)) {
-                System.out.println("==== on entre dans Etat/actu ==== ");
-//                s1 = "etat";
-                System.out.println("url : " + prefix + s1 + suffix);
                 inc1= "include/IHM_Cuisine/include/etat";
-                System.out.println("inc1 = "+inc1);
                 return inc1;
-
             }
             s1 = "etat";
-            System.out.println("=== fin etat ======");
+
 
         }
 
         //Tri par chronologie
         if ("chr".equalsIgnoreCase(ssSec)) {
-            s1 = "chr";
+            
             List<LigneCommande> ligneCommandes = beanLigneCommande.selectLigneCommandeByChrono();
             request.setAttribute("chr", ligneCommandes);
             List<LigneCommande> ligneCommandes2 = beanLigneCommande.selectLigneCommandeServies();
@@ -83,10 +87,19 @@ public class IHMCuisineControleur implements SousControleurInterface {
             message = "triées par chronologie";
             request.setAttribute("message", message);
             request.setAttribute("ssSec", ssSec);
+            
+            // actualisation via jsp chr
+            String ssSec2 = request.getParameter("meth");
+            if ("actu".equalsIgnoreCase(ssSec2)) {
+                inc1= "include/IHM_Cuisine/include/chr";
+                return inc1;
+            }
+            s1 = "chr";   
         }
+        
         //Tri par emplacement
         if ("table".equalsIgnoreCase(ssSec)) {
-            s1 = "table";
+            
             List<LigneCommande> ligneCommandes = beanLigneCommande.selectLigneCommandeByEmplacement();
             request.setAttribute("table", ligneCommandes);
             List<LigneCommande> ligneCommandes2 = beanLigneCommande.selectLigneCommandeServies();
@@ -94,11 +107,19 @@ public class IHMCuisineControleur implements SousControleurInterface {
             message = "triées par table";
             request.setAttribute("message", message);
             request.setAttribute("ssSec", ssSec);
+            
+            // actualisation via jsp table
+            String ssSec2 = request.getParameter("meth");
+            if ("actu".equalsIgnoreCase(ssSec2)) {
+                inc1= "include/IHM_Cuisine/include/table";
+                return inc1;
+            }
+            s1 = "table";
         }
 
         //Tri par catégorie
         if ("cat".equalsIgnoreCase(ssSec)) {
-            s1 = "cat";
+            
             List<LigneCommande> ligneCommandes = beanLigneCommande.selectLigneCommandeByCategorie();
             request.setAttribute("cat", ligneCommandes);
             List<LigneCommande> ligneCommandes2 = beanLigneCommande.selectLigneCommandeServies();
@@ -106,17 +127,23 @@ public class IHMCuisineControleur implements SousControleurInterface {
             message = "triées par catégorie";
             request.setAttribute("message", message);
             request.setAttribute("ssSec", ssSec);
+            // actualisation via jsp cat
+            String ssSec2 = request.getParameter("meth");
+            System.out.println("test Meth : "+ssSec2);
+            if ("actu".equalsIgnoreCase(ssSec2)) {
+                inc1= "include/IHM_Cuisine/include/cat";
+                return inc1;
+            }
+            s1 = "cat";
         }
+        
         //appel méthode changement d'etat
         String ssSec2 = request.getParameter("meth");
         if ("change".equalsIgnoreCase(ssSec2)) {
-            System.out.println("test change ssSec2 = " + ssSec2);
             s1 = request.getParameter("inc");
             //récupération de l'id de la LC 
             String s = request.getParameter("idLc");
-            System.out.println("s : "+s);
             Long idLc = Long.parseLong(s);
-            System.out.println("idLc : "+idLc);
             // appel de la méthode avec idLc en attribut
             LigneCommande ligneCommande = beanLigneCommande.changerEtatLigneCommande(idLc);
 

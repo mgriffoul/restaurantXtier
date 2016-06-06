@@ -775,3 +775,9 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
     padding-bottom: 15px;
     padding-top: 15px;
 }
+.messageForm{
+    color: seagreen;
+    font-size: 20px;
+    margin-left: 50px;
+    margin-top: 20px;
+}
