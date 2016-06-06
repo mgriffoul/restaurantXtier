@@ -3,25 +3,23 @@ package websocket;
 
 public class WsCommandeAction {
 
-    private Long idArticle;
-    private String action;
-    private String numCommande;
+   private Integer cleCommande;
+   private String action;
 
     public WsCommandeAction() {
     }
 
-    public WsCommandeAction(Long idArticle, String action, String numCommande) {
-        this.idArticle = idArticle;
+    public WsCommandeAction(Integer cleCommande, String action) {
+        this.cleCommande = cleCommande;
         this.action = action;
-        this.numCommande = numCommande;
     }
 
-    public Long getIdArticle() {
-        return idArticle;
+    public Integer getCleCommande() {
+        return cleCommande;
     }
 
-    public void setIdArticle(Long idArticle) {
-        this.idArticle = idArticle;
+    public void setCleCommande(Integer cleCommande) {
+        this.cleCommande = cleCommande;
     }
 
     public String getAction() {
@@ -31,14 +29,12 @@ public class WsCommandeAction {
     public void setAction(String action) {
         this.action = action;
     }
+   
+   
 
-    public String getNumCommande() {
-        return numCommande;
-    }
-
-    public void setNumCommande(String numCommande) {
-        this.numCommande = numCommande;
-    }
+    
+    
+   
     
     
 }

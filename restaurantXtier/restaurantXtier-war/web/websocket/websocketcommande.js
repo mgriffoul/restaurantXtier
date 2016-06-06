@@ -16,18 +16,39 @@ function onError() {
 
 websocket.onmessage = function() { onMessage(); };
 
-function sendOrder() {
+function sendOrder(cleCommande) {
     
     var json = JSON.stringify({
-        "idArticle": 12,
-        "action": "ajouter",
-        "numCommande": "com0001254"
+        "cleCommande": cleCommande,
+        "action": "refresh"
     });
-    
-    alert("sending text: " + json);
     websocket.send(json);
 }
-                
+
+
 function onMessage() {
     alert("received: ");
 }
+
+
+function wslog(cleCommande){
+    alert("cle commande" + cleCommande);
+    
+    var json = JSON.stringify({
+        "cleCommande": cleCommande,
+        "action": "log"
+    });
+    websocket.send(json);
+}
+function test(){
+    alert("test");
+}
+
+//        this.cleCommande = cleCommande;
+//        this.action = action;
+//        this.idArticle = idArticle;
+//        this.idFormule = idFormule;
+//        this.idEntree = idEntree;
+//        this.idPlat = idPlat;
+//        this.idDessert = idDessert;
+//        this.idBoisson = idBoisson;
