@@ -17,7 +17,6 @@ function onError() {
 websocket.onmessage = function() { onMessage(); };
 
 function sendOrder(cleCommande) {
-    
     var json = JSON.stringify({
         "cleCommande": cleCommande,
         "action": "refresh"
@@ -27,7 +26,8 @@ function sendOrder(cleCommande) {
 
 
 function onMessage() {
-    alert("received: ");
+    refreshHeader();
+    alert("order refresh !");
 }
 
 

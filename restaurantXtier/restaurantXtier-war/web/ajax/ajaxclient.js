@@ -25,7 +25,8 @@ function refreshHeader(){
     
     xhr.onreadystatechange = function (){
         if(xhr.readyState == 4 && xhr.status == 200){
-            var maDiv = document.getElementById("header");
+          
+          
             var response = xhr.responseText;
             maDiv.innerHTML = response;
         }
