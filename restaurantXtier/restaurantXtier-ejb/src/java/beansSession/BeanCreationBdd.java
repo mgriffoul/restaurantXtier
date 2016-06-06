@@ -465,7 +465,7 @@ em.persist(vinRs4);
         arts3.add(de2);
         arts3.add(de6);
         arts3.add(de7);
-        Formule form03 = new Formule(arts2, "Pâtes", 21.5F, "pat",tva2);
+        Formule form03 = new Formule(arts3, "Pâtes", 21.5F, "pat",tva2);
         em.persist(form03);
         
         
