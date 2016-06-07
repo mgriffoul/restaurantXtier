@@ -797,14 +797,8 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
     padding-right: 100px;
 }
 
-.btn-retirer{
-    color: #000000;
-}
 
-.glyphicglyphon  .glyph-retirer span{
-    color: #000000;
-}
 
-#price .block .pricing-list ul li .item .item-title span{
-    color: #000000;
+#price .block .pricing-list ul li .item .item-title span .glyphpers{
+    color: #FFFFFF;
 }

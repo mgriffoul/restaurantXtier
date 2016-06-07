@@ -27,8 +27,8 @@
                                         <div class="item-title ">
                                             <h2 class="recap-commande-intitule">${entree.article.nom}</h2>
 
-                                            <span>${entree.prixHT} E
-                                                <button type="button" class="btn btn-danger btn-sm "><div class="glyph-retirer"><span class="glyphicon glyphicon-remove "></span></div></button>
+                                            <span class="prixrecapcommande">${entree.prixHT} E
+                                                <button type="button" class="btn btn-danger btn-sm "><span class="glyphicon glyphicon-remove glyphpers"></span></button></span>
 </span>
 
                                             <div class="border-bottom-perso"></div>
