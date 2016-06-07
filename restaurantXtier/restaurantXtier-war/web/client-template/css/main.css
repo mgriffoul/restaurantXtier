@@ -781,3 +781,30 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
     margin-left: 50px;
     margin-top: 20px;
 }
+
+.recap-commande-intitule{
+    
+    font-size: 18px;
+    
+}
+.border-bottom-perso{
+    border-bottom-style: solid;
+    border-bottom-color: #C9C9C9; 
+    border-bottom-width: 1px;
+}
+.container-perso{
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.btn-retirer{
+    color: #000000;
+}
+
+.glyphicglyphon  .glyph-retirer span{
+    color: #000000;
+}
+
+#price .block .pricing-list ul li .item .item-title span{
+    color: #000000;
+}

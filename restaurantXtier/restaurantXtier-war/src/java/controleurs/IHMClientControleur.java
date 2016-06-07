@@ -103,6 +103,7 @@ public class IHMClientControleur implements SousControleurInterface {
                         Collection<LigneCommande> plats = salle.getPlatsCommandees(cleCommande);
                         Collection<LigneCommande> desserts = salle.getDessertsCommandees(cleCommande);
                         Collection<LigneCommande> formules = salle.getFormulesCommandees(cleCommande);
+                        Collection<LigneCommande> boissons = salle.getBoissonsCommandees(cleCommande);
                         
                         HashMap<Formule, Collection<LigneCommande>> hmf = new HashMap<>();
                         Collection<String> refForms = new ArrayList();
@@ -123,7 +124,7 @@ public class IHMClientControleur implements SousControleurInterface {
                             hmf.put(beanFormule.selectFormuleByRef(s), col);
                         }
                         
-                        
+                        request.setAttribute("boissons", boissons);
                         request.setAttribute("entrees", entrees);
                         request.setAttribute("plats", plats);
                         request.setAttribute("desserts", desserts);
