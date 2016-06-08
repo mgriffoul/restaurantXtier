@@ -12,8 +12,10 @@ import beansSession.BeanLigneCommandeLocal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
@@ -221,5 +223,24 @@ public class Salle implements SalleLocal {
             }
         }
         return lcformule;
+    }
+
+    @Override
+    public void enleverArticle(Integer cleCommande, Long idArticle) {
+        
+        Commande co = selectCommandeByCleCommande(cleCommande);
+        Collection<LigneCommande> lcs = co.getLignesCommandes();
+        
+        Iterator it = lcs.iterator();
+        while(it.hasNext()){
+            LigneCommande l = (LigneCommande)it.next();
+            if(l.getRefFormule()==null && l.getArticle()!=null){
+               if(Objects.equals(l.getArticle().getId(), idArticle)){
+                   it.remove();
+               }
+           }
+        }
+        
+        
     }
 }
