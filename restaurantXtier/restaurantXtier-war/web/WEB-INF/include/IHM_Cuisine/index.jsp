@@ -18,7 +18,7 @@
 
 
     </head>
-    <body>
+    <body onload="actualiserDiv('${ssSec}');">
         <div class="row">
             <div class="col-md-9">
                 <div style="padding-left:40px">
