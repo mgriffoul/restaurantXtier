@@ -79,7 +79,7 @@ public class IHMCaisseControleur implements SousControleurInterface {
                 if (lc.getRefFormule() != null && lc.getArticle() != null){
                     lc.getArticle().setPrixHt(0F);
                 }
-                lcw.setLigneCommande(lc);
+//                lcw.setLigneCommande(lc);
                 //System.out.println("prix ligne = "+lc.getPrixHT());
                 //System.out.println("ref form = "+lc.getRefFormule());
 //                if(lc.getRefFormule() != null && lc.getPrixHT() > 0 ){
@@ -111,8 +111,8 @@ public class IHMCaisseControleur implements SousControleurInterface {
 //                }
 //                if(lc.getArticle() != null){
 //                System.out.println("nom = "+lc.getArticle().getNom());
-                total += lcw.getPrixTotalTTC();
-                Float prix = lcw.getPrixTotalTTC();
+                total += lcw.getPrixTotalTTC(lc);
+                Float prix = lcw.getPrixTotalTTC(lc);
                 request.setAttribute("prixt", prix);
             }
 

@@ -7,12 +7,16 @@
         <title>Ticket</title>
     </head>
     <body>
-        <p>
+        <div>
+            <p class="afficherPrixTicket">
             TICKET
-            A payer // ${prixTTC}
+            A payer // ${prixRestant}
+        </p>
+        <p class="rappelCommande">
             <c:if test="${not empty affcom.numero}">
                 Commande n° : ${affcom.numero}
-                            
+        </p>
+        <p class="detailCommande">
                 <table>
                     <thead>
                         <tr>
@@ -40,6 +44,8 @@
                             </tr>
                         </c:forEach>
             </c:if>
+                </table>                
         </p>
+        </div>
 </body>
 </html>

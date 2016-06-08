@@ -15,19 +15,19 @@ import javax.persistence.Query;
 @Stateless
 public class BeanLigneCommande implements BeanLigneCommandeLocal {
 
-    private LigneCommande lc;
+//    private LigneCommande lc;
     
     @EJB
     private BeanFormuleLocal beanFormuleLocal;
 
-    @Override
-    public LigneCommande getLc() {
-        return lc;
-    }
-
-    public void setLc(LigneCommande lc) {
-        this.lc = lc;
-    }
+//    @Override
+//    public LigneCommande getLc() {
+//        return lc;
+//    }
+//
+//    public void setLc(LigneCommande lc) {
+//        this.lc = lc;
+//    }
     
     @PersistenceContext(unitName = "restaurantXtier-ejbPU")
     private EntityManager em;
@@ -164,7 +164,7 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
     }
       
     @Override
-    public Float getPrixLcTTC(){
+    public Float getPrixLcTTC(LigneCommande lc){
         Float prix = 0F;
         System.out.println("article prix = "+lc.getPrixHT());
         if (lc.getRefFormule() == null){
