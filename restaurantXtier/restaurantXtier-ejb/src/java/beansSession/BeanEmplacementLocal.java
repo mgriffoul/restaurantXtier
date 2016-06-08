@@ -13,7 +13,8 @@ public interface BeanEmplacementLocal {
     public Emplacement selectEmplacementById(Long id);
 
     public List<Emplacement> selectEmplPourComEnCours();
-    
+
     public void updateEmplacement(Emplacement emp);
 
+    public Emplacement selectEmplacementByNumero(String numero);
 }

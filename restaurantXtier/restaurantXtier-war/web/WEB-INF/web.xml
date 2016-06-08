@@ -118,9 +118,9 @@
         <ejb-link>restaurantXtier-ejb.jar#GroupesEmplacement</ejb-link>
     </ejb-local-ref>
     <ejb-local-ref>
-        <ejb-ref-name>BeanLigneCommande1</ejb-ref-name>
+        <ejb-ref-name>BeanArticle</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
-        <local>beansSession.BeanLigneCommandeLocal</local>
-        <ejb-link>restaurantXtier-ejb.jar#BeanLigneCommande</ejb-link>
+        <local>beansSession.BeanArticleLocal</local>
+        <ejb-link>restaurantXtier-ejb.jar#BeanArticle</ejb-link>
     </ejb-local-ref>
 </web-app>

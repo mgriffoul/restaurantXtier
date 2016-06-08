@@ -775,3 +775,30 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
     padding-bottom: 15px;
     padding-top: 15px;
 }
+.messageForm{
+    color: seagreen;
+    font-size: 20px;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.recap-commande-intitule{
+    
+    font-size: 18px;
+    
+}
+.border-bottom-perso{
+    border-bottom-style: solid;
+    border-bottom-color: #C9C9C9; 
+    border-bottom-width: 1px;
+}
+.container-perso{
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+
+
+#price .block .pricing-list ul li .item .item-title span .glyphpers{
+    color: #FFFFFF;
+}

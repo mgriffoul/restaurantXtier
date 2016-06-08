@@ -41,7 +41,7 @@ public class BeanFormule implements BeanFormuleLocal {
 
     @Override
     public ArrayList<Article> selectEntreesOfFormule(Formule f) {
-        Collection<Article> allArticles = f.getArticles();
+        Collection<Article> allArticles = selectArticleByIdFormule(f.getId());
         ArrayList<Article> entrees = new ArrayList();
 
         for (Article a : allArticles) {
@@ -55,7 +55,7 @@ public class BeanFormule implements BeanFormuleLocal {
 
     @Override
     public ArrayList<Article> selectPlatsOfFormule(Formule f) {
-        Collection<Article> allArticles = f.getArticles();
+        Collection<Article> allArticles = selectArticleByIdFormule(f.getId());
         ArrayList<Article> plats = new ArrayList();
 
         for (Article a : allArticles) {
@@ -69,7 +69,7 @@ public class BeanFormule implements BeanFormuleLocal {
 
     @Override
     public ArrayList<Article> selectDessertsOfFormule(Formule f) {
-        Collection<Article> allArticles = f.getArticles();
+        Collection<Article> allArticles = selectArticleByIdFormule(f.getId());
         ArrayList<Article> desserts = new ArrayList();
 
         for (Article a : allArticles) {
@@ -83,7 +83,7 @@ public class BeanFormule implements BeanFormuleLocal {
 
     @Override
     public ArrayList<Article> selectBoissonsOfFormule(Formule f) {
-        Collection<Article> allArticles = f.getArticles();
+        Collection<Article> allArticles = selectArticleByIdFormule(f.getId());
         ArrayList<Article> boissons = new ArrayList();
 
         for (Article a : allArticles) {
@@ -101,17 +101,28 @@ public class BeanFormule implements BeanFormuleLocal {
     }
 
     @Override
-    public Formule chargerFormule(Formule f) {
+    public void chargerFormule(Formule f) {
         ArrayList<Article> entrees = selectEntreesOfFormule(f);
             ArrayList<Article> plats = selectPlatsOfFormule(f);
             ArrayList<Article> desserts = selectDessertsOfFormule(f);
             ArrayList<Article> boissons = selectBoissonsOfFormule(f);
+            System.out.println("Boissons SIZE = "+boissons.size());
             f.setEntrees(entrees);
             f.setPlats(plats);
             f.setDesserts(desserts);
             f.setBoissons(boissons);
-            
-            return f;
+             
+    }
+
+    @Override
+    public Formule selectFormuleByRef(String refFormule) {
+       
+        String req = "Select f from Formule f where f.refFormule=:paramref";
+        Query qr = em.createQuery(req);
+        qr.setParameter("paramref", refFormule);
+        Formule f = (Formule) qr.getSingleResult();
+        return f;
+        
     }
 
     @Override
