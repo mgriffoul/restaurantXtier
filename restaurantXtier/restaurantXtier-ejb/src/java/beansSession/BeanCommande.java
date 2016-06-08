@@ -2,7 +2,6 @@ package beansSession;
 
 import beanEntite.Commande;
 import beanEntite.Emplacement;
-import beanEntite.Formule;
 import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
 import java.text.DateFormat;

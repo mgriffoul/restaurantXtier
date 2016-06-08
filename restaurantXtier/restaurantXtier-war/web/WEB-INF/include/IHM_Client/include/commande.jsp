@@ -4,7 +4,7 @@
 
 <section id="price">
 
-    <div class="container container-perso">
+    <div class="container container-perso" id="commandes">
         <div class="row">
             <div class="col-md-12">
                 <div class="block ">
@@ -29,9 +29,9 @@
 
                                             <span class="prixrecapcommande">${entree.prixHT} E
                                                 
-                                                <a href="index?section=actionCom&act=supp&type=art&id=${entree.article.id}" button type="button" class="btn btn-danger btn-sm "><span class="glyphicon glyphicon-remove glyphpers"></span></button><a />
-                                            </span>
+                                                    <button class="btn btn-danger btn-sm " onclick="suppArticle('price', '${entree.article.id}');suppArticle('header', '${entree.article.id}');sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
 
+                                            </span>
                                             <div class="border-bottom-perso"></div>
                                         </div>
                                     </div>
@@ -58,7 +58,7 @@
                                             <h2 class="recap-commande-intitule">${plat.article.nom}</h2>
 
                                             <span>${plat.prixHT} E
-                                             <button type="button" class="btn btn-danger btn-sm "><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                                <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('price', '${plat.article.id}');suppArticle('header', '${plat.article.id}');sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
                                             </span>
                                             <div class="border-bottom-perso"></div>
                                         </div>
@@ -85,7 +85,7 @@
                                             <h2 class="recap-commande-intitule">${dessert.article.nom}</h2>
 
                                             <span>${dessert.prixHT} E
-                                             <button type="button" class="btn btn-danger btn-sm "><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                                <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('price', '${dessert.article.id}');suppArticle('header', '${dessert.article.id}');sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
                                             </span>
                                             <div class="border-bottom-perso"></div>
                                         </div>
@@ -111,7 +111,7 @@
                                             <h2 class="recap-commande-intitule">${for.key.nom}</h2>
 
                                             <span>${for.key.prixTtc} E
-                                             <button type="button" class="btn btn-danger btn-sm "><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                                <button type="button" class="btn btn-danger btn-sm "><span class="glyphicon glyphicon-remove glyphpers"></span></button>
                                             </span>
                                             <div class="border-bottom-perso"></div>
                                         </div>
@@ -154,7 +154,7 @@
                                             <h2 class="recap-commande-intitule">${boi.article.nom}</h2>
 
                                             <span>${boi.prixHT} E
-                                             <button type="button" class="btn btn-danger btn-sm "><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                                <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('price', '${boi.article.id}');suppArticle('header', '${boi.article.id}');sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
                                             </span>
                                             <div class="border-bottom-perso"></div>
                                         </div>

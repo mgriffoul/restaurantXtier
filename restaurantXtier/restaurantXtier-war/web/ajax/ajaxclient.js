@@ -37,11 +37,47 @@ function refreshHeader(){
     
 }
 
+function refreshMesCommandes(){
+    
+    var url = "index?section=clientRefresh&refresh=commande";
+    
+    var xhr = getXmlHttpRequest(); 
+    
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState == 4 && xhr.status == 200){
+          
+          var maDiv = document.getElementById("commandes");
+            var response = xhr.responseText;
+            maDiv.innerHTML = response;
+        }
+    };
+    
+    xhr.open("GET", url, true);
+    xhr.send(null);
+    
+    
+}
 
 
 function addArticle(idDom, idArticle){
    
     var url = "index?section=actionCom&act=add&id="+idArticle;
+    
+    var xhr = getXmlHttpRequest();
+    
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            var maDiv = document.getElementById(idDom);
+            var response = xhr.responseText;
+            maDiv.innerHTML = response;
+        }
+    };
+    xhr.open("GET", url, true);
+    xhr.send(null);
+}
+function suppArticle(idDom, idArticle){
+   
+    var url = "index?section=actionCom&act=supp&id="+idArticle+"&dom="+idDom;
     
     var xhr = getXmlHttpRequest();
     

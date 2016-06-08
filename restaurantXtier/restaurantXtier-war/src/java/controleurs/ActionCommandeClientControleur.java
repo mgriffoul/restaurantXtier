@@ -65,6 +65,22 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
                         
                     }
 
+                    if("supp".equalsIgnoreCase(act)){
+                        
+                        if("price".equalsIgnoreCase(request.getParameter("dom"))){
+                        Long id = Long.valueOf(request.getParameter("id"));
+                        salle.enleverArticle(cleCommande, id);
+                        
+                        return prefix+"IHM_Client/include/commande"; 
+                        }
+                        if("header".equalsIgnoreCase(request.getParameter("dom"))){
+                            return prefix+"IHM_Client/include/header";
+                        }
+                    }
+                    
+                    
+                    
+                    
                 } else {//commande!=null
                     url = "include/logclient";
                 }
