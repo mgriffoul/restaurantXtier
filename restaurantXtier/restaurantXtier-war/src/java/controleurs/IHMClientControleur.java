@@ -111,29 +111,10 @@ public class IHMClientControleur implements SousControleurInterface {
                         Collection<LigneCommande> formules = salle.getFormulesCommandees(cleCommande);
                         Collection<LigneCommande> boissons = salle.getBoissonsCommandees(cleCommande);
                         
-                        HashMap<Formule, Collection<LigneCommande>> hmf = new HashMap<>();
-                        Collection<String> refForms = new ArrayList();
+                        HashMap<Formule, Collection<LigneCommande>> hmf = salle.getFormuleMapper(formules);
                         
-                        for(LigneCommande l : formules){
-                            if(!refForms.contains((l.getRefFormule().substring(0, 3)))){
-                                
-                                String ref = l.getRefFormule().substring(0, 3);
-                                System.out.println("SUBSTRING =" + ref);
-                                refForms.add(ref);
-                            }
-                        }
                         
-                        for(String s : refForms){
-                          Collection<LigneCommande> col = new ArrayList<>();
-                            for(LigneCommande l : formules){
-                                if(l.getRefFormule().contains(s)){
-                                    col.add(l);
-                                    System.out.println("COL *SIZE======"+col.size());
-                                }
-                            }
-                            hmf.put(beanFormule.selectFormuleByRef(s), col);
-                        }
-                        System.out.println("HMF SIZE <<<<>>>><<>>>"+hmf.size());
+                        
                         request.setAttribute("boissons", boissons);
                         request.setAttribute("entrees", entrees);
                         request.setAttribute("plats", plats);

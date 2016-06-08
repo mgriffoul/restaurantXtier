@@ -54,8 +54,6 @@ function refreshMesCommandes(){
     
     xhr.open("GET", url, true);
     xhr.send(null);
-    
-    
 }
 
 
@@ -78,6 +76,22 @@ function addArticle(idDom, idArticle){
 function suppArticle(idDom, idArticle){
    
     var url = "index?section=actionCom&act=supp&id="+idArticle+"&dom="+idDom;
+    
+    var xhr = getXmlHttpRequest();
+    
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            var maDiv = document.getElementById(idDom);
+            var response = xhr.responseText;
+            maDiv.innerHTML = response;
+        }
+    };
+    xhr.open("GET", url, true);
+    xhr.send(null);
+}
+function suppFormule(idDom, refFormule){
+   
+    var url = "index?section=actionCom&act=suppFor&id="+refFormule+"&dom="+idDom;
     
     var xhr = getXmlHttpRequest();
     

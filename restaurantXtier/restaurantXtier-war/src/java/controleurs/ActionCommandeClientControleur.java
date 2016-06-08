@@ -89,33 +89,47 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
                             Collection<LigneCommande> formules = salle.getFormulesCommandees(cleCommande);
                             Collection<LigneCommande> boissons = salle.getBoissonsCommandees(cleCommande);
 
-                            HashMap<Formule, Collection<LigneCommande>> hmf = new HashMap<>();
-                            Collection<String> refForms = new ArrayList();
+                            HashMap<Formule, Collection<LigneCommande>> hmf = salle.getFormuleMapper(formules);
 
-                            for (LigneCommande l : formules) {
-                                if (!refForms.contains((l.getRefFormule().substring(0, 3)))) {
-
-                                    String ref = l.getRefFormule().substring(0, 3);
-                                    System.out.println("SUBSTRING =" + ref);
-                                    refForms.add(ref);
-                                }
-                            }
-
-                            for (String s : refForms) {
-                                Collection<LigneCommande> col = new ArrayList<>();
-                                for (LigneCommande l : formules) {
-                                    if (l.getRefFormule().contains(s)) {
-                                        col.add(l);
-                                        System.out.println("COL *SIZE======" + col.size());
-                                    }
-                                }
-                                hmf.put(beanFormule.selectFormuleByRef(s), col);
-                            }
                             System.out.println("HMF SIZE <<<<>>>><<>>>" + hmf.size());
                             prixTotal = salle.getPrixTtcCommande(cleCommande);
                             if (prixTotal == null) {
                                 prixTotal = 0F;
                             }
+
+                            request.setAttribute("prixTotal", prixTotal);
+                            request.setAttribute("boissons", boissons);
+                            request.setAttribute("entrees", entrees);
+                            request.setAttribute("plats", plats);
+                            request.setAttribute("desserts", desserts);
+                            request.setAttribute("formules", hmf);
+
+                            return prefix + "IHM_Client/include/commande";
+                        }
+                        if ("header".equalsIgnoreCase(request.getParameter("dom"))) {
+                            return prefix + "IHM_Client/include/header";
+                        }
+                    }
+
+                    if ("suppFor".equalsIgnoreCase(request.getParameter("act"))) {
+                        if ("commandes".equalsIgnoreCase(request.getParameter("dom"))) {
+                            String refFormule = request.getParameter("id");
+                            salle.enleverFormule(cleCommande, refFormule);
+
+                            Collection<LigneCommande> entrees = salle.getEntreesCommandees(cleCommande);
+                            Collection<LigneCommande> plats = salle.getPlatsCommandees(cleCommande);
+                            Collection<LigneCommande> desserts = salle.getDessertsCommandees(cleCommande);
+                            Collection<LigneCommande> formules = salle.getFormulesCommandees(cleCommande);
+                            Collection<LigneCommande> boissons = salle.getBoissonsCommandees(cleCommande);
+
+                            HashMap<Formule, Collection<LigneCommande>> hmf = salle.getFormuleMapper(formules);
+
+                            System.out.println("HMF SIZE <<<<>>>><<>>>" + hmf.size());
+                            prixTotal = salle.getPrixTtcCommande(cleCommande);
+                            if (prixTotal == null) {
+                                prixTotal = 0F;
+                            }
+
                             request.setAttribute("prixTotal", prixTotal);
                             request.setAttribute("boissons", boissons);
                             request.setAttribute("entrees", entrees);

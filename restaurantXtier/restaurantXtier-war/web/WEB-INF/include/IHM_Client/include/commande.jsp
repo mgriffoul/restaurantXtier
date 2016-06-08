@@ -116,7 +116,9 @@
                                             <h2 class="recap-commande-intitule">${for.key.nom}</h2>
 
                                             <span>${for.key.prixTtc} E
-                                                <button type="button" class="btn btn-danger btn-sm "><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                                <button type="button" class="btn btn-danger btn-sm " onclick="suppFormule('commandes', '${for.key.refFormule}');
+                                                        suppFormule('header', '${for.key.refFormule}');
+                                                        sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
                                             </span>
                                             <div class="border-bottom-perso"></div>
                                         </div>
