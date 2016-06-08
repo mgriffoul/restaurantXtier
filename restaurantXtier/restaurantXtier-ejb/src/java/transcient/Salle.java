@@ -201,14 +201,14 @@ public class Salle implements SalleLocal {
         Collection<LigneCommande> lcs = co.getLignesCommandes();
         Collection<LigneCommande> lcboisson = new ArrayList<>();
         for (LigneCommande l : lcs) {
-                if (l.getArticle() != null) {
-                    if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Boissons")
-                            && l.getRefFormule() == null) {
-                        lcboisson.add(l);
-                    }
+            if (l.getArticle() != null) {
+                if (l.getArticle().getSousCategorie().getCategorie().getNom().equalsIgnoreCase("Les Boissons")
+                        && l.getRefFormule() == null) {
+                    lcboisson.add(l);
                 }
             }
-        
+        }
+
         return lcboisson;
     }
 
@@ -227,20 +227,29 @@ public class Salle implements SalleLocal {
 
     @Override
     public void enleverArticle(Integer cleCommande, Long idArticle) {
-        
         Commande co = selectCommandeByCleCommande(cleCommande);
         Collection<LigneCommande> lcs = co.getLignesCommandes();
-        
         Iterator it = lcs.iterator();
-        while(it.hasNext()){
-            LigneCommande l = (LigneCommande)it.next();
-            if(l.getRefFormule()==null && l.getArticle()!=null){
-               if(Objects.equals(l.getArticle().getId(), idArticle)){
-                   it.remove();
-               }
-           }
+        while (it.hasNext()) {
+            LigneCommande l = (LigneCommande) it.next();
+            if (l.getRefFormule() == null && l.getArticle() != null) {
+                if (Objects.equals(l.getArticle().getId(), idArticle)) {
+                    it.remove();
+                }
+            }
         }
-        
-        
     }
+
+    @Override
+    public Float getPrixTtcCommande(Integer cleCommande) {
+        Commande co = selectCommandeByCleCommande(cleCommande);
+        Collection<LigneCommande> lcs = getAllLigneCommandeFromCommande(cleCommande);
+        float prixTotal = 0;
+        
+        for(LigneCommande l : lcs){
+            prixTotal += beanLigneCommande.getPrixLcTTC();
+        }
+        return null;
+    }
+
 }

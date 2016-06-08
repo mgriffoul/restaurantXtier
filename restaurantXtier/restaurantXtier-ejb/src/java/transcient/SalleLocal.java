@@ -51,5 +51,7 @@ public interface SalleLocal {
     public Collection<LigneCommande> getFormulesCommandees(Integer cleCommande);
     
     public void enleverArticle (Integer cleCommande, Long idArticle);
+    
+    public Float getPrixTtcCommande(Integer cleCommande);
   
 }
