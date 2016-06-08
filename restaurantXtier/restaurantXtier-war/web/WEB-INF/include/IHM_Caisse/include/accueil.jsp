@@ -48,26 +48,28 @@
                 </table>
         </c:if>        
             </div>
-        <div class="bouton-caisse">
+        <div class="boutoncaisse">
+            <form action="" >
             <table border="1">
                 <tbody>
                     <tr>
-                <input type="text" value="${prixHT}" />
+                <label name="soldetotal" >A PAYER // ${prixTTC}</label><br />
+                <input type="text" name="afficheur" class="afficheur" id="afficheur" readonly="readonly" /><br />
                     </tr>
                     <tr>
-                        <td><a href="#">7</a></td>
-                        <td><a href="#">8</a></td>
-                        <td><a href="#">9</a></td>
+                        <td><a href="#" onclick="ajouter('7');return false;">7</a></td>
+                        <td><a href="#" onclick="ajouter('8');return false;">8</a></td>
+                        <td><a href="#" onclick="ajouter('9');return false;">9</a></td>
                     </tr>
                     <tr>
-                        <td><a href="#">4</a></td>
-                        <td><a href="#">5</a></td>
-                        <td><a href="#">6</a></td>
+                        <td><a href="#" onclick="ajouter('4');return false;">4</a></td>
+                        <td><a href="#" onclick="ajouter('5');return false;">5</a></td>
+                        <td><a href="#" onclick="ajouter('6');return false;">6</a></td>
                     </tr>
                     <tr>
-                        <td><a href="#">1</a></td>
-                        <td><a href="#">2</a></td>
-                        <td><a href="#">3</a></td>
+                        <td><a href="#" onclick="ajouter('1');return false;">1</a></td>
+                        <td><a href="#" onclick="ajouter('2');return false;">2</a></td>
+                        <td><a href="#" onclick="ajouter('3');return false;">3</a></td>
                     </tr>
                     <tr>
                         <td><a href="#">C</a></td>
@@ -76,6 +78,7 @@
                     </tr>
                 </tbody>
             </table>
+            </form>
         </div>
         <aside>
             <div id="ticket">

@@ -13,5 +13,7 @@ public interface BeanArticleLocal {
     public List<Article> selectArtByIdFormAndIdCate(Long idFormule, Long idCategorie);
 
     public SousCategorie findSousCategorieOfArticle(Long idArticle);
+
+    public Article selectArticleByIdLigneCommande(Long id);
     
 }

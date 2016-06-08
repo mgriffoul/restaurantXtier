@@ -25,4 +25,11 @@ public interface BeanLigneCommandeLocal {
     public List<LigneCommande> selectLigneCommandeByCategorie ();
     public LigneCommande creerLigneDeCommandeArticle(Long idArticle);
     public List<LigneCommande> selectLigneCommandeByIdCommande(Long id);
+
+    public Float getPrixLcTTC();
+
+    public LigneCommande getLc();
+
+    public void setLc(LigneCommande lc);
+
 }

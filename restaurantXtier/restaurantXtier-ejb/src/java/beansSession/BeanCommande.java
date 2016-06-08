@@ -2,6 +2,7 @@ package beansSession;
 
 import beanEntite.Commande;
 import beanEntite.Emplacement;
+import beanEntite.Formule;
 import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
 import java.text.DateFormat;
@@ -164,23 +165,19 @@ public class BeanCommande implements BeanCommandeLocal {
         Collection<LigneCommande> listLc =  co.getLignesCommandes();
         listLc.add(lc);
     }
-
-    public Float getPrixTotalHT(String numero){
-        Commande c = selectCommandeByNumero(numero);
-        
-        //for (LigneCommande lc : c) {
-            
-        //}
-        return null;
-    }
     
-    public Float getPrixTtc(String numero){
-//        LigneCommande lc = beanLigneCommande.
-        
-        
-        
-        
-        return null;
+    @Override
+    public Float getTotalCommandeTtc(String numero){
+    Float total = 0F;
+    Commande c = this.selectCommandeByNumero(numero);
+    List<LigneCommande> liste = beanLigneCommande.selectLigneCommandeByIdCommande(c.getId());
+    for (LigneCommande lc : liste) {
+        Float f = beanLigneCommande.getPrixLcTTC();
+        System.out.println("F = "+f);
+        total += f;
+        return total;
     }
+    return total;
+}    
     
 }

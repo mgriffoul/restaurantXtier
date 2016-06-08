@@ -9,6 +9,7 @@
     <body>
         <p>
             TICKET
+            A payer // ${prixTTC}
             <c:if test="${not empty affcom.numero}">
                 Commande n° : ${affcom.numero}
                             
@@ -21,13 +22,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${LigneComm}" var="lc">
+                        <c:forEach items="${affcom.lignesCommandes}" var="lc">
                             <tr>
                                 <td>
-                                        ${lc.nom}       
-                                       
+                                    ${lc.article.nom}        
                                 </td>
-                                <td>${lc.prix}</td>
+                                <td>coucou</td>
                                 
                             </tr>
                         </c:forEach>
