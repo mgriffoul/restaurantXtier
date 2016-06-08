@@ -64,6 +64,12 @@ public class IHMClientControleur implements SousControleurInterface {
         //Récupération de la commande lié à l'emplacement
         Integer cleCommande = (Integer) session.getAttribute("cleCommande");
         Commande co = salle.selectCommandeByCleCommande(cleCommande);
+        Float prixTotal = salle.getPrixTtcCommande(cleCommande);
+        if(prixTotal==null){
+            prixTotal=0F;
+        }
+        request.setAttribute("prixTotal", prixTotal);
+        
         System.out.println(">>>>>>>>>>Commande :" + cleCommande);
 
         //Test de l'utilisateur
@@ -109,15 +115,18 @@ public class IHMClientControleur implements SousControleurInterface {
                         Collection<String> refForms = new ArrayList();
                         
                         for(LigneCommande l : formules){
-                            if(!refForms.contains(l.getRefFormule())){
-                                refForms.add(l.getRefFormule());
+                            if(!refForms.contains((l.getRefFormule().substring(0, 3)))){
+                                
+                                String ref = l.getRefFormule().substring(0, 3);
+                                System.out.println("SUBSTRING =" + ref);
+                                refForms.add(ref);
                             }
                         }
                         
                         for(String s : refForms){
                           Collection<LigneCommande> col = new ArrayList<>();
                             for(LigneCommande l : formules){
-                                if(l.getRefFormule().equalsIgnoreCase(s)){
+                                if(l.getRefFormule().contains(s)){
                                     col.add(l);
                                     System.out.println("COL *SIZE======"+col.size());
                                 }

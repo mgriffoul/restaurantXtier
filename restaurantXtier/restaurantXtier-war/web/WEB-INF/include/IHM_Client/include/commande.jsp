@@ -1,17 +1,16 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<section id="commandes">
 <section id="price">
 
-    <div class="container container-perso" id="commandes">
+    <div class="container container-perso" id="#">
         <div class="row">
             <div class="col-md-12">
                 <div class="block ">
 
                     <h1 class="heading carte-titre">votre<span>Commande</span> </h1>
                     <div class="pricing-list ">
-
                         <!--Affichage des entrees commandees-->
                         <c:if test="${not empty entrees}">
                             <div class="title categorie-carte">
@@ -28,8 +27,10 @@
                                             <h2 class="recap-commande-intitule">${entree.article.nom}</h2>
 
                                             <span class="prixrecapcommande">${entree.prixHT} E
-                                                
-                                                    <button class="btn btn-danger btn-sm " onclick="suppArticle('price', '${entree.article.id}');suppArticle('header', '${entree.article.id}');sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+
+                                                <button class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${entree.article.id}');
+                                                        suppArticle('header', '${entree.article.id}');
+                                                        sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
 
                                             </span>
                                             <div class="border-bottom-perso"></div>
@@ -58,7 +59,9 @@
                                             <h2 class="recap-commande-intitule">${plat.article.nom}</h2>
 
                                             <span>${plat.prixHT} E
-                                                <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('price', '${plat.article.id}');suppArticle('header', '${plat.article.id}');sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                                <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${plat.article.id}');
+                                                        suppArticle('header', '${plat.article.id}');
+                                                        sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
                                             </span>
                                             <div class="border-bottom-perso"></div>
                                         </div>
@@ -85,7 +88,9 @@
                                             <h2 class="recap-commande-intitule">${dessert.article.nom}</h2>
 
                                             <span>${dessert.prixHT} E
-                                                <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('price', '${dessert.article.id}');suppArticle('header', '${dessert.article.id}');sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                                <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${dessert.article.id}');
+                                                        suppArticle('header', '${dessert.article.id}');
+                                                        sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
                                             </span>
                                             <div class="border-bottom-perso"></div>
                                         </div>
@@ -154,7 +159,9 @@
                                             <h2 class="recap-commande-intitule">${boi.article.nom}</h2>
 
                                             <span>${boi.prixHT} E
-                                                <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('price', '${boi.article.id}');suppArticle('header', '${boi.article.id}');sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                                <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${boi.article.id}');
+                                                        suppArticle('header', '${boi.article.id}');
+                                                        sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
                                             </span>
                                             <div class="border-bottom-perso"></div>
                                         </div>
@@ -164,7 +171,8 @@
                             </c:forEach>
                         </ul>
 
-
+                        <div class="prix-total-commande">Total de votre commande : <span>${prixTotal} E</span></div>
+                        
 
 
                     </div>
@@ -173,3 +181,4 @@
         </div><!-- .row close -->
     </div><!-- .containe close -->
 </section><!-- #price close -->
+</section>

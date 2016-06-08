@@ -15,20 +15,10 @@ import javax.persistence.Query;
 @Stateless
 public class BeanLigneCommande implements BeanLigneCommandeLocal {
 
-//    private LigneCommande lc;
-    
     @EJB
     private BeanFormuleLocal beanFormuleLocal;
 
-//    @Override
-//    public LigneCommande getLc() {
-//        return lc;
-//    }
-//
-//    public void setLc(LigneCommande lc) {
-//        this.lc = lc;
-//    }
-    
+
     @PersistenceContext(unitName = "restaurantXtier-ejbPU")
     private EntityManager em;
 

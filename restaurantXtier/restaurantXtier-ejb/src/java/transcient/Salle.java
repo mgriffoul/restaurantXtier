@@ -111,24 +111,25 @@ public class Salle implements SalleLocal {
     public void ajouterFormule(Integer cleCommande, Long idFromule, Article entree, Article plat, Article dessert, Article boisson) {
 
         Formule f = beanFormule.selectFormuleById(idFromule);
+        String refFormule = beanFormule.createRefFormuleUnique(f);
         Commande co = selectCommandeByCleCommande(cleCommande);
-        LigneCommande lc00 = new LigneCommande(f.getPrix(), null, f.getRefFormule(), null, co, null);
+        LigneCommande lc00 = new LigneCommande(f.getPrix(), null, refFormule, null, co, null);
 
         co.getLignesCommandes().add(lc00);
         if (entree != null) {
-            LigneCommande lc01 = new LigneCommande(0F, null, f.getRefFormule(), entree, co, null);
+            LigneCommande lc01 = new LigneCommande(0F, null, refFormule, entree, co, null);
             co.getLignesCommandes().add(lc01);
         }
         if (plat != null) {
-            LigneCommande lc02 = new LigneCommande(0F, null, f.getRefFormule(), plat, co, null);
+            LigneCommande lc02 = new LigneCommande(0F, null, refFormule, plat, co, null);
             co.getLignesCommandes().add(lc02);
         }
         if (dessert != null) {
-            LigneCommande lc03 = new LigneCommande(0F, null, f.getRefFormule(), dessert, co, null);
+            LigneCommande lc03 = new LigneCommande(0F, null, refFormule, dessert, co, null);
             co.getLignesCommandes().add(lc03);
         }
         if (boisson != null) {
-            LigneCommande lc04 = new LigneCommande(0F, null, f.getRefFormule(), boisson, co, null);
+            LigneCommande lc04 = new LigneCommande(0F, null, refFormule, boisson, co, null);
             co.getLignesCommandes().add(lc04);
         }
 
@@ -247,9 +248,9 @@ public class Salle implements SalleLocal {
         float prixTotal = 0;
         
         for(LigneCommande l : lcs){
-            prixTotal += beanLigneCommande.getPrixLcTTC();
+            prixTotal += beanLigneCommande.getPrixLcTTC(l);
         }
-        return null;
+        return prixTotal;
     }
 
 }

@@ -1,9 +1,14 @@
 package controleurs;
 
 import beanEntite.Commande;
+import beanEntite.Formule;
 import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
 import beansSession.BeanCommandeLocal;
+import beansSession.BeanFormuleLocal;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -16,11 +21,12 @@ import transcient.SalleLocal;
 
 //actionCom
 public class ActionCommandeClientControleur implements SousControleurInterface {
-    
+
+    BeanFormuleLocal beanFormule = lookupBeanFormuleLocal();
+
     SalleLocal salle = lookupSalleLocal();
 
     BeanCommandeLocal beanCommande = lookupBeanCommandeLocal();
-    
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -42,12 +48,15 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
         //Recuperation commande et utilisateur session
         Integer cleCommande = (Integer) session.getAttribute("cleCommande");
         Commande commande = salle.selectCommandeByCleCommande(cleCommande);
-        System.out.println(">>>><<<<>>><<<<Commande : "+commande);
-        
+        Float prixTotal = salle.getPrixTtcCommande(cleCommande);
+        if (prixTotal == null) {
+            prixTotal = 0F;
+        }
+        request.setAttribute("prixTotal", prixTotal);
+        System.out.println(">>>><<<<>>><<<<Commande : " + commande);
+
         Utilisateur util = (Utilisateur) session.getAttribute("user");
-        System.out.println(">>>><<<<>>><<<<Utilisateur : "+util);
-        
-        
+        System.out.println(">>>><<<<>>><<<<Utilisateur : " + util);
 
         if (util != null) {
             if (util.getRole() == 4) {
@@ -60,27 +69,67 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
                         for (LigneCommande lc : commande.getLignesCommandes()) {
                             System.out.println("LC>>>>>>>>>>>" + lc);
                         }
-                        
-                        return prefix+"IHM_Client/include/header";
-                        
+
+                        prixTotal = salle.getPrixTtcCommande(cleCommande);
+                        request.setAttribute("prixTotal", prixTotal);
+
+                        return prefix + "IHM_Client/include/header";
+
                     }
 
-                    if("supp".equalsIgnoreCase(act)){
-                        
-                        if("price".equalsIgnoreCase(request.getParameter("dom"))){
-                        Long id = Long.valueOf(request.getParameter("id"));
-                        salle.enleverArticle(cleCommande, id);
-                        
-                        return prefix+"IHM_Client/include/commande"; 
+                    if ("supp".equalsIgnoreCase(act)) {
+
+                        if ("commandes".equalsIgnoreCase(request.getParameter("dom"))) {
+                            Long id = Long.valueOf(request.getParameter("id"));
+                            salle.enleverArticle(cleCommande, id);
+
+                            Collection<LigneCommande> entrees = salle.getEntreesCommandees(cleCommande);
+                            Collection<LigneCommande> plats = salle.getPlatsCommandees(cleCommande);
+                            Collection<LigneCommande> desserts = salle.getDessertsCommandees(cleCommande);
+                            Collection<LigneCommande> formules = salle.getFormulesCommandees(cleCommande);
+                            Collection<LigneCommande> boissons = salle.getBoissonsCommandees(cleCommande);
+
+                            HashMap<Formule, Collection<LigneCommande>> hmf = new HashMap<>();
+                            Collection<String> refForms = new ArrayList();
+
+                            for (LigneCommande l : formules) {
+                                if (!refForms.contains((l.getRefFormule().substring(0, 3)))) {
+
+                                    String ref = l.getRefFormule().substring(0, 3);
+                                    System.out.println("SUBSTRING =" + ref);
+                                    refForms.add(ref);
+                                }
+                            }
+
+                            for (String s : refForms) {
+                                Collection<LigneCommande> col = new ArrayList<>();
+                                for (LigneCommande l : formules) {
+                                    if (l.getRefFormule().contains(s)) {
+                                        col.add(l);
+                                        System.out.println("COL *SIZE======" + col.size());
+                                    }
+                                }
+                                hmf.put(beanFormule.selectFormuleByRef(s), col);
+                            }
+                            System.out.println("HMF SIZE <<<<>>>><<>>>" + hmf.size());
+                            prixTotal = salle.getPrixTtcCommande(cleCommande);
+                            if (prixTotal == null) {
+                                prixTotal = 0F;
+                            }
+                            request.setAttribute("prixTotal", prixTotal);
+                            request.setAttribute("boissons", boissons);
+                            request.setAttribute("entrees", entrees);
+                            request.setAttribute("plats", plats);
+                            request.setAttribute("desserts", desserts);
+                            request.setAttribute("formules", hmf);
+
+                            return prefix + "IHM_Client/include/commande";
                         }
-                        if("header".equalsIgnoreCase(request.getParameter("dom"))){
-                            return prefix+"IHM_Client/include/header";
+                        if ("header".equalsIgnoreCase(request.getParameter("dom"))) {
+                            return prefix + "IHM_Client/include/header";
                         }
                     }
-                    
-                    
-                    
-                    
+
                 } else {//commande!=null
                     url = "include/logclient";
                 }
@@ -110,6 +159,16 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
         try {
             Context c = new InitialContext();
             return (SalleLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/Salle!transcient.SalleLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private BeanFormuleLocal lookupBeanFormuleLocal() {
+        try {
+            Context c = new InitialContext();
+            return (BeanFormuleLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanFormule!beansSession.BeanFormuleLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
