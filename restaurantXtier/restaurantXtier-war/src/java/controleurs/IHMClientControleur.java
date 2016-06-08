@@ -119,11 +119,12 @@ public class IHMClientControleur implements SousControleurInterface {
                             for(LigneCommande l : formules){
                                 if(l.getRefFormule().equalsIgnoreCase(s)){
                                     col.add(l);
+                                    System.out.println("COL *SIZE======"+col.size());
                                 }
                             }
                             hmf.put(beanFormule.selectFormuleByRef(s), col);
                         }
-                        
+                        System.out.println("HMF SIZE <<<<>>>><<>>>"+hmf.size());
                         request.setAttribute("boissons", boissons);
                         request.setAttribute("entrees", entrees);
                         request.setAttribute("plats", plats);

@@ -111,7 +111,6 @@ public class BeanFormule implements BeanFormuleLocal {
             f.setPlats(plats);
             f.setDesserts(desserts);
             f.setBoissons(boissons);
-             
     }
 
     @Override
@@ -122,7 +121,6 @@ public class BeanFormule implements BeanFormuleLocal {
         qr.setParameter("paramref", refFormule);
         Formule f = (Formule) qr.getSingleResult();
         return f;
-        
     }
 
 }

@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="block ">
 
-                    <h1 class="heading wow fadeInUp carte-titre" data-wow-duration="300ms" data-wow-delay="300ms">votre<span>Commande</span> </h1>
+                    <h1 class="heading carte-titre">votre<span>Commande</span> </h1>
                     <div class="pricing-list ">
 
                         <!--Affichage des entrees commandees-->
@@ -22,14 +22,15 @@
                         <ul class="puce-recap-commande">
                             <c:forEach items="${entrees}" var="entree">
 
-                                <li class="wow fadeInUp  article" data-wow-duration="300ms" data-wow-delay="300ms">
+                                <li class="article">
                                     <div class="item ">
                                         <div class="item-title ">
                                             <h2 class="recap-commande-intitule">${entree.article.nom}</h2>
 
                                             <span class="prixrecapcommande">${entree.prixHT} E
-                                                <button type="button" class="btn btn-danger btn-sm "><span class="glyphicon glyphicon-remove glyphpers"></span></button></span>
-</span>
+                                                
+                                                <a href="index?section=actionCom&act=supp&type=art&id=${entree.article.id}" button type="button" class="btn btn-danger btn-sm "><span class="glyphicon glyphicon-remove glyphpers"></span></button><a />
+                                            </span>
 
                                             <div class="border-bottom-perso"></div>
                                         </div>
@@ -51,12 +52,14 @@
 
                         <ul class="puce-recap-commande">
                             <c:forEach items="${plats}" var="plat">
-                                <li class="wow fadeInUp  article" data-wow-duration="300ms" data-wow-delay="300ms">
+                                <li class="article">
                                     <div class="item ">
                                         <div class="item-title ">
                                             <h2 class="recap-commande-intitule">${plat.article.nom}</h2>
 
-                                            <span>${plat.prixHT} E</span>
+                                            <span>${plat.prixHT} E
+                                             <button type="button" class="btn btn-danger btn-sm "><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                            </span>
                                             <div class="border-bottom-perso"></div>
                                         </div>
                                     </div>
@@ -76,12 +79,14 @@
 
                         <ul class="puce-recap-commande">
                             <c:forEach items="${desserts}" var="dessert">
-                                <li class="wow fadeInUp  article" data-wow-duration="300ms" data-wow-delay="300ms">
+                                <li class=" article">
                                     <div class="item ">
                                         <div class="item-title ">
                                             <h2 class="recap-commande-intitule">${dessert.article.nom}</h2>
 
-                                            <span>${dessert.prixHT} E</span>
+                                            <span>${dessert.prixHT} E
+                                             <button type="button" class="btn btn-danger btn-sm "><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                            </span>
                                             <div class="border-bottom-perso"></div>
                                         </div>
                                     </div>
@@ -99,21 +104,23 @@
                         </c:if>
 
                         <c:forEach items="${formules}" var="for">
-                            <ul>
-                                <li class="wow fadeInUp  article" data-wow-duration="300ms" data-wow-delay="300ms">
+                            <ul class="puce-recap-commande">
+                                <li class="article" >
                                     <div class="item ">
                                         <div class="item-title ">
                                             <h2 class="recap-commande-intitule">${for.key.nom}</h2>
 
-                                            <span>${for.key.prixTtc} E</span>
+                                            <span>${for.key.prixTtc} E
+                                             <button type="button" class="btn btn-danger btn-sm "><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                            </span>
                                             <div class="border-bottom-perso"></div>
                                         </div>
                                     </div>
 
-                                    <ul>
+                                    <ul class="ulperso">
                                         <c:forEach items="${for.value}" var="ligne">
 
-                                            <li class="wow fadeInUp  article" data-wow-duration="300ms" data-wow-delay="300ms">
+                                            <li class="article" >
                                                 <div class="item ">
                                                     <div class="item-title ">
 
@@ -141,12 +148,14 @@
 
                         <ul class="puce-recap-commande">
                             <c:forEach items="${boissons}" var="boi">
-                                <li class="wow fadeInUp  article" data-wow-duration="300ms" data-wow-delay="300ms">
+                                <li class="article" >
                                     <div class="item ">
                                         <div class="item-title ">
                                             <h2 class="recap-commande-intitule">${boi.article.nom}</h2>
 
-                                            <span>${boi.prixHT} E</span>
+                                            <span>${boi.prixHT} E
+                                             <button type="button" class="btn btn-danger btn-sm "><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                            </span>
                                             <div class="border-bottom-perso"></div>
                                         </div>
                                     </div>

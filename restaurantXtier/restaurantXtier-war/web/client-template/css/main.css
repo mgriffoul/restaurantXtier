@@ -444,10 +444,10 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 #price .block .pricing-list {
     padding-top: 25px;
 }
-#price .block .pricing-list ul {
+/*#price .block .pricing-list ul {
     padding: 0 0 30px;
     margin: 0;
-}
+}*/
 #price .block .pricing-list ul li {
     padding: 21px 0px;
 }
@@ -802,3 +802,18 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 #price .block .pricing-list ul li .item .item-title span .glyphpers{
     color: #FFFFFF;
 }
+
+#price .block .pricing-list ul li .ulperso{
+    padding: -25px;
+}
+
+.puce-recap-commande{
+    padding: 0 0 30px;
+    margin: 0;
+}
+
+/*
+#price .block .pricing-list ul {
+    padding: 0 0 30px;
+    margin: 0;
+}*/
