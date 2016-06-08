@@ -32,3 +32,14 @@ function afficherCommande(num){
     xhr.open("GET", url, true);
     xhr.send(null);
 }
+
+function afficheur() {
+        
+        alert("nom zone"+texte);
+        return texte ;
+    }
+
+function ajouter(touche) {
+   var texte = document.getElementById("afficheur");
+   texte.value += touche ;
+ }

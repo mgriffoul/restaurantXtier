@@ -20,7 +20,7 @@ public class LigneCommande implements Serializable {
     private String refFormule;
     
     // associations
-
+    
     @ManyToOne
     private Sauce Sauce;
     
@@ -134,7 +134,7 @@ public class LigneCommande implements Serializable {
         this.etatLc = etatLc;
     }
     
-    
+
     
     @Override
     public int hashCode() {

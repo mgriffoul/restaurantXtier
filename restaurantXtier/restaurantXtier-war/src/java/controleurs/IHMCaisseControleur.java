@@ -1,9 +1,11 @@
 package controleurs;
 
+import beanEntite.Article;
 import beanEntite.Categorie;
 import beanEntite.Commande;
 import beanEntite.LigneCommande;
 import beanEntite.Ticket;
+import beansSession.BeanArticleLocal;
 import beansSession.BeanCategorieLocal;
 import beansSession.BeanCommandeLocal;
 import beansSession.BeanLigneCommandeLocal;
@@ -17,6 +19,7 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import utilitaire.LigneCommandeWar;
 
 public class IHMCaisseControleur implements SousControleurInterface {
     
@@ -25,6 +28,8 @@ public class IHMCaisseControleur implements SousControleurInterface {
     BeanTicketLocal beanTicket = lookupBeanTicketLocal();
     
     BeanLigneCommandeLocal beanLigneCommande = lookupBeanLigneCommandeLocal();
+    
+    BeanArticleLocal beanArticleLocal = lookupbeanArticleLocal();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -32,6 +37,9 @@ public class IHMCaisseControleur implements SousControleurInterface {
         
         
         HttpSession session = request.getSession();
+        
+        
+        LigneCommandeWar lcw = new LigneCommandeWar();
         
         
         System.out.println(">>>>>>>>>>>>>>>>>>>> entree dans l'ihmcontroleur");
@@ -47,24 +55,38 @@ public class IHMCaisseControleur implements SousControleurInterface {
 
         System.out.println(inc);
         if("ticket".equalsIgnoreCase(inc)){
+            Float total = 0F;
             String nCom = request.getParameter("nCom");
             Commande c = beanCommande.selectCommandeByNumero(nCom);
+            System.out.println("id commande = "+c.getId());
+            List<LigneCommande> liste = beanLigneCommande.selectLigneCommandeByIdCommande(c.getId());
+            for (LigneCommande lc : liste) {
+                lcw.setLigneCommande(lc);
+                
+                total += lcw.getPrixTotalTTC();
+                
+            }
+            
+            
+//            System.out.println("liste = "+liste.size());
+//            System.out.println("liste = "+liste.get(1).getArticle().getPrixHt());
+//            for (LigneCommande lc : liste) {
+////                Article a = beanArticleLocal.selectArticleByIdLigneCommande(lc.getId());
+//                
+//                System.out.println("article = / "+lc.toString());
+//            }
+            c.setLignesCommandes(liste);
 
             
-            System.out.println("id commande = "+c.getId());
-            List<LigneCommande> lc = beanLigneCommande.selectLigneCommandeByIdCommande(c.getId());
-            for (LigneCommande lc1 : lc) {
-                System.out.println("lc = "+lc1+" / "+lc1.getPrixHT());
-            }
-            c.setLignesCommandes(lc);
+            System.out.println("prix total = "+total);
             System.out.println(c.getNumero()+"//"+c.getStatut());
             System.out.println("------------------");
             System.out.println(nCom);
             
                 System.out.println(c.getLignesCommandes());
-           
-//            Ticket t = new Ticket();
-//            t.setCommande(c);
+request.setAttribute("prixTTC", total);
+//            request.setAttribute("LigneComm", liste);
+            
             request.setAttribute("affcom", c);
  //           request.setAttribute("LigneComm", lc);
             System.out.println("DANS AFFICHAGE TICKET");
@@ -104,6 +126,16 @@ public class IHMCaisseControleur implements SousControleurInterface {
        try {
             Context c = new InitialContext();
             return (BeanLigneCommandeLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanLigneCommande!beansSession.BeanLigneCommandeLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        } 
+    }
+
+    private BeanArticleLocal lookupbeanArticleLocal() {
+        try {
+            Context c = new InitialContext();
+            return (BeanArticleLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanArticle!beansSession.BeanArticleLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

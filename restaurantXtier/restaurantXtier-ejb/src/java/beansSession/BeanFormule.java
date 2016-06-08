@@ -114,4 +114,13 @@ public class BeanFormule implements BeanFormuleLocal {
             return f;
     }
 
+    @Override
+    public Formule selectFormuleByReference(String ref){
+        String req = "select f from Formule F where f.refFormule =:paramRef";
+        Query qr = em.createQuery(req);
+        qr.setParameter("paramRef", ref);
+        Formule f = (Formule)qr.getSingleResult();
+        return f;
+    }
+    
 }

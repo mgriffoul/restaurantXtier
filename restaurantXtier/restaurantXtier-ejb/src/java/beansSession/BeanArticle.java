@@ -40,6 +40,14 @@ public class BeanArticle implements BeanArticleLocal {
         return null;
     }
     
+    @Override
+    public Article selectArticleByIdLigneCommande(Long id){
+        String req = "select a from LigneCommande lc join lc.article a where lc.id=:paramId";
+        Query qr = em.createQuery(req);
+        qr.setParameter("paramId", id);
+        Article article = (Article)qr.getSingleResult();
+        return article;
+    }
     
     
 }
