@@ -49,5 +49,7 @@ public interface SalleLocal {
     public Collection<LigneCommande> getBoissonsCommandees(Integer cleCommande);
     
     public Collection<LigneCommande> getFormulesCommandees(Integer cleCommande);
+    
+    public void enleverArticle (Integer cleCommande, Long idArticle);
   
 }

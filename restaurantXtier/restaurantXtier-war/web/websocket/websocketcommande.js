@@ -21,14 +21,12 @@ function sendOrder(cleCommande) {
         "cleCommande": cleCommande,
         "action": "refresh"
     });
-    websocket.send(json);
+    waitForSocketConnection(websocket, function() {
+           websocket.send(json);
+        });
 }
 
-function sendMessage(msg) {
-        waitForSocketConnection(nvWS, function() {
-            ws.send(msg);
-        });
-    };
+
 
 
 function waitForSocketConnection(socket, callback){
@@ -49,6 +47,7 @@ function waitForSocketConnection(socket, callback){
 
 function onMessage() {
     refreshHeader();
+    refreshMesCommandes();
 }
 
 
@@ -68,11 +67,4 @@ function test(){
     alert("test");
 }
 
-//        this.cleCommande = cleCommande;
-//        this.action = action;
-//        this.idArticle = idArticle;
-//        this.idFormule = idFormule;
-//        this.idEntree = idEntree;
-//        this.idPlat = idPlat;
-//        this.idDessert = idDessert;
-//        this.idBoisson = idBoisson;
+

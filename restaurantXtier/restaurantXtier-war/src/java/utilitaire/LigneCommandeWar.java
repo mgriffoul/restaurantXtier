@@ -18,17 +18,17 @@ public class LigneCommandeWar implements Serializable{
         ligneCommande = lookupBeanLigneCommandeLocal();
     }
 
-    public Float getPrixTotalTTC(){
-        return ligneCommande.getPrixLcTTC();
+    public Float getPrixTotalTTC(LigneCommande lc){
+        return ligneCommande.getPrixLcTTC(lc);
     }
     
-    public BeanLigneCommandeLocal getLigneCommande() {
-        return ligneCommande;
-    }
-
-    public void setLigneCommande(LigneCommande ligneCommande) {
-        this.ligneCommande.setLc(ligneCommande);
-    }
+//    public BeanLigneCommandeLocal getLigneCommande() {
+//        return ligneCommande;
+//    }
+//
+//    public void setLigneCommande(LigneCommande ligneCommande) {
+//        this.ligneCommande.setLc(ligneCommande);
+//    }
 
     private BeanLigneCommandeLocal lookupBeanLigneCommandeLocal() {
         try {

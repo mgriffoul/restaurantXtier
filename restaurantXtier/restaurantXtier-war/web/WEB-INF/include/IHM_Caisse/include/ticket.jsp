@@ -7,12 +7,16 @@
         <title>Ticket</title>
     </head>
     <body>
-        <p>
+        <div>
+            <p class="afficherPrixTicket">
             TICKET
-            A payer // ${prixTTC}
+            A payer // ${prixRestant}
+        </p>
+        <p class="rappelCommande">
             <c:if test="${not empty affcom.numero}">
                 Commande n° : ${affcom.numero}
-                            
+        </p>
+        <p class="detailCommande">
                 <table>
                     <thead>
                         <tr>
@@ -25,13 +29,23 @@
                         <c:forEach items="${affcom.lignesCommandes}" var="lc">
                             <tr>
                                 <td>
-                                    ${lc.article.nom}        
+                                    <c:if test="${not empty lc.article.nom}">
+                                    ${lc.article.nom}
+                                    </c:if>
+                                    <c:if test="${empty lc.article.nom}">    
+                                    ${nomFormule}
+                                    </c:if>
                                 </td>
-                                <td>coucou</td>
+                                <td>
+                                    <c:if test="${not empty lc.article.prixTtc}">${lc.article.prixTtc}</c:if>
+                                    <c:if test="${empty lc.article.prixTtc}">${prixFormule}</c:if>
+                                </td>
                                 
                             </tr>
                         </c:forEach>
             </c:if>
+                </table>                
         </p>
+        </div>
 </body>
 </html>

@@ -15,19 +15,19 @@ import javax.persistence.Query;
 @Stateless
 public class BeanLigneCommande implements BeanLigneCommandeLocal {
 
-    private LigneCommande lc;
+//    private LigneCommande lc;
     
     @EJB
     private BeanFormuleLocal beanFormuleLocal;
 
-    @Override
-    public LigneCommande getLc() {
-        return lc;
-    }
-
-    public void setLc(LigneCommande lc) {
-        this.lc = lc;
-    }
+//    @Override
+//    public LigneCommande getLc() {
+//        return lc;
+//    }
+//
+//    public void setLc(LigneCommande lc) {
+//        this.lc = lc;
+//    }
     
     @PersistenceContext(unitName = "restaurantXtier-ejbPU")
     private EntityManager em;
@@ -162,20 +162,20 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
         List<LigneCommande> lc = qr.getResultList();
         return lc;
     }
-    
+      
     @Override
-    public Float getPrixLcTTC(){
-        Float prix = null;
-        if (lc.getRefFormule() == null && lc.getArticle().getPrixHt()!=0){
+    public Float getPrixLcTTC(LigneCommande lc){
+        Float prix = 0F;
+        System.out.println("article prix = "+lc.getPrixHT());
+        if (lc.getRefFormule() == null){
             prix = lc.getArticle().getPrixTtc();
             System.out.println("PRIX ARTICLE = "+prix);
             return prix;
-        }else{
+        }else if(lc.getRefFormule() != null && lc.getPrixHT() > 0 ){
             String ref = lc.getRefFormule();          
             if(ref.contains("pat")){
                 Formule form = beanFormuleLocal.selectFormuleByReference("pat");
                 prix = form.getPrixTtc();
-                System.out.println("PRIX form pat = "+prix);
                 return prix;
             }if(ref.contains("entpl")){
                 Formule form = beanFormuleLocal.selectFormuleByReference("entpl");
@@ -188,6 +188,9 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
                 prix = form.getPrixTtc();
                 return prix;
             }
+        }else if(lc.getRefFormule() != null && lc.getPrixHT() == 0){
+            prix = 0F;
+            return prix;
         }
     
     
