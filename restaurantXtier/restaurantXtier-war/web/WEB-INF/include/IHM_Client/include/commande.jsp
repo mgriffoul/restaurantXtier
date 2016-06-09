@@ -17,7 +17,6 @@
                                 <h3><span>Entrées</span></h3>
                             </div>
                         </c:if>
-
                         <ul class="puce-recap-commande">
                             <c:forEach items="${entrees}" var="entree">
 
@@ -172,11 +171,7 @@
                                 </li>
                             </c:forEach>
                         </ul>
-
                         <div class="prix-total-commande">Total de votre commande : <span>${prixTotal} E</span></div>
-                        
-
-
                     </div>
                 </div>
             </div><!-- .col-md-12 close -->

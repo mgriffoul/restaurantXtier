@@ -10,5 +10,5 @@ import javax.ejb.Local;
 public interface GroupeEmplacementLocal {
     
     public Integer creerGroupe(Collection<Emplacement> emp);
-    
+    public Integer getKeyEmpByEmp(Emplacement emplacement);
 }

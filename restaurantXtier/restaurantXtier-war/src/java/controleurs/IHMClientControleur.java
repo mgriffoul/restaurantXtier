@@ -11,7 +11,6 @@ import beansSession.BeanCategorieLocal;
 import beansSession.BeanCommandeLocal;
 import beansSession.BeanFormuleLocal;
 import beansSession.BeanUserLocal;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -74,12 +73,9 @@ public class IHMClientControleur implements SousControleurInterface {
 
         //Test de l'utilisateur
         if (util != null) {
-
             if (util.getRole() == 4) {
-
                 //Test de la commande
                 if (cleCommande != null) {
-
                     //Choix include en fonction de la ssSection
                     //LaCarte
                     if ("car".equalsIgnoreCase(inc)) {

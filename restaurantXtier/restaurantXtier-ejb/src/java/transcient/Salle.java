@@ -82,7 +82,7 @@ public class Salle implements SalleLocal {
 
     @Override
     public List<Commande> selectCommandeEnCours() {
-        List<Commande> commandesList = null;
+        List<Commande> commandesList = new ArrayList<>();
         for (Entry<Integer, Commande> entry : commandes.entrySet()) {
             commandesList.add(entry.getValue());
         }
