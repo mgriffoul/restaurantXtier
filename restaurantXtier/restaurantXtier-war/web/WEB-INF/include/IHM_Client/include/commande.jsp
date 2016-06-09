@@ -110,70 +110,36 @@
 
 
                             <c:forEach items="${formules}" var="hm">
-                                <ul class="puce-recap-commande">
-                                    <li class="article" >
-                                        
-                                        
-                                        
-                                        
-                                        <c:forEach items="${hm.value}" var="for">
+                                <c:forEach items="${hm.value}" var="for">
+                                    <ul class="puce-recap-commande">
+                                        <li class="article" >
                                             <div class="item ">
-                                                <h2 class="recap-commande-intitule">${for.key.nom}</h2>
-                                                <span>
-                                                    ${for.key.prix}
-                                                    <button type="button" class="btn btn-danger btn-sm " onclick="suppFormule('commandes', '${for.key}');
-                                                            suppFormule('header', '${for.key}');
-                                                            sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
-                                                </span>
-                                                <div class="border-bottom-perso"></div>
+                                                <div class="item-title ">
+                                                    <h2 class="recap-commande-intitule">${for.key.nom}</h2>
+                                                    <span>
+                                                        ${for.key.prix}
+                                                        <button type="button" class="btn btn-danger btn-sm " onclick="suppFormule('commandes', '${hm.key}');
+                                                                suppFormule('header', '${hm.key}');
+                                                                sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                                    </span>
+                                                    <div class="border-bottom-perso"></div>
+                                                </div>
                                             </div>
                                             <c:forEach items="${for.value}" var="ligne">
-                                                ${ligne.article.nom}
-                                            </c:forEach>
-                                        </c:forEach>
-                                        
-                                        
-                                    </li>
-                                </ul>
-                            </c:forEach>
-
-
-
-
-                            <c:forEach items="${formules}" var="for">
-                                <ul class="puce-recap-commande">
-                                    <li class="article" >
-                                        <div class="item ">
-                                            <div class="item-title ">
-                                                <h2 class="recap-commande-intitule">${for.value.key}</h2>
-
-                                                <span>${for.value.key.prixTtc} E
-                                                    <button type="button" class="btn btn-danger btn-sm " onclick="suppFormule('commandes', '${for.key}');
-                                                            suppFormule('header', '${for.key}');
-                                                            sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
-                                                </span>
-                                                <div class="border-bottom-perso"></div>
-                                            </div>
-                                        </div>
-
-                                        <ul class="ulperso">
-                                            <c:forEach items="${for.value.value}" var="ligne">
-
-                                                <li class="article" >
-                                                    <div class="item ">
-                                                        <div class="item-title ">
-                                                            <h2 class="recap-commande-intitule">${ligne.article.nom}</h2>
-
+                                                <ul class="ulperso">
+                                                    <li class="article" >
+                                                        <div class="item ">
+                                                            <div class="item-title ">
+                                                                <h2 class="recap-commande-intitule"> ${ligne.article.nom}</h2>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </li>
-
+                                                    </li>
+                                                </ul>
                                             </c:forEach>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                        </li>
+                                    </ul>
+                                </c:forEach>
                             </c:forEach>
-
 
 
                             <!--Affichage des boissons commandees-->
