@@ -1,13 +1,9 @@
 package controleurs;
 
-import beanEntite.Article;
-import beanEntite.Categorie;
 import beanEntite.Commande;
 import beanEntite.Formule;
 import beanEntite.LigneCommande;
-import beanEntite.Ticket;
 import beansSession.BeanArticleLocal;
-import beansSession.BeanCategorieLocal;
 import beansSession.BeanCommandeLocal;
 import beansSession.BeanFormuleLocal;
 import beansSession.BeanLigneCommandeLocal;

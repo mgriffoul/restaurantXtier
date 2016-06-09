@@ -246,11 +246,55 @@ public class Salle implements SalleLocal {
         Commande co = selectCommandeByCleCommande(cleCommande);
         Collection<LigneCommande> lcs = getAllLigneCommandeFromCommande(cleCommande);
         float prixTotal = 0;
-        
-        for(LigneCommande l : lcs){
+
+        for (LigneCommande l : lcs) {
             prixTotal += beanLigneCommande.getPrixLcTTC(l);
         }
         return prixTotal;
+    }
+
+    @Override
+    public HashMap<Formule, Collection<LigneCommande>> getFormuleMapper(Collection<LigneCommande> lcs) {
+
+        HashMap<Formule, Collection<LigneCommande>> hmf = new HashMap<>();
+        Collection<String> refForms = new ArrayList();
+
+        for (LigneCommande l : lcs) {
+            if (!refForms.contains((l.getRefFormule().substring(0, 3)))) {
+
+                String ref = l.getRefFormule().substring(0, 3);
+                System.out.println("SUBSTRING =" + ref);
+                refForms.add(ref);
+            }
+        }
+
+        for (String s : refForms) {
+            Collection<LigneCommande> col = new ArrayList<>();
+            for (LigneCommande l : lcs) {
+                if (l.getRefFormule().contains(s)) {
+                    col.add(l);
+                    System.out.println("COL *SIZE======" + col.size());
+                }
+            }
+            hmf.put(beanFormule.selectFormuleByRef(s), col);
+        }
+
+        return hmf;
+    }
+
+    @Override
+    public void enleverFormule(Integer cleCommande, String refFormule) {
+        Commande co = selectCommandeByCleCommande(cleCommande);
+        Collection<LigneCommande> lcs = co.getLignesCommandes();
+        Iterator it = lcs.iterator();
+        while (it.hasNext()) {
+            LigneCommande l = (LigneCommande) it.next();
+            if (l.getRefFormule() != null) {
+                if (l.getRefFormule().equalsIgnoreCase(refFormule)) {
+                    it.remove();
+                }
+            }
+        }
     }
 
 }
