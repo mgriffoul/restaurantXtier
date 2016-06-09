@@ -16,7 +16,7 @@ public class CommandeEncoder implements Encoder.Text<WsCommandeAction>{
         return Json.createObjectBuilder()
                         .add("action", wca.getAction())
                         .add("cleCommande", wca.getCleCommande())
-                        .add("roleUser", wca.getRoleUser())
+                        .add("password", wca.getPassword())
                    .build().toString();
     }
 

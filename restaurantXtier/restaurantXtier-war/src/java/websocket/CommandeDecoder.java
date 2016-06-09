@@ -26,15 +26,13 @@ public class CommandeDecoder implements Decoder.Text<WsCommandeAction>{
         
         System.out.println(cleCommande);
         
-        
-        
         String action = jsonObject.getString("action");
         System.out.println(action);
      
-        Integer roleUser = Integer.valueOf(jsonObject.getString("roleUser"));
+        String password = jsonObject.getString("password");
         
         
-        WsCommandeAction wca = new WsCommandeAction(cleCommande, roleUser, action);
+        WsCommandeAction wca = new WsCommandeAction(cleCommande, password, action);
         
         System.out.println(">>>>>>>>>>>>-->>>>>>>>>> WAC = "+ jsonObject);
         

@@ -60,12 +60,11 @@ function onMessage(evt) {
     }
 }
 
-function wslogServ(cleCommande, intRole){
+function wslogServ(password){
     
     var json = JSON.stringify({
-        "cleCommande": cleCommande,
         "action": "log",
-        "roleUser": intRole
+        "password": password
     });
      waitForSocketConnection(websocket, function() {
            websocket.send(json);

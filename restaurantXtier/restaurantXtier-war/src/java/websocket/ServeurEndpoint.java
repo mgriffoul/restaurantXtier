@@ -19,42 +19,37 @@ import javax.websocket.server.ServerEndpoint;
 public class ServeurEndpoint {
     
     private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
-    private static HashMap<Session, Integer> commandesMap = new HashMap<>();
-    private static HashMap<Session, Integer> rolesMap = new HashMap<>();
+    private static HashMap<Session, String> passwords = new HashMap<>();
     
     @OnMessage
     public void onMessage(WsCommandeAction action, Session session) throws IOException, EncodeException {
         
         System.out.println("ON MESSAGE ENDPOINT");
         
-        Integer roleUser = action.getRoleUser();
+        String password = action.getPassword();
         Integer cleCommande = action.getCleCommande();
         
         
         if ("log".equalsIgnoreCase(action.getAction())) {
-            commandesMap.put(session, cleCommande);
-            rolesMap.put(session, roleUser);
+            
+            passwords.put(session, password);
+            
             System.out.println("LOG GOOD");
         }
         
         if ("help".equalsIgnoreCase(action.getAction())) {
-            System.out.println("DANS LE HELP ENDPOINT");
-            Iterator iter = commandesMap.entrySet().iterator();
-            while (iter.hasNext()) {
-                
-                Map.Entry<Session, Integer> entry = (Map.Entry) iter.next();
-                if (!entry.getKey().equals(session) && entry.getValue().equals(cleCommande)) {
+            
+               
                     System.out.println("AVANT TEST ROLE DANS ENDPOINT");
-                    Iterator ite2 = rolesMap.entrySet().iterator();
-                    while (ite2.hasNext()) {
-                        Map.Entry<Session, Integer> entry2 = (Map.Entry) iter.next();
-                        if (entry2.getKey().equals(roleUser)) {
-                            Session peer = entry2.getKey();
+                    Iterator iter = passwords.entrySet().iterator();
+                    while (iter.hasNext()) {
+                        Map.Entry<Session, String> entry2 = (Map.Entry) iter.next();
+                        if(password.equalsIgnoreCase(entry2.getValue())){
+                           Session peer = entry2.getKey();
                             peer.getBasicRemote().sendObject(action);
                         }
                     }
-                }
-            }
+                
         }
         
         
@@ -68,8 +63,7 @@ public class ServeurEndpoint {
     
     @OnClose
     public void onClose(Session peer) {
-        commandesMap.remove(peer);
-        rolesMap.remove(peer);
+        passwords.remove(peer);
         peers.remove(peer);
     }
     
