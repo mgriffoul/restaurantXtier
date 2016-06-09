@@ -43,3 +43,8 @@ function ajouter(touche) {
    var texte = document.getElementById("afficheur");
    texte.value += touche ;
  }
+
+function vider(){
+    var texte = document.getElementById("afficheur");
+    texte.value = "";
+}

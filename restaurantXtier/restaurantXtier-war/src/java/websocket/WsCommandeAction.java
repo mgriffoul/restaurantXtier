@@ -4,25 +4,26 @@ package websocket;
 public class WsCommandeAction {
 
    private Integer cleCommande;
-   private Integer roleUser;
+   private String password;
    private String action;
 
     public WsCommandeAction() {
     }
 
-    public void setRoleUser(Integer roleUser) {
-        this.roleUser = roleUser;
-    }
-
-    public WsCommandeAction(Integer cleCommande, Integer roleUser, String action) {
+    public WsCommandeAction(Integer cleCommande, String password, String action) {
         this.cleCommande = cleCommande;
-        this.roleUser = roleUser;
+        this.password = password;
         this.action = action;
     }
 
-    public Integer getRoleUser() {
-        return roleUser;
+    public String getPassword() {
+        return password;
     }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
     public WsCommandeAction(Integer cleCommande, String action) {
         this.cleCommande = cleCommande;
