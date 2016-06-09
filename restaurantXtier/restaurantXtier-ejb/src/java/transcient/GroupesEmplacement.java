@@ -1,13 +1,10 @@
 package transcient;
 
-import beanEntite.Commande;
 import beanEntite.Emplacement;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
-import javax.persistence.Query;
 
 @Singleton
 public class GroupesEmplacement implements GroupeEmplacementLocal {
