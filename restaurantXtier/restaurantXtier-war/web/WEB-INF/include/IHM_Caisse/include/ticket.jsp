@@ -10,7 +10,7 @@
         <div>
             <p class="afficherPrixTicket">
             TICKET
-            A payer // ${prixRestant}
+            A payer // ${prixTTC}
         </p>
         <p class="rappelCommande">
             <c:if test="${not empty affcom.numero}">

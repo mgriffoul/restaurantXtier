@@ -6582,13 +6582,11 @@ button.close {
     }
 }
 /*# sourceMappingURL=bootstrap.css.map */
-.caisse-panel button{
-    width:100px;
-    height:50px;
-    font-size:35px;
-    line-height:50px;
-    text-align:center; 
+.boutoncaisse{
+    background-color: red;
+    float: bottom;
 }
+
 
 .boutoncaisse a {
     display:block;
@@ -6603,6 +6601,41 @@ button.close {
 }
 
 #ticket{
-    display: block;
+    background-color: blue;
+    display: inline-block;
     float: right;
+    text-align: left;
+}
+
+#un{
+    background-color: yellow;
+    display: block;
+    float: top;
+}
+
+#central{
+    display: block;
+    float: left;
+}
+
+#afficheur{
+    float: right;
+}
+
+.partiegauche{
+    float: left;
+}
+
+.partiegauche, #ticket{
+    padding:1px 0;
+}
+
+.payer{
+    margin: 1px;
+    border-color: white;
+
+}
+
+.divprincipale{
+    margin: auto;
 }

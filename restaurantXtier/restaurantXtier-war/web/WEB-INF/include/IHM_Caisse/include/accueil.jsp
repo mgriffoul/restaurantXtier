@@ -19,6 +19,9 @@
 
 
         <h1>${titre}</h1>
+        <div class="divprincipale">
+            <div class="encadre">
+                <div class="partiegauche">    
         <div id="un">
             <c:if test="${empty commandefinie }" >
                 Aucune commande n'est prête à être réglée.
@@ -49,7 +52,6 @@
         </c:if>        
             </div>
         <div class="boutoncaisse">
-            <form action="" >
             <table border="1">
                 <tbody>
                     <tr>
@@ -72,19 +74,31 @@
                         <td><a href="#" onclick="ajouter('3');return false;">3</a></td>
                     </tr>
                     <tr>
-                        <td><a href="#">C</a></td>
-                        <td><a href="#">0</a></td>
-                        <td><a href="#">.</a></td>
+                        <td><a href="#" onclick="vider();return false;">C</a></td>
+                        <td><a href="#" onclick="ajouter('0');return false;">0</a></td>
+                        <td><a href="#" onclick="ajouter('.');return false;">.</a></td>
                     </tr>
                 </tbody>
             </table>
-            </form>
+                <table class="payer">
+                    <tr>
+                    <a href="#" >BC</a>
+                    </tr>
+                    <tr>
+                    <a href="#" >Espece</a>
+                    </tr>
+                    <tr>
+                    <a href="#" >TR</a>
+                    </tr>
+                </table>
         </div>
-        <aside>
+                </div>    
+        
             <div id="ticket">
                 <c:import url="WEB-INF/include/IHM_Caisse/include/ticket.jsp" />
             </div>
-        </aside>    
+            </div> 
+            </div>
             <div></div>
         
         <script src="js/caisse.js"></script>
