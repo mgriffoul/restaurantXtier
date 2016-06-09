@@ -27,11 +27,11 @@ function sendOrder(cleCommande) {
         });
 }
 
-function sendHelpServeur(cleCommande) {
+function sendHelpServeur(cleCommande, codeServeur) {
     var json = JSON.stringify({
         "cleCommande": cleCommande,
         "action": "help",
-        "roleUser": "4"
+        "password": codeServeur
     });
     waitForSocketConnection(websocket, function() {
            websocket.send(json);

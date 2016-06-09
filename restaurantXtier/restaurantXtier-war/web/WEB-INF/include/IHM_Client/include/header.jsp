@@ -38,7 +38,7 @@
                                 </li>
 
 
-                                <li><a href="#contact-us"><button type="button" class="btn btn-danger" onclick="sendHelpServeur('${sessionScope.cleCommande}');">J'ai besoin d'aide</button></a></li>
+                                <li><a href="#contact-us"><button type="button" class="btn btn-danger" onclick="sendHelpServeur('${sessionScope.cleCommande}', '${sessionScope.codeServeur}');">J'ai besoin d'aide</button></a></li>
                         </div>
 
                         </ul>

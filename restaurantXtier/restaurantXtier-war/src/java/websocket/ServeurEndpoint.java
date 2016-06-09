@@ -45,6 +45,7 @@ public class ServeurEndpoint {
                     while (iter.hasNext()) {
                         Map.Entry<Session, String> entry2 = (Map.Entry) iter.next();
                         if(password.equalsIgnoreCase(entry2.getValue())){
+                            System.out.println("TEST CODE DANS ENDPOINT");
                            Session peer = entry2.getKey();
                             peer.getBasicRemote().sendObject(action);
                         }
