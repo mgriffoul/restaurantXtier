@@ -3,7 +3,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <section id="commandes">
     <section id="price">
-
         <div class="container container-perso" id="#">
             <div class="row">
                 <div class="col-md-12">
@@ -17,7 +16,6 @@
                                     <h3><span>Entrées</span></h3>
                                 </div>
                             </c:if>
-
                             <ul class="puce-recap-commande">
                                 <c:forEach items="${entrees}" var="entree">
 
@@ -31,7 +29,6 @@
                                                     <button class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${entree.article.id}');
                                                             suppArticle('header', '${entree.article.id}');
                                                             sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
-
                                                 </span>
                                                 <div class="border-bottom-perso"></div>
                                             </div>
