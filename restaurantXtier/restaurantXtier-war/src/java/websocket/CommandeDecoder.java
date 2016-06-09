@@ -1,4 +1,3 @@
-
 package websocket;
 
 import java.io.StringReader;
@@ -9,8 +8,7 @@ import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
 
-
-public class CommandeDecoder implements Decoder.Text<WsCommandeAction>{
+public class CommandeDecoder implements Decoder.Text<WsCommandeAction> {
 
     public CommandeDecoder() {
     }
@@ -18,29 +16,30 @@ public class CommandeDecoder implements Decoder.Text<WsCommandeAction>{
     @Override
     public WsCommandeAction decode(String s) throws DecodeException {
         System.out.println("+++++decoding");
-        System.out.println("String entrante = "+s);
+        System.out.println("String entrante = " + s);
         JsonObject jsonObject = Json.createReader(new StringReader(s)).readObject();
         System.out.println("jsonobject created");
-        
-        Integer cleCommande =Integer.valueOf(jsonObject.getString("cleCommande"));
-        
-        System.out.println(cleCommande);
+
+        String password = jsonObject.getString("password");
+        System.out.println("PASSWORD DECODER  "+password);
         
         String action = jsonObject.getString("action");
-        System.out.println(action);
-     
-        String password = jsonObject.getString("password");
+        System.out.println("ACTION = " + action);
         
+        Integer cleCommande = Integer.valueOf(jsonObject.getString("cleCommande"));
+        System.out.println("CLE COMMANDE DECODER  "+cleCommande);
+
         
+
+        
+
         WsCommandeAction wca = new WsCommandeAction(cleCommande, password, action);
-        
-        System.out.println(">>>>>>>>>>>>-->>>>>>>>>> WAC = "+ jsonObject);
-        
+
+        System.out.println(">>>>>>>>>>>>-->>>>>>>>>> WAC = " + jsonObject);
+
         return wca;
     }
-    
 
-    
     @Override
     public boolean willDecode(String s) {
         try {
@@ -51,12 +50,11 @@ public class CommandeDecoder implements Decoder.Text<WsCommandeAction>{
             return false;
         }
     }
-    
-    
+
     @Override
     public void init(EndpointConfig ec) {
         System.out.println("init");
-        
+
     }
 
     @Override
@@ -64,8 +62,4 @@ public class CommandeDecoder implements Decoder.Text<WsCommandeAction>{
         System.out.println("destroy");
     }
 
-    
-
-    
-    
 }

@@ -15,7 +15,7 @@ function onError() {
     alert("erreur");
 }
 
-websocket.onmessage = function() { onMessage(); };
+
 
 function sendOrder(cleCommande) {
     var json = JSON.stringify({
@@ -29,9 +29,10 @@ function sendOrder(cleCommande) {
 
 function sendHelpServeur(cleCommande, codeServeur) {
     var json = JSON.stringify({
-        "cleCommande": cleCommande,
+        "password": codeServeur,
         "action": "help",
-        "password": codeServeur
+        "cleCommande": cleCommande
+        
     });
     waitForSocketConnection(websocket, function() {
            websocket.send(json);
@@ -52,19 +53,23 @@ function waitForSocketConnection(socket, callback){
             }, 5);
     };
 
+websocket.onmessage = function(evt) { onMessage(evt); };
+
 function onMessage(evt) {
+    
+    
     var json = JSON.parse(evt.data);
     
-    switch (json.action){
-        case "help": alert("HELPPPPP"+json);
-    }
+    alert(json.cleCommande);
+        
 }
 
 function wslogServ(password){
     
     var json = JSON.stringify({
+        "password": password,
         "action": "log",
-        "password": password
+        "cleCommande": "0"
     });
      waitForSocketConnection(websocket, function() {
            websocket.send(json);

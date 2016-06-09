@@ -27,7 +27,6 @@ public class ServeurEndpoint {
         System.out.println("ON MESSAGE ENDPOINT");
         
         String password = action.getPassword();
-        Integer cleCommande = action.getCleCommande();
         
         
         if ("log".equalsIgnoreCase(action.getAction())) {
@@ -39,7 +38,6 @@ public class ServeurEndpoint {
         
         if ("help".equalsIgnoreCase(action.getAction())) {
             
-               
                     System.out.println("AVANT TEST ROLE DANS ENDPOINT");
                     Iterator iter = passwords.entrySet().iterator();
                     while (iter.hasNext()) {
