@@ -41,9 +41,7 @@ public class RefreshClientControleur implements SousControleurInterface{
         
         Integer cleCommande = (Integer) session.getAttribute("cleCommande");
         
-        if("header".equalsIgnoreCase(request.getParameter("refresh"))){
-            
-            
+        if("header".equalsIgnoreCase(request.getParameter("refresh"))){  
             Commande co = salle.selectCommandeByCleCommande(cleCommande);
             session.setAttribute("commande", co);
             return prefix+"IHM_Client/include/header";

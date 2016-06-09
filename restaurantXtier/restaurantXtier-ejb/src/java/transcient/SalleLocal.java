@@ -4,6 +4,7 @@ package transcient;
 import beanEntite.Article;
 import beanEntite.Commande;
 import beanEntite.Emplacement;
+import beanEntite.Formule;
 import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
 import beansSession.BeanCommandeLocal;
@@ -51,5 +52,11 @@ public interface SalleLocal {
     public Collection<LigneCommande> getFormulesCommandees(Integer cleCommande);
     
     public void enleverArticle (Integer cleCommande, Long idArticle);
+    
+    public Float getPrixTtcCommande(Integer cleCommande);
+    
+    public void enleverFormule(Integer cleCommande, String refFormule);
+    
+    public  HashMap<String, HashMap<Formule, Collection<LigneCommande>>>  getFormuleMapper(Collection<LigneCommande> lcs);
   
 }

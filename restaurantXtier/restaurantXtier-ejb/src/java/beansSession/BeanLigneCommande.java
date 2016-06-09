@@ -15,20 +15,10 @@ import javax.persistence.Query;
 @Stateless
 public class BeanLigneCommande implements BeanLigneCommandeLocal {
 
-//    private LigneCommande lc;
-    
     @EJB
     private BeanFormuleLocal beanFormuleLocal;
 
-//    @Override
-//    public LigneCommande getLc() {
-//        return lc;
-//    }
-//
-//    public void setLc(LigneCommande lc) {
-//        this.lc = lc;
-//    }
-    
+
     @PersistenceContext(unitName = "restaurantXtier-ejbPU")
     private EntityManager em;
 
@@ -177,8 +167,8 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
                 Formule form = beanFormuleLocal.selectFormuleByReference("pat");
                 prix = form.getPrixTtc();
                 return prix;
-            }if(ref.contains("entpl")){
-                Formule form = beanFormuleLocal.selectFormuleByReference("entpl");
+            }if(ref.contains("ent")){
+                Formule form = beanFormuleLocal.selectFormuleByReference("ent");
                 prix = form.getPrixTtc();
                 System.out.println("PRIX form enypl = "+prix);
                 return prix;
@@ -192,8 +182,9 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
             prix = 0F;
             return prix;
         }
-    
-    
     return prix;
     }
+    
+    
+    
 }

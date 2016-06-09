@@ -432,7 +432,7 @@ em.persist(vinRs4);
         arts.add(boiSa2);
         arts.add(boiSa3);
         arts.add(boiSa4);
-        Formule form01 = new Formule(arts, "Entrée-Plat", 16.5F, "entpl",tva2);
+        Formule form01 = new Formule(arts, "Entrée-Plat", 16.5F, "ent",tva2);
         em.persist(form01);
         
         ArrayList<Article> arts2 = new ArrayList();

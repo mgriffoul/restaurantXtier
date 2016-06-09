@@ -3,6 +3,7 @@ package beansSession;
 import beanEntite.Article;
 import beanEntite.Formule;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -130,6 +131,14 @@ public class BeanFormule implements BeanFormuleLocal {
         qr.setParameter("paramRef", ref);
         Formule f = (Formule)qr.getSingleResult();
         return f;
+    }
+
+    @Override
+    public String createRefFormuleUnique(Formule f) {
+        String refCommune = f.getRefFormule();
+        String suffix = String.valueOf(Calendar.getInstance().getTimeInMillis());
+        System.out.println("Ref formule !!!!!!!!!!!!! : "+refCommune+suffix);
+        return refCommune+suffix;
     }
     
 }

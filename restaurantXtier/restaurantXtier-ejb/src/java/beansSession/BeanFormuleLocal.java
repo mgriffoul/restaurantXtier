@@ -21,4 +21,5 @@ public interface BeanFormuleLocal {
     public Formule selectFormuleByReference(String ref);
     public void chargerFormule (Formule f);
     public Formule selectFormuleByRef(String refFormule);
+    public String createRefFormuleUnique(Formule f);
 }

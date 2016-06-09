@@ -11,7 +11,6 @@ import beansSession.BeanCategorieLocal;
 import beansSession.BeanCommandeLocal;
 import beansSession.BeanFormuleLocal;
 import beansSession.BeanUserLocal;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -64,16 +63,19 @@ public class IHMClientControleur implements SousControleurInterface {
         //Récupération de la commande lié à l'emplacement
         Integer cleCommande = (Integer) session.getAttribute("cleCommande");
         Commande co = salle.selectCommandeByCleCommande(cleCommande);
+        Float prixTotal = salle.getPrixTtcCommande(cleCommande);
+        if(prixTotal==null){
+            prixTotal=0F;
+        }
+        request.setAttribute("prixTotal", prixTotal);
+        
         System.out.println(">>>>>>>>>>Commande :" + cleCommande);
 
         //Test de l'utilisateur
         if (util != null) {
-
             if (util.getRole() == 4) {
-
                 //Test de la commande
                 if (cleCommande != null) {
-
                     //Choix include en fonction de la ssSection
                     //LaCarte
                     if ("car".equalsIgnoreCase(inc)) {
@@ -100,31 +102,21 @@ public class IHMClientControleur implements SousControleurInterface {
 
                         
                         Collection<LigneCommande> entrees = salle.getEntreesCommandees(cleCommande);
+                        System.out.println("IHMCONTROLEUR CLIENT ENTREE.size ----"+entrees.size());
                         Collection<LigneCommande> plats = salle.getPlatsCommandees(cleCommande);
+                        System.out.println("IHMCONTROLEUR CLIENT PLAT.size ----"+plats.size());
                         Collection<LigneCommande> desserts = salle.getDessertsCommandees(cleCommande);
+                        System.out.println("IHMCONTROLEUR CLIENT DESSERT.size ----"+desserts.size());
                         Collection<LigneCommande> formules = salle.getFormulesCommandees(cleCommande);
+                        System.out.println("IHMCONTROLEUR CLIENT FORMULES.size ----"+formules.size());
                         Collection<LigneCommande> boissons = salle.getBoissonsCommandees(cleCommande);
+                        System.out.println("IHMCONTROLEUR CLIENT BOISSONS.size ----"+boissons.size());
                         
-                        HashMap<Formule, Collection<LigneCommande>> hmf = new HashMap<>();
-                        Collection<String> refForms = new ArrayList();
                         
-                        for(LigneCommande l : formules){
-                            if(!refForms.contains(l.getRefFormule())){
-                                refForms.add(l.getRefFormule());
-                            }
-                        }
+                        HashMap<String, HashMap<Formule, Collection<LigneCommande>>> hmf = salle.getFormuleMapper(formules);
+                        Collection<String> cleSet = hmf.keySet();
                         
-                        for(String s : refForms){
-                          Collection<LigneCommande> col = new ArrayList<>();
-                            for(LigneCommande l : formules){
-                                if(l.getRefFormule().equalsIgnoreCase(s)){
-                                    col.add(l);
-                                    System.out.println("COL *SIZE======"+col.size());
-                                }
-                            }
-                            hmf.put(beanFormule.selectFormuleByRef(s), col);
-                        }
-                        System.out.println("HMF SIZE <<<<>>>><<>>>"+hmf.size());
+                        request.setAttribute("cleSet", cleSet);
                         request.setAttribute("boissons", boissons);
                         request.setAttribute("entrees", entrees);
                         request.setAttribute("plats", plats);

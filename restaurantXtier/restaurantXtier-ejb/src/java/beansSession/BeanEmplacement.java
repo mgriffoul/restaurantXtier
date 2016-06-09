@@ -9,12 +9,19 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import transcient.GroupeEmplacementLocal;
+import transcient.SalleLocal;
 
 @Stateless
 public class BeanEmplacement implements BeanEmplacementLocal {
-
     @EJB
-    private BeanCommandeLocal beanCommande;
+    private GroupeEmplacementLocal groupesEmplacement;
+    
+    @EJB
+    private SalleLocal salle;
+
+    
+
 
     @PersistenceContext(name = "restaurantXtier-ejbPU")
     private EntityManager em;
@@ -24,17 +31,19 @@ public class BeanEmplacement implements BeanEmplacementLocal {
         String req = "Select e from Emplacement e order by e.numero asc";
         Query qr = em.createQuery(req);
         List<Emplacement> listEmplacement = qr.getResultList();
-        List<Commande> listCommande = beanCommande.selectCommandeEnCours();
+        List<Commande> listCommande = salle.selectCommandeEnCours();
+        if (listCommande.isEmpty()){
         for (Commande c : listCommande) {
             Collection<Emplacement> listEmplacementCommande = c.getEmplacements();
-            for (Emplacement e : listEmplacementCommande) {
-                for (Emplacement ep : listEmplacement) {
-                    if (e.getNumero() == ep.getNumero()) {
-                        ep.setCommandeEnCour(c);
-                        ep.setStatut("occupe");
+            for (Emplacement empCommande : listEmplacementCommande) {
+                for (Emplacement emp : listEmplacement) {
+                    if (empCommande == emp) {
+                        emp.setKeyCommande(groupesEmplacement.getKeyEmpByEmp(emp));
+                        emp.setStatut("occupe");
                     }
                 }
             }
+        }
         }
         return listEmplacement;
     }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package beanEntite;
 
 import java.io.Serializable;
@@ -33,16 +28,26 @@ public class Emplacement implements Serializable {
     private Integer nbCouvert;
     
     @Transient
-    private Commande commandeEnCour;
+    private Integer keyCommande;
+    
 
-    public void setCommandeEnCour(Commande commandeEnCour) {
-        this.commandeEnCour = commandeEnCour;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public Commande getCommandeEnCour() {
-        return commandeEnCour;
+    public Integer getKeyCommande() {
+        return keyCommande;
     }
 
+
+
+    public void setKeyCommande(Integer KeyCommande) {
+        this.keyCommande = KeyCommande;
+    }
+
+
+    
     @ManyToMany(mappedBy = "emplacements")
     private Collection<Commande>commandes;
     

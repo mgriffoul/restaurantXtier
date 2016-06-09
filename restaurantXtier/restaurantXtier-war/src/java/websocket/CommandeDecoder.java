@@ -26,28 +26,22 @@ public class CommandeDecoder implements Decoder.Text<WsCommandeAction>{
         
         System.out.println(cleCommande);
         
+        
+        
         String action = jsonObject.getString("action");
         System.out.println(action);
      
+        Integer roleUser = Integer.valueOf(jsonObject.getString("roleUser"));
         
         
-        
-        WsCommandeAction wca = new WsCommandeAction(cleCommande, action);
+        WsCommandeAction wca = new WsCommandeAction(cleCommande, roleUser, action);
         
         System.out.println(">>>>>>>>>>>>-->>>>>>>>>> WAC = "+ jsonObject);
         
         return wca;
     }
     
-        
-//this.cleCommande = cleCommande;
-//this.action = action;
-//this.idArticle = idArticle;
-//this.idFormule = idFormule;
-//this.idEntree = idEntree;
-//this.idPlat = idPlat;
-//this.idDessert = idDessert;
-//this.idBoisson = idBoisson;
+
     
     @Override
     public boolean willDecode(String s) {

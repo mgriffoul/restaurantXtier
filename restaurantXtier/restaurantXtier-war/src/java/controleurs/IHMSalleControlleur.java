@@ -40,7 +40,19 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
 
         //Recupération de la sous section
         String inc = request.getParameter("inc");
-
+        
+        Integer cleCommande = (Integer) session.getAttribute("cleCommande");
+        
+        if("header".equalsIgnoreCase(request.getParameter("refresh"))){  
+            Commande co = salle.selectCommandeByCleCommande(cleCommande);
+            session.setAttribute("commande", co);
+            return prefix+"IHM_Client/include/header";
+        }
+        
+        
+        
+        
+        
         //Choix include en fonction de la ssSection
         //Création de la commande
         if ("createOrder".equalsIgnoreCase(inc)) {
@@ -53,14 +65,12 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
                 emps.add(emp);
                 beanEmplacement.updateEmplacement(emp);
             }     
-            int keyCommande = salle.creerCommande(emps, ut01);
-            session.setAttribute("keyCommande", keyCommande);
+            salle.creerCommande(emps, ut01);
             List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
-            
             request.setAttribute("listEmplacement", listEmplacement);  
         }
 
-        //Création de la commande
+        //Affichae de la commande
         if ("showOrder".equalsIgnoreCase(inc)) {
             Commande c01 = beanCommande.selectCommandeById(Long.valueOf(request.getParameter("id")));
             request.setAttribute("commande", c01);
