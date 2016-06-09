@@ -27,8 +27,16 @@ function sendOrder(cleCommande) {
         });
 }
 
-
-
+function sendHelpServeur(cleCommande) {
+    var json = JSON.stringify({
+        "cleCommande": cleCommande,
+        "action": "help",
+        "roleUser": "4"
+    });
+    waitForSocketConnection(websocket, function() {
+           websocket.send(json);
+        });
+}
 
 function waitForSocketConnection(socket, callback){
         setTimeout(
@@ -44,13 +52,13 @@ function waitForSocketConnection(socket, callback){
             }, 5);
     };
 
-
-
-function onMessage() {
-    refreshHeader();
-    refreshMesCommandes();
+function onMessage(evt) {
+    var json = JSON.parse(evt.data);
+    
+    switch (json.action){
+        case "help": alert("HELPPPPP"+json);
+    }
 }
-
 
 function wslogServ(cleCommande, intRole){
     
@@ -62,8 +70,6 @@ function wslogServ(cleCommande, intRole){
      waitForSocketConnection(websocket, function() {
            websocket.send(json);
         });
-    
-    
 }
 function test(){
     alert("test");

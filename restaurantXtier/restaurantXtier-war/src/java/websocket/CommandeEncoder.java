@@ -1,6 +1,7 @@
 
 package websocket;
 
+import java.math.BigDecimal;
 import javax.json.Json;
 import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
@@ -11,9 +12,11 @@ public class CommandeEncoder implements Encoder.Text<WsCommandeAction>{
 
     @Override
     public String encode(WsCommandeAction wca) throws EncodeException {
+        System.out.println("ENCODE +++++++");
         return Json.createObjectBuilder()
                         .add("action", wca.getAction())
                         .add("cleCommande", wca.getCleCommande())
+                        .add("roleUser", wca.getRoleUser())
                    .build().toString();
     }
 
