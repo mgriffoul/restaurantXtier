@@ -6,7 +6,6 @@ import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
 import beansSession.BeanCommandeLocal;
 import beansSession.BeanFormuleLocal;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -89,7 +88,7 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
                             Collection<LigneCommande> formules = salle.getFormulesCommandees(cleCommande);
                             Collection<LigneCommande> boissons = salle.getBoissonsCommandees(cleCommande);
 
-                            HashMap<Formule, Collection<LigneCommande>> hmf = salle.getFormuleMapper(formules);
+                            HashMap<String, HashMap<Formule, Collection<LigneCommande>>> hmf = salle.getFormuleMapper(formules);
 
                             System.out.println("HMF SIZE <<<<>>>><<>>>" + hmf.size());
                             prixTotal = salle.getPrixTtcCommande(cleCommande);
@@ -122,7 +121,7 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
                             Collection<LigneCommande> formules = salle.getFormulesCommandees(cleCommande);
                             Collection<LigneCommande> boissons = salle.getBoissonsCommandees(cleCommande);
 
-                            HashMap<Formule, Collection<LigneCommande>> hmf = salle.getFormuleMapper(formules);
+                           HashMap<String, HashMap<Formule, Collection<LigneCommande>>> hmf = salle.getFormuleMapper(formules);
 
                             System.out.println("HMF SIZE <<<<>>>><<>>>" + hmf.size());
                             prixTotal = salle.getPrixTtcCommande(cleCommande);

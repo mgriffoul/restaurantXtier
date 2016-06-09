@@ -57,6 +57,6 @@ public interface SalleLocal {
     
     public void enleverFormule(Integer cleCommande, String refFormule);
     
-    public HashMap<Formule,Collection<LigneCommande>> getFormuleMapper(Collection<LigneCommande> lcs);
+    public  HashMap<String, HashMap<Formule, Collection<LigneCommande>>>  getFormuleMapper(Collection<LigneCommande> lcs);
   
 }

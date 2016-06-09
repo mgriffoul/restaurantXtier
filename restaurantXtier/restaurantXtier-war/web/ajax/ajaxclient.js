@@ -90,7 +90,7 @@ function suppArticle(idDom, idArticle){
     xhr.send(null);
 }
 function suppFormule(idDom, refFormule){
-   
+   alert("idDom="+idDom +"  RefFormule == "+refFormule);
     var url = "index?section=actionCom&act=suppFor&id="+refFormule+"&dom="+idDom;
     
     var xhr = getXmlHttpRequest();

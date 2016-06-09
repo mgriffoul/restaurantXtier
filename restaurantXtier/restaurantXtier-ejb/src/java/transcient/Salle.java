@@ -112,24 +112,25 @@ public class Salle implements SalleLocal {
 
         Formule f = beanFormule.selectFormuleById(idFromule);
         String refFormule = beanFormule.createRefFormuleUnique(f);
+        f.setRefFormuleUnique(refFormule);
         Commande co = selectCommandeByCleCommande(cleCommande);
-        LigneCommande lc00 = new LigneCommande(f.getPrix(), null, refFormule, null, co, null);
+        LigneCommande lc00 = new LigneCommande(f.getPrix(), null, f.getRefFormuleUnique(), null, co, null);
 
         co.getLignesCommandes().add(lc00);
         if (entree != null) {
-            LigneCommande lc01 = new LigneCommande(0F, null, refFormule, entree, co, null);
+            LigneCommande lc01 = new LigneCommande(0F, null, f.getRefFormuleUnique(), entree, co, null);
             co.getLignesCommandes().add(lc01);
         }
         if (plat != null) {
-            LigneCommande lc02 = new LigneCommande(0F, null, refFormule, plat, co, null);
+            LigneCommande lc02 = new LigneCommande(0F, null, f.getRefFormuleUnique(), plat, co, null);
             co.getLignesCommandes().add(lc02);
         }
         if (dessert != null) {
-            LigneCommande lc03 = new LigneCommande(0F, null, refFormule, dessert, co, null);
+            LigneCommande lc03 = new LigneCommande(0F, null, f.getRefFormuleUnique(), dessert, co, null);
             co.getLignesCommandes().add(lc03);
         }
         if (boisson != null) {
-            LigneCommande lc04 = new LigneCommande(0F, null, refFormule, boisson, co, null);
+            LigneCommande lc04 = new LigneCommande(0F, null, f.getRefFormuleUnique(), boisson, co, null);
             co.getLignesCommandes().add(lc04);
         }
 
@@ -254,16 +255,17 @@ public class Salle implements SalleLocal {
     }
 
     @Override
-    public HashMap<Formule, Collection<LigneCommande>> getFormuleMapper(Collection<LigneCommande> lcs) {
+    public  HashMap<String, HashMap<Formule, Collection<LigneCommande>>>  getFormuleMapper(Collection<LigneCommande> lcs) {
 
-        HashMap<Formule, Collection<LigneCommande>> hmf = new HashMap<>();
-        Collection<String> refForms = new ArrayList();
+         HashMap<String, HashMap<Formule, Collection<LigneCommande>>>  hmf = new HashMap<>();
+         
+         Collection<String> refForms = new ArrayList();
 
         for (LigneCommande l : lcs) {
-            if (!refForms.contains((l.getRefFormule().substring(0, 3)))) {
+            if (!refForms.contains((l.getRefFormule()))) {
 
-                String ref = l.getRefFormule().substring(0, 3);
-                System.out.println("SUBSTRING =" + ref);
+                String ref = l.getRefFormule();
+                System.out.println("REFFORMULE DANS FORMULE MAPPER =" + ref);
                 refForms.add(ref);
             }
         }
@@ -271,12 +273,16 @@ public class Salle implements SalleLocal {
         for (String s : refForms) {
             Collection<LigneCommande> col = new ArrayList<>();
             for (LigneCommande l : lcs) {
-                if (l.getRefFormule().contains(s)) {
+                if (l.getRefFormule().equalsIgnoreCase(s)) {
                     col.add(l);
-                    System.out.println("COL *SIZE======" + col.size());
+                    System.out.println("COL *SIZE FORMULE MAPPER======" + col.size());
                 }
             }
-            hmf.put(beanFormule.selectFormuleByRef(s), col);
+            Formule f = beanFormule.selectFormuleByRef(s.substring(0, 3));
+            System.out.println("FORMULE DANS MAPPER ==="+f);
+            HashMap<Formule, Collection<LigneCommande>> sousHmf=new HashMap<>();
+            sousHmf.put(f, col);
+            hmf.put(s, sousHmf);
         }
 
         return hmf;

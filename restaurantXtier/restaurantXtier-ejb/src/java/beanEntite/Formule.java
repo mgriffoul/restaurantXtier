@@ -38,6 +38,8 @@ public class Formule implements Serializable {
     private Collection<Article> desserts;
     @Transient
     private Collection<Article> boissons;
+    @Transient
+    private String refFormuleUnique;
     
     @ManyToOne
     private Tva tva;
@@ -50,6 +52,16 @@ public class Formule implements Serializable {
         boissons = new ArrayList<>();
     }
 
+    public Formule(Collection<Article> articles, String nom, Float prix, String refFormule, String refFormuleUnique, Tva tva) {
+        this.articles = articles;
+        this.nom = nom;
+        this.prix = prix;
+        this.refFormule = refFormule;
+        this.refFormuleUnique = refFormuleUnique;
+        this.tva = tva;
+    }
+
+    
     public Formule(Collection<Article> articles, String nom, Float prix, String refFormule, Tva tva) {
         this.articles = articles;
         this.nom = nom;
@@ -86,6 +98,14 @@ public class Formule implements Serializable {
 
     public Collection<Article> getArticles() {
         return articles;
+    }
+
+    public String getRefFormuleUnique() {
+        return refFormuleUnique;
+    }
+
+    public void setRefFormuleUnique(String refFormuleUnique) {
+        this.refFormuleUnique = refFormuleUnique;
     }
 
     public void setArticles(Collection<Article> articles) {

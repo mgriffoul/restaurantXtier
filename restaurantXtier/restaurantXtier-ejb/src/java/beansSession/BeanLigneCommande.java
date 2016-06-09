@@ -167,8 +167,8 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
                 Formule form = beanFormuleLocal.selectFormuleByReference("pat");
                 prix = form.getPrixTtc();
                 return prix;
-            }if(ref.contains("entpl")){
-                Formule form = beanFormuleLocal.selectFormuleByReference("entpl");
+            }if(ref.contains("ent")){
+                Formule form = beanFormuleLocal.selectFormuleByReference("ent");
                 prix = form.getPrixTtc();
                 System.out.println("PRIX form enypl = "+prix);
                 return prix;
