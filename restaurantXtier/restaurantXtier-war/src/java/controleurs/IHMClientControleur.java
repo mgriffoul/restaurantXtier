@@ -106,15 +106,21 @@ public class IHMClientControleur implements SousControleurInterface {
 
                         
                         Collection<LigneCommande> entrees = salle.getEntreesCommandees(cleCommande);
+                        System.out.println("IHMCONTROLEUR CLIENT ENTREE.size ----"+entrees.size());
                         Collection<LigneCommande> plats = salle.getPlatsCommandees(cleCommande);
+                        System.out.println("IHMCONTROLEUR CLIENT PLAT.size ----"+plats.size());
                         Collection<LigneCommande> desserts = salle.getDessertsCommandees(cleCommande);
+                        System.out.println("IHMCONTROLEUR CLIENT DESSERT.size ----"+desserts.size());
                         Collection<LigneCommande> formules = salle.getFormulesCommandees(cleCommande);
+                        System.out.println("IHMCONTROLEUR CLIENT FORMULES.size ----"+formules.size());
                         Collection<LigneCommande> boissons = salle.getBoissonsCommandees(cleCommande);
-                        
-                        HashMap<Formule, Collection<LigneCommande>> hmf = salle.getFormuleMapper(formules);
-                        
+                        System.out.println("IHMCONTROLEUR CLIENT BOISSONS.size ----"+boissons.size());
                         
                         
+                        HashMap<String, HashMap<Formule, Collection<LigneCommande>>> hmf = salle.getFormuleMapper(formules);
+                        Collection<String> cleSet = hmf.keySet();
+                        
+                        request.setAttribute("cleSet", cleSet);
                         request.setAttribute("boissons", boissons);
                         request.setAttribute("entrees", entrees);
                         request.setAttribute("plats", plats);

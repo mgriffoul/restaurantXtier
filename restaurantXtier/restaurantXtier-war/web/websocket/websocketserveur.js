@@ -52,7 +52,7 @@ function onMessage() {
 }
 
 
-function wslog(cleCommande, intRole){
+function wslogServ(cleCommande, intRole){
     
     var json = JSON.stringify({
         "cleCommande": cleCommande,
