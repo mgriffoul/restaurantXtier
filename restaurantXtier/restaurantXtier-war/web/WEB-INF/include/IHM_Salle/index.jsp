@@ -25,6 +25,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="/css/bootstrap/js/bootstrap.min.js"></script>
         <script src="ajax/ajaxsalle.js"></script>
+        <script src="websocket/websocketserveur.js" type="text/javascript"></script>
+        <script type="text/javascript">wslogServ('${sessionScope.user.role}');</script>
         < /body>
         < /html>
 
