@@ -49,6 +49,8 @@
         <script src="client-template/js/main.js"></script>
         <script src="websocket/websocketcommande.js"></script>
         <script type="text/javascript">wslog('${(sessionScope.cleCommande)}');</script>
+        <script src="websocket/websocketserveur.js" type="text/javascript"></script>
+        <script type="text/javascript">wslog('${(sessionScope.cleCommande)}', '${sessionScope.user.role}');</script>
         <script src="ajax/ajaxclient.js"></script>
     </body>
 </html>
