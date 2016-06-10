@@ -26,11 +26,13 @@ public class Commande implements Serializable {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date date;
     private String numero;
-    private String statut; //"en cours" // payée // terminée 
+    private String statut;      //"en creation" (Le client rempli le panier)
+                                //"non validee"  (Le client a cliquer sur terminer ma commande et attend que le serveur la valide)
+                                // "en cours" (La commande a été validée par le serveur et les plats partent en cuisine) 
+                                // "terminee" (en attente de paiement, commande non modifiable) 
+                                // "payee" (commande archivée)
 
-    
-    
-     // associations
+    // associations
     @ManyToMany
     private Collection<Emplacement> emplacements;
 

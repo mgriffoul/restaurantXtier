@@ -3,10 +3,12 @@ package transcient;
 import beanEntite.Article;
 import beanEntite.Commande;
 import beanEntite.Emplacement;
+import beanEntite.EtatLigneCommande;
 import beanEntite.Formule;
 import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
 import beansSession.BeanCommandeLocal;
+import beansSession.BeanEtatLigneCommandeLocal;
 import beansSession.BeanFormuleLocal;
 import beansSession.BeanLigneCommandeLocal;
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ import javax.ejb.Singleton;
 
 @Singleton
 public class Salle implements SalleLocal {
+    @EJB
+    private BeanEtatLigneCommandeLocal beanEtatLigneCommande;
 
     @EJB
     private BeanFormuleLocal beanFormule;
@@ -113,24 +117,25 @@ public class Salle implements SalleLocal {
         Formule f = beanFormule.selectFormuleById(idFromule);
         String refFormule = beanFormule.createRefFormuleUnique(f);
         f.setRefFormuleUnique(refFormule);
+        EtatLigneCommande elc = beanEtatLigneCommande.selectEtatFromOrdre(1);
         Commande co = selectCommandeByCleCommande(cleCommande);
         LigneCommande lc00 = new LigneCommande(f.getPrix(), null, f.getRefFormuleUnique(), null, co, null);
 
         co.getLignesCommandes().add(lc00);
         if (entree != null) {
-            LigneCommande lc01 = new LigneCommande(0F, null, f.getRefFormuleUnique(), entree, co, null);
+            LigneCommande lc01 = new LigneCommande(0F, null, f.getRefFormuleUnique(), entree, co, elc);
             co.getLignesCommandes().add(lc01);
         }
         if (plat != null) {
-            LigneCommande lc02 = new LigneCommande(0F, null, f.getRefFormuleUnique(), plat, co, null);
+            LigneCommande lc02 = new LigneCommande(0F, null, f.getRefFormuleUnique(), plat, co, elc);
             co.getLignesCommandes().add(lc02);
         }
         if (dessert != null) {
-            LigneCommande lc03 = new LigneCommande(0F, null, f.getRefFormuleUnique(), dessert, co, null);
+            LigneCommande lc03 = new LigneCommande(0F, null, f.getRefFormuleUnique(), dessert, co, elc);
             co.getLignesCommandes().add(lc03);
         }
         if (boisson != null) {
-            LigneCommande lc04 = new LigneCommande(0F, null, f.getRefFormuleUnique(), boisson, co, null);
+            LigneCommande lc04 = new LigneCommande(0F, null, f.getRefFormuleUnique(), boisson, co, elc);
             co.getLignesCommandes().add(lc04);
         }
 
