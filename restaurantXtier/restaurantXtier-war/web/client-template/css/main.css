@@ -710,9 +710,10 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
     padding-bottom: 10px;
 
 }
+
 .categorie-carte h3{
     font-size: 30px;
-    margin-top: 20px;
+    margin-top: 45px;
 }
 
 .souscategorie-carte{
@@ -860,7 +861,8 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
     font-size: 16px;
      
 }
-.navbar-default .navbar-nav>li>a.btnrouge-perso:hover {
+.navbar-default .navbar-nav>li>a.btnrouge-perso:hover,
+.navbar-default .navbar-nav>li>a.btnrouge-perso:focus{
     background-color: #c7254e;
 }
 .navbar-default .navbar-nav>li>a.btn-perso:hover,

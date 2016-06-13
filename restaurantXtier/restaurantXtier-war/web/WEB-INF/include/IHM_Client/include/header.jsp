@@ -1,4 +1,5 @@
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 <!--
@@ -36,12 +37,12 @@
 
                                 <li>
                                     <div class="dropdown dropdownperso">
-                                        <button class="btn btn-success dropdown-toggle btn-perso" type="button" data-toggle="dropdown">Dropdown Example
+                                        <button class="btn btn-success dropdown-toggle btn-perso" type="button" data-toggle="dropdown">La carte
                                             <span class="caret"></span></button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">HTML</a></li>
-                                            <li><a href="#">CSS</a></li>
-                                            <li><a href="#">JavaScript</a></li>
+                                            <c:forEach items="${cat}" var="cate">
+                                            <li><a href="index?section=ihmclient&inc=car#${cate.nom}">${cate.nom}</a></li>
+                                            </c:forEach>
                                         </ul>
                                     </div>
                                 </li>

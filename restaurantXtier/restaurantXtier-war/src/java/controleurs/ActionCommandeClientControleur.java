@@ -1,13 +1,16 @@
 package controleurs;
 
+import beanEntite.Categorie;
 import beanEntite.Commande;
 import beanEntite.Formule;
 import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
+import beansSession.BeanCategorieLocal;
 import beansSession.BeanCommandeLocal;
 import beansSession.BeanFormuleLocal;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -20,6 +23,8 @@ import transcient.SalleLocal;
 
 //actionCom
 public class ActionCommandeClientControleur implements SousControleurInterface {
+
+    BeanCategorieLocal beanCategorie = lookupBeanCategorieLocal();
 
     BeanFormuleLocal beanFormule = lookupBeanFormuleLocal();
 
@@ -43,6 +48,10 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
         String url = "include/IHM_Client/index";
         //recuperation action
         String act = request.getParameter("act");
+
+        //recuperation des categories
+        List<Categorie> categories = beanCategorie.selectAllCategorie();
+        request.setAttribute("cat", categories);
 
         //Recuperation commande et utilisateur session
         Integer cleCommande = (Integer) session.getAttribute("cleCommande");
@@ -121,7 +130,7 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
                             Collection<LigneCommande> formules = salle.getFormulesCommandees(cleCommande);
                             Collection<LigneCommande> boissons = salle.getBoissonsCommandees(cleCommande);
 
-                           HashMap<String, HashMap<Formule, Collection<LigneCommande>>> hmf = salle.getFormuleMapper(formules);
+                            HashMap<String, HashMap<Formule, Collection<LigneCommande>>> hmf = salle.getFormuleMapper(formules);
 
                             System.out.println("HMF SIZE <<<<>>>><<>>>" + hmf.size());
                             prixTotal = salle.getPrixTtcCommande(cleCommande);
@@ -182,6 +191,16 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
         try {
             Context c = new InitialContext();
             return (BeanFormuleLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanFormule!beansSession.BeanFormuleLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private BeanCategorieLocal lookupBeanCategorieLocal() {
+        try {
+            Context c = new InitialContext();
+            return (BeanCategorieLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanCategorie!beansSession.BeanCategorieLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

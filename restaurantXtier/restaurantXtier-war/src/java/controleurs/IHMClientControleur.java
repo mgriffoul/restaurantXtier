@@ -60,6 +60,10 @@ public class IHMClientControleur implements SousControleurInterface {
         Utilisateur util = (Utilisateur) session.getAttribute("user");
         System.out.println(">>>>>>>>>>>>>>>>>>UTIL : " + util);
 
+        //Recuperation des categories
+        List<Categorie> categories = beanCategorie.selectAllCategorie();
+        request.setAttribute("cat", categories);
+
         //Récupération de la commande lié à l'emplacement
         Integer cleCommande = (Integer) session.getAttribute("cleCommande");
         Commande co = salle.selectCommandeByCleCommande(cleCommande);
@@ -82,8 +86,6 @@ public class IHMClientControleur implements SousControleurInterface {
                     if ("car".equalsIgnoreCase(inc)) {
                         s1 = "carte";
 
-                        List<Categorie> categories = beanCategorie.selectAllCategorie();
-                        request.setAttribute("cat", categories);
                     }
 
                     //Affichage Formules
@@ -125,127 +127,121 @@ public class IHMClientControleur implements SousControleurInterface {
                             session.setAttribute("commande", co);
                         }
 
-                    
+                        Collection<LigneCommande> entrees = salle.getEntreesCommandees(cleCommande);
+                        System.out.println("IHMCONTROLEUR CLIENT ENTREE.size ----" + entrees.size());
+                        Collection<LigneCommande> plats = salle.getPlatsCommandees(cleCommande);
+                        System.out.println("IHMCONTROLEUR CLIENT PLAT.size ----" + plats.size());
+                        Collection<LigneCommande> desserts = salle.getDessertsCommandees(cleCommande);
+                        System.out.println("IHMCONTROLEUR CLIENT DESSERT.size ----" + desserts.size());
+                        Collection<LigneCommande> formules = salle.getFormulesCommandees(cleCommande);
+                        System.out.println("IHMCONTROLEUR CLIENT FORMULES.size ----" + formules.size());
+                        Collection<LigneCommande> boissons = salle.getBoissonsCommandees(cleCommande);
+                        System.out.println("IHMCONTROLEUR CLIENT BOISSONS.size ----" + boissons.size());
 
-                    Collection<LigneCommande> entrees = salle.getEntreesCommandees(cleCommande);
-                    System.out.println("IHMCONTROLEUR CLIENT ENTREE.size ----" + entrees.size());
-                    Collection<LigneCommande> plats = salle.getPlatsCommandees(cleCommande);
-                    System.out.println("IHMCONTROLEUR CLIENT PLAT.size ----" + plats.size());
-                    Collection<LigneCommande> desserts = salle.getDessertsCommandees(cleCommande);
-                    System.out.println("IHMCONTROLEUR CLIENT DESSERT.size ----" + desserts.size());
-                    Collection<LigneCommande> formules = salle.getFormulesCommandees(cleCommande);
-                    System.out.println("IHMCONTROLEUR CLIENT FORMULES.size ----" + formules.size());
-                    Collection<LigneCommande> boissons = salle.getBoissonsCommandees(cleCommande);
-                    System.out.println("IHMCONTROLEUR CLIENT BOISSONS.size ----" + boissons.size());
+                        HashMap<String, HashMap<Formule, Collection<LigneCommande>>> hmf = salle.getFormuleMapper(formules);
+                        Collection<String> cleSet = hmf.keySet();
 
-                    HashMap<String, HashMap<Formule, Collection<LigneCommande>>> hmf = salle.getFormuleMapper(formules);
-                    Collection<String> cleSet = hmf.keySet();
+                        request.setAttribute("cleSet", cleSet);
+                        request.setAttribute("boissons", boissons);
+                        request.setAttribute("entrees", entrees);
+                        request.setAttribute("plats", plats);
+                        request.setAttribute("desserts", desserts);
+                        request.setAttribute("formules", hmf);
 
-                    request.setAttribute("cleSet", cleSet);
-                    request.setAttribute("boissons", boissons);
-                    request.setAttribute("entrees", entrees);
-                    request.setAttribute("plats", plats);
-                    request.setAttribute("desserts", desserts);
-                    request.setAttribute("formules", hmf);
-
-                }
-
-                //Menu achat Formule
-                if ("buyForm".equalsIgnoreCase(inc)) {
-
-                    s1 = "achatForm";
-
-                    Long idForm = Long.valueOf(request.getParameter("idForm"));
-
-                    Formule f = beanFormule.selectFormuleById(idForm);
-                    beanFormule.chargerFormule(f);
-
-                    request.setAttribute("for", f);
-
-                }
-
-                if ("validForm".equalsIgnoreCase(inc)) {
-
-                    //recup de la formule qui vient d'être choisie
-                    Long idForm = Long.valueOf(request.getParameter("idForm"));
-                    Formule f = beanFormule.selectFormuleById(idForm);
-
-                    //test des choix faits par l'utilisateur et message d'erreur si oubli
-                    if ("0".equalsIgnoreCase(request.getParameter("entree"))
-                            || "0".equalsIgnoreCase(request.getParameter("plat"))
-                            || "0".equalsIgnoreCase(request.getParameter("dessert"))
-                            || "0".equalsIgnoreCase(request.getParameter("boisson"))) {
-
-                        s1 = "achatForm";
-                        String msg = "Vous n'avez pas choisi tous les éléments de votre formule.";
-                        request.setAttribute("message", msg);
-                        request.setAttribute("for", f);
-                    } else {
-
-                        s1 = "formule";
-                        String message = "Formule ajoutée avec succès";
-
-                        //récupération des articles choisis
-                        Article entree = null;
-                        Article plat = null;
-                        Article dessert = null;
-                        Article boisson = null;
-
-                        if (request.getParameter("entree") != null) {
-                            entree = beanArticle.selectArticleById(Long.valueOf(request.getParameter("entree")));
-                        }
-                        if (request.getParameter("plat") != null) {
-                            plat = beanArticle.selectArticleById(Long.valueOf(request.getParameter("plat")));
-                        }
-                        if (request.getParameter("dessert") != null) {
-                            dessert = beanArticle.selectArticleById(Long.valueOf(request.getParameter("dessert")));
-                        }
-                        if (request.getParameter("boisson") != null) {
-                            boisson = beanArticle.selectArticleById(Long.valueOf(request.getParameter("boisson")));
-                        }
-
-                        salle.ajouterFormule(cleCommande, f.getId(), entree, plat, dessert, boisson);
-
-                        //rechargement des formules pour affichage dans jsp formule.jsp
-                        List<Formule> formules = beanFormule.selectAllFormule();
-
-                        for (Formule fo : formules) {
-                            beanFormule.chargerFormule(fo);
-                        }
-                        request.setAttribute("for", formules);
-                        request.setAttribute("message", message);
                     }
 
+                    //Menu achat Formule
+                    if ("buyForm".equalsIgnoreCase(inc)) {
+
+                        s1 = "achatForm";
+
+                        Long idForm = Long.valueOf(request.getParameter("idForm"));
+
+                        Formule f = beanFormule.selectFormuleById(idForm);
+                        beanFormule.chargerFormule(f);
+
+                        request.setAttribute("for", f);
+
+                    }
+
+                    if ("validForm".equalsIgnoreCase(inc)) {
+
+                        //recup de la formule qui vient d'être choisie
+                        Long idForm = Long.valueOf(request.getParameter("idForm"));
+                        Formule f = beanFormule.selectFormuleById(idForm);
+
+                        //test des choix faits par l'utilisateur et message d'erreur si oubli
+                        if ("0".equalsIgnoreCase(request.getParameter("entree"))
+                                || "0".equalsIgnoreCase(request.getParameter("plat"))
+                                || "0".equalsIgnoreCase(request.getParameter("dessert"))
+                                || "0".equalsIgnoreCase(request.getParameter("boisson"))) {
+
+                            s1 = "achatForm";
+                            String msg = "Vous n'avez pas choisi tous les éléments de votre formule.";
+                            request.setAttribute("message", msg);
+                            request.setAttribute("for", f);
+                        } else {
+
+                            s1 = "formule";
+                            String message = "Formule ajoutée avec succès";
+
+                            //récupération des articles choisis
+                            Article entree = null;
+                            Article plat = null;
+                            Article dessert = null;
+                            Article boisson = null;
+
+                            if (request.getParameter("entree") != null) {
+                                entree = beanArticle.selectArticleById(Long.valueOf(request.getParameter("entree")));
+                            }
+                            if (request.getParameter("plat") != null) {
+                                plat = beanArticle.selectArticleById(Long.valueOf(request.getParameter("plat")));
+                            }
+                            if (request.getParameter("dessert") != null) {
+                                dessert = beanArticle.selectArticleById(Long.valueOf(request.getParameter("dessert")));
+                            }
+                            if (request.getParameter("boisson") != null) {
+                                boisson = beanArticle.selectArticleById(Long.valueOf(request.getParameter("boisson")));
+                            }
+
+                            salle.ajouterFormule(cleCommande, f.getId(), entree, plat, dessert, boisson);
+
+                            //rechargement des formules pour affichage dans jsp formule.jsp
+                            List<Formule> formules = beanFormule.selectAllFormule();
+
+                            for (Formule fo : formules) {
+                                beanFormule.chargerFormule(fo);
+                            }
+                            request.setAttribute("for", formules);
+                            request.setAttribute("message", message);
+                        }
+
+                    }
+
+                    //else commande
+                } else {
+                    url = "include/logclient";
                 }
 
-                //else commande
+                //else Code ihm user
             } else {
-                url = "include/logclient";
+                request.setAttribute("message", "Vous n'avez pas les droits pour accéder à cet interface");
+                url = "include/login";
             }
 
-            //else Code ihm user
+            //else Util null
         } else {
-            request.setAttribute("message", "Vous n'avez pas les droits pour accéder à cet interface");
+            request.setAttribute("message", "Vous devez vous identifier pour accéder à cet interface");
             url = "include/login";
         }
 
-        //else Util null
+        request.setAttribute(
+                "contentInc", prefix + s1 + suffix);
+        return url;
     }
-
-    
-        else {
-            request.setAttribute("message", "Vous devez vous identifier pour accéder à cet interface");
-        url = "include/login";
-    }
-
-    request.setAttribute (
-            
-    "contentInc", prefix + s1 + suffix);
-    return url ;
-}
 
 //import EJB
-private BeanCategorieLocal lookupBeanCategorieLocal() {
+    private BeanCategorieLocal lookupBeanCategorieLocal() {
         try {
             Context c = new InitialContext();
             return (BeanCategorieLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanCategorie!beansSession.BeanCategorieLocal");

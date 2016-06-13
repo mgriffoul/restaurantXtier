@@ -16,6 +16,7 @@
 
 
                         <c:forEach items="${cat}" var="cate">
+                            <section id="${cate.nom}">
                             <div class="title categorie-carte">
                                 <h3><span>${cate.nom}</span></h3>
                             </div>
@@ -47,6 +48,7 @@
                                 </ul>
 
                             </c:forEach>
+                            </section>
                         </c:forEach>
 
 
