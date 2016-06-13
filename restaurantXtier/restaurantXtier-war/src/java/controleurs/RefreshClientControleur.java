@@ -42,18 +42,50 @@ public class RefreshClientControleur implements SousControleurInterface {
         String url = "include/IHM_Client/index";
 
         Integer cleCommande = (Integer) session.getAttribute("cleCommande");
+        Commande co = salle.selectCommandeByCleCommande(cleCommande);
 
-        //REcuperation des categories
+        session.setAttribute("commande", co);
+        
+        Float prixTotal = salle.getPrixTtcCommande(cleCommande);
+        if (prixTotal == null) {
+            prixTotal = 0F;
+        }
+        request.setAttribute("prixTotal", prixTotal);
+
+        //Recuperation des categories
         List<Categorie> categories = beanCategorie.selectAllCategorie();
         request.setAttribute("cat", categories);
 
         if ("header".equalsIgnoreCase(request.getParameter("refresh"))) {
-            Commande co = salle.selectCommandeByCleCommande(cleCommande);
-            session.setAttribute("commande", co);
+
             return prefix + "IHM_Client/include/header";
         }
 
         if ("commande".equalsIgnoreCase(request.getParameter("refresh"))) {
+
+            if ("valid".equalsIgnoreCase(request.getParameter("actionRefresh"))) {
+                co.setStatut("non validee");
+                session.setAttribute("commande", co);
+            }
+
+            String statutCommande = "inconnue";
+
+            switch (co.getStatut()) {
+                case "non validee":
+                    statutCommande = "Votre commande est en attente de validation par un serveur.";
+                    break;
+                case "en cours":
+                    statutCommande = "Votre commande est en cours de service.";
+                    break;
+                case "terminee":
+                    statutCommande = "Nous préparons votre addition.";
+                    break;
+                case "payee":
+                    statutCommande = "Votre commande a été cloturée. Merci d'avoir choisi PIZZA + pour votre repas.";
+                    break;
+            }
+
+            request.setAttribute("statut", statutCommande);
 
             Collection<LigneCommande> entrees = salle.getEntreesCommandees(cleCommande);
             Collection<LigneCommande> plats = salle.getPlatsCommandees(cleCommande);
@@ -86,7 +118,12 @@ public class RefreshClientControleur implements SousControleurInterface {
             request.setAttribute("plats", plats);
             request.setAttribute("desserts", desserts);
             request.setAttribute("formules", hmf);
-            return prefix + "IHM_Client/include/commande";
+
+            if (co.getStatut().equalsIgnoreCase("en creation")) {
+                return prefix + "IHM_Client/include/commande";
+            } else {
+                return prefix + "IHM_Client/include/suiviCommande";
+            }
 
         }
 

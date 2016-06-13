@@ -12,6 +12,8 @@
 
                     <h1 class="heading wow fadeInUp carte-titre" data-wow-duration="300ms" data-wow-delay="300ms">Les <span>Formules</span> </h1>
                     <div class="pricing-list ">
+                     
+                                       
                         <ul>
                             <c:forEach items="${for}" var="form">
 

@@ -32,7 +32,7 @@
                                         <li class="wow fadeInUp  article" data-wow-duration="300ms" data-wow-delay="300ms">
                                             <div class="item ">
                                                 <div class="item-title ">
-                                                    <h2 class="nomarticle">${article.nom}</h2>
+                                                    <div class="nomarticle">${article.nom}</div>
                                                     <div class="border-bottom"></div>
                                                     <span>${article.prixTtc} E</span>
                                                 </div>

@@ -25,6 +25,7 @@ function sendOrder(cleCommande) {
     waitForSocketConnection(websocket, function() {
            websocket.send(json);
         });
+        
 }
 
 function sendHelpServeur(cleCommande, codeServeur) {
@@ -37,6 +38,7 @@ function sendHelpServeur(cleCommande, codeServeur) {
     waitForSocketConnection(websocket, function() {
            websocket.send(json);
         });
+        bootbox.alert("Un serveur a été appelé");
 }
 
 function waitForSocketConnection(socket, callback){

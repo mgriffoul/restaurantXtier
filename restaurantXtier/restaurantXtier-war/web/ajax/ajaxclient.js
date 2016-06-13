@@ -56,6 +56,33 @@ function refreshMesCommandes(){
     xhr.send(null);
 }
 
+function testbootbox (){
+    bootbox.confirm("Etes vous certain de vouloir valider la commande ? La commande ne pourra plus être modifié par aucun convive après confirmation.", function(result){
+        if(result===true){validerCommande();}
+    });
+}
+
+
+function validerCommande(){
+    
+    var url = "index?section=clientRefresh&refresh=commande&actionRefresh=valid";
+    
+    var xhr = getXmlHttpRequest(); 
+    
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState == 4 && xhr.status == 200){
+          
+          var maDiv = document.getElementById("commandes");
+            var response = xhr.responseText;
+            maDiv.innerHTML = response;
+        }
+    };
+    
+    xhr.open("GET", url, true);
+    xhr.send(null);
+    
+}
+
 
 function addArticle(idDom, idArticle){
    
