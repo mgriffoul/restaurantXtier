@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="block ">
                     <div class="messageForm">${message}</div>
-                    
+
                     <h1 class="heading wow fadeInUp carte-titre" data-wow-duration="300ms" data-wow-delay="300ms">Les <span>Formules</span> </h1>
                     <div class="pricing-list ">
                         <ul>
@@ -56,9 +56,11 @@
                                         </c:forEach>
 
                                     </div>
-                                    <a href="index?section=ihmclient&inc=buyForm&idForm=${form.id}">
-                                        <button class="btn btn-success btn-commander"><span class="glyphicon  glyphicon-shopping-cart"></span> Commander</button>
-                                    </a>
+                                    <c:if test="${commande.statut=='en creation'}">
+                                        <a href="index?section=ihmclient&inc=buyForm&idForm=${form.id}">
+                                            <button class="btn btn-success btn-commander"><span class="glyphicon  glyphicon-shopping-cart"></span> Commander</button>
+                                        </a>
+                                    </c:if>
                                 </li>
                             </c:forEach>
                         </ul>

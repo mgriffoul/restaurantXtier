@@ -63,6 +63,7 @@ public class IHMClientControleur implements SousControleurInterface {
         //Récupération de la commande lié à l'emplacement
         Integer cleCommande = (Integer) session.getAttribute("cleCommande");
         Commande co = salle.selectCommandeByCleCommande(cleCommande);
+        session.setAttribute("commande", co);
         Float prixTotal = salle.getPrixTtcCommande(cleCommande);
         if (prixTotal == null) {
             prixTotal = 0F;
