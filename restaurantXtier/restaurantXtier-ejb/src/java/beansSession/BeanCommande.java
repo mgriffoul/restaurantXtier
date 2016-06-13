@@ -178,5 +178,13 @@ public class BeanCommande implements BeanCommandeLocal {
     }
     return total;
 }    
-    
+    @Override
+    public void changerEtatCommande(String nCom) {
+        Commande com = selectCommandeByNumero(nCom);
+        //récupération de l'objet Commande de la requête
+        
+        //set du nouvelle idEtat dans la commande
+        com.setStatut("payee");
+        System.out.println("commande statut = "+com.getStatut());
+    }
 }

@@ -39,4 +39,6 @@ public interface BeanCommandeLocal {
      public void ajouterLigneDeCommande(Commande co, Long idArticle);
 
     public Float getTotalCommandeTtc(String numero);
+
+    public void changerEtatCommande(String nCom);
 }

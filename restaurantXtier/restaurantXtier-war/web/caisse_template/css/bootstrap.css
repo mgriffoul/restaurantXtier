@@ -6584,7 +6584,8 @@ button.close {
 /*# sourceMappingURL=bootstrap.css.map */
 .boutoncaisse{
     background-color: red;
-    float: bottom;
+    vertical-align: top;
+    display: inline-block;
 }
 
 
@@ -6630,10 +6631,9 @@ button.close {
     padding:1px 0;
 }
 
-.payer{
-    margin: 1px;
-    border-color: white;
-
+.tableaux{
+  display:inline-block;
+  vertical-align:top;
 }
 
 .divprincipale{

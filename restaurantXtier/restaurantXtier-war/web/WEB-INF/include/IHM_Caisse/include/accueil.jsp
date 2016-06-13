@@ -1,8 +1,4 @@
-<%-- 
-    Document   : accueil
-    Created on : 31 mai 2016, 16:57:13
-    Author     : cdi211
---%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,41 +17,14 @@
         <h1>${titre}</h1>
         <div class="divprincipale">
             <div class="encadre">
-                <div class="partiegauche">    
-        <div id="un">
-            <c:if test="${empty commandefinie }" >
-                Aucune commande n'est prête à être réglée.
-            </c:if>
-            <c:if test="${not empty commandefinie }" >
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Emplacement</th>
-                            <th>Numéro Commande</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${commandefinie}" var="com">
-                            <tr>
-                                <td><c:forEach items="${com.emplacements}" var="emp">
-                                        ${emp.numero}       
-                                    </c:forEach>    
-                                </td>
-                                <td>${com.numero}</td>
-                                <td><a href="index?section=IHMCaisse&incCaisse=ticket&nCom=${com.numero}" onclick="afficherCommande('${com.numero}');
-                                        return false;">Afficher</a></td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-        </c:if>        
+                <div class="partiegauche">           
+        <div id="afficherCommande">
+            <c:import url="WEB-INF/include/IHM_Caisse/include/commandes.jsp" />
             </div>
         <div class="boutoncaisse">
             <table border="1">
                 <tbody>
                     <tr>
-                <label name="soldetotal" >A PAYER // ${prixTTC}</label><br />
                 <input type="text" name="afficheur" class="afficheur" id="afficheur" readonly="readonly" /><br />
                     </tr>
                     <tr>
@@ -80,10 +49,12 @@
                     </tr>
                 </tbody>
             </table>
-                <table class="payer">
+            <div class="boutoncaisse">
+                <table border="1" class="tableaux">
                     <tr>
-                    <a href="#" >BC</a>
-                    </tr>
+                    <a href="#" onclick="payer('CO20160000010');return false;">CB</a>
+                    
+                       </tr>
                     <tr>
                     <a href="#" >Espece</a>
                     </tr>
@@ -91,6 +62,7 @@
                     <a href="#" >TR</a>
                     </tr>
                 </table>
+            </div>
         </div>
                 </div>    
         
