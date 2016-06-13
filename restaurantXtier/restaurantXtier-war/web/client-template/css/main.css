@@ -697,6 +697,7 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 
 .mapolice li a {
     font-size: 20px;
+    
 }
 
 .carte-titre{
@@ -707,12 +708,23 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 .categorie-carte{
     padding-top: 10px;
     padding-bottom: 10px;
+
+}
+
+.categorie-carte h3{
+    font-size: 30px;
+    margin-top: 45px;
 }
 
 .souscategorie-carte{
-    padding-top: 30px;
+    padding-top: 10px;
     padding-bottom: 10px;
+    font-size: 24px;
 }
+.nomarticle{
+    font-size: 20px;
+}
+
 #price .block .pricing-list .article {
     padding: 8px 0px;
 }
@@ -812,11 +824,7 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
     margin: 0;
 }
 
-/*
-#price .block .pricing-list ul {
-    padding: 0 0 30px;
-    margin: 0;
-}*/
+
 
 .prix-total-commande{
     font-size: 18px;
@@ -830,4 +838,46 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 .statutcommande{
     font-size: 20px;
      color: seagreen;
+}
+.imgaccueil{
+   
+    width: 1100px;
+}
+
+
+ .navbar-default .navbar-nav>li>a.btn-perso {
+    color: #FFFFFF;
+    line-height: 3px;
+    margin: 5px;
+    margin-top: 10px;
+    font-size: 16px;
+     
+}
+ .navbar-default .navbar-nav>li>a.btnrouge-perso {
+    color: #FFFFFF;
+    line-height: 3px;
+    margin: 5px;
+    margin-top: 10px;
+    font-size: 16px;
+     
+}
+.navbar-default .navbar-nav>li>a.btnrouge-perso:hover,
+.navbar-default .navbar-nav>li>a.btnrouge-perso:focus{
+    background-color: #c7254e;
+}
+.navbar-default .navbar-nav>li>a.btn-perso:hover,
+.navbar-default .navbar-nav>li>a.btn-perso:focus{
+    background-color: #419641;
+    color: #fff;
+}
+
+.navbar-default .navbar-nav .mapolice ul li{
+    display: inline-block;
+}
+
+.dropdownperso{
+    
+    margin:5px;
+    margin-top: 10px;
+    line-height: 8px;
 }

@@ -62,7 +62,7 @@ public class BeanCommande implements BeanCommandeLocal {
         Date date = new Date();
         com.setDate(date);
         com.setEmplacements(emps);
-        com.setStatut("en cours");
+        com.setStatut("en creation");
         com.setUtilisateur(ut01);
         return com;
     }

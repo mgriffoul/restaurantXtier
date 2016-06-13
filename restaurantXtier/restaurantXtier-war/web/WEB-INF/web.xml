@@ -135,4 +135,22 @@
         <local>beansSession.BeanFormuleLocal</local>
         <ejb-link>restaurantXtier-ejb.jar#BeanFormule</ejb-link>
     </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>BeanCategorie1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beansSession.BeanCategorieLocal</local>
+        <ejb-link>restaurantXtier-ejb.jar#BeanCategorie</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>BeanCategorie2</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beansSession.BeanCategorieLocal</local>
+        <ejb-link>restaurantXtier-ejb.jar#BeanCategorie</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>BeanCategorie3</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>beansSession.BeanCategorieLocal</local>
+        <ejb-link>restaurantXtier-ejb.jar#BeanCategorie</ejb-link>
+    </ejb-local-ref>
 </web-app>

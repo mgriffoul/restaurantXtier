@@ -16,42 +16,43 @@
 
 
                         <c:forEach items="${cat}" var="cate">
+                            <section id="${cate.nom}">
                             <div class="title categorie-carte">
                                 <h3><span>${cate.nom}</span></h3>
                             </div>
                             <c:forEach items="${cate.sousCategories}" var="ssCate">
 
-
                                 <div class="title souscategorie-carte">
                                     <h4>${ssCate.nom} </h4>
                                 </div>
-                                
-                                    <ul>
-                                        <c:forEach items="${ssCate.articles}" var="article">
-                                            
-                                            <li class="wow fadeInUp  article" data-wow-duration="300ms" data-wow-delay="300ms">
-                                                <div class="item ">
-                                                    <div class="item-title ">
-                                                        <h2>${article.nom}</h2>
-                                                        <div class="border-bottom"></div>
-                                                        <span>${article.prixTtc} E</span>
-                                                    </div>
-                                                    <p>${article.description}</p>
+
+                                <ul>
+                                    <c:forEach items="${ssCate.articles}" var="article">
+
+                                        <li class="wow fadeInUp  article" data-wow-duration="300ms" data-wow-delay="300ms">
+                                            <div class="item ">
+                                                <div class="item-title ">
+                                                    <h2 class="nomarticle">${article.nom}</h2>
+                                                    <div class="border-bottom"></div>
+                                                    <span>${article.prixTtc} E</span>
                                                 </div>
-                                                <button class="btn btn-success" onclick="addArticle('header', '${article.id}');sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon  glyphicon-shopping-cart"></span> Commander</button>
-                                                        
-                                            </li>
-                                        </c:forEach>
-                                    </ul>
-                                
+                                                <p>${article.description}</p>
+                                            </div>
+
+                                            <c:if test="${commande.statut=='en creation'}">
+                                                <button class="btn btn-success" onclick="addArticle('header', '${article.id}');
+                                                        sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon  glyphicon-shopping-cart"></span> Commander</button>
+                                            </c:if>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+
                             </c:forEach>
+                            </section>
                         </c:forEach>
 
 
 
-
-
-                        <a class="btn btn-default pull-right wow bounceIn" data-wow-duration="500ms" data-wow-delay="1200ms" href="#" role="button">More Info</a>
                     </div>
                 </div>
             </div><!-- .col-md-12 close -->

@@ -1,8 +1,11 @@
 
 package controleurs;
 
+import beanEntite.Categorie;
 import beanEntite.Commande;
+import beansSession.BeanCategorieLocal;
 import beansSession.BeanCommandeLocal;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -15,6 +18,7 @@ import transcient.SalleLocal;
 
 
 public class LogCommandeClient implements SousControleurInterface{
+    BeanCategorieLocal beanCategorie = lookupBeanCategorieLocal();
     SalleLocal salle = lookupSalleLocal();
     BeanCommandeLocal beanCommande = lookupBeanCommandeLocal();
     
@@ -44,6 +48,11 @@ public class LogCommandeClient implements SousControleurInterface{
         System.out.println(">>>------------clecommande "+cleCommande);
         session.setAttribute("cleCommande", cleCommande);
         
+        //Recuperation des categories
+        List<Categorie> categories = beanCategorie.selectAllCategorie();
+                        request.setAttribute("cat", categories);
+        
+        
         //recuperation de la comande et ajout dans la session
         Commande com = salle.selectCommandeByCleCommande(cleCommande);
         String passServ = com.getUtilisateur().getCode();
@@ -69,6 +78,16 @@ public class LogCommandeClient implements SousControleurInterface{
         try {
             Context c = new InitialContext();
             return (SalleLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/Salle!transcient.SalleLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private BeanCategorieLocal lookupBeanCategorieLocal() {
+        try {
+            Context c = new InitialContext();
+            return (BeanCategorieLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanCategorie!beansSession.BeanCategorieLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
