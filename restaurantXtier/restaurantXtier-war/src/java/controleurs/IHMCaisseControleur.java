@@ -8,6 +8,7 @@ import beansSession.BeanCommandeLocal;
 import beansSession.BeanFormuleLocal;
 import beansSession.BeanLigneCommandeLocal;
 import beansSession.BeanTicketLocal;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,10 +48,26 @@ public class IHMCaisseControleur implements SousControleurInterface {
 
         String inc = request.getParameter("incCaisse");
 
-        System.out.println(inc);
+        System.out.println(inc); 
+       
+        if("payer".equalsIgnoreCase(inc)){
+            System.out.println(">>>>>>>>>>>>> PRET A PAYER");
+            String nCom = request.getParameter("nCom");
+            beanCommande.changerEtatCommande(nCom);
+            s1 = "commandes";
+            List<Commande> c = beanCommande.selectCommandeTerminee();
+            request.setAttribute("commandefinie", c);
+            for (Commande c1 : c) {
+                System.out.println("comm ="+c1.getId());
+            }
+            request.setAttribute("contentInc", prefix + s1 + suffix);
+        return inc1;
+        }
+        
         if ("ticket".equalsIgnoreCase(inc)) {
             Float total = 0F;
             String nCom = request.getParameter("nCom");
+            request.setAttribute("numComm", nCom);
             Commande c = beanCommande.selectCommandeByNumero(nCom);
 //            System.out.println("id commande = " + c.getId());
             List<LigneCommande> liste = beanLigneCommande.selectLigneCommandeByIdCommande(c.getId());
@@ -111,9 +128,9 @@ public class IHMCaisseControleur implements SousControleurInterface {
                 Float prix = lcw.getPrixTotalTTC(lc);
                 request.setAttribute("prixt", prix);
             }
-
+            Date d01 = new Date();
             c.setLignesCommandes(liste);
-
+            request.setAttribute("date", d01);
             request.setAttribute("prixTTC", total);
 //            request.setAttribute("LigneComm", liste);
 

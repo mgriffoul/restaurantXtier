@@ -48,3 +48,25 @@ function vider(){
     var texte = document.getElementById("afficheur");
     texte.value = "";
 }
+
+function payer(num){
+    alert("numComm ="+num);
+    var url = "index?section=IHMCaisse&incCaisse=payer&nCom="+num;
+    // alert(url);
+    var xhr = getXmlHttpRequest();
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            var maDiv = document.getElementById("afficherCommande");
+            var reponse = xhr.responseText;
+            //alert(reponse);
+            maDiv.innerHTML = reponse;
+        }
+    };
+   
+    xhr.open("GET", url, true);
+    xhr.send(null);   
+}
+
+function afficher(phrase){
+    return alert(phrase);
+}
