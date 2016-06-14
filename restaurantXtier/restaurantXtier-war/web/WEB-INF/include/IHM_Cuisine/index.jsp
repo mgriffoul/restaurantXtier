@@ -18,16 +18,30 @@
 
 
     </head>
-    <body onload="actualiserDiv('${ssSec}');">
+    <body onload="actualiserDiv('${ssSec}');
+            afficherHeure();">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-4">
                 <div style="padding-left:40px">
+
                     <h1 align="left"><FONT size="20pt">Interface </font><b><font size="40pt" color="#FF8C00">Cuisine</font></b></h1>
+
+                </div>
+            </div>
+            <div class="col-md-4" >
+                <div style="padding-top: 20px; margin-left: 160px;">
+                    <table style="border :2px solid black; background-color: #FF8C00;">
+                        <tr>
+                            <td style="padding-left: 15px;padding-right: 15px;">
+                                <FONT size="10pt"><b><div id="heure"></div></b></font>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
 
-            <div class="col-md-3" >
-             
+            <div class="col-md-4" >
+                <div style="margin-left: 240px; ">
                     <table >
                         <tr height="90px">
                             <td style="vertical-align: middle">
@@ -35,7 +49,8 @@
                                         return false;" >Actualiser</a></td>
                         </tr>
                     </table>
-               
+                </div>
+
             </div>
 
         </div>
