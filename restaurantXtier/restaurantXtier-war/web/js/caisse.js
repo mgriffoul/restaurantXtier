@@ -28,7 +28,14 @@ function afficherCommande(num){
             maDiv.innerHTML = reponse;
         }
     };
-   
+alert("num ="+num)
+    var phrase = "<a href='#' onclick=\"payer('"+num+"');\">CB</a>";
+    var ph2 = "<a href='#' onclick=\"payer('"+num+"');\">Espece</a>";
+    var ph3 = "<a href='#' onclick=\"payer('"+num+"');\">TR</a>";
+alert(phrase);
+    document.getElementById("payer").innerHTML = phrase;
+    document.getElementById("payerE").innerHTML = ph2;
+    document.getElementById("payerTR").innerHTML = ph3;
     xhr.open("GET", url, true);
     xhr.send(null);
 }

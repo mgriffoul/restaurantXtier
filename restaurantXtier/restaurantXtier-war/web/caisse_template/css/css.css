@@ -1,0 +1,58 @@
+.boutoncaisse{
+    background-color: red;
+    vertical-align: top;
+    display: inline-block;
+}
+
+
+.boutoncaisse a {
+    display:block;
+    width:100px;
+    line-height:50px;
+    text-align:center;
+    vertical-align:middle;
+    text-decoration:none;
+    color: #ffffff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+#ticket{
+    background-color: blue;
+    display: inline-block;
+    float: right;
+    text-align: left;
+}
+
+#un{
+    background-color: yellow;
+    display: block;
+    float: top;
+}
+
+#central{
+    display: block;
+    float: left;
+}
+
+#afficheur{
+    float: right;
+}
+
+.partiegauche{
+    float: left;
+}
+
+.partiegauche, #ticket{
+    padding:1px 0;
+    display: in
+}
+
+.tableaux{
+  display:inline-block;
+  vertical-align:top;
+}
+
+.divprincipale{
+    margin: auto;
+}

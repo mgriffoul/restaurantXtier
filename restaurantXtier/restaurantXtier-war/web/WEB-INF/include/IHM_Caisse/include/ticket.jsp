@@ -1,13 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ticket</title>
-    </head>
-    <body>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
         <div>
 
             <p class="rappelCommande">
@@ -40,16 +34,21 @@
                                 </c:if>
                             </td>
                             <td>
-                                <c:if test="${not empty lc.article.prixTtc}">${lc.article.prixTtc}</c:if>
-                                <c:if test="${empty lc.article.prixTtc}">${prixFormule}</c:if>
+                            <c:if test="${not empty lc.article.prixTtc}">
+                            <fmt:formatNumber value="${lc.article.prixTtc}" type="currency" currencySymbol="€" minIntegerDigits="2" maxFractionDigits="2" />
+                            </c:if>
+                                <c:if test="${empty lc.article.prixTtc}">
+                                <fmt:formatNumber value="${prixFormule}" type="currency" currencySymbol="€" minIntegerDigits="2" maxFractionDigits="2" />
+                                </c:if>
                                 </td>
 
                             </tr>
                     </c:forEach>
             </table>
-            <label>Totat TTC <p>${prixTTC}€</p></label>               
+            <label>Totat TTC <p>
+                <fmt:formatNumber value="${prixTTC}" type="currency" currencySymbol="€" minIntegerDigits="2" maxFractionDigits="2" />
+                </p></label>               
         </c:if>                       
     </p>
 </div>
-</body>
-</html>
+

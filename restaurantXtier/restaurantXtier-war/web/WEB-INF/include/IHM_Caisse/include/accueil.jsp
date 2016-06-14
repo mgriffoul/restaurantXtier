@@ -1,16 +1,8 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link href="caisse_template/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
-        <link href="caisse_template/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        
-    </head>
-    <body>
+
         <h1>test caisse</h1>
 
 
@@ -22,11 +14,11 @@
             <c:import url="WEB-INF/include/IHM_Caisse/include/commandes.jsp" />
             </div>
         <div class="boutoncaisse">
+            <form>
+            <input type="text" value="" name="afficheur" class="afficheur" id="afficheur" readonly="readonly" /><br />
+            </form>
             <table border="1">
-                <tbody>
-                    <tr>
-                <input type="text" name="afficheur" class="afficheur" id="afficheur" readonly="readonly" /><br />
-                    </tr>
+                <tbody>                  
                     <tr>
                         <td><a href="#" onclick="ajouter('7');return false;">7</a></td>
                         <td><a href="#" onclick="ajouter('8');return false;">8</a></td>
@@ -52,14 +44,19 @@
             <div class="boutoncaisse">
                 <table border="1" class="tableaux">
                     <tr>
-                    <a href="#" onclick="payer('CO20160000010');return false;">CB</a>
-                    
+                        <td id="payer">
+                    <a href="#" onclick="payer('${payercommande}');">CB</a>
+                        </td>
                        </tr>
                     <tr>
-                    <a href="#" >Espece</a>
+                        <td id="payerE">
+                    <a href="#" onclick="payer('${payercommande}');">Espece</a>
+                        </td>
                     </tr>
                     <tr>
-                    <a href="#" >TR</a>
+                        <td id="payerTR">
+                    <a href="#" onclick="payer('${payercommande}');">TR</a>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -74,5 +71,3 @@
             <div></div>
         
         <script src="js/caisse.js"></script>
-    </body>
-</html>

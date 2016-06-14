@@ -45,11 +45,10 @@ public class IHMCaisseControleur implements SousControleurInterface {
 
         //URL par défaut
         String inc1 = "include/IHM_Caisse/index";
-
         String inc = request.getParameter("incCaisse");
 
         System.out.println(inc); 
-       
+        
         if("payer".equalsIgnoreCase(inc)){
             System.out.println(">>>>>>>>>>>>> PRET A PAYER");
             String nCom = request.getParameter("nCom");
@@ -57,19 +56,15 @@ public class IHMCaisseControleur implements SousControleurInterface {
             s1 = "commandes";
             List<Commande> c = beanCommande.selectCommandeTerminee();
             request.setAttribute("commandefinie", c);
-            for (Commande c1 : c) {
-                System.out.println("comm ="+c1.getId());
-            }
             request.setAttribute("contentInc", prefix + s1 + suffix);
         return inc1;
         }
-        
+       
         if ("ticket".equalsIgnoreCase(inc)) {
             Float total = 0F;
             String nCom = request.getParameter("nCom");
-            request.setAttribute("numComm", nCom);
+            
             Commande c = beanCommande.selectCommandeByNumero(nCom);
-//            System.out.println("id commande = " + c.getId());
             List<LigneCommande> liste = beanLigneCommande.selectLigneCommandeByIdCommande(c.getId());
             for (LigneCommande lc : liste) {                
                 if (lc.getRefFormule() != null) {
@@ -92,38 +87,6 @@ public class IHMCaisseControleur implements SousControleurInterface {
                 if (lc.getRefFormule() != null && lc.getArticle() != null){
                     lc.getArticle().setPrixHt(0F);
                 }
-//                lcw.setLigneCommande(lc);
-                //System.out.println("prix ligne = "+lc.getPrixHT());
-                //System.out.println("ref form = "+lc.getRefFormule());
-//                if(lc.getRefFormule() != null && lc.getPrixHT() > 0 ){
-//            String ref = lc.getRefFormule();          
-//            if(ref.contains("pat")){
-//                Formule form = beanFormule.selectFormuleByReference("pat");
-//                Article a = new Article();
-//                a.setNom(form.getNom());
-//                System.out.println("nom form = "+form.getNom());
-//                a.setPrixHt(form.getPrix());
-//                lc.setArticle(a);
-//                
-//            }if(ref.contains("entpl")){
-//                Formule form = beanFormule.selectFormuleByReference("entpl");
-//                Article a = new Article();
-//                a.setNom(form.getNom());
-//                System.out.println("nom form = "+form.getNom());
-//                a.setPrixHt(form.getPrix());
-//                lc.setArticle(a);
-//            }if(ref.contains("piz")){
-//                Formule form = beanFormule.selectFormuleByReference("piz");
-//                Article a = new Article();
-//                a.setNom(form.getNom());
-//                System.out.println("nom form = "+form.getNom());
-//                a.setPrixHt(form.getPrix());
-//                lc.setArticle(a);
-//            }
-//                    
-//                }
-//                if(lc.getArticle() != null){
-//                System.out.println("nom = "+lc.getArticle().getNom());
                 total += lcw.getPrixTotalTTC(lc);
                 Float prix = lcw.getPrixTotalTTC(lc);
                 request.setAttribute("prixt", prix);
@@ -132,18 +95,10 @@ public class IHMCaisseControleur implements SousControleurInterface {
             c.setLignesCommandes(liste);
             request.setAttribute("date", d01);
             request.setAttribute("prixTTC", total);
-//            request.setAttribute("LigneComm", liste);
-
             request.setAttribute("affcom", c);
-            //           request.setAttribute("LigneComm", lc);
-//            System.out.println("DANS AFFICHAGE TICKET");
             s1 = "ticket";
-//            System.out.println("ticket = "+request.getAttribute("affcom"));
-//            System.out.println(t.getCommande().getNumero());
         }
-//        System.out.println("inc1 = " + inc1);
         request.setAttribute("contentInc", prefix + s1 + suffix);
-//        System.out.println("contentInc " + request.getAttribute("contentInc"));
         return inc1;
     }
 
