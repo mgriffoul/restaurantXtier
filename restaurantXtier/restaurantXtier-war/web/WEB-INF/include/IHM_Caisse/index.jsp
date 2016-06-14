@@ -9,6 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="caisse_template/css/bootstrap-theme.css">
+        <link rel="stylesheet" href="caisse_template/css/bootstrap.css">
+        <link rel="stylesheet" href="caisse_template/css/css.css">
         <title>JSP Page</title>
     </head>
     <body>
