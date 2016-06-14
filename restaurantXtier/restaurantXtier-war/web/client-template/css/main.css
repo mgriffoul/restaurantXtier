@@ -458,22 +458,21 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
     display: inline-block;
     position: relative;
     z-index: 99;
-    background: #fff;
 }
 #price .block .pricing-list ul li .item .item-title .border-bottom {
-    position: absolute;
+    position: relative;
     top: 0;
     width: 100%;
     height: 1px;
     border: 1px dotted #C9C9C9;
-    margin-top: 20px;
+    margin-top: 2px;
 }
 #price .block .pricing-list ul li .item .item-title span {
     float: right;
     color: #938463;
 }
 #price .block .pricing-list ul li .item p {
-    padding: 12px 0 0px;
+    padding: 8px 0 5px;
     color: #949494;
 }
 
@@ -697,7 +696,7 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 
 .mapolice li a {
     font-size: 20px;
-    
+
 }
 
 .carte-titre{
@@ -717,12 +716,21 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 }
 
 .souscategorie-carte{
-    padding-top: 10px;
+    padding-top: 30px;
     padding-bottom: 10px;
+    
+    font-style: italic;
+}
+.souscategorie-carte h4{
     font-size: 24px;
 }
+
 .nomarticle{
     font-size: 20px;
+    display: inline-block;
+    position: relative;
+    z-index: 99;
+    padding-bottom: 2px;
 }
 
 #price .block .pricing-list .article {
@@ -795,9 +803,9 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 }
 
 .recap-commande-intitule{
-    
+
     font-size: 18px;
-    
+
 }
 .border-bottom-perso{
     border-bottom-style: solid;
@@ -828,7 +836,7 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 
 .prix-total-commande{
     font-size: 18px;
-    
+
 }
 .prix-total-commande span{
     font-size: 20px;
@@ -837,29 +845,29 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 
 .statutcommande{
     font-size: 20px;
-     color: seagreen;
+    color: seagreen;
 }
 .imgaccueil{
-   
+
     width: 1100px;
 }
 
 
- .navbar-default .navbar-nav>li>a.btn-perso {
+.navbar-default .navbar-nav>li>a.btn-perso {
     color: #FFFFFF;
     line-height: 3px;
     margin: 5px;
     margin-top: 10px;
     font-size: 16px;
-     
+
 }
- .navbar-default .navbar-nav>li>a.btnrouge-perso {
+.navbar-default .navbar-nav>li>a.btnrouge-perso {
     color: #FFFFFF;
     line-height: 3px;
     margin: 5px;
     margin-top: 10px;
     font-size: 16px;
-     
+
 }
 .navbar-default .navbar-nav>li>a.btnrouge-perso:hover,
 .navbar-default .navbar-nav>li>a.btnrouge-perso:focus{
@@ -876,7 +884,7 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
 }
 
 .dropdownperso{
-    
+
     margin:5px;
     margin-top: 10px;
     line-height: 8px;

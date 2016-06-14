@@ -63,7 +63,6 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
     public List<LigneCommande> selectLigneCommandeServies() {
         Date d =new Date ();
         
-        System.out.println("Date du jour : "+d);
         String req = "select lc from LigneCommande lc "
                 + "where lc.etatLc.ordre=4 and lc.article.sousCategorie.categorie.ordre=1 "
                 + "or lc.etatLc.ordre=4 and lc.article.sousCategorie.categorie.ordre=2 "
@@ -133,7 +132,6 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
         String req = "select e from EtatLigneCommande e where e.ordre=1";
         Query qr = em.createQuery(req);
         EtatLigneCommande elc = (EtatLigneCommande) qr.getSingleResult();
-        System.out.println("ELC dans BEAN LIGNE COMM "+elc);
         
         
         LigneCommande lc = new LigneCommande();
@@ -156,10 +154,8 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
     @Override
     public Float getPrixLcTTC(LigneCommande lc){
         Float prix = 0F;
-        System.out.println("article prix = "+lc.getPrixHT());
         if (lc.getRefFormule() == null){
             prix = lc.getArticle().getPrixTtc();
-            System.out.println("PRIX ARTICLE = "+prix);
             return prix;
         }else if(lc.getRefFormule() != null && lc.getPrixHT() > 0 ){
             String ref = lc.getRefFormule();          
@@ -170,11 +166,9 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
             }if(ref.contains("ent")){
                 Formule form = beanFormuleLocal.selectFormuleByReference("ent");
                 prix = form.getPrixTtc();
-                System.out.println("PRIX form enypl = "+prix);
                 return prix;
             }if(ref.contains("piz")){
                 Formule form = beanFormuleLocal.selectFormuleByReference("piz");
-                System.out.println("PRIX form piz = "+prix);
                 prix = form.getPrixTtc();
                 return prix;
             }

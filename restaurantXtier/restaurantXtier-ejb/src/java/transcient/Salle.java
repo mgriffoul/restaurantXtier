@@ -270,7 +270,6 @@ public class Salle implements SalleLocal {
             if (!refForms.contains((l.getRefFormule()))) {
 
                 String ref = l.getRefFormule();
-                System.out.println("REFFORMULE DANS FORMULE MAPPER =" + ref);
                 refForms.add(ref);
             }
         }
@@ -280,11 +279,9 @@ public class Salle implements SalleLocal {
             for (LigneCommande l : lcs) {
                 if (l.getRefFormule().equalsIgnoreCase(s)) {
                     col.add(l);
-                    System.out.println("COL *SIZE FORMULE MAPPER======" + col.size());
                 }
             }
             Formule f = beanFormule.selectFormuleByRef(s.substring(0, 3));
-            System.out.println("FORMULE DANS MAPPER ==="+f);
             HashMap<Formule, Collection<LigneCommande>> sousHmf=new HashMap<>();
             sousHmf.put(f, col);
             hmf.put(s, sousHmf);

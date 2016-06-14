@@ -15,7 +15,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/serveurendpoint", decoders = {CommandeDecoder.class}, encoders = {CommandeEncoder.class})
+@ServerEndpoint(value = "/serveurendpoint", decoders = {ServeurDecoder.class}, encoders = {ServeurEncoder.class})
 public class ServeurEndpoint {
     
     private static Set<Session> peers = Collections.synchronizedSet(new HashSet<Session>());
@@ -56,7 +56,7 @@ public class ServeurEndpoint {
     
     @OnOpen
     public void onOpen(Session peer) {
-        System.out.println("<<<<<<<<OPEN>>>>>>>>");
+        System.out.println("<<<<<<<<SERVEUR OPEN>>>>>>>>");
         peers.add(peer);
     }
     

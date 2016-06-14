@@ -44,10 +44,8 @@ public class BeanCategorie implements BeanCategorieLocal {
            for(Categorie c : categories){
                List<SousCategorie> sousCategories = selectSousCategorieByIdCategorie(c.getId());
                c.setSousCategories(sousCategories);
-               System.out.println(c.getNom()+">>>>>>>>>>>sousCategories.size ="+sousCategories.size());
                for(SousCategorie s : sousCategories){
                    List<Article> articles = beanSousCate.selectArticleByIdSousCategorie(s.getId());
-                   System.out.println(s.getNom()+"<<<<<<<<<<<<Articles.size = "+articles.size());
                    s.setArticles(articles);
                }
            }

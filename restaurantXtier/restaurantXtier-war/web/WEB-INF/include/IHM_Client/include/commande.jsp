@@ -9,6 +9,9 @@
                     <div class="block ">
 
                         <h1 class="heading carte-titre">votre<span>Commande</span> </h1>
+                        <c:if test="${commande.statut=='en creation'}">
+                            <p>Pour valider votre commande, cliquer en bas de la page sur "je souhaite valider ma commande". Un serveur viendra finaliser la commande avec vous.</p>
+                        </c:if>
                         <div class="pricing-list ">
                             <!--Affichage des entrees commandees-->
                             <c:if test="${not empty entrees}">
@@ -168,8 +171,10 @@
                             </ul>
 
                             <div class="prix-total-commande">Total de votre commande : <span>${prixTotal} E</span></div>
-
-
+                            <c:if test="${commande.statut=='en creation'}">
+                                <a href="#"  class="btn btn-success " type="button" onclick="testbootbox('${sessionScope.cleCommande}');" >Je souhaite valider ma commande</a>
+                              
+                            </c:if>
 
                         </div>
                     </div>

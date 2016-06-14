@@ -107,7 +107,6 @@ public class BeanFormule implements BeanFormuleLocal {
             ArrayList<Article> plats = selectPlatsOfFormule(f);
             ArrayList<Article> desserts = selectDessertsOfFormule(f);
             ArrayList<Article> boissons = selectBoissonsOfFormule(f);
-            System.out.println("Boissons SIZE = "+boissons.size());
             f.setEntrees(entrees);
             f.setPlats(plats);
             f.setDesserts(desserts);
@@ -137,7 +136,6 @@ public class BeanFormule implements BeanFormuleLocal {
     public String createRefFormuleUnique(Formule f) {
         String refCommune = f.getRefFormule();
         String suffix = String.valueOf(Calendar.getInstance().getTimeInMillis());
-        System.out.println("Ref formule !!!!!!!!!!!!! : "+refCommune+suffix);
         return refCommune+suffix;
     }
     

@@ -56,6 +56,73 @@ function refreshMesCommandes(){
     xhr.send(null);
 }
 
+function refreshFormule(){
+    
+    var url = "index?section=clientRefresh&refresh=formule";
+    
+    var xhr = getXmlHttpRequest(); 
+    
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState == 4 && xhr.status == 200){
+          
+          var maDiv = document.getElementById("formule");
+            var response = xhr.responseText;
+            maDiv.innerHTML = response;
+        }
+    };
+    
+    xhr.open("GET", url, true);
+    xhr.send(null);
+}
+
+function refreshCarte(){
+    
+    var url = "index?section=clientRefresh&refresh=carte";
+    
+    var xhr = getXmlHttpRequest(); 
+    
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState == 4 && xhr.status == 200){
+          
+          var maDiv = document.getElementById("carte");
+            var response = xhr.responseText;
+            maDiv.innerHTML = response;
+        }
+    };
+    
+    xhr.open("GET", url, true);
+    xhr.send(null);
+}
+
+function testbootbox (cleCommande){
+    bootbox.confirm("Etes vous certain de vouloir valider la commande ? La commande ne pourra plus être modifié par aucun convive après confirmation.", function(result){
+        if(result===true){validerCommande();
+                          sendOrder(cleCommande, "close");
+                      }
+    });
+}
+
+
+function validerCommande(){
+    
+    var url = "index?section=clientRefresh&refresh=commande&actionRefresh=valid";
+    
+    var xhr = getXmlHttpRequest(); 
+    
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState == 4 && xhr.status == 200){
+          
+          var maDiv = document.getElementById("commandes");
+            var response = xhr.responseText;
+            maDiv.innerHTML = response;
+        }
+    };
+    
+    xhr.open("GET", url, true);
+    xhr.send(null);
+    
+}
+
 
 function addArticle(idDom, idArticle){
    
@@ -90,7 +157,6 @@ function suppArticle(idDom, idArticle){
     xhr.send(null);
 }
 function suppFormule(idDom, refFormule){
-   alert("idDom="+idDom +"  RefFormule == "+refFormule);
     var url = "index?section=actionCom&act=suppFor&id="+refFormule+"&dom="+idDom;
     
     var xhr = getXmlHttpRequest();

@@ -172,7 +172,6 @@ public class BeanCommande implements BeanCommandeLocal {
     List<LigneCommande> liste = beanLigneCommande.selectLigneCommandeByIdCommande(c.getId());
     for (LigneCommande lc : liste) {
         Float f = beanLigneCommande.getPrixLcTTC(lc);
-        System.out.println("F = "+f);
         total += f;
         return total;
     }
@@ -185,6 +184,5 @@ public class BeanCommande implements BeanCommandeLocal {
         
         //set du nouvelle idEtat dans la commande
         com.setStatut("payee");
-        System.out.println("commande statut = "+com.getStatut());
     }
 }
