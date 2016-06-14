@@ -4,9 +4,9 @@ var path2 = path.replace("/index", "");
 var wsUri = "ws://" + document.location.host + path2 + "/commandeendpoint";
 
 
-var websocket = new WebSocket(wsUri);
+var websocketcom = new WebSocket(wsUri);
 
-websocket.onerror = function() { 
+websocketcom.onerror = function() { 
     onError(); 
 };
 
@@ -14,15 +14,18 @@ function onError() {
     alert("erreur");
 }
 
-websocket.onmessage = function() { onMessage(); };
+websocketcom.onmessage = function() { onMessage(); };
 
 function sendOrder(cleCommande) {
+    alert("sendORDER");
     var json = JSON.stringify({
-        "cleCommande": cleCommande,
-        "action": "refresh"
+        "password": "4444",
+        "action": "refresh",
+        "cleCommande": cleCommande
+        
     });
     waitForSocketConnection(websocket, function() {
-           websocket.send(json);
+           websocketcom.send(json);
         });
 }
 
@@ -46,19 +49,21 @@ function waitForSocketConnection(socket, callback){
 
 
 function onMessage() {
+    alert("ONMESSAGE");
     refreshHeader();
     refreshMesCommandes();
 }
 
 
 function wslog(cleCommande){
-    
+    alert("wslog");
     var json = JSON.stringify({
-        "cleCommande": cleCommande,
-        "action": "log"
+        "password": "4444",
+        "action": "log",
+        "cleCommande": cleCommande
     });
-     waitForSocketConnection(websocket, function() {
-           websocket.send(json);
+     waitForSocketConnection(websocketcom, function() {
+           websocketcom.send(json);
         });
     
     

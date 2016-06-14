@@ -45,7 +45,6 @@ public class LogCommandeClient implements SousControleurInterface{
         
         //Recupération de la cle de commande et ajout dans la session
         Integer cleCommande = Integer.valueOf(request.getParameter("com"));
-        System.out.println(">>>------------clecommande "+cleCommande);
         session.setAttribute("cleCommande", cleCommande);
         
         //Recuperation des categories

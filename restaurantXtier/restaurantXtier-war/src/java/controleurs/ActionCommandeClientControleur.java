@@ -36,7 +36,6 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
-        System.out.println("DANS CONTROLEUR");
         //********
         //Preparation des URL 
         //********************
@@ -61,22 +60,16 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
             prixTotal = 0F;
         }
         request.setAttribute("prixTotal", prixTotal);
-        System.out.println(">>>><<<<>>><<<<Commande : " + commande);
 
         Utilisateur util = (Utilisateur) session.getAttribute("user");
-        System.out.println(">>>><<<<>>><<<<Utilisateur : " + util);
 
         if (util != null) {
             if (util.getRole() == 4) {
                 if (commande != null) {
 
                     if ("add".equalsIgnoreCase(act)) {
-                        System.out.println("++++++++++add=act");
                         Long id = Long.valueOf(request.getParameter("id"));
                         salle.ajouterArticle(cleCommande, id);
-                        for (LigneCommande lc : commande.getLignesCommandes()) {
-                            System.out.println("LC>>>>>>>>>>>" + lc);
-                        }
 
                         prixTotal = salle.getPrixTtcCommande(cleCommande);
                         request.setAttribute("prixTotal", prixTotal);
@@ -99,7 +92,6 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
 
                             HashMap<String, HashMap<Formule, Collection<LigneCommande>>> hmf = salle.getFormuleMapper(formules);
 
-                            System.out.println("HMF SIZE <<<<>>>><<>>>" + hmf.size());
                             prixTotal = salle.getPrixTtcCommande(cleCommande);
                             if (prixTotal == null) {
                                 prixTotal = 0F;
@@ -132,7 +124,6 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
 
                             HashMap<String, HashMap<Formule, Collection<LigneCommande>>> hmf = salle.getFormuleMapper(formules);
 
-                            System.out.println("HMF SIZE <<<<>>>><<>>>" + hmf.size());
                             prixTotal = salle.getPrixTtcCommande(cleCommande);
                             if (prixTotal == null) {
                                 prixTotal = 0F;

@@ -25,6 +25,7 @@ public class CommandeEndpoint {
     public void onMessage(WsCommandeAction action, Session session) throws IOException, EncodeException {
 
         if ("log".equalsIgnoreCase(action.getAction())) {
+            System.out.println("LOG COMMANDE CLIENT");
             Integer cleCommande = action.getCleCommande();
             commandesMap.put(session, cleCommande);
 
@@ -38,7 +39,7 @@ public class CommandeEndpoint {
         }
 
         if ("refresh".equalsIgnoreCase(action.getAction())) {
-            System.out.println("ACTION REFRESH DEMANDE DANS ENDPOINT");
+            System.out.println("ACTION REFRESH DEMANDE DE LA COMMANDE DANS ENDPOINT");
             Integer cleCommande = action.getCleCommande();
             Iterator iter = commandesMap.entrySet().iterator();
             while (iter.hasNext()) {
@@ -53,7 +54,7 @@ public class CommandeEndpoint {
 
     @OnOpen
     public void onOpen(Session peer) {
-        System.out.println("<<<<<<<<OPEN>>>>>>>>");
+        System.out.println("<<<<<<<<OPEN COMMANDE>>>>>>>>");
         peers.add(peer);
     }
 

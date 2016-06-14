@@ -58,7 +58,6 @@ public class IHMClientControleur implements SousControleurInterface {
 
         //Recupreation de l'utilisateur
         Utilisateur util = (Utilisateur) session.getAttribute("user");
-        System.out.println(">>>>>>>>>>>>>>>>>>UTIL : " + util);
 
         //Recuperation des categories
         List<Categorie> categories = beanCategorie.selectAllCategorie();
@@ -74,7 +73,6 @@ public class IHMClientControleur implements SousControleurInterface {
         }
         request.setAttribute("prixTotal", prixTotal);
 
-        System.out.println(">>>>>>>>>>Commande :" + cleCommande);
 
         //Test de l'utilisateur
         if (util != null) {
@@ -128,15 +126,10 @@ public class IHMClientControleur implements SousControleurInterface {
                         }
 
                         Collection<LigneCommande> entrees = salle.getEntreesCommandees(cleCommande);
-                        System.out.println("IHMCONTROLEUR CLIENT ENTREE.size ----" + entrees.size());
                         Collection<LigneCommande> plats = salle.getPlatsCommandees(cleCommande);
-                        System.out.println("IHMCONTROLEUR CLIENT PLAT.size ----" + plats.size());
                         Collection<LigneCommande> desserts = salle.getDessertsCommandees(cleCommande);
-                        System.out.println("IHMCONTROLEUR CLIENT DESSERT.size ----" + desserts.size());
                         Collection<LigneCommande> formules = salle.getFormulesCommandees(cleCommande);
-                        System.out.println("IHMCONTROLEUR CLIENT FORMULES.size ----" + formules.size());
                         Collection<LigneCommande> boissons = salle.getBoissonsCommandees(cleCommande);
-                        System.out.println("IHMCONTROLEUR CLIENT BOISSONS.size ----" + boissons.size());
 
                         HashMap<String, HashMap<Formule, Collection<LigneCommande>>> hmf = salle.getFormuleMapper(formules);
                         Collection<String> cleSet = hmf.keySet();

@@ -50,9 +50,10 @@
         <!--<script src="client-template/js/main.js"></script>-->
         
         
-        <script src="websocket/websocketcommande.js"></script>
+        
         <script src="websocket/websocketserveur.js" type="text/javascript"></script>
-        <script type="text/javascript">wslogServ('${sessionScope.user.code}');</script>
+        <script src="websocket/websocketcommande.js"></script>
+        <script type="text/javascript">wslogServ('${sessionScope.user.code}');wslog('${sessionScope.cleCommande}');</script>
         <script src="ajax/ajaxclient.js"></script>
         
         
