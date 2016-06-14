@@ -63,7 +63,7 @@
                                             </select>
                                         </c:if>
 
-                                        <c:if test="${not empty form.boissons}">
+                                        <c:if test="${not empty for.boissons}">
                                             <p> <label for="dessert">Boisson au choix</label></p>
 
                                             <select class="form-control liste-formule" name="boisson">

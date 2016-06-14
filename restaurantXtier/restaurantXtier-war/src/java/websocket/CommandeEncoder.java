@@ -11,14 +11,14 @@ public class CommandeEncoder implements Encoder.Text<WsCommandeAction>{
 
     @Override
     public String encode(WsCommandeAction wca) throws EncodeException {
-        System.out.println("ENCODE +++++++");
+        
         String s = Json.createObjectBuilder()
                         .add("password", wca.getPassword())
                         .add("action", wca.getAction())
                         .add("cleCommande", wca.getCleCommande())
                         
                    .build().toString();
-        System.out.println("ENCODER STRING ++++++    "+s);
+        
         return s;
     }
 
