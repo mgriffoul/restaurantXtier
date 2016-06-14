@@ -38,7 +38,7 @@ public class CommandeEndpoint {
             }
         }
 
-        if ("refresh".equalsIgnoreCase(action.getAction())) {
+        if (!"log".equalsIgnoreCase(action.getAction())) {
             System.out.println("ACTION REFRESH DEMANDE DE LA COMMANDE DANS ENDPOINT");
             Integer cleCommande = action.getCleCommande();
             Iterator iter = commandesMap.entrySet().iterator();
@@ -50,6 +50,9 @@ public class CommandeEndpoint {
                 }
             }
         }
+        
+        
+        
     }
 
     @OnOpen

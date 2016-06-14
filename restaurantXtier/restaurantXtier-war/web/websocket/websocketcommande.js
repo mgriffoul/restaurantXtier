@@ -6,69 +6,96 @@ var wsUri = "ws://" + document.location.host + path2 + "/commandeendpoint";
 
 var websocketcom = new WebSocket(wsUri);
 
-websocketcom.onerror = function() { 
-    onError(); 
+websocketcom.onerror = function () {
+    onError();
 };
 
 function onError() {
     alert("erreur");
 }
 
-websocketcom.onmessage = function() { onMessage(); };
+websocketcom.onmessage = function (evt) {
+    onMessage(evt);
+};
 
-function sendOrder(cleCommande) {
-    alert("sendORDER");
+
+
+function sendOrder(cleCommande, action) {
+
+    if (action === null || action === undefined) {
+        action = "refresh";
+    }
     var json = JSON.stringify({
         "password": "4444",
-        "action": "refresh",
+        "action": action,
         "cleCommande": cleCommande
-        
+
     });
-    waitForSocketConnection(websocket, function() {
-           websocketcom.send(json);
-        });
+    waitForSocketConnection(websocket, function () {
+        websocketcom.send(json);
+    });
 }
 
 
 
 
-function waitForSocketConnection(socket, callback){
-        setTimeout(
-            function(){
+function waitForSocketConnection(socket, callback) {
+    setTimeout(
+            function () {
                 if (socket.readyState === 1) {
-                    if(callback !== undefined){
+                    if (callback !== undefined) {
                         callback();
                     }
                     return;
                 } else {
-                    waitForSocketConnection(socket,callback);
+                    waitForSocketConnection(socket, callback);
                 }
             }, 5);
-    };
+}
+;
 
 
 
-function onMessage() {
+function onMessage(evt) {
     alert("ONMESSAGE");
-    refreshHeader();
-    refreshMesCommandes();
+    var json = JSON.parse(evt.data);
+
+
+    action = json.action;
+    cleCommande=json.cleCommande;
+    alert("ACTION = "+ json.action);
+    if (action === "close") {
+        closeCommande(cleCommande);
+    } else {
+        alert("ELSE ACTION");
+        refreshHeader();
+        refreshMesCommandes();
+    }
+}
+
+function closeCommande(cleCommande){
+    
+    bootbox.alert("un convive a cloturer votre commande, un serveur arrive pour la valider. Vous pourrez lui demander d'apporter d'y apporter des modifications à ce moment.", 
+    function(){location.assign("index?section=logincomclient&com="+cleCommande);});
+    
+    
+    
 }
 
 
-function wslog(cleCommande){
-    alert("wslog");
+function wslog(cleCommande) {
     var json = JSON.stringify({
         "password": "4444",
         "action": "log",
         "cleCommande": cleCommande
     });
-     waitForSocketConnection(websocketcom, function() {
-           websocketcom.send(json);
-        });
-    
-    
+    waitForSocketConnection(websocketcom, function () {
+        websocketcom.send(json);
+    });
+
+
 }
-function test(){
+function test() {
     alert("test");
 }
 

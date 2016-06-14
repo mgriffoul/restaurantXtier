@@ -126,12 +126,22 @@ public class RefreshClientControleur implements SousControleurInterface {
             }
 
         }
+        
 
         request.setAttribute("contentInc", prefix + s1 + suffix);
         return url;
 
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private SalleLocal lookupSalleLocal() {
         try {
             Context c = new InitialContext();

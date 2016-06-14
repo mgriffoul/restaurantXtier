@@ -172,7 +172,8 @@
 
                             <div class="prix-total-commande">Total de votre commande : <span>${prixTotal} E</span></div>
                             <c:if test="${commande.statut=='en creation'}">
-                                <a href="#"  class="btn btn-success " type="button" onclick="testbootbox(${sessionScope.cleCommande});" >Je souhaite valider ma commande</a>
+                                <a href="#"  class="btn btn-success " type="button" onclick="testbootbox('${sessionScope.cleCommande}');" >Je souhaite valider ma commande</a>
+                              
                             </c:if>
 
                         </div>

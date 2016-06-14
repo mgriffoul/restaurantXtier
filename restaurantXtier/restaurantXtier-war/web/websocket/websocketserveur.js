@@ -17,17 +17,6 @@ function onError() {
 
 
 
-function sendOrder(cleCommande) {
-    var json = JSON.stringify({
-        "cleCommande": cleCommande,
-        "action": "refresh"
-    });
-    waitForSocketConnection(websocket, function() {
-           websocket.send(json);
-        });
-        
-}
-
 function sendHelpServeur(cleCommande, codeServeur) {
     var json = JSON.stringify({
         "password": codeServeur,
