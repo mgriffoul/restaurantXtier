@@ -889,3 +889,15 @@ nav .block .navbar-default .navbar-nav > .active > a:hover:before {
     margin-top: 10px;
     line-height: 8px;
 }
+
+.boutondeco{
+    color: #ffffff;
+    margin-left: 50px;
+}
+.boutondeco span{
+    color: #ffffff;
+}
+.boutondeco:hover,
+.boutondeco:hover:focus{
+    
+}

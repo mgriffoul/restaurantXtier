@@ -59,26 +59,31 @@ public class IHMClientControleur implements SousControleurInterface {
         //Recupreation de l'utilisateur
         Utilisateur util = (Utilisateur) session.getAttribute("user");
 
-        //Recuperation des categories
-        List<Categorie> categories = beanCategorie.selectAllCategorie();
-        request.setAttribute("cat", categories);
-
-        //Récupération de la commande lié à l'emplacement
-        Integer cleCommande = (Integer) session.getAttribute("cleCommande");
-        Commande co = salle.selectCommandeByCleCommande(cleCommande);
-        session.setAttribute("commande", co);
-        Float prixTotal = salle.getPrixTtcCommande(cleCommande);
-        if (prixTotal == null) {
-            prixTotal = 0F;
-        }
-        request.setAttribute("prixTotal", prixTotal);
-
-
         //Test de l'utilisateur
         if (util != null) {
+
             if (util.getRole() == 4) {
                 //Test de la commande
+
+                //Recuperation des categories
+                List<Categorie> categories = beanCategorie.selectAllCategorie();
+                request.setAttribute("cat", categories);
+
+                //Récupération de la commande lié à l'emplacement
+                Integer cleCommande = (Integer) session.getAttribute("cleCommande");
                 if (cleCommande != null) {
+                    Commande co = salle.selectCommandeByCleCommande(cleCommande);
+                    session.setAttribute("commande", co);
+                    Float prixTotal = salle.getPrixTtcCommande(cleCommande);
+                    if (prixTotal == null) {
+                        prixTotal = 0F;
+                    }
+                    request.setAttribute("prixTotal", prixTotal);
+
+                    if (inc == null) {
+                        request.setAttribute("deco", "deco");
+                    }
+
                     //Choix include en fonction de la ssSection
                     //LaCarte
                     if ("car".equalsIgnoreCase(inc)) {

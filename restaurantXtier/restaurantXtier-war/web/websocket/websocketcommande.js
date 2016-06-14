@@ -74,11 +74,8 @@ function onMessage(evt) {
 }
 
 function closeCommande(cleCommande){
-    
     bootbox.alert("un convive a cloturer votre commande, un serveur arrive pour la valider. Vous pourrez lui demander d'apporter d'y apporter des modifications à ce moment.", 
     function(){location.assign("index?section=logincomclient&com="+cleCommande);});
-    
-    
     
 }
 

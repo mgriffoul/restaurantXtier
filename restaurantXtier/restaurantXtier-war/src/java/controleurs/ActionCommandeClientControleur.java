@@ -8,6 +8,7 @@ import beanEntite.Utilisateur;
 import beansSession.BeanCategorieLocal;
 import beansSession.BeanCommandeLocal;
 import beansSession.BeanFormuleLocal;
+import beansSession.BeanUserLocal;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,8 @@ import transcient.SalleLocal;
 
 //actionCom
 public class ActionCommandeClientControleur implements SousControleurInterface {
+
+    BeanUserLocal beanUser = lookupBeanUserLocal();
 
     BeanCategorieLocal beanCategorie = lookupBeanCategorieLocal();
 
@@ -143,6 +146,29 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
                         }
                     }
 
+                    if ("kill".equalsIgnoreCase(request.getParameter("act"))) {
+                        System.out.println("+++++++++DANS KILL+++++++++++");
+                        String pass = request.getParameter("pass");
+                        Utilisateur u = beanUser.getUserByCode(pass);
+                        
+                        if(u==null){
+                            return "include/IHM_Client/include/no";
+                        }else{
+                            if(u.getRole()!=3){
+                                return "include/IHM_Client/include/no";
+                            }else{
+                                
+                                session.removeAttribute("commande");
+                                session.removeAttribute("cleCommande");
+                                session.removeAttribute("user");
+                                
+                                
+                                return "include/IHM_Client/include/yes";
+                            }
+                        }
+                        
+                    }
+
                 } else {//commande!=null
                     url = "include/logclient";
                 }
@@ -192,6 +218,16 @@ public class ActionCommandeClientControleur implements SousControleurInterface {
         try {
             Context c = new InitialContext();
             return (BeanCategorieLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanCategorie!beansSession.BeanCategorieLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private BeanUserLocal lookupBeanUserLocal() {
+        try {
+            Context c = new InitialContext();
+            return (BeanUserLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanUser!beansSession.BeanUserLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
