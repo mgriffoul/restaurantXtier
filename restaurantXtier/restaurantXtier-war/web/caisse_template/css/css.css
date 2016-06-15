@@ -1,5 +1,12 @@
+body{
+    background-color: #DCDCDC;
+}
+
+h1{
+    alignment-baseline: central;
+}
+
 .boutoncaisse{
-    background-color: red;
     vertical-align: top;
     display: inline-block;
 }
@@ -18,14 +25,13 @@
 }
 
 #ticket{
-    background-color: blue;
+    background-color: #DCDCDC;
     display: inline-block;
-    float: right;
+    float: none;
     text-align: left;
 }
 
 #un{
-    background-color: yellow;
     display: block;
     float: top;
 }
@@ -45,14 +51,26 @@
 
 .partiegauche, #ticket{
     padding:1px 0;
-    display: in
+    display: inline-block;
+        
 }
 
-.tableaux{
-  display:inline-block;
-  vertical-align:top;
+#afficeurPrix{
+    height: 30px;
+    width: 200px;
+    margin-top: 20px;
 }
 
 .divprincipale{
     margin: auto;
+}
+
+#afficherCommande{
+    overflow: auto;
+    height: 200px;
+    width: 300px;
+}
+
+th,td{
+    alignment-adjust: central;
 }

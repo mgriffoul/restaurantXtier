@@ -69,7 +69,7 @@ function payer(num){
             maDiv.innerHTML = reponse;
         }
     };
-   
+    vider();
     xhr.open("GET", url, true);
     xhr.send(null);   
 }
