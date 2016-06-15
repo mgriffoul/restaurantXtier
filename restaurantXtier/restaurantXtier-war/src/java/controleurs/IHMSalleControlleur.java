@@ -17,9 +17,12 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import transcient.GroupeEmplacementLocal;
 import transcient.SalleLocal;
 
 public class IHMSalleControlleur implements Serializable, SousControleurInterface {
+
+    GroupeEmplacementLocal groupesEmplacement = lookupGroupesEmplacementLocal();
 
     SalleLocal salle = lookupSalleLocal();
     
@@ -40,18 +43,7 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
 
         //Recupération de la sous section
         String inc = request.getParameter("inc");
-        
-        Integer cleCommande = (Integer) session.getAttribute("cleCommande");
-        
-        if("header".equalsIgnoreCase(request.getParameter("refresh"))){  
-            Commande co = salle.selectCommandeByCleCommande(cleCommande);
-            session.setAttribute("commande", co);
-            return prefix+"IHM_Client/include/header";
-        }
-        
-        
-        
-        
+       
         
         //Choix include en fonction de la ssSection
         //Création de la commande
@@ -66,16 +58,29 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
                 beanEmplacement.updateEmplacement(emp);
             }     
             salle.creerCommande(emps, ut01);
-            List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
+            List<Emplacement> listEmplacement = groupesEmplacement.updateEmplacement();
             request.setAttribute("listEmplacement", listEmplacement);  
+            request.setAttribute("contentInc", s1); 
         }
 
-        //Affichae de la commande
+        //Affichage de la commande
         if ("showOrder".equalsIgnoreCase(inc)) {
-            Commande c01 = beanCommande.selectCommandeById(Long.valueOf(request.getParameter("id")));
+            s1= "commande"; 
+            Integer cleCommande = Integer.parseInt(request.getParameter("table"));
+            Commande c01 = salle.selectCommandeByCleCommande(cleCommande);
             request.setAttribute("commande", c01);
-            s1 = "commande";
-            
+            request.setAttribute("table", cleCommande); 
+            request.setAttribute("contentInc", s1); 
+        }
+        
+         //Valider la commande
+            if ("validOrder".equalsIgnoreCase(inc)) {
+            s1= "commande"; 
+            Integer cleCommande = Integer.parseInt(request.getParameter("table"));
+            Commande c01 = salle.selectCommandeByCleCommande(cleCommande);
+            c01.setStatut("en cours");
+            beanCommande.sauvegarderCommande(c01);
+            request.setAttribute("commande", c01);    
         }
 
         //Affichage Formules
@@ -115,6 +120,16 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
         try {
             Context c = new InitialContext();
             return (SalleLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/Salle!transcient.SalleLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private GroupeEmplacementLocal lookupGroupesEmplacementLocal() {
+        try {
+            Context c = new InitialContext();
+            return (GroupeEmplacementLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/GroupesEmplacement!transcient.GroupeEmplacementLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

@@ -32,6 +32,11 @@ div.row {
 div.row label{
     text-align: center;
     display: block;
+   
+}
+
+div.row img{
+     cursor:pointer;
 }
 
 div.row p {

@@ -88,11 +88,10 @@ public class Salle implements SalleLocal {
     public List<Commande> selectCommandeEnCours() {
         List<Commande> commandesList = new ArrayList<>();
         for (Entry<Integer, Commande> entry : commandes.entrySet()) {
-            commandesList.add(entry.getValue());
-        }
-        for (Commande c : commandesList) {
-            List<Emplacement> emplacements = beanCommande.selectEmplacementByIdCommande(c.getId());
-            c.setEmplacements(emplacements);
+            Commande commande = entry.getValue();
+            commandesList.add(commande);
+            Collection<Emplacement> emplacements = groupesEmplacement.selectEmplacementsByKey(entry.getKey());
+            commande.setEmplacements(emplacements);
         }
         return commandesList;
     }
