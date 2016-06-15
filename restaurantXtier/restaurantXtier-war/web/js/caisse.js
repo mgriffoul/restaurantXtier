@@ -28,11 +28,11 @@ function afficherCommande(num){
             maDiv.innerHTML = reponse;
         }
     };
-alert("num ="+num)
+
     var phrase = "<a href='#' onclick=\"payer('"+num+"');\">CB</a>";
     var ph2 = "<a href='#' onclick=\"payer('"+num+"');\">Espece</a>";
     var ph3 = "<a href='#' onclick=\"payer('"+num+"');\">TR</a>";
-alert(phrase);
+
     document.getElementById("payer").innerHTML = phrase;
     document.getElementById("payerE").innerHTML = ph2;
     document.getElementById("payerTR").innerHTML = ph3;
@@ -57,15 +57,15 @@ function vider(){
 }
 
 function payer(num){
-    alert("numComm ="+num);
+    
     var url = "index?section=IHMCaisse&incCaisse=payer&nCom="+num;
-    // alert(url);
+    
     var xhr = getXmlHttpRequest();
     xhr.onreadystatechange = function (){
         if(xhr.readyState == 4 && xhr.status == 200){
             var maDiv = document.getElementById("afficherCommande");
             var reponse = xhr.responseText;
-            //alert(reponse);
+            
             maDiv.innerHTML = reponse;
         }
     };
