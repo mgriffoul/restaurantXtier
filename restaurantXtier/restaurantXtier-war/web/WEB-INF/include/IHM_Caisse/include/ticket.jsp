@@ -10,7 +10,8 @@
                     TICKET
                 </p>
                 <label>Le restaurant Restaurant</label><br />
-                Commande n° : ${affcom.numero} - ${date}
+                <p>Commande n° : ${affcom.numero}<p> 
+                    <p>${date}</p>
 
             </p>
             <p class="detailCommande">
@@ -36,18 +37,21 @@
                             <td>
                             <c:if test="${not empty lc.article.prixTtc}">
                             <fmt:formatNumber value="${lc.article.prixTtc}" type="currency" currencySymbol="€" minIntegerDigits="2" maxFractionDigits="2" />
+                            
                             </c:if>
                                 <c:if test="${empty lc.article.prixTtc}">
                                 <fmt:formatNumber value="${prixFormule}" type="currency" currencySymbol="€" minIntegerDigits="2" maxFractionDigits="2" />
+                                
                                 </c:if>
                                 </td>
 
                             </tr>
                     </c:forEach>
             </table>
-            <label>Totat TTC <p>
+            <label>Totat TTC : 
                 <fmt:formatNumber value="${prixTTC}" type="currency" currencySymbol="€" minIntegerDigits="2" maxFractionDigits="2" />
-                </p></label>               
+                </label> 
+                <p>TVA : 10%</p>
         </c:if>                       
     </p>
 </div>
