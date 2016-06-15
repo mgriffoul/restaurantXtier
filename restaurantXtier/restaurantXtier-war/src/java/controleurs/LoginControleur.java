@@ -68,14 +68,14 @@ public class LoginControleur implements Serializable, SousControleurInterface {
                     return "include/IHM_Salle/index";
                 case 4:
                     //jeu de test memoire
-                    List<Commande> coms = beanCommande.selectCommandeEnCours();        
-                    
-                    Utilisateur ut = BeanUser.getUserByCode("3332");
-                    
-                    for(Commande co : coms){
-                        Collection<Emplacement> emps = co.getEmplacements();
-                        salle.creerCommande(emps, ut);
-                    }                    
+//                    List<Commande> coms = beanCommande.selectCommandeEnCours();        
+//                    
+//                    Utilisateur ut = BeanUser.getUserByCode("3332");
+//                    
+//                    for(Commande co : coms){
+//                        Collection<Emplacement> emps = co.getEmplacements();
+//                        salle.creerCommande(emps, ut);
+//                    }                    
                     
                     HashMap<Integer, Commande> commandes = salle.getCommandes();
                     
