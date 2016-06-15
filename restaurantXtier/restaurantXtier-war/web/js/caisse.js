@@ -74,6 +74,18 @@ function payer(num){
     xhr.send(null);   
 }
 
-function afficher(phrase){
-    return alert(phrase);
+function recharger(){
+    var url = "index?section=IHMCaisse&incCaisse=recharger";
+    
+    var xhr = getXmlHttpRequest();
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            var maDiv = document.getElementById("afficherCommande");
+            var reponse = xhr.responseText;
+            
+            maDiv.innerHTML = reponse;
+        }
+    };
+    xhr.open("GET", url, true);
+    xhr.send(null);   
 }

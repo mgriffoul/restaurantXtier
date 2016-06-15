@@ -68,7 +68,7 @@
 
                             <td>
 
-                                <table border="2" class="boutoncaisse">
+                                <table border="2" class="btn-droite">
                                     <tr>
                                         <td id="payer">
                                             <a href="#" onclick="payer('${payercommande}');">CB</a>
@@ -92,12 +92,16 @@
                 </table>
 
             </div>
-        </div>                                
+        </div>
+        <div id="partiedroite">
+            <p><a href="#" onclick="recharger()" class="btn">Actualiser</a></p>
         <div id="ticket">
             <c:import url="WEB-INF/include/IHM_Caisse/include/ticket.jsp" />
+        </div>
         </div>
     </div> 
 </div>
 
 
 <script src="js/caisse.js"></script>
+<script type="text/javascript">window.setInterval("actualiser()",600000);</script>
