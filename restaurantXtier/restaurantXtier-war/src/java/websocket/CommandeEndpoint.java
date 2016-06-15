@@ -25,21 +25,14 @@ public class CommandeEndpoint {
     public void onMessage(WsCommandeAction action, Session session) throws IOException, EncodeException {
 
         if ("log".equalsIgnoreCase(action.getAction())) {
-            System.out.println("LOG COMMANDE CLIENT");
+            
             Integer cleCommande = action.getCleCommande();
             commandesMap.put(session, cleCommande);
 
-            Iterator iter = commandesMap.entrySet().iterator();
-
-            System.out.println("Hashmap du endpoint ");
-            while (iter.hasNext()) {
-                Map.Entry<Integer, Session> entry = (Map.Entry) iter.next();
-                System.out.println("key = " + entry.getKey() + " and value = " + entry.getValue());
-            }
         }
 
         if (!"log".equalsIgnoreCase(action.getAction())) {
-            System.out.println("ACTION REFRESH DEMANDE DE LA COMMANDE DANS ENDPOINT");
+            
             Integer cleCommande = action.getCleCommande();
             Iterator iter = commandesMap.entrySet().iterator();
             while (iter.hasNext()) {
@@ -65,8 +58,7 @@ public class CommandeEndpoint {
     public void onClose(Session peer) {
 
         commandesMap.remove(peer);
-        System.out.println(commandesMap.size());
-
+        
         peers.remove(peer);
     }
 

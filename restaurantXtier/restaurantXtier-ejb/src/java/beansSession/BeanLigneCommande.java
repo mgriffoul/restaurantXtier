@@ -176,6 +176,7 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
             prix = 0F;
             return prix;
         }
+        
     return prix;
     }
     

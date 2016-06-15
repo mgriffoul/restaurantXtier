@@ -157,6 +157,7 @@ public class IHMClientControleur implements SousControleurInterface {
 
                         Formule f = beanFormule.selectFormuleById(idForm);
                         beanFormule.chargerFormule(f);
+                        
 
                         request.setAttribute("for", f);
 

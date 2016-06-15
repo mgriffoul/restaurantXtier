@@ -1,6 +1,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <section id="commandes">
     <section id="price">
         <div class="container container-perso" id="#">
@@ -27,7 +28,9 @@
                                                 <div class="item-title ">
                                                     <h2 class="recap-commande-intitule">${entree.article.nom}</h2>
 
-                                                    <span class="prixrecapcommande">${entree.prixHT} E   / ${entree.etatLc.etat}
+                                                    <span class="prixrecapcommande">
+                                                        <fmt:formatNumber type="number" maxFractionDigits="2" value="${entree.prixTtc}"/>
+                                                         E   / ${entree.etatLc.etat}
 
                                                     </span>
                                                     <div class="border-bottom-perso"></div>
@@ -56,7 +59,9 @@
                                                 <div class="item-title ">
                                                     <h2 class="recap-commande-intitule">${plat.article.nom}</h2>
 
-                                                    <span>${plat.prixHT} E / ${plat.etatLc.etat}</span>
+                                                    <span>
+                                                        <fmt:formatNumber type="number" maxFractionDigits="2" value="${plat.prixTtc}"/>
+                                                         E / ${plat.etatLc.etat}</span>
                                                     <div class="border-bottom-perso"></div>
                                                 </div>
                                             </div>
@@ -81,7 +86,9 @@
                                                 <div class="item-title ">
                                                     <h2 class="recap-commande-intitule">${dessert.article.nom}</h2>
 
-                                                    <span>${dessert.prixHT} E / ${dessert.etatLc.etat}
+                                                    <span>
+                                                        <fmt:formatNumber type="number" maxFractionDigits="2" value="${dessert.prixTtc}"/>
+                                                         E / ${dessert.etatLc.etat}
                                                     </span>
                                                     <div class="border-bottom-perso"></div>
                                                 </div>
@@ -108,7 +115,7 @@
                                                     <div class="item-title ">
                                                         <h2 class="recap-commande-intitule">${for.key.nom}</h2>
                                                         <span>
-                                                            ${for.key.prix}
+                                                            ${for.key.prixTtc}
                                                         </span>
                                                         <div class="border-bottom-perso"></div>
                                                     </div>
@@ -155,7 +162,9 @@
                                                 <div class="item-title ">
                                                     <h2 class="recap-commande-intitule">${boi.article.nom}</h2>
 
-                                                    <span>${boi.prixHT} E / ${boi.etatLc.etat}</span>
+                                                    <span>
+                                                        <fmt:formatNumber type="number" maxFractionDigits="2" value="${boi.prixTtc}"/>
+                                                         E / ${boi.etatLc.etat}</span>
                                                     <div class="border-bottom-perso"></div>
                                                 </div>
                                             </div>
@@ -165,7 +174,9 @@
                                 </ul>
                             </c:if>
                             
-                            <div class="prix-total-commande">Total de votre commande : <span>${prixTotal} E</span></div>
+                            <div class="prix-total-commande">Total de votre commande : <span>
+                                    <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${prixTotal}"/>
+                                     E</span></div>
 
 
 
@@ -176,3 +187,5 @@
         </div><!-- .containe close -->
     </section><!-- #price close -->
 </section>
+                                     
+<script src="ajax/ajaxSuiviCommande.js" type="text/javascript"></script>

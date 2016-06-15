@@ -67,6 +67,10 @@ public class LigneCommande implements Serializable {
         this.prixHT = prixHT;
     }
 
+    public Float getPrixTtc(){
+        Float f = ((prixHT*10/100)+prixHT);
+        return f;
+    }
    
 
     public String getRemarque() {

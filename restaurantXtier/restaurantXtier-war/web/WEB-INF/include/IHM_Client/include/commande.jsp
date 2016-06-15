@@ -1,6 +1,7 @@
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <section id="commandes">
     <section id="price">
         <div class="container container-perso" id="#">
@@ -27,7 +28,8 @@
                                             <div class="item-title ">
                                                 <h2 class="recap-commande-intitule">${entree.article.nom}</h2>
 
-                                                <span class="prixrecapcommande">${entree.prixHT} E
+                                                <span class="prixrecapcommande">
+                                                    <fmt:formatNumber type="number" maxFractionDigits="2" value="${entree.prixTtc}" />E
 
                                                     <button class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${entree.article.id}');
                                                             suppArticle('header', '${entree.article.id}');
@@ -58,7 +60,9 @@
                                             <div class="item-title ">
                                                 <h2 class="recap-commande-intitule">${plat.article.nom}</h2>
 
-                                                <span>${plat.prixHT} E
+                                                <span>
+                                                    <fmt:formatNumber type="number" maxFractionDigits="2" value="${plat.prixTtc}" />E
+
                                                     <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${plat.article.id}');
                                                             suppArticle('header', '${plat.article.id}');
                                                             sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
@@ -87,7 +91,9 @@
                                             <div class="item-title ">
                                                 <h2 class="recap-commande-intitule">${dessert.article.nom}</h2>
 
-                                                <span>${dessert.prixHT} E
+                                                <span>
+                                                    <fmt:formatNumber type="number" maxFractionDigits="2" value="${dessert.prixTtc}" />E
+
                                                     <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${dessert.article.id}');
                                                             suppArticle('header', '${dessert.article.id}');
                                                             sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
@@ -117,7 +123,8 @@
                                                 <div class="item-title ">
                                                     <h2 class="recap-commande-intitule">${for.key.nom}</h2>
                                                     <span>
-                                                        ${for.key.prix}
+                                                        <fmt:formatNumber type="number" maxFractionDigits="2" value="${for.key.prixTtc}" />E
+
                                                         <button type="button" class="btn btn-danger btn-sm " onclick="suppFormule('commandes', '${hm.key}');
                                                                 suppFormule('header', '${hm.key}');
                                                                 sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
@@ -157,7 +164,9 @@
                                             <div class="item-title ">
                                                 <h2 class="recap-commande-intitule">${boi.article.nom}</h2>
 
-                                                <span>${boi.prixHT} E
+                                                <span>
+                                                    <fmt:formatNumber type="number" maxFractionDigits="2" value="${boi.prixTtc}" />E
+
                                                     <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${boi.article.id}');
                                                             suppArticle('header', '${boi.article.id}');
                                                             sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
@@ -170,10 +179,12 @@
                                 </c:forEach>
                             </ul>
 
-                            <div class="prix-total-commande">Total de votre commande : <span>${prixTotal} E</span></div>
-                            <c:if test="${commande.statut=='en creation'}">
-                                <a href="#"  class="btn btn-success " type="button" onclick="testbootbox('${sessionScope.cleCommande}');" >Je souhaite valider ma commande</a>
-                              
+                            <div class="prix-total-commande">Total de votre commande : <span>
+                                    <fmt:formatNumber type="number" maxFractionDigits="2" value="${prixTotal}" />E
+                                </span></div>
+                                <c:if test="${commande.statut=='en creation'}">
+                                <a href="#"  class="btn btn-success " type="button" onclick="testbootbox('${sessionScope.cleCommande}','${sessionScope.codeServeur}');" >Je souhaite valider ma commande</a>
+
                             </c:if>
 
                         </div>

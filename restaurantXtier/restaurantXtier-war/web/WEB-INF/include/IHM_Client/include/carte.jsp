@@ -1,6 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!--
        price start
        ============================ -->
@@ -35,7 +36,7 @@
                                                         <div class="item-title ">
                                                             <div class="nomarticle">${article.nom}</div>
                                                             <div class="border-bottom"></div>
-                                                            <span>${article.prixTtc} E</span>
+                                                            <span><fmt:formatNumber type="number" maxFractionDigits="2" value="${article.prixTtc}" />  E</span>
                                                         </div>
                                                         <p>${article.description}</p>
                                                     </div>
