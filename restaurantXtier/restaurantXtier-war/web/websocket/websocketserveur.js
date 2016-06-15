@@ -30,6 +30,20 @@ function sendHelpServeur(cleCommande, codeServeur) {
         bootbox.alert("Un serveur a été appelé");
 }
 
+function sendValidServeur(cleCommande, codeServeur) {
+    var json = JSON.stringify({
+        "password": codeServeur,
+        "action": "valid",
+        "cleCommande": cleCommande
+        
+    });
+    waitForSocketConnection(websocket, function() {
+           websocket.send(json);
+        });
+        bootbox.alert("Un serveur va venir valider votre commande.");
+}
+
+
 function waitForSocketConnection(socket, callback){
         setTimeout(
             function(){

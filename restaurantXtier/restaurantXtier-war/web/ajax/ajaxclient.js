@@ -99,7 +99,7 @@ function testbootbox(cleCommande, codeServeur) {
         if (result === true) {
             validerCommande();
             sendOrder(cleCommande, "close");
-            sendHelpServeur(cleCommande, codeServeur);
+            sendValidServeur(cleCommande, codeServeur);
         }
     });
 }
