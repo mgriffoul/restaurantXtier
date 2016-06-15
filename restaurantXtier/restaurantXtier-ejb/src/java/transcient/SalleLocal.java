@@ -4,6 +4,7 @@ package transcient;
 import beanEntite.Article;
 import beanEntite.Commande;
 import beanEntite.Emplacement;
+import beanEntite.EtatLigneCommande;
 import beanEntite.Formule;
 import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
@@ -59,4 +60,6 @@ public interface SalleLocal {
     
     public  HashMap<String, HashMap<Formule, Collection<LigneCommande>>>  getFormuleMapper(Collection<LigneCommande> lcs);
   
+    public void changerElcFromIdLigneCom (String numeroCommande, Long idLc);
+    
 }
