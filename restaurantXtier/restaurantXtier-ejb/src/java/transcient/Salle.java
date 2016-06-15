@@ -16,14 +16,17 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
+import javax.websocket.Session;
 
 @Singleton
 public class Salle implements SalleLocal {
+
     @EJB
     private BeanEtatLigneCommandeLocal beanEtatLigneCommande;
 
@@ -259,11 +262,11 @@ public class Salle implements SalleLocal {
     }
 
     @Override
-    public  HashMap<String, HashMap<Formule, Collection<LigneCommande>>>  getFormuleMapper(Collection<LigneCommande> lcs) {
+    public HashMap<String, HashMap<Formule, Collection<LigneCommande>>> getFormuleMapper(Collection<LigneCommande> lcs) {
 
-         HashMap<String, HashMap<Formule, Collection<LigneCommande>>>  hmf = new HashMap<>();
-         
-         Collection<String> refForms = new ArrayList();
+        HashMap<String, HashMap<Formule, Collection<LigneCommande>>> hmf = new HashMap<>();
+
+        Collection<String> refForms = new ArrayList();
 
         for (LigneCommande l : lcs) {
             if (!refForms.contains((l.getRefFormule()))) {
@@ -281,7 +284,7 @@ public class Salle implements SalleLocal {
                 }
             }
             Formule f = beanFormule.selectFormuleByRef(s.substring(0, 3));
-            HashMap<Formule, Collection<LigneCommande>> sousHmf=new HashMap<>();
+            HashMap<Formule, Collection<LigneCommande>> sousHmf = new HashMap<>();
             sousHmf.put(f, col);
             hmf.put(s, sousHmf);
         }
@@ -302,6 +305,38 @@ public class Salle implements SalleLocal {
                 }
             }
         }
+    }
+
+    @Override
+    public void changerElcFromIdLigneCom(String numeroCommande, Long idLc) {
+        Commande co = null;
+        Iterator it = commandes.entrySet().iterator();
+
+        while (it.hasNext()) {
+            Map.Entry<Integer, Commande> entry = (Map.Entry) it.next();
+            if (entry.getValue().getNumero().equalsIgnoreCase(numeroCommande)) {
+                co = entry.getValue();
+            }
+        }
+
+        if (co != null) {
+            Collection<LigneCommande> lcs = co.getLignesCommandes();
+            for (LigneCommande l : lcs) {
+                if (l.getId() != null) {
+                    if (l.getId() == idLc) {
+                        
+                        EtatLigneCommande elc = l.getEtatLc();
+                        
+                        if(elc.getOrdre()<4){
+                        Integer ordre = elc.getOrdre()+1;
+                        elc = beanEtatLigneCommande.selectEtatFromOrdre(ordre);
+                        l.setEtatLc(elc);
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
 }

@@ -3,6 +3,7 @@ package controleurs;
 import beanEntite.LigneCommande;
 import beansSession.BeanLigneCommandeLocal;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +26,8 @@ public class IHMCuisineControleur implements SousControleurInterface {
         String prefix = "include/";
         String suffix = ".jsp";
         String message = "";
-
+        Date today = new Date();
+        request.setAttribute("today", today);
         //URL par défaut
         String inc1 = "include/IHM_Cuisine/index";
 
