@@ -1,6 +1,5 @@
 package beansSession;
 
-import beanEntite.Commande;
 import beanEntite.Emplacement;
 import java.util.List;
 import javax.ejb.EJB;
@@ -9,19 +8,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import transcient.GroupeEmplacementLocal;
-import transcient.SalleLocal;
 
 @Stateless
 public class BeanEmplacement implements BeanEmplacementLocal {
+
+
     @EJB
     private GroupeEmplacementLocal groupesEmplacement;
     
-    @EJB
-    private SalleLocal salle;
-
-    
-
-
     @PersistenceContext(name = "restaurantXtier-ejbPU")
     private EntityManager em;
 
@@ -30,11 +24,20 @@ public class BeanEmplacement implements BeanEmplacementLocal {
         String req = "Select e from Emplacement e order by e.numero asc";
         Query qr = em.createQuery(req);
         List<Emplacement> listEmplacement = qr.getResultList();
+        for (Emplacement ep : listEmplacement){
+              ep.setKeyCommande(groupesEmplacement.getKeyEmpByEmpNum(ep.getNumero()));
+        }
+        return listEmplacement;
+    }
+    
+    @Override
+    public List<Emplacement> cleanEmplacement(List<Emplacement> listEmplacement){
         for(Emplacement emp : listEmplacement){
             emp.setStatut("libre");
             updateEmplacement(emp);
         }
         return listEmplacement;
+        
     }
 
     @Override

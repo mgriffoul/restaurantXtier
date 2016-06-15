@@ -60,29 +60,7 @@ public class GroupesEmplacement implements GroupeEmplacementLocal {
         return listEmplacement;
     }
 
-    @Override
-    public List<Emplacement> updateEmplacement() {
-        List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
-        List<Commande> listCommande = salle.selectCommandeEnCours();
-        if (!listCommande.isEmpty()) {
-            Collection<Emplacement> listEmplacementCommande = null;
-            for (Commande c : listCommande){
-                listEmplacementCommande = c.getEmplacements();
-                for (Emplacement empCommande : listEmplacementCommande) {
-                for (Emplacement emp : listEmplacement) {
-                    if (empCommande.getNumero().equals(emp.getNumero())) {
-                        System.out.println("emplacement>>>>" + emp);
-                        emp.setKeyCommande(getKeyEmpByEmpNum(emp.getNumero()));
-                        emp.setStatut("occupe");
-                        beanEmplacement.updateEmplacement(emp);
-                    }
-                }
-            }
-            }
-            System.out.println("listeemplacement>>" + listEmplacementCommande);
-        }
-        return listEmplacement;
-    }
+    
 
     @Override
     public Integer creerGroupe(Collection<Emplacement> emp) {

@@ -12,6 +12,5 @@ public interface GroupeEmplacementLocal {
     
     public Integer creerGroupe(Collection<Emplacement> emp);
     public Integer getKeyEmpByEmpNum(Integer numero);
-    public List<Emplacement> updateEmplacement();
     public Collection<Emplacement> selectEmplacementsByKey(Integer key);
 }

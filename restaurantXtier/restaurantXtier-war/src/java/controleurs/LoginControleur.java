@@ -63,6 +63,7 @@ public class LoginControleur implements Serializable, SousControleurInterface {
                 case 3:
                     String salle_s1= "include/accueil.jsp"; 
                     List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
+                    listEmplacement = beanEmplacement.cleanEmplacement(listEmplacement);
                     request.setAttribute("listEmplacement", listEmplacement);
                     request.setAttribute("contentInc", salle_s1);  
                     return "include/IHM_Salle/index";

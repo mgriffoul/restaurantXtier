@@ -25,15 +25,15 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
     GroupeEmplacementLocal groupesEmplacement = lookupGroupesEmplacementLocal();
 
     SalleLocal salle = lookupSalleLocal();
-    
+
     BeanCommandeLocal beanCommande = lookupBeanCommandeLocal();
     BeanEmplacementLocal beanEmplacement = lookupBeanEmplacementLocal();
-    
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        
+
         HttpSession session = request.getSession();
-        
+
         String s1 = "accueil";
         String prefix = "include/";
         String suffix = ".jsp";
@@ -43,8 +43,7 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
 
         //Recupération de la sous section
         String inc = request.getParameter("inc");
-       
-        
+
         //Choix include en fonction de la ssSection
         //Création de la commande
         if ("createOrder".equalsIgnoreCase(inc)) {
@@ -53,49 +52,81 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
             String[] emplacements = request.getParameterValues("table");
             for (String s : emplacements) {
                 Emplacement emp = beanEmplacement.selectEmplacementByNumero(s);
-                emp.setStatut("occupe");
+                emp.setStatut("non valide");
                 emps.add(emp);
                 beanEmplacement.updateEmplacement(emp);
-            }     
+            }
             salle.creerCommande(emps, ut01);
-            List<Emplacement> listEmplacement = groupesEmplacement.updateEmplacement();
-            request.setAttribute("listEmplacement", listEmplacement);  
-            request.setAttribute("contentInc", s1); 
+            List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
+            request.setAttribute("listEmplacement", listEmplacement);
+            request.setAttribute("contentInc", s1);
         }
 
         //Affichage de la commande
         if ("showOrder".equalsIgnoreCase(inc)) {
-            s1= "commande"; 
+            s1 = "commande";
             Integer cleCommande = Integer.parseInt(request.getParameter("table"));
             Commande c01 = salle.selectCommandeByCleCommande(cleCommande);
             request.setAttribute("commande", c01);
-            request.setAttribute("table", cleCommande); 
-            request.setAttribute("contentInc", s1); 
+            request.setAttribute("table", cleCommande);
+            request.setAttribute("contentInc", s1);
         }
-        
-         //Valider la commande
-            if ("validOrder".equalsIgnoreCase(inc)) {
-            s1= "commande"; 
+
+        //Valider la commande
+        if ("validOrder".equalsIgnoreCase(inc)) {
+            s1 = "commande";
             Integer cleCommande = Integer.parseInt(request.getParameter("table"));
             Commande c01 = salle.selectCommandeByCleCommande(cleCommande);
             c01.setStatut("en cours");
             beanCommande.sauvegarderCommande(c01);
-            request.setAttribute("commande", c01);    
+            request.setAttribute("commande", c01);
+            request.setAttribute("contentInc", s1);
         }
+
+        //Aide aux clients
+        if ("helpTable".equalsIgnoreCase(inc)) {
+            Integer cleCommande = Integer.parseInt(request.getParameter("com"));
+            Commande c01 = salle.selectCommandeByCleCommande(cleCommande);
+            Collection<Emplacement> emplacements = c01.getEmplacements();
+            for (Emplacement emp : emplacements) {
+                emp.setStatut("help");
+                beanEmplacement.updateEmplacement(emp);
+            }
+            List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
+            request.setAttribute("listEmplacement", listEmplacement);
+            request.setAttribute("commande", c01);
+            request.setAttribute("contentInc", s1);
+        }
+        
+        //Clients = commande validée
+        if ("orderTable".equalsIgnoreCase(inc)) {
+            Integer cleCommande = Integer.parseInt(request.getParameter("com"));
+            Commande c01 = salle.selectCommandeByCleCommande(cleCommande);
+            Collection<Emplacement> emplacements = c01.getEmplacements();
+            for (Emplacement emp : emplacements) {
+                emp.setStatut("valide");
+                beanEmplacement.updateEmplacement(emp);
+            }
+            List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
+            request.setAttribute("listEmplacement", listEmplacement);
+            request.setAttribute("commande", c01);
+            request.setAttribute("contentInc", s1);
+        }
+        
 
         //Affichage Formules
         if ("for".equalsIgnoreCase(inc)) {
-            
+
         }
-        
+
         if ("com".equalsIgnoreCase(inc)) {
-            
+
         }
-        
+
         request.setAttribute("contentInc", prefix + s1 + suffix);
         return inc1;
     }
-    
+
     private BeanEmplacementLocal lookupBeanEmplacementLocal() {
         try {
             Context c = new InitialContext();
@@ -105,7 +136,7 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
             throw new RuntimeException(ne);
         }
     }
-    
+
     private BeanCommandeLocal lookupBeanCommandeLocal() {
         try {
             Context c = new InitialContext();
@@ -135,5 +166,5 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
             throw new RuntimeException(ne);
         }
     }
-    
+
 }
