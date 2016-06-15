@@ -1,6 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <section id="formule">
     <section id="price">
 
@@ -22,7 +23,8 @@
                                             <div class="item-title ">
                                                 <h2>${form.nom}</h2>
                                                 <div class="border-bottom"></div>
-                                                <span>${form.prixTtc} E</span>
+                                                <span>
+                                                    <fmt:formatNumber type="number" maxFractionDigits="2" value="${form.prixTtc}" />  E</span>
                                             </div>
 
                                             <c:if test="${not empty form.entrees}">
