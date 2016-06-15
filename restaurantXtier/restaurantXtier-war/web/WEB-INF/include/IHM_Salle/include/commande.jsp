@@ -1,20 +1,13 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <c:if test="${not empty commande.getLignesCommandes}" >
-            <h1> Commande nÂ° ${commande.numero}</h1>
-            
-        
-        
-        </c:if>
-        <c:if test="${empty commande.getLignesCommandes}" >
-            La commande dest vide!!!
-        </c:if>
-    </body>
-</html>
+    <c:if test="${commande.getStatut() == 'en cours'}">
+        <p> Commande N° ${commande.getNumero()} créée avec succès et envoyée en cuisine! </p>
+     </c:if>
+         <c:if test="${commande.getStatut() != 'en cours'}">
+         <form method="POST"  action="index">
+        <input type="hidden" name="section" value="IHMSalle">
+        <input type="hidden" name="inc" value="validOrder">
+        <input type="hidden" name="table" value="${table}">
+        <input type="submit" value="Valider cette commande" >
+    </form>
+     </c:if>
+  

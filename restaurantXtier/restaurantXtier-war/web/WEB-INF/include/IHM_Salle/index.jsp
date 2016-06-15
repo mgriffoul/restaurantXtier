@@ -27,8 +27,5 @@
         <script src="ajax/ajaxsalle.js"></script>
         <script src="websocket/websocketserveur.js" type="text/javascript"></script>
         <script type="text/javascript">wslogServ('${sessionScope.user.code}');</script>
-        < /body>
-        < /html>
-
 
 

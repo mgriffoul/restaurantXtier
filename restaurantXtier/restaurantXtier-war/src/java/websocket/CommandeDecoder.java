@@ -15,27 +15,11 @@ public class CommandeDecoder implements Decoder.Text<WsCommandeAction> {
 
     @Override
     public WsCommandeAction decode(String s) throws DecodeException {
-        System.out.println("+++++decoding");
-        System.out.println("String entrante = " + s);
         JsonObject jsonObject = Json.createReader(new StringReader(s)).readObject();
-        System.out.println("jsonobject created");
-
         String password = jsonObject.getString("password");
-        System.out.println("PASSWORD DECODER  "+password);
-        
         String action = jsonObject.getString("action");
-        System.out.println("ACTION = " + action);
-        
         Integer cleCommande = Integer.valueOf(jsonObject.getString("cleCommande"));
-        System.out.println("CLE COMMANDE DECODER  "+cleCommande);
-
-        
-
-        
-
         WsCommandeAction wca = new WsCommandeAction(cleCommande, password, action);
-
-        System.out.println(">>>>>>>>>>>>-->>>>>>>>>> WAC = " + jsonObject);
 
         return wca;
     }

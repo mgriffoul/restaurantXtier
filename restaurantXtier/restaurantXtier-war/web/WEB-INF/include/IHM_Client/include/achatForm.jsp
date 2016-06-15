@@ -10,14 +10,14 @@
             <div class="col-md-12">
                 <div class="block ">
 
-                    <h1 class="heading wow fadeInUp carte-titre" data-wow-duration="300ms" data-wow-delay="300ms"> <span>${for.nom}</span> </h1>
+                    <h1 class="heading wow fadeInUp carte-titre" data-wow-duration="300ms" data-wow-delay="300ms"> Formule <span>${for.nom}</span> </h1>
                     <div class="pricing-list ">
                         <ul>
 
                             <li class="wow fadeInUp  formule" data-wow-duration="300ms" data-wow-delay="300ms">
                                 <div class="item form">
                                     <div class="item-title ">
-                                        <h2>${for.nom}</h2>
+                                        
                                         <div class="border-bottom"></div>
                                         
                                     </div>
@@ -63,7 +63,7 @@
                                             </select>
                                         </c:if>
 
-                                        <c:if test="${not empty form.boissons}">
+                                        <c:if test="${not empty for.boissons}">
                                             <p> <label for="dessert">Boisson au choix</label></p>
 
                                             <select class="form-control liste-formule" name="boisson">

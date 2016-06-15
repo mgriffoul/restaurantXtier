@@ -18,120 +18,122 @@ function getXmlHttpRequest() {
 }
 
 
-function refreshHeader(){
+function refreshHeader() {
     var url = "index?section=clientRefresh&refresh=header";
-    
-    var xhr = getXmlHttpRequest(); 
-    
-    xhr.onreadystatechange = function (){
-        if(xhr.readyState == 4 && xhr.status == 200){
-          
-          var maDiv = document.getElementById("header");
+
+    var xhr = getXmlHttpRequest();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+
+            var maDiv = document.getElementById("header");
             var response = xhr.responseText;
             maDiv.innerHTML = response;
         }
     };
-    
+
     xhr.open("GET", url, true);
     xhr.send(null);
-    
+
 }
 
-function refreshMesCommandes(){
-    
+function refreshMesCommandes() {
+
     var url = "index?section=clientRefresh&refresh=commande";
-    
-    var xhr = getXmlHttpRequest(); 
-    
-    xhr.onreadystatechange = function (){
-        if(xhr.readyState == 4 && xhr.status == 200){
-          
-          var maDiv = document.getElementById("commandes");
+
+    var xhr = getXmlHttpRequest();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+
+            var maDiv = document.getElementById("commandes");
             var response = xhr.responseText;
             maDiv.innerHTML = response;
         }
     };
-    
+
     xhr.open("GET", url, true);
     xhr.send(null);
 }
 
-function refreshFormule(){
-    
+function refreshFormule() {
+
     var url = "index?section=clientRefresh&refresh=formule";
-    
-    var xhr = getXmlHttpRequest(); 
-    
-    xhr.onreadystatechange = function (){
-        if(xhr.readyState == 4 && xhr.status == 200){
-          
-          var maDiv = document.getElementById("formule");
+
+    var xhr = getXmlHttpRequest();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+
+            var maDiv = document.getElementById("formule");
             var response = xhr.responseText;
             maDiv.innerHTML = response;
         }
     };
-    
+
     xhr.open("GET", url, true);
     xhr.send(null);
 }
 
-function refreshCarte(){
-    
+function refreshCarte() {
+
     var url = "index?section=clientRefresh&refresh=carte";
-    
-    var xhr = getXmlHttpRequest(); 
-    
-    xhr.onreadystatechange = function (){
-        if(xhr.readyState == 4 && xhr.status == 200){
-          
-          var maDiv = document.getElementById("carte");
+
+    var xhr = getXmlHttpRequest();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+
+            var maDiv = document.getElementById("carte");
             var response = xhr.responseText;
             maDiv.innerHTML = response;
         }
     };
-    
+
     xhr.open("GET", url, true);
     xhr.send(null);
 }
 
-function testbootbox (cleCommande){
-    bootbox.confirm("Etes vous certain de vouloir valider la commande ? La commande ne pourra plus être modifié par aucun convive après confirmation.", function(result){
-        if(result===true){validerCommande();
-                          sendOrder(cleCommande, "close");
-                      }
+function testbootbox(cleCommande, codeServeur) {
+    bootbox.confirm("Etes vous certain de vouloir valider la commande ? La commande ne pourra plus être modifié par aucun convive après confirmation.", function (result) {
+        if (result === true) {
+            validerCommande();
+            sendOrder(cleCommande, "close");
+            sendHelpServeur(cleCommande, codeServeur);
+        }
     });
 }
 
 
-function validerCommande(){
-    
+function validerCommande() {
+
     var url = "index?section=clientRefresh&refresh=commande&actionRefresh=valid";
-    
-    var xhr = getXmlHttpRequest(); 
-    
-    xhr.onreadystatechange = function (){
-        if(xhr.readyState == 4 && xhr.status == 200){
-          
-          var maDiv = document.getElementById("commandes");
+
+    var xhr = getXmlHttpRequest();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+
+            var maDiv = document.getElementById("commandes");
             var response = xhr.responseText;
             maDiv.innerHTML = response;
         }
     };
-    
+
     xhr.open("GET", url, true);
     xhr.send(null);
-    
+
 }
 
 
-function addArticle(idDom, idArticle){
-   
-    var url = "index?section=actionCom&act=add&id="+idArticle;
-    
+function addArticle(idDom, idArticle) {
+
+    var url = "index?section=actionCom&act=add&id=" + idArticle;
+
     var xhr = getXmlHttpRequest();
-    
-    xhr.onreadystatechange = function (){
-        if(xhr.readyState == 4 && xhr.status == 200){
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
             var maDiv = document.getElementById(idDom);
             var response = xhr.responseText;
             maDiv.innerHTML = response;
@@ -140,14 +142,14 @@ function addArticle(idDom, idArticle){
     xhr.open("GET", url, true);
     xhr.send(null);
 }
-function suppArticle(idDom, idArticle){
-   
-    var url = "index?section=actionCom&act=supp&id="+idArticle+"&dom="+idDom;
-    
+function suppArticle(idDom, idArticle) {
+
+    var url = "index?section=actionCom&act=supp&id=" + idArticle + "&dom=" + idDom;
+
     var xhr = getXmlHttpRequest();
-    
-    xhr.onreadystatechange = function (){
-        if(xhr.readyState == 4 && xhr.status == 200){
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
             var maDiv = document.getElementById(idDom);
             var response = xhr.responseText;
             maDiv.innerHTML = response;
@@ -156,13 +158,13 @@ function suppArticle(idDom, idArticle){
     xhr.open("GET", url, true);
     xhr.send(null);
 }
-function suppFormule(idDom, refFormule){
-    var url = "index?section=actionCom&act=suppFor&id="+refFormule+"&dom="+idDom;
-    
+function suppFormule(idDom, refFormule) {
+    var url = "index?section=actionCom&act=suppFor&id=" + refFormule + "&dom=" + idDom;
+
     var xhr = getXmlHttpRequest();
-    
-    xhr.onreadystatechange = function (){
-        if(xhr.readyState == 4 && xhr.status == 200){
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
             var maDiv = document.getElementById(idDom);
             var response = xhr.responseText;
             maDiv.innerHTML = response;
@@ -170,4 +172,35 @@ function suppFormule(idDom, refFormule){
     };
     xhr.open("GET", url, true);
     xhr.send(null);
+}
+
+function demandeKill() {
+    alert("demande kill");
+    bootbox.prompt("Entrez votre mot de passe", function (result) {
+        killSession(result);
+    });
+}
+
+function killSession(password) {
+    alert("killSession demandé, pass = " + password);
+    var url = "index?section=actionCom&act=kill&pass=" + password;
+    var xhr = getXmlHttpRequest();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var response = xhr.responseText;
+            alert("response = " + response);
+            result = response.toString();
+
+
+            bootbox.alert(result,
+                    function () {
+                        location.assign("index?section=ihmclient");
+                    });
+        }
+    };
+
+    xhr.open("POST", url, true);
+    xhr.send(null);
+
 }

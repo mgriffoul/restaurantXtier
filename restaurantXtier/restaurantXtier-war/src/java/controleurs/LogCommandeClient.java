@@ -58,6 +58,7 @@ public class LogCommandeClient implements SousControleurInterface{
         
         session.setAttribute("codeServeur", passServ);
         session.setAttribute("commande", com);
+        request.setAttribute("deco", "deco");
         request.setAttribute("contentInc", prefix + s1 + suffix);
         return url;
     

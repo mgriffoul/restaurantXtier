@@ -10,14 +10,31 @@ and open the template in the editor.
 
 
 
-.bouton13 {
+.boutonVert {
     border:none;
     padding:6px 4px 6px 4px;
     border-radius:8px;
-    background:#FF7F50;
+    background:#00FF33;
     font:bold 13px Arial;
-    color:#fff;
+    color:#000000;
 }
+.boutonOrange {
+    border:none;
+    padding:6px 4px 6px 4px;
+    border-radius:8px;
+    background:#FF8C00;
+    font:bold 13px Arial;
+    color:#000000;
+}
+.boutonRouge {
+    border:none;
+    padding:6px 4px 6px 4px;
+    border-radius:8px;
+    background:#CC0000;
+    font:bold 13px Arial;
+    color:#000000;
+}
+
 
 .bouton17 {
     border:none;
@@ -158,3 +175,4 @@ and open the template in the editor.
     width: 110px;
     height : 40px;
 }
+

@@ -36,7 +36,15 @@
                         <td >${ligne.article.nom}</td>
                         <td >${ligne.etatLc.etat}</td>
                         <td >${ligne.remarque}</td>
-                        <td ><a class="bouton13" href="index?section=IHMCuisine&inc=cat&meth=change&idLc=${ligne.id}">changer</a></td>
+                        <c:if test="${ligne.etatLc.etat eq 'Attente'}">
+                            <td ><a class="boutonVert" href="index?section=IHMCuisine&inc=plat&meth=change&idLc=${ligne.id}">changer</a></td>
+                        </c:if>
+                        <c:if test="${ligne.etatLc.etat eq 'En préparation'}">
+                            <td ><a class="boutonOrange" href="index?section=IHMCuisine&inc=plat&meth=change&idLc=${ligne.id}">changer</a></td>
+                        </c:if>
+                        <c:if test="${ligne.etatLc.etat eq 'Prêt'}">
+                            <td ><a class="boutonRouge" href="index?section=IHMCuisine&inc=plat&meth=change&idLc=${ligne.id}">changer</a></td>
+                        </c:if>
                     </tr>
                 </c:forEach>
             </tbody>

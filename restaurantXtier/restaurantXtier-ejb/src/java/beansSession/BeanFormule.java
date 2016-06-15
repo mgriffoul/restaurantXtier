@@ -107,6 +107,7 @@ public class BeanFormule implements BeanFormuleLocal {
             ArrayList<Article> plats = selectPlatsOfFormule(f);
             ArrayList<Article> desserts = selectDessertsOfFormule(f);
             ArrayList<Article> boissons = selectBoissonsOfFormule(f);
+            System.out.println("Boissons size charger formule ="+boissons);
             f.setEntrees(entrees);
             f.setPlats(plats);
             f.setDesserts(desserts);

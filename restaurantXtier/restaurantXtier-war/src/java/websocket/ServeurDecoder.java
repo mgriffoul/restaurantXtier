@@ -16,24 +16,12 @@ public class ServeurDecoder implements Decoder.Text<WsCommandeAction>{
 
     @Override
     public WsCommandeAction decode(String s) throws DecodeException {
-        System.out.println("+++++decoding Serveur");
-        System.out.println("String entrante Serveur = " + s);
         JsonObject jsonObject = Json.createReader(new StringReader(s)).readObject();
-        System.out.println("jsonobject created serveur");
-
+        
         String password = jsonObject.getString("password");
-        System.out.println("PASSWORD DECODER  SERVEUR"+password);
-        
         String action = jsonObject.getString("action");
-        System.out.println("ACTION SERVEUR= " + action);
-        
         Integer cleCommande = Integer.valueOf(jsonObject.getString("cleCommande"));
-        System.out.println("CLE COMMANDE DECODER SERVEUR  "+cleCommande);
-
         WsCommandeAction wca = new WsCommandeAction(cleCommande, password, action);
-
-        System.out.println(">>>>-->>>> WAC SERVEUR = " + jsonObject);
-
         return wca;
     }
 

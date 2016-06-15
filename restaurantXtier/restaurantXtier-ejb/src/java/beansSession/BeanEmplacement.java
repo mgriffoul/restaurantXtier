@@ -2,7 +2,6 @@ package beansSession;
 
 import beanEntite.Commande;
 import beanEntite.Emplacement;
-import java.util.Collection;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -31,19 +30,9 @@ public class BeanEmplacement implements BeanEmplacementLocal {
         String req = "Select e from Emplacement e order by e.numero asc";
         Query qr = em.createQuery(req);
         List<Emplacement> listEmplacement = qr.getResultList();
-        List<Commande> listCommande = salle.selectCommandeEnCours();
-        if (listCommande.isEmpty()){
-        for (Commande c : listCommande) {
-            Collection<Emplacement> listEmplacementCommande = c.getEmplacements();
-            for (Emplacement empCommande : listEmplacementCommande) {
-                for (Emplacement emp : listEmplacement) {
-                    if (empCommande == emp) {
-                        emp.setKeyCommande(groupesEmplacement.getKeyEmpByEmp(emp));
-                        emp.setStatut("occupe");
-                    }
-                }
-            }
-        }
+        for(Emplacement emp : listEmplacement){
+            emp.setStatut("libre");
+            updateEmplacement(emp);
         }
         return listEmplacement;
     }
