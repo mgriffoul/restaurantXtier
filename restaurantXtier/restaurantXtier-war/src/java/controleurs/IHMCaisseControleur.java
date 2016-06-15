@@ -49,6 +49,14 @@ public class IHMCaisseControleur implements SousControleurInterface {
 
         System.out.println(inc); 
         
+        if ("recharger".equalsIgnoreCase(inc)){
+            List<Commande> c = beanCommande.selectCommandeTerminee();
+            s1="commandes";
+            request.setAttribute("commandefinie", c);
+            request.setAttribute("contentInc", prefix + s1 + suffix);
+        return inc1;
+        }
+        
         if("payer".equalsIgnoreCase(inc)){
             System.out.println(">>>>>>>>>>>>> PRET A PAYER");
             String nCom = request.getParameter("nCom");

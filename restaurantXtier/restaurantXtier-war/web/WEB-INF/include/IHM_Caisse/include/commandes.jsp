@@ -22,7 +22,7 @@
                                 </td>
                                 <td>${com.numero}</td>
                                 <td><a href="index?section=IHMCaisse&incCaisse=ticket&nCom=${com.numero}" onclick="afficherCommande('${com.numero}');
-                                        return false;">Afficher</a></td>
+                                    return false;" class="btn">Afficher</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>

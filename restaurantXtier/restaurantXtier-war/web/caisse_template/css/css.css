@@ -1,5 +1,12 @@
+body{
+    background-color: #DCDCDC;
+}
+
+h1{
+    alignment-baseline: central;
+}
+
 .boutoncaisse{
-    background-color: red;
     vertical-align: top;
     display: inline-block;
 }
@@ -17,15 +24,23 @@
     border-color: #2e6da4;
 }
 
-#ticket{
-    background-color: blue;
+#partiedroite{
+    background-color: #DCDCDC;
     display: inline-block;
-    float: right;
+    float: none;
     text-align: left;
 }
 
+#ticket{
+    background-color: #DCDCDC;
+    display: inline-block;
+    float: none;
+    text-align: left;
+    padding-left: 20px;
+    margin-left: 30px;
+}
+
 #un{
-    background-color: yellow;
     display: block;
     float: top;
 }
@@ -45,14 +60,50 @@
 
 .partiegauche, #ticket{
     padding:1px 0;
-    display: in
+    display: inline-block;
+        
 }
 
-.tableaux{
-  display:inline-block;
-  vertical-align:top;
+#afficeurPrix{
+    height: 30px;
+    width: 200px;
+    margin-top: 20px;
 }
 
 .divprincipale{
     margin: auto;
+}
+
+#afficherCommande{
+    overflow: auto;
+    height: 200px;
+    width: 380px;
+}
+
+th,td{
+    alignment-adjust: central;
+}
+
+.btn{
+    display:block;
+    width:80px;
+    line-height:20px;
+    vertical-align:middle;
+    text-align: center;
+    text-decoration:none;
+    color: #ffffff;
+    background-color: #0987F0;
+    border-color: #2e6da4;
+}
+
+.btn-droite a{
+    display:block;
+    width:100px;
+    line-height:50px;
+    text-align:center;
+    vertical-align:middle;
+    text-decoration:none;
+    color: #ffffff;
+    background-color: #0000C8;
+    border-color: #2e6da4; 
 }

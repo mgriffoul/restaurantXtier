@@ -14,12 +14,13 @@
         <link rel="stylesheet" href="client-template/css/bootstrap.min.css">
         <style type="text/css">body {background-color: #DCDCDC;  }</style>
         <title>JSP Cuisine</title>
+        
+        
 
 
 
     </head>
-    <body onload="actualiserDiv('${ssSec}');
-            afficherHeure();">
+    <body onload="afficherHeure(); autoActuDiv('${ssSec}')">
         <div class="row">
             <div class="col-md-4">
                 <div style="padding-left:40px">
@@ -42,6 +43,7 @@
 
             <div class="col-md-4" >
                 <div style="margin-left: 240px; ">
+                    
                     <table >
                         <tr height="90px">
                             <td style="vertical-align: middle">
@@ -89,5 +91,6 @@
         <script src="client-template/js/wow.min.js"></script>
         <script src="client-template/js/main.js"></script>
         <script src="cuisine-css/js/cuisine-js.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
     </body>
 </html>
