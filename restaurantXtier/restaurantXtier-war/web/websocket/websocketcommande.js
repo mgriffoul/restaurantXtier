@@ -57,17 +57,17 @@ function waitForSocketConnection(socket, callback) {
 
 
 function onMessage(evt) {
-    alert("ONMESSAGE");
+    
     var json = JSON.parse(evt.data);
 
 
     action = json.action;
     cleCommande=json.cleCommande;
-    alert("ACTION = "+ json.action);
+    
     if (action === "close") {
         closeCommande(cleCommande);
     } else {
-        alert("ELSE ACTION");
+        
         refreshHeader();
         refreshMesCommandes();
     }
@@ -91,9 +91,6 @@ function wslog(cleCommande) {
     });
 
 
-}
-function test() {
-    alert("test");
 }
 
 

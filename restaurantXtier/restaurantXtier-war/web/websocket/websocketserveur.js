@@ -65,7 +65,7 @@ function onMessage(evt) {
     
     var json = JSON.parse(evt.data);
     
-    alert(json.cleCommande);
+    
         
 }
 
@@ -80,9 +80,7 @@ function wslogServ(password){
            websocket.send(json);
         });
 }
-function test(){
-    alert("test");
-}
+
 
 
 

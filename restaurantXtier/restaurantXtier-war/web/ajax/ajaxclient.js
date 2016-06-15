@@ -19,6 +19,7 @@ function getXmlHttpRequest() {
 
 
 function refreshHeader() {
+    alert("refresh header");
     var url = "index?section=clientRefresh&refresh=header";
 
     var xhr = getXmlHttpRequest();
@@ -38,7 +39,7 @@ function refreshHeader() {
 }
 
 function refreshMesCommandes() {
-
+alert("refresh mes commandes");
     var url = "index?section=clientRefresh&refresh=commande";
 
     var xhr = getXmlHttpRequest();
@@ -175,21 +176,21 @@ function suppFormule(idDom, refFormule) {
 }
 
 function demandeKill() {
-    alert("demande kill");
+    
     bootbox.prompt("Entrez votre mot de passe", function (result) {
         killSession(result);
     });
 }
 
 function killSession(password) {
-    alert("killSession demandé, pass = " + password);
+    
     var url = "index?section=actionCom&act=kill&pass=" + password;
     var xhr = getXmlHttpRequest();
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var response = xhr.responseText;
-            alert("response = " + response);
+            
             result = response.toString();
 
 

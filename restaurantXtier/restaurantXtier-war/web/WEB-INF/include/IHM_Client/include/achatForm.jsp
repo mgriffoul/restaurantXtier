@@ -76,7 +76,7 @@
 
                                 </div>
                                 
-                                        <p>  <button class="btn btn-success btn-valider" type="submit" value="valid"><span ></span> Valider</button>
+                                        <p>  <button class="btn btn-success btn-valider" type="submit" value="valid" onclick="sendOrder('${sessionScope.cleCommande}','refresh');"><span ></span> Valider</button>
                                         </p>
                                 </form>
                                     
