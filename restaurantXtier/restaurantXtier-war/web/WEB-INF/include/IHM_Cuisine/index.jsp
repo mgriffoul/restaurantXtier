@@ -13,14 +13,10 @@
         <!-- bootstrap.min css -->
         <link rel="stylesheet" href="client-template/css/bootstrap.min.css">
         <style type="text/css">body {background-color: #DCDCDC;  }</style>
-        <title>JSP Cuisine</title>
-        
-        
-
-
-
+        <title>Interface Cuisine</title>
     </head>
-    <body onload="afficherHeure(); autoActuDiv('${ssSec}')">
+    <body onload="afficherHeure(); actualiserDiv('${ssSec}');">
+
         <div class="row">
             <div class="col-md-4">
                 <div style="padding-left:40px">
@@ -43,7 +39,7 @@
 
             <div class="col-md-4" >
                 <div style="margin-left: 240px; ">
-                    
+
                     <table >
                         <tr height="90px">
                             <td style="vertical-align: middle">
@@ -74,9 +70,9 @@
                 </c:if>
             </div>
         </div>
-        <div >
 
-        </div>
+
+
 
         <!--FOOTER -->
         <jsp:include page="include/footer.jsp" />
