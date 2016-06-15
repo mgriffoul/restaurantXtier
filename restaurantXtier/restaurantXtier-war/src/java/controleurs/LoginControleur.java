@@ -21,6 +21,8 @@ import transcient.GroupeEmplacementLocal;
 import transcient.SalleLocal;
 
 public class LoginControleur implements Serializable, SousControleurInterface {
+
+    SalleLocal salle1 = lookupSalleLocal1();
     
     GroupeEmplacementLocal groupesEmplacement = lookupGroupesEmplacementLocal();
     
@@ -63,7 +65,6 @@ public class LoginControleur implements Serializable, SousControleurInterface {
                     List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
                     request.setAttribute("listEmplacement", listEmplacement);
                     request.setAttribute("contentInc", salle_s1);  
-                    
                     return "include/IHM_Salle/index";
                 case 4:
                     //jeu de test memoire
@@ -140,6 +141,17 @@ public class LoginControleur implements Serializable, SousControleurInterface {
             throw new RuntimeException(ne);
         }
     }
+
+    private SalleLocal lookupSalleLocal1() {
+        try {
+            Context c = new InitialContext();
+            return (SalleLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/Salle!transcient.SalleLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
 
 
 }
