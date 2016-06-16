@@ -184,7 +184,7 @@
                                 </span></div>
                                 <c:if test="${commande.statut=='en creation'}">
                                 <a href="#"  class="btn btn-success " type="button" onclick="testbootbox('${sessionScope.cleCommande}','${sessionScope.codeServeur}');" >Je souhaite valider ma commande</a>
-                               cle =  ${sessionScope.cleCommande}, code = ${sessionScope.codeServeur}
+                             
                             </c:if>
 
                         </div>

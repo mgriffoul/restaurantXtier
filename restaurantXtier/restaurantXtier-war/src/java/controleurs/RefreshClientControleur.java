@@ -99,7 +99,7 @@ public class RefreshClientControleur implements SousControleurInterface {
             Collection<LigneCommande> desserts = salle.getDessertsCommandees(cleCommande);
             Collection<LigneCommande> formules = salle.getFormulesCommandees(cleCommande);
             Collection<LigneCommande> boissons = salle.getBoissonsCommandees(cleCommande);
-
+            System.out.println("ALL GET LC OK REFRESHCONT");
             HashMap<Formule, Collection<LigneCommande>> hmf = new HashMap<>();
             Collection<String> refForms = new ArrayList();
 
@@ -107,6 +107,7 @@ public class RefreshClientControleur implements SousControleurInterface {
                 if (!refForms.contains(l.getRefFormule())) {
                     refForms.add(l.getRefFormule());
                 }
+                System.out.println("1ER FOR OK REFRESH");
             }
 
             for (String s : refForms) {
@@ -117,7 +118,8 @@ public class RefreshClientControleur implements SousControleurInterface {
 
                     }
                 }
-                hmf.put(beanFormule.selectFormuleByRef(s), col);
+                System.out.println("2E FOR  REFRESH");
+                hmf.put(beanFormule.selectFormuleByRef(s.substring(0, 3)), col);
             }
 
             request.setAttribute("boissons", boissons);
