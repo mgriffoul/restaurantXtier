@@ -3,9 +3,6 @@
     <form method="POST"  action="index">
         <input type="hidden" name="section" value="IHMSalle">
         <input type="hidden" name="inc" value="createOrder">
-        <c:if test="${OrderValide == 'ok'}">
-            <script type="text/javascript"> bootbox.alert("Commande créée!");</script>
-        </c:if>
         <c:forEach items="${listEmplacement}" var="emp">
             <div class="row">  
                 <c:if test="${emp.getStatut() == 'occupe'}">

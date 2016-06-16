@@ -11,7 +11,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -56,12 +55,10 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
             String[] emplacements = request.getParameterValues("table");
             for (String s : emplacements) {
                 Emplacement emp = beanEmplacement.selectEmplacementByNumero(s);
-                emp.setStatut("non valide");
                 emps.add(emp);
-                beanEmplacement.updateEmplacement(emp);
             }
             salle.creerCommande(emps, ut01);
-            Collection<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
+            Collection<Emplacement> listEmplacement = groupesEmplacement.getEmplacementsList();
             request.setAttribute("listEmplacement", listEmplacement);
             request.setAttribute("OrderValide","ok");
             request.setAttribute("contentInc", s1);
@@ -132,11 +129,8 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
             Integer cleCommande = Integer.parseInt(request.getParameter("com"));
             Commande c01 = salle.selectCommandeByCleCommande(cleCommande);
             Collection<Emplacement> emplacements = c01.getEmplacements();
-            for (Emplacement emp : emplacements) {
-                emp.setStatut("help");
-                beanEmplacement.updateEmplacement(emp);
-            }
-            List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
+            groupesEmplacement.updateEmplacement("help", cleCommande);
+            Collection<Emplacement> listEmplacement = groupesEmplacement.getEmplacementsList();
             request.setAttribute("listEmplacement", listEmplacement);
             request.setAttribute("commande", c01);
             request.setAttribute("contentInc", s1);
@@ -147,11 +141,8 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
             Integer cleCommande = Integer.parseInt(request.getParameter("com"));
             Commande c01 = salle.selectCommandeByCleCommande(cleCommande);
             Collection<Emplacement> emplacements = c01.getEmplacements();
-            for (Emplacement emp : emplacements) {
-                emp.setStatut("valide");
-                beanEmplacement.updateEmplacement(emp);
-            }
-            List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
+            groupesEmplacement.updateEmplacement("valide", cleCommande);
+            Collection<Emplacement> listEmplacement = groupesEmplacement.getEmplacementsList();
             request.setAttribute("listEmplacement", listEmplacement);
             request.setAttribute("commande", c01);
             request.setAttribute("contentInc", s1);

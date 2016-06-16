@@ -11,6 +11,7 @@
         <link href="salle_template/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="salle_template/css/serveur-template.css" rel="stylesheet">
+        <link rel="stylesheet" href="client-template/css/main.css">
     <body>
         <div class="navbar">
             <label id="serveur"><img src="salle_template/images/IHM_salle/barman.png" alt=".." onclick="location.href = '';" />

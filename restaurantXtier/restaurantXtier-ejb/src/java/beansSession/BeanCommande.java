@@ -176,7 +176,6 @@ public class BeanCommande implements BeanCommandeLocal {
         for (LigneCommande lc : liste) {
             Float f = beanLigneCommande.getPrixLcTTC(lc);
             total += f;
-            return total;
         }
         return total;
     }

@@ -1,21 +1,18 @@
 package transcient;
 
-import beanEntite.Commande;
 import beanEntite.Emplacement;
 import beansSession.BeanEmplacementLocal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 
 @Singleton
 public class GroupesEmplacement implements GroupeEmplacementLocal {
-
-    @EJB
-    private SalleLocal salle;
 
     @EJB
     private BeanEmplacementLocal beanEmplacement;
@@ -35,8 +32,6 @@ public class GroupesEmplacement implements GroupeEmplacementLocal {
         this.emplacements = emplacements;
     }
 
-
-
     @Override
     public Integer getKeyEmpByEmpNum(Integer Numero) {
         for (Map.Entry<Integer, Collection<Emplacement>> entry : emplacements.entrySet()) {
@@ -48,6 +43,47 @@ public class GroupesEmplacement implements GroupeEmplacementLocal {
             }
         }
         return null;
+    }
+
+    @Override
+    public Collection<Emplacement> getEmplacementsList() {
+        Collection<Emplacement> emp = new ArrayList<>();
+        Collection<Emplacement> emp2 = new ArrayList<>();
+
+        Collection<Emplacement> empList = beanEmplacement.selectAllEmplacement();
+
+        for (Map.Entry<Integer, Collection<Emplacement>> entry : emplacements.entrySet()) {
+            for (Emplacement e : entry.getValue()) {
+                emp.add(e);
+            }
+        }
+        System.out.println("EMPLACEMENT>>>>>>>>>>>>>>>>>>>" + emp);
+        System.out.println("EMPLACEMENT>>>>>>>>>>>>>>>>>>>" + empList);
+
+        for (Emplacement e : empList) {
+            Emplacement ee = null;
+            for (Emplacement ep : emp) {
+                System.out.println(e.getNumero() + "  " + ep.getNumero());
+                if (e.getNumero() == ep.getNumero()) {
+                    ee = ep;
+                }
+                //                    e = ep;
+            }
+            if (ee == null) {
+                emp2.add(e);
+            } else {
+                emp2.add(ee);
+            }
+        }
+        return emp2;
+    }
+    
+    public void updateEmplacement(String action, Integer key){
+         Collection<Emplacement> list = emplacements.get(key);
+         for (Emplacement e : list){
+             e.setStatut(action);
+         }
+        emplacements.replace(key, list);
     }
 
     @Override
@@ -72,6 +108,10 @@ public class GroupesEmplacement implements GroupeEmplacementLocal {
             if (e.getNumero() < y) {
                 y = e.getNumero();
             }
+        }
+        for (Emplacement e : emp) {
+            e.setStatut("non valide");
+            e.setKeyCommande(y);
         }
         emplacements.put(y, emp);
         return y;

@@ -6,144 +6,188 @@
     <p> Commande N° ${commande.getNumero()} créée avec succès et envoyée en cuisine! </p>
 </c:if>
 <c:if test="${commande.getStatut() != 'en cours'}">
-    <section id="commandes">
-        <section id="price">
-            <div class="container container-perso" id="#">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="block ">
-                            <h1>Commande:</h1>
-                            <div class="pricing-list ">
-                                <!--Affichage des entrees commandees-->
-                                <c:if test="${not empty entrees}">
-                                    <h3><span>Entrées</span></h3>
-                                </c:if>
-                                <c:forEach items="${entrees}" var="entree">
-                                    <li>
-                                        <div>
-                                            <h2>${entree.article.nom} <fmt:formatNumber type="number" maxFractionDigits="2" value="${entree.prixTtc}" />Euros</h2>
+<section id="commandes">
+    <section id="price">
+        <div class="container container-perso" id="#">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block ">
 
-                                            <button class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${entree.article.id}');
-                                                    suppArticle('header', '${entree.article.id}');
-                                                    sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
-                                            </span>
+                        <h1 class="heading carte-titre">votre<span>Commande</span> </h1>
+                        <div class="pricing-list ">
+                            <!--Affichage des entrees commandees-->
+                            <c:if test="${not empty entrees}">
+                                <div class="title categorie-carte">
+                                    <h3><span>Entrées</span></h3>
+                                </div>
+                            </c:if>
+                            <ul class="puce-recap-commande">
+                                <c:forEach items="${entrees}" var="entree">
+
+                                    <li class="article">
+                                        <div class="item ">
+                                            <div class="item-title ">
+                                                <h2 class="recap-commande-intitule">${entree.article.nom}</h2>
+
+                                                <span class="prixrecapcommande">
+                                                    <fmt:formatNumber type="number" maxFractionDigits="2" value="${entree.prixTtc}" />E
+
+                                                    <button class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${entree.article.id}');
+                                                            suppArticle('header', '${entree.article.id}');
+                                                            sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                                </span>
+                                                <div class="border-bottom-perso"></div>
+                                            </div>
                                         </div>
+
                                     </li>
 
                                 </c:forEach>
 
-                                </ul>
+                            </ul>
 
-                                <!--Affichage des plats commandees-->
-                                <c:if test="${not empty plats}">
+                            <!--Affichage des plats commandees-->
+                            <c:if test="${not empty plats}">
+                                <div class="title categorie-carte">
                                     <h3><span>Plats</span></h3>
-                                </c:if>
-                                <ul>
-                                    <c:forEach items="${plats}" var="plat">
-                                        <li>
-                                            <h2>${plat.article.nom}  <fmt:formatNumber type="number" maxFractionDigits="2" value="${plat.prixTtc}" />Euros</h2>
-
-                                            <span>
-
-
-                                                <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${plat.article.id}');
-                                                        suppArticle('header', '${plat.article.id}');
-                                                        sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
-                                            </span>
-
-                                        </li>
-                                    </c:forEach>
-                                </ul>
-
-
-                                <!--Affichage des desserts commandees-->
-                                <c:if test="${not empty desserts}">
-                                    <h3><span>Desserts</span></h3>
-                                </c:if>
-                                <ul>
-                                    <c:forEach items="${desserts}" var="dessert">
-                                        <li>
-                                            <h2>${dessert.article.nom} <fmt:formatNumber type="number" maxFractionDigits="2" value="${dessert.prixTtc}" />Euros</h2>
-
-                                            <span>
-
-
-                                                <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${dessert.article.id}');
-                                                                suppArticle('header', '${dessert.article.id}');
-                                                                sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
-                                            </span>
-                                        </li>
-                                    </c:forEach>
-                                </ul>
-
-
-                                <!--Affichage des formules commandees-->                        
-                                <c:if test="${not empty formules}">
-                                    <h3><span>Formules</span></h3>
-                                </c:if>
-
-
-                                <c:forEach items="${formules}" var="hm">
-                                    <c:forEach items="${hm.value}" var="for">
-                                        <ul>
-                                            <li>
-                                                <h2>${for.key.nom} <fmt:formatNumber type="number" maxFractionDigits="2" value="${for.key.prixTtc}" />Euros</h2>
-                                                <span>
-                                                    <button type="button" class="btn btn-danger btn-sm " onclick="suppFormule('commandes', '${hm.key}');
-                                                                    suppFormule('header', '${hm.key}');
-                                                                    sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
-                                                </span>
-                                                <c:forEach items="${for.value}" var="ligne">
-                                                    <ul>
-                                                        <li>
-                                                            <h2>${ligne.article.nom}</h2>
-
-                                                        </li>
-                                                    </ul>
-                                                </c:forEach>
-                                            </li>
-                                        </ul>
-                                    </c:forEach>
-                                </c:forEach>
-
-
-                                <!--Affichage des boissons commandees-->
-                                <c:if test="${not empty boissons}">
-
-                                    <h3><span>Boissons</span></h3>
-
-                                </c:if>
-
-
-                                <ul>
-                                    <c:forEach items="${boissons}" var="boi">
-                                        <li>
-
-                                            <h2>${boi.article.nom} <fmt:formatNumber type="number" maxFractionDigits="2" value="${boi.prixTtc}" />Euros</h2>
-
-                                            <span>
-
-
-                                                <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${boi.article.id}');
-                                                                suppArticle('header', '${boi.article.id}');
-                                                                sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
-                                            </span>
-
-
-                                        </li>
-                                    </c:forEach>
-                                </ul>
-
-                                <div class="">
-                                    <p>Total de votre commande : <fmt:formatNumber type="number" maxFractionDigits="2" value="${prixTotal}" />Euros</p>
                                 </div>
-                            </div>
+                            </c:if>
+
+
+                            <ul class="puce-recap-commande">
+                                <c:forEach items="${plats}" var="plat">
+                                    <li class="article">
+                                        <div class="item ">
+                                            <div class="item-title ">
+                                                <h2 class="recap-commande-intitule">${plat.article.nom}</h2>
+
+                                                <span>
+                                                    <fmt:formatNumber type="number" maxFractionDigits="2" value="${plat.prixTtc}" />E
+
+                                                    <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${plat.article.id}');
+                                                            suppArticle('header', '${plat.article.id}');
+                                                            sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                                </span>
+                                                <div class="border-bottom-perso"></div>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                </c:forEach>
+                            </ul>
+
+
+                            <!--Affichage des desserts commandees-->
+                            <c:if test="${not empty desserts}">
+                                <div class="title categorie-carte">
+                                    <h3><span>Desserts</span></h3>
+                                </div>
+                            </c:if>
+
+
+                            <ul class="puce-recap-commande">
+                                <c:forEach items="${desserts}" var="dessert">
+                                    <li class=" article">
+                                        <div class="item ">
+                                            <div class="item-title ">
+                                                <h2 class="recap-commande-intitule">${dessert.article.nom}</h2>
+
+                                                <span>
+                                                    <fmt:formatNumber type="number" maxFractionDigits="2" value="${dessert.prixTtc}" />E
+
+                                                    <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${dessert.article.id}');
+                                                            suppArticle('header', '${dessert.article.id}');
+                                                            sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                                </span>
+                                                <div class="border-bottom-perso"></div>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                </c:forEach>
+                            </ul>
+
+
+                            <!--Affichage des formules commandees-->                        
+                            <c:if test="${not empty formules}">
+                                <div class="title categorie-carte">
+                                    <h3><span>Formules</span></h3>
+                                </div>
+                            </c:if>
+                            <c:forEach items="${formules}" var="hm">
+                                <c:forEach items="${hm.value}" var="for">
+                                    <ul class="puce-recap-commande">
+                                        <li class="article" >
+                                            <div class="item ">
+                                                <div class="item-title ">
+                                                    <h2 class="recap-commande-intitule">${for.key.nom}</h2>
+                                                    <span>
+                                                        <fmt:formatNumber type="number" maxFractionDigits="2" value="${for.key.prixTtc}" />E
+
+                                                        <button type="button" class="btn btn-danger btn-sm " onclick="suppFormule('commandes', '${hm.key}');
+                                                                suppFormule('header', '${hm.key}');
+                                                                sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                                    </span>
+                                                    <div class="border-bottom-perso"></div>
+                                                </div>
+                                            </div>
+                                            <c:forEach items="${for.value}" var="ligne">
+                                                <ul class="ulperso">
+                                                    <li class="article" >
+                                                        <div class="item ">
+                                                            <div class="item-title ">
+                                                                <h2 class="recap-commande-intitule"> ${ligne.article.nom}</h2>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </c:forEach>
+                                        </li>
+                                    </ul>
+                                </c:forEach>
+                            </c:forEach>
+
+
+                            <!--Affichage des boissons commandees-->
+                            <c:if test="${not empty boissons}">
+                                <div class="title categorie-carte">
+                                    <h3><span>Boissons</span></h3>
+                                </div>
+                            </c:if>
+
+
+                            <ul class="puce-recap-commande">
+                                <c:forEach items="${boissons}" var="boi">
+                                    <li class="article" >
+                                        <div class="item ">
+                                            <div class="item-title ">
+                                                <h2 class="recap-commande-intitule">${boi.article.nom}</h2>
+
+                                                <span>
+                                                    <fmt:formatNumber type="number" maxFractionDigits="2" value="${boi.prixTtc}" />E
+
+                                                    <button type="button" class="btn btn-danger btn-sm " onclick="suppArticle('commandes', '${boi.article.id}');
+                                                            suppArticle('header', '${boi.article.id}');
+                                                            sendOrder('${sessionScope.cleCommande}');"><span class="glyphicon glyphicon-remove glyphpers"></span></button>
+                                                </span>
+                                                <div class="border-bottom-perso"></div>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                </c:forEach>
+                            </ul>
+
+                            <div class="prix-total-commande">Total de votre commande : <span>
+                                    <fmt:formatNumber type="number" maxFractionDigits="2" value="${prixTotal}" />E
+                                </span></div>
                         </div>
-                    </div><!-- .col-md-12 close -->
-                </div><!-- .row close -->
-            </div><!-- .containe close -->
-        </section><!-- #price close -->
-    </section>
+                    </div>
+                </div><!-- .col-md-12 close -->
+            </div><!-- .row close -->
+        </div><!-- .containe close -->
+    </section><!-- #price close -->
+</section>
     <form method="POST"  action="index">
         <input type="hidden" name="section" value="IHMSalle">
         <input type="hidden" name="inc" value="validOrder">

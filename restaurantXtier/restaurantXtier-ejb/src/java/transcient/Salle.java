@@ -8,6 +8,7 @@ import beanEntite.Formule;
 import beanEntite.LigneCommande;
 import beanEntite.Utilisateur;
 import beansSession.BeanCommandeLocal;
+import beansSession.BeanEmplacementLocal;
 import beansSession.BeanEtatLigneCommandeLocal;
 import beansSession.BeanFormuleLocal;
 import beansSession.BeanLigneCommandeLocal;
@@ -25,6 +26,9 @@ import javax.ejb.Singleton;
 
 @Singleton
 public class Salle implements SalleLocal {
+
+    @EJB
+    private BeanEmplacementLocal beanEmplacement;
 
     @EJB
     private BeanEtatLigneCommandeLocal beanEtatLigneCommande;
@@ -79,8 +83,8 @@ public class Salle implements SalleLocal {
     //de la commande.
     @Override
     public Integer creerCommande(Collection<Emplacement> emp, Utilisateur util) {
+        Integer keyCommande = groupesEmplacement.creerGroupe(emp);  
         Commande c01 = beanCommande.createCommande(emp, util);
-        Integer keyCommande = groupesEmplacement.creerGroupe(emp);
         commandes.put(keyCommande, c01);
         return keyCommande;
     }

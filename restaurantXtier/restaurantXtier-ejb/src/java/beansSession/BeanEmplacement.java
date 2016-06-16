@@ -12,10 +12,9 @@ import transcient.GroupeEmplacementLocal;
 @Stateless
 public class BeanEmplacement implements BeanEmplacementLocal {
 
-
     @EJB
     private GroupeEmplacementLocal groupesEmplacement;
-    
+
     @PersistenceContext(name = "restaurantXtier-ejbPU")
     private EntityManager em;
 
@@ -25,12 +24,10 @@ public class BeanEmplacement implements BeanEmplacementLocal {
         Query qr = em.createQuery(req);
         List<Emplacement> listEmplacement = qr.getResultList();
         for (Emplacement e : listEmplacement){
-            e.setKeyCommande(groupesEmplacement.getKeyEmpByEmpNum(e.getNumero())); 
+            e.setStatut("libre");
         }
         return listEmplacement;
     }
-    
-  
 
     @Override
     public Emplacement selectEmplacementById(Long id) {

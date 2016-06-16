@@ -60,14 +60,12 @@ public class LoginControleur implements Serializable, SousControleurInterface {
                     return "include/IHM_Caisse/index";
                 case 3:
                     String salle_s1 = "include/accueil.jsp";
-                    Collection<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
+                    Collection<Emplacement> listEmplacement = groupesEmplacement.getEmplacementsList();         
                     request.setAttribute("listEmplacement", listEmplacement);
                     request.setAttribute("contentInc", salle_s1);
                     return "include/IHM_Salle/index";
                 case 4:
-
                     HashMap<Integer, Commande> commandes = salle.getCommandes();
-
                     request.setAttribute("commandes", commandes);
                     return "include/IHM_Client/include/logclient";
                 case 5:
