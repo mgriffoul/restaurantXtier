@@ -96,7 +96,7 @@ function refreshCarte() {
 }
 
 function testbootbox(cleCommande, codeServeur) {
-    alert("testBootbox, cle = "+cleCommande+" code = "+codeServeur);
+    
     bootbox.confirm("Etes vous certain de vouloir valider la commande ? La commande ne pourra plus être modifié par aucun convive après confirmation.", function (result) {
         if (result === true) {
             
