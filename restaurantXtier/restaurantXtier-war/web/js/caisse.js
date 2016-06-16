@@ -1,3 +1,11 @@
+setInterval(
+        function(){
+            recharger(),10000;
+        }
+        );
+
+
+
 function getXmlHttpRequest() {
     var xhr = null;
     if (window.XMLHttpRequest) // Firefox et autres
