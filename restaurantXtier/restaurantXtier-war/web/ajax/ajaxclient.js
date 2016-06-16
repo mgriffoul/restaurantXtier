@@ -19,7 +19,7 @@ function getXmlHttpRequest() {
 
 
 function refreshHeader() {
-    alert("refresh header");
+  
     var url = "index?section=clientRefresh&refresh=header";
 
     var xhr = getXmlHttpRequest();
@@ -39,8 +39,8 @@ function refreshHeader() {
 }
 
 function refreshMesCommandes() {
-alert("refresh mes commandes");
-    var url = "index?section=clientRefresh&refresh=commande";
+alert("refreshCom demande");
+    var url = "index?section=ihmclient&inc=com&origine=ajax";
 
     var xhr = getXmlHttpRequest();
 

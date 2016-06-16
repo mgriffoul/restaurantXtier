@@ -28,7 +28,6 @@ public class Salle implements SalleLocal {
 
     @EJB
     private BeanEtatLigneCommandeLocal beanEtatLigneCommande;
-
     @EJB
     private BeanFormuleLocal beanFormule;
     @EJB

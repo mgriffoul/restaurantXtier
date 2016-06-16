@@ -104,6 +104,8 @@ public class IHMClientControleur implements SousControleurInterface {
                     }
 
                     if ("com".equalsIgnoreCase(inc)) {
+                        System.out.println("DANS CONTRLOEUR COMMANDE");
+                        String origine = request.getParameter("origine");
 
                         if ("en creation".equalsIgnoreCase(co.getStatut())) {
                             s1 = "commande";
@@ -146,6 +148,13 @@ public class IHMClientControleur implements SousControleurInterface {
                         request.setAttribute("desserts", desserts);
                         request.setAttribute("formules", hmf);
 
+                        if (origine != null) {
+                            if (co.getStatut().equalsIgnoreCase("en creation")) {
+                                return prefix + "IHM_Client/include/commande";
+                            } else {
+                                return prefix + "IHM_Client/include/suiviCommande";
+                            }
+                        }
                     }
 
                     //Menu achat Formule
@@ -157,7 +166,6 @@ public class IHMClientControleur implements SousControleurInterface {
 
                         Formule f = beanFormule.selectFormuleById(idForm);
                         beanFormule.chargerFormule(f);
-                        
 
                         request.setAttribute("for", f);
 

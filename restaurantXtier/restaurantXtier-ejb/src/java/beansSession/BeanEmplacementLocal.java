@@ -17,6 +17,5 @@ public interface BeanEmplacementLocal {
 
     public Emplacement selectEmplacementByNumero(String numero);
     
-    public List<Emplacement> cleanEmplacement(List<Emplacement> listEmplacement);
 
 }

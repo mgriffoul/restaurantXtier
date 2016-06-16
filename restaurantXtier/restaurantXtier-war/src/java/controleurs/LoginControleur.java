@@ -6,6 +6,7 @@ import beanEntite.Utilisateur;
 import beansSession.BeanCommandeLocal;
 import beansSession.BeanEmplacementLocal;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -22,9 +23,9 @@ import transcient.SalleLocal;
 public class LoginControleur implements Serializable, SousControleurInterface {
 
     SalleLocal salle1 = lookupSalleLocal1();
-    
+
     GroupeEmplacementLocal groupesEmplacement = lookupGroupesEmplacementLocal();
-    
+
     SalleLocal salle = lookupSalleLocal();
 
     BeanEmplacementLocal beanEmplacement = lookupBeanEmplacementLocal();
@@ -33,8 +34,6 @@ public class LoginControleur implements Serializable, SousControleurInterface {
 
     BeanCommandeLocal beanCommande = lookupBeanCommandeLocal();
 
-    
-    
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
@@ -50,7 +49,7 @@ public class LoginControleur implements Serializable, SousControleurInterface {
             session.setAttribute("user", ut01);
             switch (ut01.getRole()) {
                 case 1:
-                   String s = "include/accueil.jsp";
+                    String s = "include/accueil.jsp";
                     request.setAttribute("contentInc", s);
                     return "include/IHM_Cuisine/index";
                 case 2:
@@ -60,25 +59,15 @@ public class LoginControleur implements Serializable, SousControleurInterface {
                     request.setAttribute("commandefinie", c);
                     return "include/IHM_Caisse/index";
                 case 3:
-                    String salle_s1= "include/accueil.jsp"; 
-                    List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
-                    listEmplacement = beanEmplacement.cleanEmplacement(listEmplacement);
+                    String salle_s1 = "include/accueil.jsp";
+                    Collection<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
                     request.setAttribute("listEmplacement", listEmplacement);
-                    request.setAttribute("contentInc", salle_s1);  
+                    request.setAttribute("contentInc", salle_s1);
                     return "include/IHM_Salle/index";
                 case 4:
-                    //jeu de test memoire
-//                    List<Commande> coms = beanCommande.selectCommandeEnCours();        
-//                    
-//                    Utilisateur ut = BeanUser.getUserByCode("3332");
-//                    
-//                    for(Commande co : coms){
-//                        Collection<Emplacement> emps = co.getEmplacements();
-//                        salle.creerCommande(emps, ut);
-//                    }                    
-                    
+
                     HashMap<Integer, Commande> commandes = salle.getCommandes();
-                    
+
                     request.setAttribute("commandes", commandes);
                     return "include/IHM_Client/include/logclient";
                 case 5:
@@ -119,7 +108,7 @@ public class LoginControleur implements Serializable, SousControleurInterface {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
-            
+
     }
 
     private SalleLocal lookupSalleLocal() {
@@ -151,7 +140,5 @@ public class LoginControleur implements Serializable, SousControleurInterface {
             throw new RuntimeException(ne);
         }
     }
-
-
 
 }
