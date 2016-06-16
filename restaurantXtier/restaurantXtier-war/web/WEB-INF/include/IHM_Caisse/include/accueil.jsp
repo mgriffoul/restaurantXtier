@@ -94,7 +94,10 @@
             </div>
         </div>
         <div id="partiedroite">
-            <p><a href="#" onclick="recharger()" class="btn">Actualiser</a></p>
+            <p>
+            <a href="#" onclick="recharger()" class="btn">Actualiser</a>
+            <a href="#" class="btn">Imprimer</a>   
+            </p>
         <div id="ticket">
             <c:import url="WEB-INF/include/IHM_Caisse/include/ticket.jsp" />
         </div>

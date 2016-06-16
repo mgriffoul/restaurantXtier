@@ -19,15 +19,13 @@ public class Ticket implements Serializable {
     private Long id;
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date date;
-    private float prixTotal;
+    
 
     public Date getDate() {
         return date;
     }
 
-    public float getPrixTotal() {
-        return prixTotal;
-    }
+    
 
     public Commande getCommande() {
         return commande;
@@ -37,9 +35,7 @@ public class Ticket implements Serializable {
         this.date = date;
     }
 
-    public void setPrixTotal(float prixTotal) {
-        this.prixTotal = prixTotal;
-    }
+  
 
     public void setCommande(Commande commande) {
         this.commande = commande;
@@ -47,17 +43,17 @@ public class Ticket implements Serializable {
     
       // associations
 
-    public Ticket(Date date, float prixTotal) {
+    public Ticket(Date date) {
         this.date = date;
-        this.prixTotal = prixTotal;
+        
     }
 
     public Ticket() {
     }
  
     @OneToMany
-    private Collection<Paiement> paiments;
-    @OneToOne
+    private Collection<Paiement> paiements;
+    @OneToOne()
     private Commande commande;
     //fin associations
     
@@ -68,6 +64,14 @@ public class Ticket implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Collection<Paiement> getPaiements() {
+        return paiements;
+    }
+
+    public void setPaiements(Collection<Paiement> paiements) {
+        this.paiements = paiements;
     }
     
     

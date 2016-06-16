@@ -6,6 +6,7 @@
 package beansSession;
 
 import beanEntite.Commande;
+import java.util.Date;
 import javax.ejb.Local;
 
 /**
@@ -24,5 +25,5 @@ public interface BeanTicketLocal {
 
 
 
-    
+  
 }

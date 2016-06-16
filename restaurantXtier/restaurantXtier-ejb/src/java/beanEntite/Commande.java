@@ -39,7 +39,7 @@ public class Commande implements Serializable {
     @ManyToOne
     private Utilisateur utilisateur;
 
-    @OneToOne
+    @OneToOne(mappedBy = "commande")
     private Ticket ticket;
 
     @OneToMany(mappedBy = "commande")
