@@ -9,9 +9,7 @@
 
 
 <div class="col-md-8" >
-    <div>
-        Nous sommes le ${today}.
-    </div>
+
     <center><h3>Commandes en cours <b><FONT color="#FF8C00">${message}</font></b></h3></center>
     <center><table id="tab" >
             <thead BGCOLOR="B0C4E0">
