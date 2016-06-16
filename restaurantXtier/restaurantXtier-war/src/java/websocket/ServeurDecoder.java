@@ -22,6 +22,7 @@ public class ServeurDecoder implements Decoder.Text<WsCommandeAction>{
         String action = jsonObject.getString("action");
         Integer cleCommande = Integer.valueOf(jsonObject.getString("cleCommande"));
         WsCommandeAction wca = new WsCommandeAction(cleCommande, password, action);
+        System.out.println("DECODE OK");
         return wca;
     }
 

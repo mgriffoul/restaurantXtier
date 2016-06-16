@@ -31,6 +31,7 @@ function sendHelpServeur(cleCommande, codeServeur) {
 }
 
 function sendValidServeur(cleCommande, codeServeur) {
+    alert("SEND VALID SERVEUR");
     var json = JSON.stringify({
         "password": codeServeur,
         "action": "valid",
