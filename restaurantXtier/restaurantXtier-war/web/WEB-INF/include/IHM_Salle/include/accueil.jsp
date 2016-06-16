@@ -3,6 +3,10 @@
     <form method="POST"  action="index">
         <input type="hidden" name="section" value="IHMSalle">
         <input type="hidden" name="inc" value="createOrder">
+        <c:if test="${OrderValide == 'ok'}">
+            <script type="text/javascript">validate();</script>
+
+        </c:if>
         <c:forEach items="${listEmplacement}" var="emp">
             <div class="row">  
                 <c:if test="${emp.getStatut() == 'occupe'}">
@@ -20,7 +24,7 @@
                     <p>Table N°: ${emp.numero}</p>
                     <p>Besoin d'aide</p>
                 </c:if>
-                 <c:if test="${emp.getStatut() == 'non valide'}">
+                <c:if test="${emp.getStatut() == 'non valide'}">
                     <label id="table_${emp.numero}"><img src="salle_template/images/IHM_salle/table_selected.png" alt=".." onclick="location.href = 'index?section=IHMSalle&inc=showOrder&table=${emp.keyCommande}';" /></label>
                     <p>Table N°: ${emp.numero}</p>
                     <p>Non validée</p>
@@ -32,6 +36,9 @@
                 </c:if> 
             </div>
         </c:forEach>
-        <input type="submit" value="ok" >
+        <input type="submit" value="Créer commande" >
     </form>
 </div> 
+
+
+
