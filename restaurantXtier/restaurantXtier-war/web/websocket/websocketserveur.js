@@ -66,6 +66,7 @@ websocket.onmessage = function (evt) {
 function onMessage(evt) {
     var json = JSON.parse(evt.data);
     action = json.action;
+    alert(action);
     cleCommande = json.cleCommande;
     if (action === "help") {
         refreshTable(cleCommande);

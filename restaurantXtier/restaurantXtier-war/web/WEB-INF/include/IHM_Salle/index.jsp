@@ -22,13 +22,10 @@
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-         <!-- Js -->
+
         <script src="client-template/js/jquery-3.0.0.js" type="text/javascript"></script>
         <script src="client-template/js/vendor/modernizr-2.6.2.min.js"></script>
-        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="client-template/js/jquery.nav.js"></script>
-        <!--<script src="client-template/js/jquery.sticky.js"></script>-->
         <script src="client-template/js/bootstrap.min.js"></script>
         <script src="client-template/js/plugins.js"></script>
         <script src="client-template/js/wow.min.js"></script>

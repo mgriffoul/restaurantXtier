@@ -20,7 +20,7 @@ public interface SalleLocal {
     
     public Integer creerCommande(Collection<Emplacement> emp, Utilisateur util);
     
-     public GroupeEmplacementLocal getGroupesEmplacement();
+    public GroupeEmplacementLocal getGroupesEmplacement();
 
     public void setGroupesEmplacement(GroupeEmplacementLocal groupesEmplacement);
 
