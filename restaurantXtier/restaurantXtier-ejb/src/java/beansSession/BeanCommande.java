@@ -75,7 +75,11 @@ public class BeanCommande implements BeanCommandeLocal {
 
     @Override
     public void sauvegarderCommande(Commande commande) {
-        em.persist(commande);
+        Collection<LigneCommande> ligneCommandes = commande.getLignesCommandes();
+        for (LigneCommande l : ligneCommandes ){
+            em.persist(l);
+        }
+         em.persist(commande);
         em.flush();
         String numeroCommande = createNumeroCommande(commande.getId());
         commande.setNumero(numeroCommande);

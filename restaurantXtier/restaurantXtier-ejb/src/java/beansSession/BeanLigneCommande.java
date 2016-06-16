@@ -18,7 +18,6 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
     @EJB
     private BeanFormuleLocal beanFormuleLocal;
 
-
     @PersistenceContext(unitName = "restaurantXtier-ejbPU")
     private EntityManager em;
 
@@ -61,13 +60,13 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
 
     @Override
     public List<LigneCommande> selectLigneCommandeServies() {
-        Date d =new Date ();
-        
+        Date d = new Date();
+
         String req = "select lc from LigneCommande lc "
                 + "where lc.etatLc.ordre=4 and lc.article.sousCategorie.categorie.ordre=1 "
                 + "or lc.etatLc.ordre=4 and lc.article.sousCategorie.categorie.ordre=2 "
                 + "or lc.etatLc.ordre=4 and lc.article.sousCategorie.categorie.ordre=3 "
-                + "order by lc.article.nom "; 
+                + "order by lc.article.nom ";
 
         Query qr = em.createQuery(req);
         List<LigneCommande> ligneCommandes = qr.getResultList();
@@ -109,6 +108,7 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
         List<LigneCommande> ligneCommandes = qr.getResultList();
         return ligneCommandes;
     }
+
     @Override
     public LigneCommande changerEtatLigneCommande(Long idLc) {
         LigneCommande lCom = em.find(LigneCommande.class, idLc);
@@ -120,66 +120,69 @@ public class BeanLigneCommande implements BeanLigneCommandeLocal {
         qr.setParameter("paramOrdre", newOrdre);
         //récupération de l'objet EtatLigneCommande de la requête
         EtatLigneCommande elc = (EtatLigneCommande) qr.getSingleResult();
+
+        
+        
         //set du nouvelle idEtat dans la ligne de commande
         lCom.setEtatLc(elc);
+
         return lCom;
     }
 
     @Override
     public LigneCommande creerLigneDeCommandeArticle(Long idArticle) {
         Article a = em.find(Article.class, idArticle);
-        
+
         String req = "select e from EtatLigneCommande e where e.ordre=1";
         Query qr = em.createQuery(req);
         EtatLigneCommande elc = (EtatLigneCommande) qr.getSingleResult();
-        
-        
+
         LigneCommande lc = new LigneCommande();
         lc.setArticle(a);
         lc.setPrixHT(a.getPrixHt());
         lc.setEtatLc(elc);
-        
+
         return lc;
     }
 
     @Override
-    public List<LigneCommande> selectLigneCommandeByIdCommande(Long id){
-                String rq = "Select lc from LigneCommande lc where lc.commande.id=:paramid";
+    public List<LigneCommande> selectLigneCommandeByIdCommande(Long id) {
+        String rq = "Select lc from LigneCommande lc where lc.commande.id=:paramid";
         Query qr = em.createQuery(rq);
         qr.setParameter("paramid", id);
         List<LigneCommande> lc = qr.getResultList();
         return lc;
     }
-      
+
     @Override
-    public Float getPrixLcTTC(LigneCommande lc){
+    public Float getPrixLcTTC(LigneCommande lc) {
         Float prix = 0F;
-        if (lc.getRefFormule() == null){
+        if (lc.getRefFormule() == null) {
             prix = lc.getArticle().getPrixTtc();
             return prix;
-        }else if(lc.getRefFormule() != null && lc.getPrixHT() > 0 ){
-            String ref = lc.getRefFormule();          
-            if(ref.contains("pat")){
+        } else if (lc.getRefFormule() != null && lc.getPrixHT() > 0) {
+            String ref = lc.getRefFormule();
+            if (ref.contains("pat")) {
                 Formule form = beanFormuleLocal.selectFormuleByReference("pat");
                 prix = form.getPrixTtc();
                 return prix;
-            }if(ref.contains("ent")){
+            }
+            if (ref.contains("ent")) {
                 Formule form = beanFormuleLocal.selectFormuleByReference("ent");
                 prix = form.getPrixTtc();
                 return prix;
-            }if(ref.contains("piz")){
+            }
+            if (ref.contains("piz")) {
                 Formule form = beanFormuleLocal.selectFormuleByReference("piz");
                 prix = form.getPrixTtc();
                 return prix;
             }
-        }else if(lc.getRefFormule() != null && lc.getPrixHT() == 0){
+        } else if (lc.getRefFormule() != null && lc.getPrixHT() == 0) {
             prix = 0F;
             return prix;
         }
-        
-    return prix;
+
+        return prix;
     }
-    
-    
-    
+
 }

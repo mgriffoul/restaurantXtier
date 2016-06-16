@@ -28,9 +28,7 @@ function free(x) {
     document.getElementById('chk_' + x + '').checked = false;
 }
 
-function validate(){
-    bootbox.alert("Commande créée!");
-}
+
 
 
 function refreshHeader() {

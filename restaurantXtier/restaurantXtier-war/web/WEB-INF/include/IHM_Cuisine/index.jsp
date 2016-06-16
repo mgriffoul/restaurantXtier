@@ -15,7 +15,7 @@
         <style type="text/css">body {background-color: #DCDCDC;  }</style>
         <title>Interface Cuisine</title>
     </head>
-    <body onload="afficherHeure(); actualiserDiv('${ssSec}');">
+    <body onload="afficherHeure(); autoActuDiv('${ssSec}');">
 
         <div class="row">
             <div class="col-md-4">
