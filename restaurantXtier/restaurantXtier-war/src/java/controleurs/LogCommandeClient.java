@@ -1,4 +1,3 @@
-
 package controleurs;
 
 import beanEntite.Categorie;
@@ -16,22 +15,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import transcient.SalleLocal;
 
+public class LogCommandeClient implements SousControleurInterface {
 
-public class LogCommandeClient implements SousControleurInterface{
     BeanCategorieLocal beanCategorie = lookupBeanCategorieLocal();
     SalleLocal salle = lookupSalleLocal();
     BeanCommandeLocal beanCommande = lookupBeanCommandeLocal();
-    
-    
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        
-        
-        
-        
+
         HttpSession session = request.getSession();
-    
+
         //********
         //Preparation des URL 
         //********************
@@ -40,28 +34,34 @@ public class LogCommandeClient implements SousControleurInterface{
         String suffix = ".jsp";
 
         //URL par défaut
-        String url = "include/IHM_Client/index";
-    
-        
+        String url = "";
+
         //Recupération de la cle de commande et ajout dans la session
         Integer cleCommande = Integer.valueOf(request.getParameter("com"));
-        session.setAttribute("cleCommande", cleCommande);
-        
-        //Recuperation des categories
-        List<Categorie> categories = beanCategorie.selectAllCategorie();
-                        request.setAttribute("cat", categories);
-        
-        
-        //recuperation de la comande et ajout dans la session
-        Commande com = salle.selectCommandeByCleCommande(cleCommande);
-        String passServ = com.getUtilisateur().getCode();
-        
-        session.setAttribute("codeServeur", passServ);
-        session.setAttribute("commande", com);
-        request.setAttribute("deco", "deco");
-        request.setAttribute("contentInc", prefix + s1 + suffix);
+        if (cleCommande > 0) {
+            session.setAttribute("cleCommande", cleCommande);
+
+            //Recuperation des categories
+            List<Categorie> categories = beanCategorie.selectAllCategorie();
+            request.setAttribute("cat", categories);
+
+            //recuperation de la comande et ajout dans la session
+            Commande com = salle.selectCommandeByCleCommande(cleCommande);
+            String passServ = com.getUtilisateur().getCode();
+
+            session.setAttribute("codeServeur", passServ);
+            session.setAttribute("commande", com);
+            request.setAttribute("deco", "deco");
+            request.setAttribute("contentInc", prefix + s1 + suffix);
+            url = "include/IHM_Client/index";
+        }else{
+            String msg = "Vous devez selectionner une commande pour connecter l'appareil.";
+            request.setAttribute("message", msg);
+             url = "include/IHM_Client/include/logclient";
+        }
+
         return url;
-    
+
     }
 
     private BeanCommandeLocal lookupBeanCommandeLocal() {
@@ -94,8 +94,4 @@ public class LogCommandeClient implements SousControleurInterface{
         }
     }
 
-   
-    
-    
-    
 }

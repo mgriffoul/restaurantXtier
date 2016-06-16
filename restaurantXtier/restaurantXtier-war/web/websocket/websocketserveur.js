@@ -31,7 +31,7 @@ function sendHelpServeur(cleCommande, codeServeur) {
 }
 
 function sendValidServeur(cleCommande, codeServeur) {
-    alert("SEND VALID SERVEUR");
+    
     var json = JSON.stringify({
         "password": codeServeur,
         "action": "valid",
@@ -67,7 +67,7 @@ websocket.onmessage = function (evt) {
 function onMessage(evt) {
     var json = JSON.parse(evt.data);
     action = json.action;
-    alert(action);
+   
     cleCommande = json.cleCommande;
     if (action === "help") {
         refreshTable(cleCommande);

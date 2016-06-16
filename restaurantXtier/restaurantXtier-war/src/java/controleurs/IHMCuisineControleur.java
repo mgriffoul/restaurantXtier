@@ -13,11 +13,13 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import transcient.SalleLocal;
 
-public class IHMCuisineControleur implements SousControleurInterface {
+public class IHMCuisineControleur implements Serializable, SousControleurInterface {
 
     BeanLigneCommandeLocal beanLigneCommande = lookupBeanLigneCommandeLocal();
-
+    SalleLocal salle = lookupSalleLocal();
+    
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
@@ -146,9 +148,19 @@ public class IHMCuisineControleur implements SousControleurInterface {
             //récupération de l'id de la LC 
             String s = request.getParameter("idLc");
             Long idLc = Long.parseLong(s);
+
             // appel de la méthode avec idLc en attribut
             LigneCommande ligneCommande = beanLigneCommande.changerEtatLigneCommande(idLc);
-
+            
+            // recup numéro de commande et id de la ligne de commande
+            String numCom = ligneCommande.getCommande().getNumero();
+            Long idLigneCom = ligneCommande.getId();
+            System.out.println("numCom : "+numCom);
+            System.out.println("idLigne Com : "+idLigneCom);
+            //appel méthode pour changer l'etat dans bean salle 
+            //avec passage des attributs numéro de commande et id de ligne de commande
+            salle.changerElcFromIdLigneCom(numCom, idLigneCom);
+        
         }
 
         request.setAttribute("contentInc", prefix + s1 + suffix);
@@ -159,6 +171,16 @@ public class IHMCuisineControleur implements SousControleurInterface {
         try {
             Context c = new InitialContext();
             return (BeanLigneCommandeLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/BeanLigneCommande!beansSession.BeanLigneCommandeLocal");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    private SalleLocal lookupSalleLocal() {
+        try {
+            Context c = new InitialContext();
+            return (SalleLocal) c.lookup("java:global/restaurantXtier/restaurantXtier-ejb/Salle!transcient.SalleLocal");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
