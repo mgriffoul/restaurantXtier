@@ -22,7 +22,6 @@ import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
-import javax.websocket.Session;
 
 @Singleton
 public class Salle implements SalleLocal {

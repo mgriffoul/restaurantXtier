@@ -29,6 +29,12 @@ public class Ticket implements Serializable {
         return prixTotal;
     }
 
+    public void setPrixTotal(float prixTotal) {
+        this.prixTotal = prixTotal;
+    }
+
+    
+
     public Commande getCommande() {
         return commande;
     }
@@ -37,9 +43,7 @@ public class Ticket implements Serializable {
         this.date = date;
     }
 
-    public void setPrixTotal(float prixTotal) {
-        this.prixTotal = prixTotal;
-    }
+  
 
     public void setCommande(Commande commande) {
         this.commande = commande;
@@ -47,9 +51,9 @@ public class Ticket implements Serializable {
     
       // associations
 
-    public Ticket(Date date, float prixTotal) {
+    public Ticket(Date date) {
         this.date = date;
-        this.prixTotal = prixTotal;
+        
     }
 
     public Ticket() {
@@ -57,7 +61,7 @@ public class Ticket implements Serializable {
  
     @OneToMany
     private Collection<Paiement> paiments;
-    @OneToOne
+    @OneToOne()
     private Commande commande;
     //fin associations
     
@@ -68,6 +72,14 @@ public class Ticket implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Collection<Paiement> getPaiements() {
+        return paiments;
+    }
+
+    public void setPaiements(Collection<Paiement> paiements) {
+        this.paiments = paiements;
     }
     
     

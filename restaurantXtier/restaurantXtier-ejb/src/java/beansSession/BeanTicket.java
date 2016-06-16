@@ -10,6 +10,8 @@ import beanEntite.LigneCommande;
 import beanEntite.Ticket;
 import java.util.Collection;
 import javax.ejb.Stateless;
+import java.util.Date;
+import javax.ejb.EJB;
 import javax.persistence.*;
 
 /**
@@ -18,6 +20,8 @@ import javax.persistence.*;
  */
 @Stateless
 public class BeanTicket implements BeanTicketLocal {
+    @EJB
+    private BeanCommandeLocal beanCommande;
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -63,5 +67,4 @@ public class BeanTicket implements BeanTicketLocal {
         
         
     }
-
 }

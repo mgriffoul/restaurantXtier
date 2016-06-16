@@ -45,7 +45,7 @@ public class RefreshClientControleur implements SousControleurInterface {
         Commande co = salle.selectCommandeByCleCommande(cleCommande);
 
         session.setAttribute("commande", co);
-        
+
         Float prixTotal = salle.getPrixTtcCommande(cleCommande);
         if (prixTotal == null) {
             prixTotal = 0F;
@@ -59,6 +59,13 @@ public class RefreshClientControleur implements SousControleurInterface {
         if ("header".equalsIgnoreCase(request.getParameter("refresh"))) {
 
             return prefix + "IHM_Client/include/header";
+        }
+
+        if ("logclient".equalsIgnoreCase(request.getParameter("refresh"))) {
+            HashMap<Integer, Commande> commandes = salle.getCommandes();
+
+            request.setAttribute("commandes", commandes);
+            return "include/IHM_Client/include/logclient";
         }
 
         if ("commande".equalsIgnoreCase(request.getParameter("refresh"))) {
@@ -107,12 +114,12 @@ public class RefreshClientControleur implements SousControleurInterface {
                 for (LigneCommande l : formules) {
                     if (l.getRefFormule().equalsIgnoreCase(s)) {
                         col.add(l);
-                        
+
                     }
                 }
                 hmf.put(beanFormule.selectFormuleByRef(s), col);
             }
-            
+
             request.setAttribute("boissons", boissons);
             request.setAttribute("entrees", entrees);
             request.setAttribute("plats", plats);
@@ -126,22 +133,12 @@ public class RefreshClientControleur implements SousControleurInterface {
             }
 
         }
-        
 
         request.setAttribute("contentInc", prefix + s1 + suffix);
         return url;
 
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
     private SalleLocal lookupSalleLocal() {
         try {
             Context c = new InitialContext();

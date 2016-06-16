@@ -28,14 +28,11 @@ public class ServeurEndpoint {
 
         if ("log".equalsIgnoreCase(action.getAction())) {
             passwords.put(session, password);
-        }
-
-        if ("help".equalsIgnoreCase(action.getAction())) {
+        } else {
             Iterator iter = passwords.entrySet().iterator();
             while (iter.hasNext()) {
                 Map.Entry<Session, String> entry2 = (Map.Entry) iter.next();
                 if (password.equalsIgnoreCase(entry2.getValue())) {
-
                     Session peer = entry2.getKey();
                     peer.getBasicRemote().sendObject(action);
                 }
