@@ -107,4 +107,3 @@
 
 
 <script src="js/caisse.js"></script>
-<script type="text/javascript">window.setInterval("actualiser()",600000);</script>
