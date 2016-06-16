@@ -19,7 +19,7 @@ function getXmlHttpRequest() {
 
 function actualiserDiv(ssSec) {
     var url = "index?section=IHMCuisine&inc=" + ssSec + "&meth=actu"; //
-
+   
     var xhr = getXmlHttpRequest();
     xhr.onreadystatechange = function () {
 
@@ -27,13 +27,15 @@ function actualiserDiv(ssSec) {
             var maDiv = document.getElementById("Affichage");
             var reponse = xhr.responseText;
 
-            maDiv.innerHTML = reponse;
-        }
+            maDiv.innerHTML = reponse;  
+        }   
     };
     xhr.open("GET", url, true);
     xhr.send(null);
-setInterval("actualiserDiv(ssSec)", 3000);
 }
+
+
+
 function afficherHeure() {
     var today = new Date();
     var h = today.getHours();
@@ -52,20 +54,22 @@ function checkTime(i) {
     ;  // add zero in front of numbers < 10
     return i;
 }
-//function autoActuDiv(ssSec) {
-//    var url = "index?section=IHMCuisine&inc=" + ssSec + "&meth=actu"; //
-//    var xhr = getXmlHttpRequest();
-//    xhr.onreadystatechange = function () {
-//        if (xhr.readyState == 4 && xhr.status == 200) {
-//            var maDiv = document.getElementById("Affichage");
-//            var reponse = xhr.responseText;
-//            maDiv.innerHTML = reponse;
-//        }
-//    };
-//    xhr.open("GET", url, true);
-//    xhr.send(null);
-//    setInterval("autoActuDiv(ssSec)", 3000);
-//}
+function autoActuDiv(ssSec) {
+    var url = "index?section=IHMCuisine&inc=" + ssSec + "&meth=actu"; //
+ 
+    var xhr = getXmlHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var maDiv = document.getElementById("Affichage");
+            var reponse = xhr.responseText;
+            maDiv.innerHTML = reponse;
+        }
+    };
+    xhr.open("GET", url, true);
+    xhr.send(null);
+    setInterval( function (){autoActuDiv(ssSec);}, 5000);
+    
+}
 
 
 
