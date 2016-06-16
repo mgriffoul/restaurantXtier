@@ -110,7 +110,7 @@ function testbootbox(cleCommande, codeServeur) {
 
 function validerCommande() {
 
-    var url = "index?section=clientRefresh&refresh=commande&actionRefresh=valid";
+    var url = "index?section=clientRefresh&refresh=commande&actionRefresh=valid&actionRefresh=valid";
 
     var xhr = getXmlHttpRequest();
 

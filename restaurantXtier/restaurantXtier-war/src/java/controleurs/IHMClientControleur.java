@@ -107,6 +107,11 @@ public class IHMClientControleur implements SousControleurInterface {
                         System.out.println("DANS CONTRLOEUR COMMANDE");
                         String origine = request.getParameter("origine");
 
+                        if ("valid".equalsIgnoreCase(request.getParameter("actionRefresh"))) {
+                            co.setStatut("non validee");
+                            session.setAttribute("commande", co);
+                        }
+
                         if ("en creation".equalsIgnoreCase(co.getStatut())) {
                             s1 = "commande";
                         } else {

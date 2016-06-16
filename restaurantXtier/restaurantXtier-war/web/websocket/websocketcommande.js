@@ -57,7 +57,7 @@ function waitForSocketConnection(socket, callback) {
 
 
 function onMessage(evt) {
-    
+
     var json = JSON.parse(evt.data);
 
 

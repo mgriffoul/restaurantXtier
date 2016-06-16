@@ -123,64 +123,6 @@
         <local>beansSession.BeanArticleLocal</local>
         <ejb-link>restaurantXtier-ejb.jar#BeanArticle</ejb-link>
     </ejb-local-ref>
-    <ejb-local-ref>
-        <ejb-ref-name>BeanFormule1</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local>beansSession.BeanFormuleLocal</local>
-        <ejb-link>restaurantXtier-ejb.jar#BeanFormule</ejb-link>
-    </ejb-local-ref>
-    <ejb-local-ref>
-        <ejb-ref-name>BeanFormule2</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local>beansSession.BeanFormuleLocal</local>
-        <ejb-link>restaurantXtier-ejb.jar#BeanFormule</ejb-link>
-    </ejb-local-ref>
-    <ejb-local-ref>
-        <ejb-ref-name>BeanCategorie1</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local>beansSession.BeanCategorieLocal</local>
-        <ejb-link>restaurantXtier-ejb.jar#BeanCategorie</ejb-link>
-    </ejb-local-ref>
-    <ejb-local-ref>
-        <ejb-ref-name>BeanCategorie2</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local>beansSession.BeanCategorieLocal</local>
-        <ejb-link>restaurantXtier-ejb.jar#BeanCategorie</ejb-link>
-    </ejb-local-ref>
-    <ejb-local-ref>
-        <ejb-ref-name>BeanCategorie3</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local>beansSession.BeanCategorieLocal</local>
-        <ejb-link>restaurantXtier-ejb.jar#BeanCategorie</ejb-link>
-    </ejb-local-ref>
-    <ejb-local-ref>
-        <ejb-ref-name>BeanUser1</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local>beansSession.BeanUserLocal</local>
-        <ejb-link>restaurantXtier-ejb.jar#BeanUser</ejb-link>
-    </ejb-local-ref>
-    <ejb-local-ref>
-        <ejb-ref-name>Salle1</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local>transcient.SalleLocal</local>
-        <ejb-link>restaurantXtier-ejb.jar#Salle</ejb-link>
-    </ejb-local-ref>
-    <ejb-local-ref>
-        <ejb-ref-name>GroupesEmplacement1</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local>transcient.GroupeEmplacementLocal</local>
-        <ejb-link>restaurantXtier-ejb.jar#GroupesEmplacement</ejb-link>
-    </ejb-local-ref>
-    <ejb-local-ref>
-        <ejb-ref-name>GroupesEmplacement2</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local>transcient.GroupeEmplacementLocal</local>
-        <ejb-link>restaurantXtier-ejb.jar#GroupesEmplacement</ejb-link>
-    </ejb-local-ref>
-    <ejb-local-ref>
-        <ejb-ref-name>Salle2</ejb-ref-name>
-        <ejb-ref-type>Session</ejb-ref-type>
-        <local>transcient.SalleLocal</local>
-        <ejb-link>restaurantXtier-ejb.jar#Salle</ejb-link>
-    </ejb-local-ref>
+    
+    
 </web-app>
