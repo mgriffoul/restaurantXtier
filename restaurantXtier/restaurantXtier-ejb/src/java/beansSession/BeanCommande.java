@@ -21,7 +21,7 @@ public class BeanCommande implements BeanCommandeLocal {
 
     @EJB
     private BeanLigneCommandeLocal beanLigneCommande;
-    
+
     @EJB
     private BeanFormuleLocal beanFormuleLocal;
 
@@ -76,10 +76,10 @@ public class BeanCommande implements BeanCommandeLocal {
     @Override
     public void sauvegarderCommande(Commande commande) {
         Collection<LigneCommande> ligneCommandes = commande.getLignesCommandes();
-        for (LigneCommande l : ligneCommandes ){
+        for (LigneCommande l : ligneCommandes) {
             em.persist(l);
         }
-         em.persist(commande);
+        em.persist(commande);
         em.flush();
         String numeroCommande = createNumeroCommande(commande.getId());
         commande.setNumero(numeroCommande);
@@ -161,32 +161,29 @@ public class BeanCommande implements BeanCommandeLocal {
         return commandes;
     }
 
-    
     @Override
     public void ajouterLigneDeCommande(Commande co, Long idArticle) {
         LigneCommande lc = beanLigneCommande.creerLigneDeCommandeArticle(idArticle);
-        Collection<LigneCommande> listLc =  co.getLignesCommandes();
+        Collection<LigneCommande> listLc = co.getLignesCommandes();
         listLc.add(lc);
     }
-    
+
     @Override
-    public Float getTotalCommandeTtc(String numero){
-    Float total = 0F;
-    Commande c = this.selectCommandeByNumero(numero);
-    List<LigneCommande> liste = beanLigneCommande.selectLigneCommandeByIdCommande(c.getId());
-    for (LigneCommande lc : liste) {
-        Float f = beanLigneCommande.getPrixLcTTC(lc);
-        total += f;
+    public Float getTotalCommandeTtc(String numero) {
+        Float total = 0F;
+        Commande c = this.selectCommandeByNumero(numero);
+        List<LigneCommande> liste = beanLigneCommande.selectLigneCommandeByIdCommande(c.getId());
+        for (LigneCommande lc : liste) {
+            Float f = beanLigneCommande.getPrixLcTTC(lc);
+            total += f;
+            return total;
+        }
         return total;
     }
-    return total;
-}    
+
     @Override
     public void changerEtatCommande(String nCom) {
         Commande com = selectCommandeByNumero(nCom);
-        //récupération de l'objet Commande de la requête
-        
-        //set du nouvelle idEtat dans la commande
         com.setStatut("payee");
     }
 }
