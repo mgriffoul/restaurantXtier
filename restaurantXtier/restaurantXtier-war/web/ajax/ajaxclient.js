@@ -39,7 +39,7 @@ function refreshHeader() {
 }
 
 function refreshMesCommandes() {
-alert("refreshCom demande");
+
     var url = "index?section=ihmclient&inc=com&origine=ajax";
 
     var xhr = getXmlHttpRequest();
@@ -99,7 +99,7 @@ function testbootbox(cleCommande, codeServeur) {
     alert("testBootbox, cle = "+cleCommande+" code = "+codeServeur);
     bootbox.confirm("Etes vous certain de vouloir valider la commande ? La commande ne pourra plus être modifié par aucun convive après confirmation.", function (result) {
         if (result === true) {
-            alert("result true");
+            
             validerCommande();
             sendOrder(cleCommande, "close");
             sendValidServeur(cleCommande, codeServeur);
