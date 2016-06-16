@@ -61,7 +61,7 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
                 beanEmplacement.updateEmplacement(emp);
             }
             salle.creerCommande(emps, ut01);
-            List<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
+            Collection<Emplacement> listEmplacement = beanEmplacement.selectAllEmplacement();
             request.setAttribute("listEmplacement", listEmplacement);
             request.setAttribute("OrderValide","ok");
             request.setAttribute("contentInc", s1);
@@ -111,7 +111,8 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
                         request.setAttribute("plats", plats);
                         request.setAttribute("desserts", desserts);
                         request.setAttribute("formules", hmf);
-
+                        request.setAttribute("table", cleCommande);
+                        
             request.setAttribute("contentInc", s1);
         }
 

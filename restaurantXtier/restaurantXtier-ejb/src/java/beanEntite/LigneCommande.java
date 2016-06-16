@@ -1,6 +1,7 @@
 package beanEntite;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +31,7 @@ public class LigneCommande implements Serializable {
     @ManyToOne
     private Article article;
     
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
     private Commande commande;
     
     @ManyToOne

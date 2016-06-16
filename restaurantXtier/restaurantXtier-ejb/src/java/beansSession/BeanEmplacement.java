@@ -24,21 +24,13 @@ public class BeanEmplacement implements BeanEmplacementLocal {
         String req = "Select e from Emplacement e order by e.numero asc";
         Query qr = em.createQuery(req);
         List<Emplacement> listEmplacement = qr.getResultList();
-        for (Emplacement ep : listEmplacement){
-              ep.setKeyCommande(groupesEmplacement.getKeyEmpByEmpNum(ep.getNumero()));
+        for (Emplacement e : listEmplacement){
+            e.setKeyCommande(groupesEmplacement.getKeyEmpByEmpNum(e.getNumero())); 
         }
         return listEmplacement;
     }
     
-    @Override
-    public List<Emplacement> cleanEmplacement(List<Emplacement> listEmplacement){
-        for(Emplacement emp : listEmplacement){
-            emp.setStatut("libre");
-            updateEmplacement(emp);
-        }
-        return listEmplacement;
-        
-    }
+  
 
     @Override
     public Emplacement selectEmplacementById(Long id) {

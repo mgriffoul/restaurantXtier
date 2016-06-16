@@ -4,8 +4,7 @@
         <input type="hidden" name="section" value="IHMSalle">
         <input type="hidden" name="inc" value="createOrder">
         <c:if test="${OrderValide == 'ok'}">
-            <script type="text/javascript">validate();</script>
-
+            <script type="text/javascript"> bootbox.alert("Commande créée!");</script>
         </c:if>
         <c:forEach items="${listEmplacement}" var="emp">
             <div class="row">  
@@ -20,7 +19,7 @@
                     <p>Libre</p>
                 </c:if>
                 <c:if test="${emp.getStatut() == 'help'}">
-                    <label id="table_${emp.numero}"><img src="salle_template/images/IHM_salle/table_alert.png" alt=".." onclick="location.href = 'index?section=IHMSalle&inc=helpOrder&table=${emp.keyCommande}';" /></label>
+                    <label id="table_${emp.numero}"><img src="salle_template/images/IHM_salle/table_alert.png" alt=".." onclick="location.href = 'index?section=IHMSalle&inc=showOrder&table=${emp.keyCommande}';" /></label>
                     <p>Table N°: ${emp.numero}</p>
                     <p>Besoin d'aide</p>
                 </c:if>

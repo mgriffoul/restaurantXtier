@@ -3,9 +3,9 @@ package transcient;
 import beanEntite.Commande;
 import beanEntite.Emplacement;
 import beansSession.BeanEmplacementLocal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -35,6 +35,8 @@ public class GroupesEmplacement implements GroupeEmplacementLocal {
         this.emplacements = emplacements;
     }
 
+
+
     @Override
     public Integer getKeyEmpByEmpNum(Integer Numero) {
         for (Map.Entry<Integer, Collection<Emplacement>> entry : emplacements.entrySet()) {
@@ -59,8 +61,6 @@ public class GroupesEmplacement implements GroupeEmplacementLocal {
         }
         return listEmplacement;
     }
-
-    
 
     @Override
     public Integer creerGroupe(Collection<Emplacement> emp) {
