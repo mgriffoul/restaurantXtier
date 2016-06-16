@@ -42,16 +42,17 @@ public class RefreshClientControleur implements SousControleurInterface {
         String url = "include/IHM_Client/index";
 
         Integer cleCommande = (Integer) session.getAttribute("cleCommande");
-        Commande co = salle.selectCommandeByCleCommande(cleCommande);
+        Commande co =null;
+        if (cleCommande != null) {
+             co = salle.selectCommandeByCleCommande(cleCommande);
+            session.setAttribute("commande", co);
 
-        session.setAttribute("commande", co);
-
-        Float prixTotal = salle.getPrixTtcCommande(cleCommande);
-        if (prixTotal == null) {
-            prixTotal = 0F;
+            Float prixTotal = salle.getPrixTtcCommande(cleCommande);
+            if (prixTotal == null) {
+                prixTotal = 0F;
+            }
+            request.setAttribute("prixTotal", prixTotal);
         }
-        request.setAttribute("prixTotal", prixTotal);
-
         //Recuperation des categories
         List<Categorie> categories = beanCategorie.selectAllCategorie();
         request.setAttribute("cat", categories);
@@ -62,6 +63,7 @@ public class RefreshClientControleur implements SousControleurInterface {
         }
 
         if ("logclient".equalsIgnoreCase(request.getParameter("refresh"))) {
+            System.out.println("DANS CONTROLEUR REFRESH");
             HashMap<Integer, Commande> commandes = salle.getCommandes();
 
             request.setAttribute("commandes", commandes);
