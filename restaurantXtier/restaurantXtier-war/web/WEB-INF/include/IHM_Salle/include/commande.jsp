@@ -2,10 +2,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:if test="${commande.getStatut() == 'en cours'}">
+<c:if test="${commande.getStatut() == 'terminee'}">
     <p> Commande N° ${commande.getNumero()} créée avec succès et envoyée en cuisine! </p>
 </c:if>
-<c:if test="${commande.getStatut() != 'en cours'}">
+<c:if test="${commande.getStatut() != 'terminee'}">
 <section id="commandes">
     <section id="price">
         <div class="container container-perso" id="#">
@@ -193,6 +193,13 @@
         <input type="hidden" name="inc" value="validOrder">
         <input type="hidden" name="table" value="${table}">
         <input type="submit" value="Valider cette commande" >
+    </form>
+        
+     <form method="POST"  action="index">
+        <input type="hidden" name="section" value="IHMSalle">
+        <input type="hidden" name="inc" value="payOrder">
+        <input type="hidden" name="table" value="${table}">
+        <input type="submit" value="Payer cette commande" >
     </form>
 </c:if>
 

@@ -85,6 +85,11 @@ public class BeanCommande implements BeanCommandeLocal {
         commande.setNumero(numeroCommande);
         em.merge(commande);
     }
+    
+    @Override
+    public void updateCommande(Commande commande){
+        em.merge(commande);
+    }
 
     @Override
     public List<Commande> selectCommandeByDate(String date) {

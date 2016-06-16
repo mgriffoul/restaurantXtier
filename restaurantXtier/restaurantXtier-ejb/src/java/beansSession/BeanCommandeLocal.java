@@ -41,4 +41,6 @@ public interface BeanCommandeLocal {
     public Float getTotalCommandeTtc(String numero);
 
     public void changerEtatCommande(String nCom);
+
+    public void updateCommande(Commande commande);
 }

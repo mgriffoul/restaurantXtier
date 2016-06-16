@@ -118,10 +118,11 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
             s1 = "commande";
             Integer cleCommande = Integer.parseInt(request.getParameter("table"));
             Commande c01 = salle.selectCommandeByCleCommande(cleCommande);
-            c01.setStatut("en cours");
+            c01.setStatut("terminee");
             beanCommande.sauvegarderCommande(c01);
             request.setAttribute("commande", c01);
             request.setAttribute("contentInc", s1);
+            request.setAttribute("table", cleCommande);
         }
 
         //Aide aux clients
@@ -134,6 +135,7 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
             request.setAttribute("listEmplacement", listEmplacement);
             request.setAttribute("commande", c01);
             request.setAttribute("contentInc", s1);
+              request.setAttribute("table", cleCommande);
         }
         
         //Clients = commande validée
@@ -146,6 +148,21 @@ public class IHMSalleControlleur implements Serializable, SousControleurInterfac
             request.setAttribute("listEmplacement", listEmplacement);
             request.setAttribute("commande", c01);
             request.setAttribute("contentInc", s1);
+              request.setAttribute("table", cleCommande);
+        }
+        //Clients = commande à payé
+         if ("payOrder".equalsIgnoreCase(inc)) {
+            s1 = "commande";
+            Integer cleCommande = Integer.parseInt(request.getParameter("com"));
+            Commande c01 = salle.selectCommandeByCleCommande(cleCommande);
+            c01.setStatut("terminee");
+            beanCommande.updateCommande(c01);
+            groupesEmplacement.updateEmplacement("libre", cleCommande);
+            Collection<Emplacement> listEmplacement = groupesEmplacement.getEmplacementsList();
+            request.setAttribute("listEmplacement", listEmplacement);
+            request.setAttribute("commande", c01);
+            request.setAttribute("contentInc", s1);
+              request.setAttribute("table", cleCommande);
         }
 
         request.setAttribute("contentInc", prefix + s1 + suffix);
